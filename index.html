@@ -939,7 +939,7 @@
 <div class="collections" id="collections">
   <div class="section-header reveal">
     <h2 class="section-title">Browse by <em>Collection</em></h2>
-    <span class="section-count">6 Collections</span>
+    <span class="section-count"></span>
   </div>
   <div class="collections-scroll">
     <a href="films/death-by-a-thousand-cuts.html" class="collection-pill collection-pill-featured reveal">
@@ -1097,14 +1097,6 @@
     <p class="manifesto-p reveal">Every film we accept is listed on Letterboxd, published with full directorial credit, and treated as the serious work of art it is. We take submissions from anywhere, pay attention to everyone, and answer to nothing but quality.</p>
     <div class="manifesto-stat-row reveal">
       <div class="stat-box">
-        <div class="stat-num">24+</div>
-        <div class="stat-label">Films in Catalogue</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">6</div>
-        <div class="stat-label">Collections</div>
-      </div>
-      <div class="stat-box">
         <div class="stat-num">Vol.1</div>
         <div class="stat-label">Anthology — Coming Soon</div>
       </div>
@@ -1172,6 +1164,257 @@
     });
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
+ 
+  // Popup — show after 5s, respect dismissal
+  const popup = document.getElementById('signup-popup');
+  const popupOverlay = document.getElementById('popup-overlay');
+ 
+  if (!sessionStorage.getItem('popup-dismissed')) {
+    setTimeout(() => {
+      popup.classList.add('visible');
+      popupOverlay.classList.add('visible');
+    }, 5000);
+  }
+ 
+  function closePopup() {
+    popup.classList.remove('visible');
+    popupOverlay.classList.remove('visible');
+    sessionStorage.setItem('popup-dismissed', 'true');
+  }
+ 
+  document.getElementById('popup-close').addEventListener('click', closePopup);
+  popupOverlay.addEventListener('click', closePopup);
+ 
+  document.getElementById('popup-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('popup-email').value;
+    if (email) {
+      document.getElementById('popup-form-inner').style.display = 'none';
+      document.getElementById('popup-success').style.display = 'block';
+      setTimeout(closePopup, 2500);
+    }
+  });
 </script>
+ 
+<!-- SIGNUP POPUP -->
+<div id="popup-overlay"></div>
+<div id="signup-popup" role="dialog" aria-modal="true" aria-label="Sign up for updates">
+ 
+  <button id="popup-close" aria-label="Close">✕</button>
+ 
+  <div class="popup-eyebrow">50% Film</div>
+ 
+  <h2 class="popup-heading">Stay<br><em>In Frame.</em></h2>
+ 
+  <p class="popup-sub">New films. Director features. Anthology news. First in your inbox.</p>
+ 
+  <div id="popup-form-inner">
+    <!-- MAILCHIMP: replace the form action URL with your Mailchimp embed action URL -->
+    <form id="popup-form" action="YOUR_MAILCHIMP_ACTION_URL" method="post" target="_blank" novalidate>
+      <div class="popup-input-row">
+        <input
+          type="email"
+          id="popup-email"
+          name="EMAIL"
+          placeholder="Your email address"
+          required
+          autocomplete="email"
+        />
+        <!-- Mailchimp bot protection — do not remove -->
+        <div style="position:absolute;left:-5000px;" aria-hidden="true">
+          <input type="text" name="b_REPLACE_WITH_MAILCHIMP_HIDDEN_FIELD" tabindex="-1" value="">
+        </div>
+        <button type="submit">Join →</button>
+      </div>
+      <p class="popup-note">No spam. Unsubscribe any time.</p>
+    </form>
+  </div>
+ 
+  <div id="popup-success" style="display:none;">
+    <div class="popup-success-inner">
+      <div class="popup-success-icon">✦</div>
+      <p class="popup-success-text">You're in. Welcome to 50% Film.</p>
+    </div>
+  </div>
+ 
+</div>
+ 
+<style>
+  /* OVERLAY */
+  #popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 9990;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    backdrop-filter: blur(3px);
+  }
+  #popup-overlay.visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+ 
+  /* POPUP */
+  #signup-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -48%) scale(0.97);
+    width: 90%;
+    max-width: 480px;
+    background: #0f0f0f;
+    border: 1px solid #1e1e1e;
+    border-top: 3px solid #c8341a;
+    padding: 52px 48px 44px;
+    z-index: 9991;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  #signup-popup.visible {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%, -50%) scale(1);
+  }
+ 
+  /* CLOSE */
+  #popup-close {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #444;
+    font-size: 13px;
+    cursor: none;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+    padding: 4px 8px;
+  }
+  #popup-close:hover { color: var(--white); }
+ 
+  /* CONTENT */
+  .popup-eyebrow {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    color: #c8341a;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+ 
+  .popup-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    line-height: 0.88;
+    color: #f0ece4;
+    letter-spacing: 0.01em;
+    margin-bottom: 20px;
+  }
+ 
+  .popup-heading em {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    color: #e8e2d6;
+    opacity: 0.6;
+    display: block;
+  }
+ 
+  .popup-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    line-height: 1.9;
+    color: #666;
+    margin-bottom: 32px;
+    letter-spacing: 0.05em;
+  }
+ 
+  /* INPUT ROW */
+  .popup-input-row {
+    display: flex;
+    gap: 0;
+    margin-bottom: 12px;
+  }
+ 
+  .popup-input-row input[type="email"] {
+    flex: 1;
+    background: #0a0a0a;
+    border: 1px solid #2a2a2a;
+    border-right: none;
+    color: #f0ece4;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 14px 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    cursor: none;
+  }
+ 
+  .popup-input-row input[type="email"]:focus {
+    border-color: #c8341a;
+  }
+ 
+  .popup-input-row input[type="email"]::placeholder {
+    color: #333;
+  }
+ 
+  .popup-input-row button[type="submit"] {
+    background: #c8341a;
+    color: #f0ece4;
+    border: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 14px 20px;
+    cursor: none;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+ 
+  .popup-input-row button[type="submit"]:hover {
+    background: #a82a14;
+  }
+ 
+  .popup-note {
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    color: #333;
+    text-transform: uppercase;
+  }
+ 
+  /* SUCCESS */
+  .popup-success-inner {
+    text-align: center;
+    padding: 20px 0;
+  }
+ 
+  .popup-success-icon {
+    font-size: 28px;
+    color: #c8341a;
+    margin-bottom: 16px;
+  }
+ 
+  .popup-success-text {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: #f0ece4;
+    line-height: 1.4;
+  }
+ 
+  @media (max-width: 480px) {
+    #signup-popup { padding: 40px 28px 36px; }
+    .popup-heading { font-size: 52px; }
+    .popup-input-row { flex-direction: column; }
+    .popup-input-row input[type="email"] { border-right: 1px solid #2a2a2a; border-bottom: none; }
+    .popup-input-row button[type="submit"] { padding: 14px; }
+  }
+</style>
 </body>
 </html>
