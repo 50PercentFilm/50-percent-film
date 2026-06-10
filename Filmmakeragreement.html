@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Filmmaker Agreement — 50% Film</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+  :root {
+    --black: #0a0a0a;
+    --white: #f0ece4;
+    --cream: #e8e2d6;
+    --red: #c8341a;
+    --gray: #2a2a2a;
+    --mid: #888;
+  }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    cursor: none;
+    overflow-x: hidden;
+  }
+ 
+  .cursor {
+    position: fixed;
+    width: 10px; height: 10px;
+    background: var(--red);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s;
+    mix-blend-mode: difference;
+  }
+  .cursor.big { width: 40px; height: 40px; }
+ 
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.35;
+  }
+ 
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 40px;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%);
+  }
+ 
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.15em;
+    color: var(--white);
+    text-decoration: none;
+  }
+ 
+  .nav-back {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--white); }
+  .nav-back::before { content: '←'; }
+ 
+  /* HERO */
+  .hero {
+    min-height: 52vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 120px 40px 60px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #1a1a1a;
+  }
+ 
+  .hero-stripe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 6px; height: 100%;
+    background: var(--red);
+  }
+ 
+  .hero-watermark {
+    position: absolute;
+    right: -20px; bottom: -40px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 320px;
+    line-height: 1;
+    color: rgba(240,236,228,0.025);
+    pointer-events: none;
+    letter-spacing: -0.02em;
+  }
+ 
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
+ 
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 9vw, 130px);
+    line-height: 0.88;
+    color: var(--white);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+    max-width: 900px;
+  }
+ 
+  .hero-title em {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    color: rgba(240,236,228,0.35);
+  }
+ 
+  .hero-meta {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s forwards;
+  }
+ 
+  .hero-meta-item { display: flex; flex-direction: column; gap: 6px; }
+ 
+  .hero-meta-label {
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #444;
+  }
+ 
+  .hero-meta-val {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+  }
+ 
+  /* INTRO BAND */
+  .intro-band {
+    background: var(--red);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+ 
+  .intro-band-lines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(10,10,10,0.05) 40px, rgba(10,10,10,0.05) 41px);
+  }
+ 
+  .intro-band-text {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: clamp(18px, 2.2vw, 26px);
+    line-height: 1.6;
+    color: var(--white);
+    max-width: 880px;
+    position: relative;
+    z-index: 1;
+  }
+ 
+  /* MAIN CONTENT */
+  .content-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 40px 120px;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+ 
+  /* SIDEBAR NAV */
+  .doc-nav {
+    position: sticky;
+    top: 120px;
+  }
+ 
+  .doc-nav-label {
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 16px;
+    display: block;
+  }
+ 
+  .doc-nav-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+ 
+  .doc-nav-list a {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #444;
+    text-decoration: none;
+    padding: 10px 14px;
+    border-left: 2px solid #1a1a1a;
+    transition: color 0.2s, border-color 0.2s;
+    line-height: 1.6;
+  }
+ 
+  .doc-nav-list a:hover { color: var(--white); border-left-color: var(--red); }
+  .doc-nav-list a.active { color: var(--white); border-left-color: var(--red); }
+ 
+  .doc-nav-back {
+    margin-top: 32px;
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .doc-nav-back:hover { color: var(--white); }
+  .doc-nav-back::before { content: '← '; }
+ 
+  /* DOCUMENT BODY */
+  .doc-body { display: flex; flex-direction: column; gap: 2px; }
+ 
+  .clause {
+    background: #0d0d0d;
+    border-left: 2px solid #1a1a1a;
+    padding: 36px 40px;
+    scroll-margin-top: 120px;
+    transition: border-color 0.3s;
+  }
+ 
+  .clause:first-child { border-left-color: var(--red); }
+  .clause:target { border-left-color: var(--red); }
+ 
+  .clause-num {
+    font-size: 8px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--red);
+    display: block;
+    margin-bottom: 16px;
+  }
+ 
+  .clause-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    margin-bottom: 20px;
+    line-height: 1;
+  }
+ 
+  .clause-body {
+    font-size: 10px;
+    line-height: 2;
+    color: var(--mid);
+    letter-spacing: 0.03em;
+  }
+ 
+  .clause-body p { margin-bottom: 14px; }
+  .clause-body p:last-child { margin-bottom: 0; }
+ 
+  .clause-body strong {
+    color: var(--white);
+    font-weight: 700;
+  }
+ 
+  .clause-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 14px 0;
+  }
+ 
+  .clause-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    font-size: 10px;
+    line-height: 1.9;
+    color: var(--mid);
+    letter-spacing: 0.03em;
+  }
+ 
+  .clause-list li::before {
+    content: '—';
+    color: var(--red);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+ 
+  /* KEY TERMS HIGHLIGHT */
+  .key-terms {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 20px 0;
+  }
+ 
+  .key-term {
+    background: #0a0a0a;
+    padding: 20px 24px;
+  }
+ 
+  .key-term-label {
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--red);
+    display: block;
+    margin-bottom: 8px;
+  }
+ 
+  .key-term-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    line-height: 1.2;
+  }
+ 
+  /* PLAIN ENGLISH BOX */
+  .plain-english {
+    background: #111;
+    border-left: 2px solid var(--red);
+    padding: 24px 28px;
+    margin: 20px 0;
+  }
+ 
+  .plain-english-label {
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    display: block;
+    margin-bottom: 10px;
+  }
+ 
+  .plain-english-text {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--cream);
+  }
+ 
+  /* SIGNATURE BAND */
+  .signature-band {
+    background: #0f0f0f;
+    border-left: 2px solid #1a1a1a;
+    padding: 36px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+ 
+  .sig-block { display: flex; flex-direction: column; gap: 6px; }
+ 
+  .sig-label {
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #444;
+  }
+ 
+  .sig-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 0.05em;
+    color: var(--white);
+  }
+ 
+  .sig-note {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+  }
+ 
+  /* CTA */
+  .cta-band {
+    background: var(--red);
+    padding: 52px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+  }
+ 
+  .cta-band-lines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(10,10,10,0.04) 40px, rgba(10,10,10,0.04) 41px);
+  }
+ 
+  .cta-left { position: relative; z-index: 1; }
+ 
+  .cta-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(240,236,228,0.5);
+    display: block;
+    margin-bottom: 10px;
+  }
+ 
+  .cta-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    line-height: 0.9;
+    color: var(--white);
+  }
+ 
+  .cta-heading em {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    color: rgba(240,236,228,0.45);
+  }
+ 
+  .cta-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    background: var(--white);
+    text-decoration: none;
+    padding: 16px 32px;
+    white-space: nowrap;
+    position: relative;
+    z-index: 1;
+    transition: background 0.2s, color 0.2s;
+  }
+  .cta-btn:hover { background: var(--black); color: var(--white); }
+ 
+  /* FOOTER */
+  footer {
+    border-top: 1px solid #1a1a1a;
+    padding: 48px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+ 
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.15em; }
+  .footer-copy { font-size: 9px; letter-spacing: 0.15em; color: var(--mid); text-transform: uppercase; }
+  .footer-links { display: flex; gap: 32px; list-style: none; }
+  .footer-links a { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+ 
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s, transform 0.7s; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+ 
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+ 
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .hero { padding: 100px 24px 48px; }
+    .hero-meta { flex-wrap: wrap; gap: 24px; }
+    .intro-band { padding: 32px 24px; }
+    .content-wrap { grid-template-columns: 1fr; padding: 48px 24px 80px; gap: 48px; }
+    .doc-nav { position: static; }
+    .key-terms { grid-template-columns: 1fr; }
+    .clause { padding: 28px 24px; }
+    .cta-band { padding: 40px 24px; }
+    .signature-band { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
+    footer { flex-direction: column; gap: 24px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+ 
+<div class="cursor" id="cursor"></div>
+ 
+<nav>
+  <a href="index.html" class="nav-logo">50% Film</a>
+  <a href="submit.html" class="nav-back">Back to Submissions</a>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-stripe"></div>
+  <div class="hero-watermark">FA</div>
+  <p class="hero-eyebrow">Legal Document — Non-Exclusive Licence</p>
+  <h1 class="hero-title">Filmmaker<br><em>Agreement.</em></h1>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Issued by</span>
+      <span class="hero-meta-val">50% Film — Short Cinema Label</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Version</span>
+      <span class="hero-meta-val">1.0 — 2025</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Jurisdiction</span>
+      <span class="hero-meta-val">England & Wales</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Fee</span>
+      <span class="hero-meta-val">None — Free to Submit</span>
+    </div>
+  </div>
+</section>
+ 
+<!-- INTRO BAND -->
+<div class="intro-band">
+  <div class="intro-band-lines"></div>
+  <p class="intro-band-text">"This agreement exists to protect filmmakers. You own your work. You always will. We ask only for the right to show it — and we'll always take it down if you ask."</p>
+</div>
+ 
+<!-- CONTENT -->
+<div class="content-wrap">
+ 
+  <!-- SIDEBAR NAV -->
+  <nav class="doc-nav" aria-label="Agreement sections">
+    <span class="doc-nav-label">Contents</span>
+    <ul class="doc-nav-list">
+      <li><a href="#definitions">01 — Definitions</a></li>
+      <li><a href="#licence">02 — The Licence</a></li>
+      <li><a href="#ownership">03 — Ownership</a></li>
+      <li><a href="#hosting">04 — Hosting & Removal</a></li>
+      <li><a href="#theatrical">05 — Theatrical Use</a></li>
+      <li><a href="#promotion">06 — Promotion</a></li>
+      <li><a href="#warranties">07 — Filmmaker Warranties</a></li>
+      <li><a href="#termination">08 — Termination</a></li>
+      <li><a href="#general">09 — General</a></li>
+    </ul>
+    <a href="submit.html" class="doc-nav-back">Submit Your Film</a>
+  </nav>
+ 
+  <!-- DOCUMENT -->
+  <div class="doc-body">
+ 
+    <!-- PLAIN LANGUAGE SUMMARY -->
+    <div class="clause" id="summary">
+      <span class="clause-num">Plain English Summary</span>
+      <h2 class="clause-title">What This Means for You</h2>
+      <div class="clause-body">
+        <p>This is a short, plain-language summary. The full legal terms follow below — but here is what this agreement actually means in practice.</p>
+      </div>
+      <div class="key-terms">
+        <div class="key-term">
+          <span class="key-term-label">You Own Your Film</span>
+          <div class="key-term-val">Always. 100%.<br>No exceptions.</div>
+        </div>
+        <div class="key-term">
+          <span class="key-term-label">Licence Type</span>
+          <div class="key-term-val">Non-exclusive.<br>We're not your only platform.</div>
+        </div>
+        <div class="key-term">
+          <span class="key-term-label">Removal</span>
+          <div class="key-term-val">Request anytime.<br>Done within 14 days.</div>
+        </div>
+        <div class="key-term">
+          <span class="key-term-label">Payment</span>
+          <div class="key-term-val">None. This is<br>purely promotional.</div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- 01 DEFINITIONS -->
+    <div class="clause reveal" id="definitions">
+      <span class="clause-num">01 — Definitions</span>
+      <h2 class="clause-title">Definitions</h2>
+      <div class="clause-body">
+        <p>In this Agreement, the following terms have the meanings set out below:</p>
+        <ul class="clause-list">
+          <li><strong>"50% Film"</strong> means 50% Film, a short film label and curation platform operated from London, United Kingdom, accessible at 50percentfilm.com.</li>
+          <li><strong>"Filmmaker"</strong> means the individual or entity submitting the Film and entering into this Agreement.</li>
+          <li><strong>"Film"</strong> means the short film submitted by the Filmmaker via the 50% Film submission form, including all associated materials such as stills, posters, synopses, and promotional assets.</li>
+          <li><strong>"Platform"</strong> means the 50% Film website (50percentfilm.com), associated social media channels, and any future distribution channels operated by 50% Film.</li>
+          <li><strong>"Theatrical Programme"</strong> means any curated anthology screening of short films organised by 50% Film at cinemas or other physical exhibition venues.</li>
+        </ul>
+      </div>
+    </div>
+ 
+    <!-- 02 LICENCE -->
+    <div class="clause reveal" id="licence">
+      <span class="clause-num">02 — The Licence</span>
+      <h2 class="clause-title">The Licence Granted</h2>
+      <div class="clause-body">
+        <p>By submitting a Film and having it accepted onto the 50% Film platform, the Filmmaker grants 50% Film a <strong>non-exclusive, royalty-free, worldwide licence</strong> to:</p>
+        <ul class="clause-list">
+          <li>Host, display, and stream the Film on the Platform.</li>
+          <li>Promote the Film across 50% Film's social media channels, newsletter, and press materials.</li>
+          <li>Include the Film in curated editorial content, including Director in Focus features and written programme notes.</li>
+          <li>Screen the Film as part of a Theatrical Programme, subject to the conditions set out in Clause 05.</li>
+        </ul>
+        <div class="plain-english">
+          <span class="plain-english-label">In plain English</span>
+          <p class="plain-english-text">We can show your film on our site, talk about it on social media, and potentially screen it in a cinema programme. That's it. We can't sell it, license it to anyone else, or use it for anything beyond promoting your work.</p>
+        </div>
+        <p>This licence is <strong>non-exclusive</strong>. The Filmmaker retains the full right to distribute, exhibit, sell, or license the Film to any other platform, festival, distributor, or broadcaster simultaneously.</p>
+      </div>
+    </div>
+ 
+    <!-- 03 OWNERSHIP -->
+    <div class="clause reveal" id="ownership">
+      <span class="clause-num">03 — Ownership</span>
+      <h2 class="clause-title">You Own Your Film</h2>
+      <div class="clause-body">
+        <p>All intellectual property rights in the Film — including but not limited to copyright, moral rights, and any associated trademarks — remain exclusively with the Filmmaker at all times.</p>
+        <p>This Agreement does not transfer ownership of any rights to 50% Film. Nothing in this Agreement shall be construed as creating a partnership, employment relationship, or transfer of intellectual property.</p>
+        <p>50% Film will never claim authorship, co-authorship, or creative credit over the Film. Any editorial or promotional content produced by 50% Film about the Film (such as written notes, interviews, or social posts) is the property of 50% Film and does not affect the Filmmaker's ownership of the Film itself.</p>
+        <div class="plain-english">
+          <span class="plain-english-label">In plain English</span>
+          <p class="plain-english-text">Your film is yours. Always was. Always will be. We own nothing. We're a platform, not a rights-holder.</p>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- 04 HOSTING & REMOVAL -->
+    <div class="clause reveal" id="hosting">
+      <span class="clause-num">04 — Hosting & Removal</span>
+      <h2 class="clause-title">Hosting & Removal</h2>
+      <div class="clause-body">
+        <p>50% Film will host accepted Films on the Platform <strong>indefinitely</strong>, unless removed at the request of the Filmmaker or at the discretion of 50% Film.</p>
+        <ul class="clause-list">
+          <li><strong>Filmmaker-requested removal:</strong> The Filmmaker may request removal of their Film from the Platform at any time by contacting 50% Film directly. 50% Film will action the removal within <strong>14 days</strong> of receiving the request. No reason is required.</li>
+          <li><strong>50% Film-initiated removal:</strong> 50% Film reserves the right to remove any Film from the Platform at any time and for any reason, including but not limited to editorial decisions, platform changes, or concerns regarding content. 50% Film will notify the Filmmaker of any such removal where reasonably possible.</li>
+          <li><strong>Effect of removal:</strong> Upon removal, all hosted copies of the Film will be taken down from the Platform. Promotional content already published (social posts, editorial features) may remain live as archival material unless the Filmmaker specifically requests its removal.</li>
+        </ul>
+        <div class="plain-english">
+          <span class="plain-english-label">In plain English</span>
+          <p class="plain-english-text">We'll host your film for as long as it makes sense for both parties. Ask us to take it down at any time — we'll do it within two weeks, no questions asked. We can also take it down ourselves if we need to.</p>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- 05 THEATRICAL -->
+    <div class="clause reveal" id="theatrical">
+      <span class="clause-num">05 — Theatrical Use</span>
+      <h2 class="clause-title">Theatrical Programme</h2>
+      <div class="clause-body">
+        <p>50% Film may, at its sole discretion, invite selected Films to be included in a curated Theatrical Programme — a physical anthology screening at cinemas or other exhibition venues.</p>
+        <ul class="clause-list">
+          <li>Inclusion in a Theatrical Programme will be communicated to the Filmmaker in advance, and the Filmmaker's express consent will be sought before any such screening takes place.</li>
+          <li>Theatrical screenings are <strong>purely promotional in nature</strong>. No revenue share, screening fee, or other payment will be made to the Filmmaker in connection with Theatrical Programme screenings.</li>
+          <li>50% Film will credit the Filmmaker and the Film appropriately in all printed and digital programme materials associated with the Theatrical Programme.</li>
+          <li>The Filmmaker retains the right to decline inclusion in a Theatrical Programme without affecting their Film's presence on the Platform.</li>
+        </ul>
+        <div class="plain-english">
+          <span class="plain-english-label">In plain English</span>
+          <p class="plain-english-text">If we want to screen your film in a cinema, we'll ask you first. You can say no. There's no money involved — it's about giving your film the audience it deserves.</p>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- 06 PROMOTION -->
+    <div class="clause reveal" id="promotion">
+      <span class="clause-num">06 — Promotion</span>
+      <h2 class="clause-title">Promotion & Editorial</h2>
+      <div class="clause-body">
+        <p>As part of the 50% Film platform, accepted Films and their directors may be featured in editorial content including but not limited to:</p>
+        <ul class="clause-list">
+          <li>Director in Focus profile posts on the 50% Film website and Instagram.</li>
+          <li>Director's Notes — a written or interview-based feature published on the Film's dedicated page on the Platform.</li>
+          <li>Newsletter features and social media posts promoting the Film.</li>
+          <li>Press or media coverage facilitated by 50% Film.</li>
+        </ul>
+        <p>All promotional content will be produced with the Filmmaker's knowledge. 50% Film will not misrepresent the Film or the Filmmaker in any promotional material. The Filmmaker may request corrections to factual inaccuracies in editorial content at any time.</p>
+        <p>Where a Director's Notes interview is conducted, the Filmmaker's consent to publication will be confirmed before the content goes live.</p>
+      </div>
+    </div>
+ 
+    <!-- 07 WARRANTIES -->
+    <div class="clause reveal" id="warranties">
+      <span class="clause-num">07 — Filmmaker Warranties</span>
+      <h2 class="clause-title">Your Warranties to Us</h2>
+      <div class="clause-body">
+        <p>By submitting a Film and entering into this Agreement, the Filmmaker warrants and represents that:</p>
+        <ul class="clause-list">
+          <li>They are the sole author of the Film or have the full authority of all rights-holders to enter into this Agreement.</li>
+          <li>The Film does not infringe the copyright, moral rights, trade marks, or any other intellectual property rights of any third party.</li>
+          <li>All music contained in the Film is either original, licensed, or cleared for the uses permitted by this Agreement.</li>
+          <li>The Film does not contain any defamatory, unlawful, or otherwise harmful content.</li>
+          <li>Any individuals featured in the Film have given their informed consent to appear.</li>
+          <li>The Filmmaker has the authority to grant the licence set out in Clause 02.</li>
+        </ul>
+        <p>The Filmmaker agrees to indemnify 50% Film against any claims, losses, or damages arising from a breach of the above warranties.</p>
+      </div>
+    </div>
+ 
+    <!-- 08 TERMINATION -->
+    <div class="clause reveal" id="termination">
+      <span class="clause-num">08 — Termination</span>
+      <h2 class="clause-title">Ending the Agreement</h2>
+      <div class="clause-body">
+        <p>This Agreement and the licence granted under it may be terminated in the following ways:</p>
+        <ul class="clause-list">
+          <li><strong>By the Filmmaker:</strong> At any time, by requesting removal of the Film from the Platform in writing to 50% Film. Termination takes effect upon removal of the Film, which will occur within 14 days of the request.</li>
+          <li><strong>By 50% Film:</strong> At any time, by removing the Film from the Platform and notifying the Filmmaker. All obligations of 50% Film under this Agreement cease upon removal.</li>
+          <li><strong>Effect of termination:</strong> Upon termination, the licence granted to 50% Film ends. 50% Film will cease hosting and streaming the Film. Archival editorial content may remain unless separately requested for removal.</li>
+        </ul>
+        <div class="plain-english">
+          <span class="plain-english-label">In plain English</span>
+          <p class="plain-english-text">Either side can end this at any time. Email us, we take the film down within two weeks, and that's that.</p>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- 09 GENERAL -->
+    <div class="clause reveal" id="general">
+      <span class="clause-num">09 — General</span>
+      <h2 class="clause-title">General Provisions</h2>
+      <div class="clause-body">
+        <p><strong>Governing Law.</strong> This Agreement is governed by and construed in accordance with the laws of England and Wales. Any disputes arising under this Agreement shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+        <p><strong>Entire Agreement.</strong> This Agreement constitutes the entire agreement between the parties in relation to the licensing of the Film and supersedes any prior discussions, representations, or arrangements.</p>
+        <p><strong>Amendments.</strong> 50% Film may update this Agreement from time to time. Filmmakers with Films already hosted on the Platform will be notified of material changes. Continued presence on the Platform following notification constitutes acceptance of the updated terms.</p>
+        <p><strong>Severability.</strong> If any provision of this Agreement is found to be unenforceable, the remaining provisions continue in full force and effect.</p>
+        <p><strong>No Waiver.</strong> Failure by either party to enforce any provision of this Agreement shall not constitute a waiver of the right to enforce it at a later date.</p>
+        <p><strong>Contact.</strong> For any queries relating to this Agreement, or to request removal of a Film, please contact 50% Film via the contact details listed on 50percentfilm.com.</p>
+      </div>
+    </div>
+ 
+    <!-- SIGNATURE BAND -->
+    <div class="signature-band reveal">
+      <div class="sig-block">
+        <span class="sig-label">Issued by</span>
+        <span class="sig-name">50% Film</span>
+        <span class="sig-note">Short Cinema Label — London, UK</span>
+        <span class="sig-note">50percentfilm.com</span>
+      </div>
+      <div class="sig-block">
+        <span class="sig-label">Document Version</span>
+        <span class="sig-name">1.0</span>
+        <span class="sig-note">Effective 2025</span>
+      </div>
+      <div class="sig-block">
+        <span class="sig-label">Acceptance</span>
+        <span class="sig-note" style="max-width:260px; line-height:1.8;">This Agreement is accepted by the Filmmaker upon submission of a Film via the 50% Film submission form.</span>
+      </div>
+    </div>
+ 
+  </div>
+</div>
+ 
+<!-- CTA -->
+<div class="cta-band">
+  <div class="cta-band-lines"></div>
+  <div class="cta-left">
+    <span class="cta-eyebrow">Ready to submit?</span>
+    <h2 class="cta-heading">Send us<br><em>your film.</em></h2>
+  </div>
+  <a href="submit.html" class="cta-btn">Submit Now →</a>
+</div>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">50% Film</div>
+  <span class="footer-copy">© 2025 — Short Cinema Label — London, UK</span>
+  <ul class="footer-links">
+    <li><a href="https://www.instagram.com/50percentfilm/" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="#">Letterboxd</a></li>
+    <li><a href="#">Newsletter</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</footer>
+ 
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('big'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+  });
+ 
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  reveals.forEach(el => observer.observe(el));
+ 
+  // Active nav highlight on scroll
+  const clauses = document.querySelectorAll('.clause[id]');
+  const navLinks = document.querySelectorAll('.doc-nav-list a');
+  const scrollSpy = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const active = document.querySelector(`.doc-nav-list a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  clauses.forEach(c => scrollSpy.observe(c));
+</script>
+ 
+</body>
+</html>
+ 
