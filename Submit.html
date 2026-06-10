@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
+ 
   :root {
     --black: #0a0a0a;
     --white: #f0ece4;
@@ -20,9 +20,9 @@
     --gray: #2a2a2a;
     --mid: #888;
   }
-
+ 
   html { scroll-behavior: smooth; }
-
+ 
   body {
     background: var(--black);
     color: var(--white);
@@ -30,7 +30,7 @@
     cursor: none;
     overflow-x: hidden;
   }
-
+ 
   .cursor {
     position: fixed;
     width: 10px;
@@ -44,7 +44,7 @@
     mix-blend-mode: difference;
   }
   .cursor.big { width: 40px; height: 40px; }
-
+ 
   body::before {
     content: '';
     position: fixed;
@@ -54,8 +54,7 @@
     z-index: 9998;
     opacity: 0.35;
   }
-
-  /* NAV */
+ 
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -66,7 +65,7 @@
     padding: 28px 40px;
     background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%);
   }
-
+ 
   .nav-logo {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 22px;
@@ -74,7 +73,7 @@
     color: var(--white);
     text-decoration: none;
   }
-
+ 
   .nav-back {
     font-size: 10px;
     letter-spacing: 0.2em;
@@ -88,8 +87,7 @@
   }
   .nav-back:hover { color: var(--white); }
   .nav-back::before { content: '←'; }
-
-  /* HERO */
+ 
   .hero {
     min-height: 60vh;
     display: grid;
@@ -98,7 +96,7 @@
     overflow: hidden;
     padding-top: 100px;
   }
-
+ 
   .hero-left {
     display: flex;
     flex-direction: column;
@@ -107,7 +105,7 @@
     position: relative;
     z-index: 2;
   }
-
+ 
   .hero-eyebrow {
     font-size: 10px;
     letter-spacing: 0.3em;
@@ -117,7 +115,7 @@
     opacity: 0;
     animation: fadeUp 0.8s 0.3s forwards;
   }
-
+ 
   .hero-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(72px, 10vw, 140px);
@@ -126,14 +124,14 @@
     opacity: 0;
     animation: fadeUp 0.8s 0.5s forwards;
   }
-
+ 
   .hero-title em {
     font-family: 'DM Serif Display', serif;
     font-style: italic;
     color: var(--cream);
     opacity: 0.7;
   }
-
+ 
   .hero-sub {
     margin-top: 32px;
     font-size: 11px;
@@ -143,7 +141,7 @@
     opacity: 0;
     animation: fadeUp 0.8s 0.7s forwards;
   }
-
+ 
   .hero-right {
     position: relative;
     display: flex;
@@ -154,7 +152,7 @@
     opacity: 0;
     animation: fadeIn 1s 0.4s forwards;
   }
-
+ 
   .criteria-item {
     background: #0f0f0f;
     border-left: 2px solid #1a1a1a;
@@ -165,22 +163,11 @@
     transition: border-color 0.2s;
   }
   .criteria-item:hover { border-left-color: var(--red); }
-
-  .criteria-dash {
-    color: var(--red);
-    font-size: 10px;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .criteria-text {
-    font-size: 10px;
-    line-height: 1.7;
-    color: var(--mid);
-    letter-spacing: 0.03em;
-  }
-
-  /* TICKER */
+ 
+  .criteria-dash { color: var(--red); font-size: 10px; flex-shrink: 0; margin-top: 2px; }
+ 
+  .criteria-text { font-size: 10px; line-height: 1.7; color: var(--mid); letter-spacing: 0.03em; }
+ 
   .ticker {
     border-top: 1px solid #222;
     border-bottom: 1px solid #222;
@@ -188,25 +175,17 @@
     padding: 12px 0;
     background: var(--black);
   }
-
+ 
   .ticker-track {
     display: flex;
     gap: 60px;
     animation: ticker 20s linear infinite;
     white-space: nowrap;
   }
-
-  .ticker-item {
-    font-size: 9px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--mid);
-    flex-shrink: 0;
-  }
-
+ 
+  .ticker-item { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); flex-shrink: 0; }
   .ticker-item span { color: var(--red); margin-right: 10px; }
-
-  /* FORM SECTION */
+ 
   .form-section {
     padding: 100px 40px 120px;
     display: grid;
@@ -215,54 +194,20 @@
     max-width: 1200px;
     margin: 0 auto;
   }
-
-  .form-sidebar {
-    position: sticky;
-    top: 120px;
-    align-self: start;
-  }
-
-  .sidebar-tag {
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 20px;
-  }
-
-  .sidebar-heading {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 52px;
-    line-height: 0.9;
-    margin-bottom: 24px;
-  }
-
-  .sidebar-heading em {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    color: var(--mid);
-    display: block;
-  }
-
-  .sidebar-body {
-    font-size: 10px;
-    line-height: 1.9;
-    color: var(--mid);
-    margin-bottom: 32px;
-  }
-
-  .sidebar-note {
-    border-top: 1px solid #1a1a1a;
-    padding-top: 24px;
-    font-size: 9px;
-    line-height: 1.9;
-    color: #444;
-    letter-spacing: 0.05em;
-  }
-
-  /* FORM */
+ 
+  .form-sidebar { position: sticky; top: 120px; align-self: start; }
+ 
+  .sidebar-tag { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 20px; }
+ 
+  .sidebar-heading { font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 0.9; margin-bottom: 24px; }
+  .sidebar-heading em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--mid); display: block; }
+ 
+  .sidebar-body { font-size: 10px; line-height: 1.9; color: var(--mid); margin-bottom: 32px; }
+ 
+  .sidebar-note { border-top: 1px solid #1a1a1a; padding-top: 24px; font-size: 9px; line-height: 1.9; color: #444; letter-spacing: 0.05em; }
+ 
   .form-body { display: flex; flex-direction: column; gap: 2px; }
-
+ 
   .form-group {
     background: #0d0d0d;
     padding: 28px 32px;
@@ -270,31 +215,16 @@
     transition: border-color 0.2s;
   }
   .form-group:focus-within { border-left-color: var(--red); }
-
-  .form-group-title {
-    font-size: 8px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 20px;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
+ 
+  .form-group-title { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 20px; }
+ 
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+ 
   .form-field { display: flex; flex-direction: column; gap: 8px; }
   .form-field.full { grid-column: span 2; }
-
-  label {
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--mid);
-  }
-
+ 
+  label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); }
+ 
   input[type="text"],
   input[type="email"],
   input[type="url"],
@@ -313,10 +243,10 @@
     appearance: none;
     -webkit-appearance: none;
   }
-
+ 
   input:focus, select:focus, textarea:focus { border-color: var(--red); }
   input::placeholder, textarea::placeholder { color: #333; }
-
+ 
   select {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -324,25 +254,60 @@
     padding-right: 40px;
     cursor: none;
   }
-
+ 
   select option { background: #111; color: var(--white); }
-
   textarea { resize: vertical; min-height: 120px; line-height: 1.8; }
-
-  /* Checkbox group */
-  .checkbox-group {
+ 
+  /* Radio toggle */
+  .radio-toggle {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    gap: 2px;
+    margin-top: 4px;
   }
-
-  .checkbox-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
+ 
+  .radio-toggle input[type="radio"] {
+    display: none;
+  }
+ 
+  .radio-toggle label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    background: #0a0a0a;
+    border: 1px solid #222;
+    padding: 12px 28px;
     cursor: none;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    user-select: none;
   }
-
+ 
+  .radio-toggle input[type="radio"]:checked + label {
+    background: var(--red);
+    border-color: var(--red);
+    color: var(--white);
+  }
+ 
+  .radio-toggle label:hover {
+    border-color: var(--mid);
+    color: var(--white);
+  }
+ 
+  .field-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    display: block;
+    margin-bottom: 10px;
+  }
+ 
+  /* Checkbox group */
+  .checkbox-group { display: flex; flex-direction: column; gap: 12px; }
+ 
+  .checkbox-item { display: flex; align-items: flex-start; gap: 14px; cursor: none; }
+ 
   .checkbox-item input[type="checkbox"] {
     width: 16px;
     height: 16px;
@@ -356,12 +321,9 @@
     transition: background 0.2s, border-color 0.2s;
     padding: 0;
   }
-
-  .checkbox-item input[type="checkbox"]:checked {
-    background: var(--red);
-    border-color: var(--red);
-  }
-
+ 
+  .checkbox-item input[type="checkbox"]:checked { background: var(--red); border-color: var(--red); }
+ 
   .checkbox-item input[type="checkbox"]:checked::after {
     content: '✓';
     display: block;
@@ -370,19 +332,10 @@
     text-align: center;
     line-height: 16px;
   }
-
-  .checkbox-label {
-    font-size: 10px;
-    line-height: 1.7;
-    color: var(--mid);
-  }
-
-  .checkbox-label a {
-    color: var(--white);
-    text-decoration: underline;
-  }
-
-  /* Submit button */
+ 
+  .checkbox-label { font-size: 10px; line-height: 1.7; color: var(--mid); }
+  .checkbox-label a { color: var(--white); text-decoration: underline; }
+ 
   .form-submit-row {
     background: var(--white);
     padding: 32px;
@@ -391,15 +344,9 @@
     align-items: center;
     gap: 24px;
   }
-
-  .form-submit-note {
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    color: #888;
-    line-height: 1.7;
-    max-width: 360px;
-  }
-
+ 
+  .form-submit-note { font-size: 9px; letter-spacing: 0.1em; color: #888; line-height: 1.7; max-width: 360px; }
+ 
   .submit-form-btn {
     font-family: 'Space Mono', monospace;
     font-size: 10px;
@@ -415,8 +362,7 @@
     flex-shrink: 0;
   }
   .submit-form-btn:hover { background: var(--red); }
-
-  /* SUCCESS STATE */
+ 
   .form-success {
     display: none;
     text-align: center;
@@ -424,31 +370,11 @@
     background: #0d0d0d;
     border-left: 2px solid var(--red);
   }
-
-  .success-icon {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 80px;
-    color: var(--red);
-    opacity: 0.3;
-    line-height: 1;
-    margin-bottom: 24px;
-  }
-
-  .success-heading {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 48px;
-    margin-bottom: 16px;
-  }
-
-  .success-body {
-    font-size: 11px;
-    line-height: 2;
-    color: var(--mid);
-    max-width: 440px;
-    margin: 0 auto;
-  }
-
-  /* FOOTER */
+ 
+  .success-icon { font-family: 'Bebas Neue', sans-serif; font-size: 80px; color: var(--red); opacity: 0.3; line-height: 1; margin-bottom: 24px; }
+  .success-heading { font-family: 'Bebas Neue', sans-serif; font-size: 48px; margin-bottom: 16px; }
+  .success-body { font-size: 11px; line-height: 2; color: var(--mid); max-width: 440px; margin: 0 auto; }
+ 
   footer {
     border-top: 1px solid #1a1a1a;
     padding: 48px 40px;
@@ -456,54 +382,20 @@
     justify-content: space-between;
     align-items: center;
   }
-
-  .footer-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    letter-spacing: 0.15em;
-  }
-
-  .footer-copy {
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    color: var(--mid);
-    text-transform: uppercase;
-  }
-
+ 
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.15em; }
+  .footer-copy { font-size: 9px; letter-spacing: 0.15em; color: var(--mid); text-transform: uppercase; }
   .footer-links { display: flex; gap: 32px; list-style: none; }
-  .footer-links a {
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--mid);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
+  .footer-links a { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: var(--white); }
-
-  /* REVEAL */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s, transform 0.7s;
-  }
+ 
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s, transform 0.7s; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  @keyframes ticker {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  /* RESPONSIVE */
+ 
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+ 
   @media (max-width: 768px) {
     nav { padding: 20px 24px; }
     .hero { grid-template-columns: 1fr; padding-top: 80px; }
@@ -520,15 +412,14 @@
 </style>
 </head>
 <body>
-
+ 
 <div class="cursor" id="cursor"></div>
-
+ 
 <nav>
   <a href="index.html" class="nav-logo">50% Film</a>
   <a href="index.html" class="nav-back">Back to Home</a>
 </nav>
-
-<!-- HERO -->
+ 
 <section class="hero">
   <div class="hero-left">
     <p class="hero-eyebrow">Open Submissions — Free</p>
@@ -562,8 +453,7 @@
     </div>
   </div>
 </section>
-
-<!-- TICKER -->
+ 
 <div class="ticker">
   <div class="ticker-track">
     <div class="ticker-item"><span>✦</span> Now accepting submissions</div>
@@ -578,10 +468,9 @@
     <div class="ticker-item"><span>✦</span> Short films. No compromise.</div>
   </div>
 </div>
-
-<!-- FORM -->
+ 
 <div class="form-section">
-
+ 
   <div class="form-sidebar reveal">
     <p class="sidebar-tag">The Process</p>
     <h2 class="sidebar-heading">What<br>happens<br><em>next.</em></h2>
@@ -591,10 +480,10 @@
       By submitting you confirm all rights are held and cleared. See our full filmmaker agreement for details.
     </div>
   </div>
-
-  <div class="form-body reveal" id="submission-form-wrap">
-
-    <!-- FILMMAKER DETAILS -->
+ 
+  <form class="form-body reveal" id="submission-form" action="https://formspree.io/f/xvznqwwq" method="POST">
+ 
+    <!-- 01 — FILMMAKER DETAILS -->
     <div class="form-group">
       <p class="form-group-title">01 — Your Details</p>
       <div class="form-row">
@@ -620,8 +509,8 @@
         </div>
       </div>
     </div>
-
-    <!-- FILM DETAILS -->
+ 
+    <!-- 02 — FILM DETAILS -->
     <div class="form-group">
       <p class="form-group-title">02 — Film Details</p>
       <div class="form-row">
@@ -675,8 +564,8 @@
         </div>
       </div>
     </div>
-
-    <!-- ADDITIONAL INFO -->
+ 
+    <!-- 03 — ADDITIONAL INFO -->
     <div class="form-group">
       <p class="form-group-title">03 — Anything Else</p>
       <div class="form-row">
@@ -688,45 +577,54 @@
           <label for="notes">Additional Notes (optional)</label>
           <textarea id="notes" name="notes" placeholder="Anything else you'd like us to know about the film..." style="min-height:90px;"></textarea>
         </div>
+        <div class="form-field full">
+          <span class="field-label">Open to a Director's Notes Interview? *</span>
+          <p style="font-size:10px; line-height:1.8; color:#555; margin-bottom:14px; letter-spacing:0.03em;">If your film is selected, we publish a Director's Notes page on the site. Would you be open to a short interview about the film — your process, intentions, and influences?</p>
+          <div class="radio-toggle">
+            <input type="radio" id="interview-yes" name="director-interview" value="Yes" required>
+            <label for="interview-yes">Yes</label>
+            <input type="radio" id="interview-no" name="director-interview" value="No">
+            <label for="interview-no">No</label>
+          </div>
+        </div>
       </div>
     </div>
-
-    <!-- AGREEMENTS -->
+ 
+    <!-- 04 — CONFIRM -->
     <div class="form-group">
       <p class="form-group-title">04 — Confirm</p>
       <div class="checkbox-group">
         <label class="checkbox-item">
-          <input type="checkbox" required id="rights-check">
+          <input type="checkbox" name="rights-confirmed" value="Yes" required id="rights-check">
           <span class="checkbox-label">I confirm I hold all necessary rights to this film, including music and third-party footage.</span>
         </label>
         <label class="checkbox-item">
-          <input type="checkbox" required id="terms-check">
-          <span class="checkbox-label">I agree to the <a href="#">50% Film Filmmaker Agreement</a> — a non-exclusive licence to host and promote my film. I retain full ownership.</span>
+          <input type="checkbox" name="terms-agreed" value="Yes" required id="terms-check">
+          <span class="checkbox-label">I agree to the <a href="filmmakeragreement.html">50% Film Filmmaker Agreement</a> — a non-exclusive licence to host and promote my film. I retain full ownership.</span>
         </label>
         <label class="checkbox-item">
-          <input type="checkbox" id="newsletter-check">
+          <input type="checkbox" name="newsletter" value="Yes" id="newsletter-check">
           <span class="checkbox-label">Sign me up to the 50% Film newsletter for updates, new films, and anthology news.</span>
         </label>
       </div>
     </div>
-
+ 
     <!-- SUBMIT -->
     <div class="form-submit-row">
       <p class="form-submit-note">We review every submission personally and aim to respond within 14 days. Free to submit. No barriers.</p>
-      <button type="button" class="submit-form-btn" id="submit-btn">Send Submission →</button>
+      <button type="submit" class="submit-form-btn">Send Submission →</button>
     </div>
-
-    <!-- SUCCESS -->
+ 
+    <!-- SUCCESS (shown by Formspree redirect or JS fallback) -->
     <div class="form-success" id="form-success">
       <div class="success-icon">✦</div>
       <h3 class="success-heading">Submission Received.</h3>
       <p class="success-body">Thank you for submitting to 50% Film. We review every film personally and will be in touch within 14 days.</p>
     </div>
-
-  </div>
+ 
+  </form>
 </div>
-
-<!-- FOOTER -->
+ 
 <footer>
   <div class="footer-logo">50% Film</div>
   <span class="footer-copy">© 2027 — Short Cinema Label — London, UK</span>
@@ -737,20 +635,18 @@
     <li><a href="#">Contact</a></li>
   </ul>
 </footer>
-
+ 
 <script>
-  // Cursor
   const cursor = document.getElementById('cursor');
   document.addEventListener('mousemove', e => {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
   });
-  document.querySelectorAll('a, button, input, select, textarea, .checkbox-item').forEach(el => {
+  document.querySelectorAll('a, button, input, select, textarea, .checkbox-item, .radio-toggle label').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('big'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
   });
-
-  // Scroll reveal
+ 
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
@@ -761,35 +657,15 @@
     });
   }, { threshold: 0.05 });
   reveals.forEach(el => observer.observe(el));
-
-  // Form submission
-  document.getElementById('submit-btn').addEventListener('click', function() {
-    const required = document.querySelectorAll('[required]');
-    let valid = true;
-
-    required.forEach(field => {
-      if (field.type === 'checkbox') {
-        if (!field.checked) {
-          valid = false;
-          field.parentElement.style.opacity = '0.5';
-          setTimeout(() => field.parentElement.style.opacity = '1', 1500);
-        }
-      } else {
-        if (!field.value.trim()) {
-          valid = false;
-          field.style.borderColor = '#c8341a';
-          setTimeout(() => field.style.borderColor = '#222', 1500);
-        }
-      }
-    });
-
-    if (valid) {
-      document.getElementById('submission-form-wrap').style.display = 'none';
-      document.getElementById('form-success').style.display = 'block';
-      window.scrollTo({ top: document.getElementById('form-success').offsetTop - 100, behavior: 'smooth' });
-    }
-  });
+ 
+  // Show inline success if Formspree redirects back with ?success
+  if (window.location.search.includes('success')) {
+    document.getElementById('submission-form').style.display = 'none';
+    const s = document.getElementById('form-success');
+    s.style.display = 'block';
+  }
 </script>
-
+ 
 </body>
 </html>
+ 
