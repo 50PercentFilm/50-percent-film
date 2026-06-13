@@ -187,6 +187,42 @@
     margin-bottom: 20px;
   }
 
+  .filter-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .filter-toggle {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: transparent;
+    border: 1px solid #222;
+    padding: 10px 16px;
+    cursor: none;
+    margin-bottom: 20px;
+  }
+
+  .filter-toggle-arrow {
+    color: var(--red);
+    transition: transform 0.3s;
+    font-size: 11px;
+  }
+
+  .filter-section.open .filter-toggle-arrow {
+    transform: rotate(180deg);
+  }
+
+  .filter-body {
+    overflow: hidden;
+  }
+
   .filter-bar {
     display: flex;
     flex-wrap: wrap;
@@ -493,6 +529,17 @@
     .archive-grid { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 24px; text-align: center; padding: 48px 24px; }
     .footer-links { flex-wrap: wrap; justify-content: center; }
+
+    .filter-label { display: none; }
+    .filter-toggle { display: flex; width: 100%; justify-content: space-between; }
+    .filter-body {
+      max-height: 0;
+      transition: max-height 0.3s ease;
+    }
+    .filter-section.open .filter-body {
+      max-height: 600px;
+    }
+    .filter-count { margin-top: 16px; }
   }
 </style>
 </head>
@@ -521,18 +568,26 @@
 </section>
 
 <!-- FILTER BAR -->
-<div class="filter-section">
-  <p class="filter-label">Filter by Genre</p>
-  <div class="filter-bar" id="filterBar">
-    <button class="filter-btn active" data-filter="all">All Films</button>
-    <button class="filter-btn" data-filter="drama">Drama</button>
-    <button class="filter-btn" data-filter="comedy">Comedy</button>
-    <button class="filter-btn" data-filter="horror">Horror</button>
-    <button class="filter-btn" data-filter="thriller">Thriller</button>
-    <button class="filter-btn" data-filter="scifi">Sci-Fi</button>
-    <button class="filter-btn" data-filter="animation">Animation</button>
+<div class="filter-section" id="filterSection">
+  <div class="filter-header">
+    <p class="filter-label">Filter by Genre</p>
   </div>
-  <p class="filter-count" id="filterCount">Showing 60 of 60 films</p>
+  <button class="filter-toggle" id="filterToggle">
+    <span id="filterToggleLabel">Filter: All Films</span>
+    <span class="filter-toggle-arrow">▾</span>
+  </button>
+  <div class="filter-body" id="filterBody">
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-btn active" data-filter="all">All Films</button>
+      <button class="filter-btn" data-filter="drama">Drama</button>
+      <button class="filter-btn" data-filter="comedy">Comedy</button>
+      <button class="filter-btn" data-filter="horror">Horror</button>
+      <button class="filter-btn" data-filter="thriller">Thriller</button>
+      <button class="filter-btn" data-filter="scifi">Sci-Fi</button>
+      <button class="filter-btn" data-filter="animation">Animation</button>
+    </div>
+    <p class="filter-count" id="filterCount">Showing 60 of 60 films</p>
+  </div>
 </div>
 
 <!-- ARCHIVE GRID -->
@@ -1517,7 +1572,14 @@
   const filterBtns = document.querySelectorAll('.filter-btn');
   const cards = document.querySelectorAll('.archive-card');
   const filterCount = document.getElementById('filterCount');
+  const filterSection = document.getElementById('filterSection');
+  const filterToggle = document.getElementById('filterToggle');
+  const filterToggleLabel = document.getElementById('filterToggleLabel');
   const total = cards.length;
+
+  filterToggle.addEventListener('click', () => {
+    filterSection.classList.toggle('open');
+  });
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1539,8 +1601,12 @@
       filterCount.textContent = filter === 'all'
         ? `Showing ${total} of ${total} films`
         : `Showing ${visible} of ${total} films`;
+
+      filterToggleLabel.textContent = `Filter: ${btn.textContent}`;
+      filterSection.classList.remove('open');
     });
   });
+
 </script>
 
 </body>
