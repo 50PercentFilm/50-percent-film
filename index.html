@@ -84,40 +84,37 @@
     text-decoration: none;
   }
 
-  .nav-links {
+  /* Menu toggle button */
+  .menu-toggle {
     display: flex;
-    gap: 36px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--white);
-    text-decoration: none;
-    opacity: 0.6;
-    transition: opacity 0.2s;
-  }
-  .nav-links a:hover { opacity: 1; }
-
-  /* Mobile nav toggle */
-  .nav-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    width: 28px;
-    height: 22px;
+    align-items: center;
+    gap: 12px;
     background: none;
     border: none;
     cursor: none;
     padding: 0;
     z-index: 101;
+    color: var(--white);
   }
 
-  .nav-toggle span {
+  .menu-toggle-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  .menu-toggle-bars {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 26px;
+    height: 18px;
+  }
+
+  .menu-toggle-bars span {
     display: block;
     width: 100%;
     height: 2px;
@@ -125,9 +122,119 @@
     transition: transform 0.3s, opacity 0.3s;
   }
 
-  .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .nav-toggle.open span:nth-child(2) { opacity: 0; }
-  .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .menu-toggle.open .menu-toggle-bars span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle.open .menu-toggle-bars span:nth-child(2) { opacity: 0; }
+  .menu-toggle.open .menu-toggle-bars span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Dropdown menu panel */
+  .nav-dropdown {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(420px, 100%);
+    height: 100vh;
+    background: var(--black);
+    border-left: 1px solid #1a1a1a;
+    z-index: 99;
+    transform: translateX(100%);
+    transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 100px 48px;
+  }
+
+  .nav-dropdown.open {
+    transform: translateX(0);
+  }
+
+  .nav-dropdown-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 20px;
+  }
+
+  .nav-dropdown-list {
+    list-style: none;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .nav-dropdown-list li {
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .nav-dropdown-list a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 0;
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--white);
+    text-decoration: none;
+    transition: padding-left 0.3s, color 0.3s;
+  }
+
+  .nav-dropdown-list a:hover {
+    color: var(--red);
+    padding-left: 12px;
+  }
+
+  .nav-dropdown-list a .nav-dropdown-num {
+    font-family: 'Space Mono', monospace;
+    font-style: normal;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--mid);
+    transition: color 0.3s;
+  }
+
+  .nav-dropdown-list a:hover .nav-dropdown-num {
+    color: var(--red);
+  }
+
+  .nav-dropdown-footer {
+    margin-top: 48px;
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+
+  .nav-dropdown-footer a {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-dropdown-footer a:hover { color: var(--white); }
+
+  /* Dimmed backdrop */
+  .nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,10,10,0.6);
+    backdrop-filter: blur(2px);
+    z-index: 98;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+  }
+  .nav-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (max-width: 600px) {
+    .nav-dropdown { padding: 100px 28px; width: 100%; }
+    .nav-dropdown-list a { font-size: 22px; }
+    .menu-toggle-label { display: none; }
+  }
 
   /* HERO */
   .hero {
@@ -941,33 +1048,6 @@
   /* Responsive basic */
   @media (max-width: 768px) {
     nav { padding: 20px 24px; mix-blend-mode: normal; }
-    .nav-toggle { display: flex; }
-    .nav-links {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100vh;
-      background: var(--black);
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 40px;
-      transform: translateY(-100%);
-      opacity: 0;
-      pointer-events: none;
-      transition: transform 0.4s ease, opacity 0.3s ease;
-      z-index: 99;
-    }
-    .nav-links.open {
-      transform: translateY(0);
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .nav-links a {
-      font-size: 14px;
-      letter-spacing: 0.25em;
-      opacity: 1;
-    }
     .hero { grid-template-columns: 1fr; min-height: auto; }
     .hero-left { padding: 120px 24px 60px; }
     .hero-right { height: 300px; }
@@ -988,20 +1068,37 @@
 
 <div class="cursor" id="cursor"></div>
 
+<!-- BACKDROP -->
+<div class="nav-backdrop" id="navBackdrop"></div>
+
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">50% Film</a>
-  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-    <span></span><span></span><span></span>
+  <button class="menu-toggle" id="navToggle" aria-label="Toggle menu">
+    <span class="menu-toggle-label">Menu</span>
+    <span class="menu-toggle-bars"><span></span><span></span><span></span></span>
   </button>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="catalogue.html">Catalogue</a></li>
-    <li><a href="collections.html">Collections</a></li>
-    <li><a href="archive.html">Archive</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="#submit">Submit</a></li>
-  </ul>
 </nav>
+
+<!-- DROPDOWN MENU -->
+<div class="nav-dropdown" id="navDropdown">
+  <div class="nav-dropdown-eyebrow">Navigate</div>
+  <ul class="nav-dropdown-list">
+    <li><a href="index.html"><span>Home</span><span class="nav-dropdown-num">00</span></a></li>
+    <li><a href="catalogue.html"><span>Catalogue</span><span class="nav-dropdown-num">01</span></a></li>
+    <li><a href="collections.html"><span>Collections</span><span class="nav-dropdown-num">02</span></a></li>
+    <li><a href="archive.html"><span>Archive</span><span class="nav-dropdown-num">03</span></a></li>
+    <li><a href="news.html"><span>News</span><span class="nav-dropdown-num">04</span></a></li>
+    <li><a href="about.html"><span>About</span><span class="nav-dropdown-num">05</span></a></li>
+    <li><a href="submit.html"><span>Submit</span><span class="nav-dropdown-num">06</span></a></li>
+  </ul>
+  <div class="nav-dropdown-footer">
+    <a href="https://www.instagram.com/50percentfilm/" target="_blank" rel="noopener">Instagram</a>
+    <a href="#">Letterboxd</a>
+    <a href="#">Newsletter</a>
+    <a href="#">Contact</a>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -1353,18 +1450,37 @@
 </footer>
 
 <script>
-  // Mobile nav toggle
+  // Dropdown menu toggle
   const navToggle = document.getElementById('navToggle');
-  const navLinks = document.getElementById('navLinks');
-  navToggle.addEventListener('click', () => {
-    navToggle.classList.toggle('open');
-    navLinks.classList.toggle('open');
+  const navDropdown = document.getElementById('navDropdown');
+  const navBackdrop = document.getElementById('navBackdrop');
+
+  function closeMenu() {
+    navToggle.classList.remove('open');
+    navDropdown.classList.remove('open');
+    navBackdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function toggleMenu() {
+    const isOpen = navDropdown.classList.contains('open');
+    if (isOpen) {
+      closeMenu();
+    } else {
+      navToggle.classList.add('open');
+      navDropdown.classList.add('open');
+      navBackdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  navToggle.addEventListener('click', toggleMenu);
+  navBackdrop.addEventListener('click', closeMenu);
+  navDropdown.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
   });
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navToggle.classList.remove('open');
-      navLinks.classList.remove('open');
-    });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMenu();
   });
 
   // Cursor
