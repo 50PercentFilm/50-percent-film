@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collections — 50% Film</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512x512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f0ece4;
+    --cream: #e8e2d6;
+    --red: #c8341a;
+    --gray: #2a2a2a;
+    --mid: #888;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    cursor: none;
+    overflow-x: hidden;
+  }
+
+  .cursor {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: var(--red);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.2s, height 0.2s;
+    mix-blend-mode: difference;
+  }
+  .cursor.big { width: 40px; height: 40px; }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.35;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 28px 40px;
+    mix-blend-mode: difference;
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.15em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a.current { opacity: 1; }
+  .nav-links a.current::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background: var(--red);
+    margin-top: 6px;
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 28px; height: 22px;
+    background: none; border: none;
+    cursor: none;
+    padding: 0;
+    z-index: 101;
+  }
+  .nav-toggle span { display: block; width: 100%; height: 2px; background: var(--white); transition: transform 0.3s, opacity 0.3s; }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* PAGE HEAD */
+  .page-head {
+    min-height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 160px 40px 60px;
+    position: relative;
+  }
+
+  .page-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 14vw, 200px);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .page-title em {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    color: var(--mid);
+  }
+
+  .page-sub {
+    margin-top: 28px;
+    font-size: 11px;
+    line-height: 1.9;
+    color: var(--mid);
+    max-width: 460px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  /* COLLECTIONS GRID — editorial stacked rows */
+  .collections-wrap {
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .collection-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid #1a1a1a;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--white);
+    cursor: none;
+    min-height: 320px;
+  }
+
+  .collection-block:nth-child(even) {
+    grid-template-columns: 1fr 1fr;
+  }
+  .collection-block:nth-child(even) .collection-visual { order: 2; }
+  .collection-block:nth-child(even) .collection-text { order: 1; border-right: 1px solid #1a1a1a; border-left: none; }
+
+  .collection-text {
+    padding: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid #1a1a1a;
+    position: relative;
+    z-index: 2;
+  }
+
+  .collection-index {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+    margin-bottom: 20px;
+  }
+
+  .collection-tag {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    border: 1px solid var(--red);
+    padding: 5px 12px;
+    display: inline-block;
+    margin-bottom: 24px;
+    width: fit-content;
+  }
+
+  .collection-title {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.05;
+    margin-bottom: 20px;
+    transition: transform 0.4s ease;
+  }
+  .collection-block:hover .collection-title { transform: translateX(12px); }
+
+  .collection-desc {
+    font-size: 11px;
+    line-height: 1.9;
+    color: var(--mid);
+    max-width: 360px;
+    margin-bottom: 28px;
+  }
+
+  .collection-status {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .collection-status .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+    display: inline-block;
+  }
+
+  .collection-visual {
+    position: relative;
+    overflow: hidden;
+    min-height: 320px;
+  }
+
+  .collection-visual-bg {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.8s ease;
+  }
+  .collection-block:hover .collection-visual-bg { transform: scale(1.06); }
+
+  /* perforation strip */
+  .collection-visual::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 28px;
+    background-image: radial-gradient(circle, var(--black) 3px, transparent 3.5px);
+    background-size: 28px 28px;
+    background-repeat: repeat-y;
+    z-index: 3;
+    opacity: 0.6;
+  }
+  .collection-block:nth-child(odd) .collection-visual::before { left: 0; }
+  .collection-block:nth-child(even) .collection-visual::before { right: 0; }
+
+  .collection-visual-bg::after {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    top: 15%;
+    left: 15%;
+    border-radius: 50% 30% 60% 40%;
+    opacity: 0.1;
+    background: var(--white);
+  }
+
+  .visual-1 { background: linear-gradient(160deg, #0d0d1a 0%, #1a0a0a 50%, #0a0a0a 100%); }
+  .visual-2 { background: linear-gradient(155deg, #1c1115 0%, #0a0a0a 100%); }
+  .visual-3 { background: linear-gradient(155deg, #131a22 0%, #0a0a0a 100%); }
+  .visual-4 { background: linear-gradient(155deg, #1c1808 0%, #0a0a0a 100%); }
+  .visual-5 { background: linear-gradient(155deg, #14101c 0%, #0a0a0a 100%); }
+  .visual-6 { background: linear-gradient(155deg, #1c1c2e 0%, #0a0a0a 100%); }
+  .visual-7 { background: linear-gradient(155deg, #16181c 0%, #0a0a0a 100%); }
+
+  .collection-visual-label {
+    position: absolute;
+    bottom: 24px;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(240,236,228,0.2);
+    z-index: 2;
+  }
+  .collection-block:nth-child(odd) .collection-visual-label { left: 48px; }
+  .collection-block:nth-child(even) .collection-visual-label { right: 48px; }
+
+  .collection-visual-num {
+    position: absolute;
+    top: 24px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    color: rgba(240,236,228,0.04);
+    z-index: 2;
+  }
+  .collection-block:nth-child(odd) .collection-visual-num { right: 48px; }
+  .collection-block:nth-child(even) .collection-visual-num { left: 48px; }
+
+  @media (max-width: 900px) {
+    .collection-block, .collection-block:nth-child(even) {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+    .collection-block:nth-child(even) .collection-visual { order: 1; }
+    .collection-block:nth-child(even) .collection-text { order: 2; border-right: none; border-left: 1px solid #1a1a1a; }
+    .collection-text { padding: 40px 24px; border-left: none; border-top: 1px solid #1a1a1a; }
+    .collection-visual { min-height: 220px; }
+    .collection-visual::before { display: none; }
+  }
+
+  /* MANIFESTO STRIP */
+  .strip {
+    padding: 100px 40px;
+    text-align: center;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .strip-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 6vw, 88px);
+    line-height: 1;
+    margin-bottom: 28px;
+  }
+  .strip-heading em {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    color: var(--red);
+  }
+  .btn-primary {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--white);
+    padding: 16px 32px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-primary:hover { background: var(--red); color: var(--white); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid #1a1a1a;
+    padding: 48px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.15em; }
+  .footer-copy { font-size: 9px; letter-spacing: 0.15em; color: var(--mid); text-transform: uppercase; }
+  .footer-links { display: flex; gap: 32px; list-style: none; }
+  .footer-links a { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; mix-blend-mode: normal; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: fixed; inset: 0; width: 100%; height: 100vh;
+      background: var(--black);
+      flex-direction: column; justify-content: center; align-items: center; gap: 40px;
+      transform: translateY(-100%); opacity: 0; pointer-events: none;
+      transition: transform 0.4s ease, opacity 0.3s ease;
+      z-index: 99;
+    }
+    .nav-links.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    .nav-links a { font-size: 14px; letter-spacing: 0.25em; opacity: 1; }
+    .page-head { padding: 120px 24px 48px; }
+    footer { flex-direction: column; gap: 24px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">50% Film</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="catalogue.html">Catalogue</a></li>
+    <li><a href="collections.html" class="current">Collections</a></li>
+    <li><a href="archive.html">Archive</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="submit.html">Submit</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEAD -->
+<section class="page-head">
+  <p class="page-eyebrow">Curated Threads</p>
+  <h1 class="page-title">Colle-<br><em>ctions.</em></h1>
+  <p class="page-sub">Films grouped by mood, not just genre — the way you'd build a watchlist for a specific kind of night. Some collections are live. Others are waiting for their first entry.</p>
+</section>
+
+<!-- COLLECTIONS LIST -->
+<div class="collections-wrap">
+
+  <a href="#" class="collection-block reveal">
+    <div class="collection-text">
+      <div class="collection-index">Collection 01</div>
+      <div class="collection-tag">Horror &amp; Psychological</div>
+      <h2 class="collection-title">Dread</h2>
+      <p class="collection-desc">Slow-burn tension, unreliable narrators, and the kind of dread that lingers after the credits. For films that earn their scares.</p>
+      <div class="collection-status"><span class="dot"></span> Open for submissions · 0 films</div>
+    </div>
+    <div class="collection-visual">
+      <div class="collection-visual-bg visual-2"></div>
+      <div class="collection-visual-num">01</div>
+      <div class="collection-visual-label">Open</div>
+    </div>
+  </a>
+
+  <a href="#" class="collection-block reveal">
+    <div class="collection-text">
+      <div class="collection-index">Collection 02</div>
+      <div class="collection-tag">Slow &amp; Contemplative</div>
+      <h2 class="collection-title">Quiet Worlds</h2>
+      <p class="collection-desc">Films that sit with silence. Long takes, small gestures, and stories that trust the audience to feel before they're told.</p>
+      <div class="collection-status"><span class="dot"></span> Open for submissions · 0 films</div>
+    </div>
+    <div class="collection-visual">
+      <div class="collection-visual-bg visual-3"></div>
+      <div class="collection-visual-num">02</div>
+      <div class="collection-visual-label">Open</div>
+    </div>
+  </a>
+
+  <a href="#" class="collection-block reveal">
+    <div class="collection-text">
+      <div class="collection-index">Collection 03</div>
+      <div class="collection-tag">Debut Shorts</div>
+      <h2 class="collection-title">First Light</h2>
+      <p class="collection-desc">A home for first-time directors. Rough edges welcome — we're looking for the spark, not the polish.</p>
+      <div class="collection-status"><span class="dot"></span> Open for submissions · 0 films</div>
+    </div>
+    <div class="collection-visual">
+      <div class="collection-visual-bg visual-4"></div>
+      <div class="collection-visual-num">03</div>
+      <div class="collection-visual-label">Open</div>
+    </div>
+  </a>
+
+  <a href="#" class="collection-block reveal">
+    <div class="collection-text">
+      <div class="collection-index">Collection 04</div>
+      <div class="collection-tag">Night &amp; Urban</div>
+      <h2 class="collection-title">After Dark</h2>
+      <p class="collection-desc">City lights, late trains, empty streets. Stories that only happen after midnight, told by people who've been out there.</p>
+      <div class="collection-status"><span class="dot"></span> Open for submissions · 0 films</div>
+    </div>
+    <div class="collection-visual">
+      <div class="collection-visual-bg visual-5"></div>
+      <div class="collection-visual-num">04</div>
+      <div class="collection-visual-label">Open</div>
+    </div>
+  </a>
+
+  <a href="#" class="collection-block reveal">
+    <div class="collection-text">
+      <div class="collection-index">Collection 05</div>
+      <div class="collection-tag">Sci-Fi &amp; Speculative</div>
+      <h2 class="collection-title">Signal</h2>
+      <p class="collection-desc">Big ideas on small budgets. Worlds slightly off from our own — close enough to feel like a warning.</p>
+      <div class="collection-status"><span class="dot"></span> Open for submissions · 0 films</div>
+    </div>
+    <div class="collection-visual">
+      <div class="collection-visual-bg visual-6"></div>
+      <div class="collection-visual-num">05</div>
+      <div class="collection-visual-label">Open</div>
+    </div>
+  </a>
+
+  <a href="#" class="collection-block reveal">
+    <div class="collection-text">
+      <div class="collection-index">Collection 06</div>
+      <div class="collection-tag">Documentary &amp; Portrait</div>
+      <h2 class="collection-title">Still Life</h2>
+      <p class="collection-desc">Real people, real places, real time. Documentary shorts and portraits that look closely at something true.</p>
+      <div class="collection-status"><span class="dot"></span> Open for submissions · 0 films</div>
+    </div>
+    <div class="collection-visual">
+      <div class="collection-visual-bg visual-7"></div>
+      <div class="collection-visual-num">06</div>
+      <div class="collection-visual-label">Open</div>
+    </div>
+  </a>
+
+</div>
+
+<!-- STRIP -->
+<section class="strip reveal">
+  <h2 class="strip-heading">Got a film for<br><em>one of these?</em></h2>
+  <a href="submit.html" class="btn-primary">Begin Submission →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">50% Film</div>
+  <span class="footer-copy">© 2027 — Short Cinema Label — London, UK</span>
+  <ul class="footer-links">
+    <li><a href="https://www.instagram.com/50percentfilm/" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="#">Letterboxd</a></li>
+    <li><a href="#">Newsletter</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
+  });
+
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button, .collection-block').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('big'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 70);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
