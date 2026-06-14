@@ -412,13 +412,13 @@
   }
 
   /* Placeholder gradients for film card backgrounds */
-  .film-card:nth-child(1) .film-card-bg { background: linear-gradient(160deg, #0d0d1a 0%, #1a0a0a 50%, #0a0a0a 100%); }
-  .film-card:nth-child(2) .film-card-bg { background: linear-gradient(160deg, #1c1c2e 0%, #0a0a0a 100%); }
-  .film-card:nth-child(3) .film-card-bg { background: linear-gradient(160deg, #2e1c1c 0%, #0a0a0a 100%); }
-  .film-card:nth-child(4) .film-card-bg { background: linear-gradient(160deg, #1c2e1c 0%, #0a0a0a 100%); }
-  .film-card:nth-child(5) .film-card-bg { background: linear-gradient(160deg, #2e2a1c 0%, #0a0a0a 100%); }
-  .film-card:nth-child(6) .film-card-bg { background: linear-gradient(160deg, #1c2a2e 0%, #0a0a0a 100%); }
-  .film-card:nth-child(7) .film-card-bg { background: linear-gradient(160deg, #251c2e 0%, #0a0a0a 100%); }
+  .film-card:nth-child(1) .film-card-bg { background: linear-gradient(160deg, #1c1c2e 0%, #0a0a0a 100%); }
+  .film-card:nth-child(2) .film-card-bg { background: linear-gradient(160deg, #2e1c1c 0%, #0a0a0a 100%); }
+  .film-card:nth-child(3) .film-card-bg { background: linear-gradient(160deg, #1c2e1c 0%, #0a0a0a 100%); }
+  .film-card:nth-child(4) .film-card-bg { background: linear-gradient(160deg, #2e2a1c 0%, #0a0a0a 100%); }
+  .film-card:nth-child(5) .film-card-bg { background: linear-gradient(160deg, #1c2a2e 0%, #0a0a0a 100%); }
+  .film-card:nth-child(6) .film-card-bg { background: linear-gradient(160deg, #251c2e 0%, #0a0a0a 100%); }
+  .film-card:nth-child(7) .film-card-bg { background: linear-gradient(160deg, #1c1c1c 0%, #0a0a0a 100%); }
 
   /* Abstract film shapes inside cards */
   .film-card-bg::after {
@@ -560,6 +560,71 @@
     padding: 5px 12px;
     margin-bottom: 16px;
     display: inline-block;
+  }
+
+  /* Confirmed selection cards */
+  .film-card.confirmed {
+    text-decoration: none;
+    color: var(--white);
+    display: block;
+  }
+
+  .film-card.confirmed::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--red);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .film-card.confirmed .coming-soon-banner {
+    border-color: transparent var(--red) transparent transparent;
+  }
+
+  .film-card.confirmed .film-card-bg::after {
+    opacity: 0.06;
+  }
+
+  /* SUBMISSION COUNTER */
+  .submission-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #2a2a2a;
+    padding: 12px 22px;
+    margin-bottom: 40px;
+    background: #0f0f0f;
+  }
+
+  .submission-counter-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--red);
+    flex-shrink: 0;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+
+  .submission-counter-text {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  .submission-counter-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    margin-right: 4px;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
   }
 
   /* MANIFESTO SECTION */
@@ -847,13 +912,6 @@
   .collection-pill:hover .collection-name { color: var(--white); }
   .collection-pill:hover .collection-count { color: rgba(240,236,228,0.6); }
 
-  .collection-pill-featured {
-    border: 1px solid #2a1a1a;
-    min-width: 280px;
-    background: #0f0808;
-  }
-  .collection-pill-featured:hover { background: var(--red); border-color: var(--red); }
-
   .collection-pill-tag {
     font-size: 8px;
     letter-spacing: 0.25em;
@@ -863,10 +921,6 @@
     padding: 4px 10px;
     display: inline-block;
     margin-bottom: 8px;
-  }
-  .collection-pill-featured:hover .collection-pill-tag {
-    color: var(--white);
-    border-color: rgba(240,236,228,0.5);
   }
 
   .collection-name {
@@ -941,11 +995,10 @@
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#catalogue">Catalogue</a></li>
-    <li><a href="#collections">Collections</a></li>
+    <li><a href="catalogue.html">Catalogue</a></li>
+    <li><a href="collections.html">Collections</a></li>
     <li><a href="archive.html">Archive</a></li>
-    <li><a href="news.html">News</a></li>
-    <li><a href="#about">About</a></li>
+    <li><a href="about.html">About</a></li>
     <li><a href="#submit">Submit</a></li>
   </ul>
 </nav>
@@ -957,18 +1010,16 @@
     <h1 class="hero-title">Short<br><em>Films.</em><br>Full<br>Vision.</h1>
     <p class="hero-sub">A curated label for short-form cinema. We discover, platform, and archive the films that deserve to be seen — from screen to cinema.</p>
     <div class="hero-cta">
-      <a href="#catalogue" class="btn-primary">Browse Films</a>
+      <a href="catalogue.html" class="btn-primary">Browse Films</a>
       <a href="#submit" class="btn-ghost">Submit Your Work</a>
     </div>
   </div>
   <div class="hero-right">
     <div class="hero-film-grid">
-      <a href="films/death-by-a-thousand-cuts.html" class="film-strip" style="display:block; text-decoration:none; color:inherit;">
+      <div class="film-strip">
         <div class="film-strip-num">01</div>
-        <div class="featured-badge">Service 2027</div>
-        <div class="film-strip-title">Death By A Thousand Cuts</div>
-        <div class="film-strip-label">Drama · Dir. Riley Bowen</div>
-      </a>
+        <div class="film-strip-label">Coming Soon</div>
+      </div>
       <div class="film-strip">
         <div class="film-strip-num">02</div>
         <div class="film-strip-label">Coming Soon</div>
@@ -986,12 +1037,10 @@
 <div class="ticker">
   <div class="ticker-track">
     <div class="ticker-item"><span>✦</span> Now accepting submissions</div>
-    <div class="ticker-item"><span>✦</span> Winter Anthology 2027 — Coming to Cinemas</div>
     <div class="ticker-item"><span>✦</span> Now listing on Letterboxd</div>
     <div class="ticker-item"><span>✦</span> Free to submit — no fees</div>
     <div class="ticker-item"><span>✦</span> Short films. No compromise.</div>
     <div class="ticker-item"><span>✦</span> Now accepting submissions</div>
-    <div class="ticker-item"><span>✦</span> Winter Anthology 2027 — Coming to Cinemas</div>
     <div class="ticker-item"><span>✦</span> Now listing on Letterboxd</div>
     <div class="ticker-item"><span>✦</span> Free to submit — no fees</div>
     <div class="ticker-item"><span>✦</span> Short films. No compromise.</div>
@@ -1005,34 +1054,35 @@
     <span class="section-count"></span>
   </div>
   <div class="collections-scroll">
-    <a href="films/death-by-a-thousand-cuts.html" class="collection-pill collection-pill-featured reveal">
-      <div class="collection-pill-tag">Service 2027</div>
-      <div class="collection-name">Death By A<br>Thousand Cuts</div>
-      <div class="collection-count">Dir. Riley Bowen · In Production</div>
-    </a>
-    <a href="#" class="collection-pill reveal">
+    <a href="collections.html" class="collection-pill reveal">
+      <div class="collection-pill-tag">Horror &amp; Psychological</div>
       <div class="collection-name">Dread</div>
-      <div class="collection-count">Horror & Psychological</div>
+      <div class="collection-count">0 films · Open</div>
     </a>
-    <a href="#" class="collection-pill reveal">
+    <a href="collections.html" class="collection-pill reveal">
+      <div class="collection-pill-tag">Slow &amp; Contemplative</div>
       <div class="collection-name">Quiet Worlds</div>
-      <div class="collection-count">Slow & Contemplative</div>
+      <div class="collection-count">0 films · Open</div>
     </a>
-    <a href="#" class="collection-pill reveal">
+    <a href="collections.html" class="collection-pill reveal">
+      <div class="collection-pill-tag">Debut Shorts</div>
       <div class="collection-name">First Light</div>
-      <div class="collection-count">Debut Shorts</div>
+      <div class="collection-count">0 films · Open</div>
     </a>
-    <a href="#" class="collection-pill reveal">
+    <a href="collections.html" class="collection-pill reveal">
+      <div class="collection-pill-tag">Night &amp; Urban</div>
       <div class="collection-name">After Dark</div>
-      <div class="collection-count">Night & Urban</div>
+      <div class="collection-count">0 films · Open</div>
     </a>
-    <a href="#" class="collection-pill reveal">
+    <a href="collections.html" class="collection-pill reveal">
+      <div class="collection-pill-tag">Sci-Fi &amp; Speculative</div>
       <div class="collection-name">Signal</div>
-      <div class="collection-count">Sci-Fi & Speculative</div>
+      <div class="collection-count">0 films · Open</div>
     </a>
-    <a href="#" class="collection-pill reveal">
+    <a href="collections.html" class="collection-pill reveal">
+      <div class="collection-pill-tag">Documentary &amp; Portrait</div>
       <div class="collection-name">Still Life</div>
-      <div class="collection-count">Documentary & Portrait</div>
+      <div class="collection-count">0 films · Open</div>
     </a>
   </div>
 </div>
@@ -1041,23 +1091,109 @@
 <section class="section" id="catalogue">
   <div class="section-header reveal">
     <h2 class="section-title">The <em>Catalogue</em></h2>
-    <span class="section-count">1 confirmed · More coming soon</span>
+    <span class="section-count">2 selected · 10 slots open</span>
+  </div>
+  <div class="submission-counter reveal">
+    <div class="submission-counter-dot"></div>
+    <div class="submission-counter-text">
+      <span class="submission-counter-num">16</span> films currently under review
+    </div>
   </div>
   <div class="films-grid">
 
-    <div class="film-card coming-soon reveal">
-      <div class="coming-soon-banner"><span>Service<br>2027</span></div>
-      <div class="film-card-bg" style="background: linear-gradient(160deg, #0d0d1a 0%, #1a0a0a 50%, #0a0a0a 100%);"></div>
+    <a href="https://letterboxd.com/film/leclat-2026/" target="_blank" rel="noopener" class="film-card confirmed reveal">
+      <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
+      <div class="film-card-bg" style="background: linear-gradient(160deg, #2e2410 0%, #1a0e08 50%, #0a0a0a 100%);"></div>
       <div class="film-card-info">
-        <div class="film-card-genre">Drama</div>
-        <div class="film-card-title">Death By A Thousand Cuts</div>
-        <div class="film-card-meta">Dir. Riley Bowen · 2027 · In Production</div>
+        <div class="film-card-genre">Drama · France</div>
+        <div class="film-card-title">L'éclat</div>
+        <div class="film-card-meta">Dir. Tansi Makele · 2026</div>
       </div>
       <div class="film-card-overlay">
-        <div class="coming-soon-tag">In Production</div>
-        <div class="film-card-overlay-title">Death By A Thousand Cuts</div>
-        <div class="film-card-overlay-dir">Dir. Riley Bowen · 2027</div>
-        <a href="films/death-by-a-thousand-cuts.html" class="film-card-overlay-btn">View Film</a>
+        <div class="coming-soon-tag">Coming Soon</div>
+        <div class="film-card-overlay-title">L'éclat</div>
+        <div class="film-card-overlay-dir">Dir. Tansi Makele · 2026</div>
+        <a href="https://letterboxd.com/film/leclat-2026/" target="_blank" rel="noopener" class="film-card-overlay-btn">View on Letterboxd</a>
+      </div>
+    </a>
+
+    <a href="https://letterboxd.com/film/my-last-day-on-earth-1/" target="_blank" rel="noopener" class="film-card confirmed reveal">
+      <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
+      <div class="film-card-bg" style="background: linear-gradient(160deg, #0d1a2e 0%, #0a0e1a 50%, #0a0a0a 100%);"></div>
+      <div class="film-card-info">
+        <div class="film-card-genre">Sci-Fi</div>
+        <div class="film-card-title">My Last Day on Earth</div>
+        <div class="film-card-meta">Dir. Pauliina Leskinen</div>
+      </div>
+      <div class="film-card-overlay">
+        <div class="coming-soon-tag">Coming Soon</div>
+        <div class="film-card-overlay-title">My Last Day<br>on Earth</div>
+        <div class="film-card-overlay-dir">Dir. Pauliina Leskinen</div>
+        <a href="https://letterboxd.com/film/my-last-day-on-earth-1/" target="_blank" rel="noopener" class="film-card-overlay-btn">View on Letterboxd</a>
+      </div>
+    </a>
+
+    <div class="film-card coming-soon reveal">
+      <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
+      <div class="film-card-bg"></div>
+      <div class="film-card-info">
+        <div class="film-card-genre">TBA</div>
+        <div class="film-card-title">Coming Soon</div>
+        <div class="film-card-meta">Submissions Open</div>
+      </div>
+      <div class="film-card-overlay">
+        <div class="coming-soon-tag">Coming Soon</div>
+        <div class="film-card-overlay-title">Coming Soon</div>
+        <div class="film-card-overlay-dir">A film could be here</div>
+        <a href="#submit" class="film-card-overlay-btn">Submit Your Film</a>
+      </div>
+    </div>
+
+    <div class="film-card coming-soon reveal">
+      <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
+      <div class="film-card-bg"></div>
+      <div class="film-card-info">
+        <div class="film-card-genre">TBA</div>
+        <div class="film-card-title">Coming Soon</div>
+        <div class="film-card-meta">Submissions Open</div>
+      </div>
+      <div class="film-card-overlay">
+        <div class="coming-soon-tag">Coming Soon</div>
+        <div class="film-card-overlay-title">Coming Soon</div>
+        <div class="film-card-overlay-dir">A film could be here</div>
+        <a href="#submit" class="film-card-overlay-btn">Submit Your Film</a>
+      </div>
+    </div>
+
+    <div class="film-card coming-soon reveal">
+      <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
+      <div class="film-card-bg"></div>
+      <div class="film-card-info">
+        <div class="film-card-genre">TBA</div>
+        <div class="film-card-title">Coming Soon</div>
+        <div class="film-card-meta">Submissions Open</div>
+      </div>
+      <div class="film-card-overlay">
+        <div class="coming-soon-tag">Coming Soon</div>
+        <div class="film-card-overlay-title">Coming Soon</div>
+        <div class="film-card-overlay-dir">A film could be here</div>
+        <a href="#submit" class="film-card-overlay-btn">Submit Your Film</a>
+      </div>
+    </div>
+
+    <div class="film-card coming-soon reveal">
+      <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
+      <div class="film-card-bg"></div>
+      <div class="film-card-info">
+        <div class="film-card-genre">TBA</div>
+        <div class="film-card-title">Coming Soon</div>
+        <div class="film-card-meta">Submissions Open</div>
+      </div>
+      <div class="film-card-overlay">
+        <div class="coming-soon-tag">Coming Soon</div>
+        <div class="film-card-overlay-title">Coming Soon</div>
+        <div class="film-card-overlay-dir">A film could be here</div>
+        <a href="#submit" class="film-card-overlay-btn">Submit Your Film</a>
       </div>
     </div>
 
