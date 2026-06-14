@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catalogue — 50% Film</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512x512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f0ece4;
+    --cream: #e8e2d6;
+    --red: #c8341a;
+    --gray: #2a2a2a;
+    --mid: #888;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    cursor: none;
+    overflow-x: hidden;
+  }
+
+  .cursor {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: var(--red);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.2s, height 0.2s;
+    mix-blend-mode: difference;
+  }
+  .cursor.big { width: 40px; height: 40px; }
+  .cursor.label {
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    background: transparent;
+    color: var(--white);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    mix-blend-mode: normal;
+    padding: 6px 12px;
+    background: var(--red);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.35;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 28px 40px;
+    mix-blend-mode: difference;
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.15em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a.current { opacity: 1; }
+  .nav-links a.current::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background: var(--red);
+    margin-top: 6px;
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 28px; height: 22px;
+    background: none; border: none;
+    cursor: none;
+    padding: 0;
+    z-index: 101;
+  }
+  .nav-toggle span { display: block; width: 100%; height: 2px; background: var(--white); transition: transform 0.3s, opacity 0.3s; }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* PAGE HEADER */
+  .page-head {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 160px 40px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 14vw, 200px);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .page-title em {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    color: var(--mid);
+  }
+
+  .page-sub {
+    margin-top: 28px;
+    font-size: 11px;
+    line-height: 1.9;
+    color: var(--mid);
+    max-width: 460px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  /* Background slow-pan reel marks */
+  .reel-marks {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .reel-marks span {
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    color: rgba(240,236,228,0.03);
+    font-size: 20vw;
+    white-space: nowrap;
+    animation: drift 60s linear infinite;
+  }
+  .reel-marks span:nth-child(1) { top: 4%; animation-duration: 70s; }
+  .reel-marks span:nth-child(2) { top: 48%; animation-direction: reverse; animation-duration: 80s; }
+
+  @keyframes drift {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+  }
+
+  /* FILTER BAR */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-top: 1px solid #1e1e1e;
+    border-bottom: 1px solid #1e1e1e;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--black);
+  }
+
+  .filter-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    background: none;
+    border: none;
+    border-right: 1px solid #1e1e1e;
+    padding: 18px 28px;
+    cursor: none;
+    transition: color 0.2s, background 0.2s;
+    flex: 0 0 auto;
+  }
+  .filter-btn:hover { color: var(--white); }
+  .filter-btn.active { color: var(--white); background: var(--red); border-color: var(--red); }
+
+  .filter-count {
+    margin-left: auto;
+    padding: 18px 28px;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    border-left: 1px solid #1e1e1e;
+  }
+
+  @media (max-width: 768px) {
+    .filter-bar { flex-direction: column; }
+    .filter-btn { border-right: none; border-bottom: 1px solid #1e1e1e; }
+    .filter-count { margin-left: 0; border-left: none; }
+  }
+
+  /* CATALOGUE LIST */
+  .catalogue-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .catalogue-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 240px 160px 60px;
+    align-items: stretch;
+    border-bottom: 1px solid #1a1a1a;
+    text-decoration: none;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: none;
+  }
+  .catalogue-row:hover { background: #100404; }
+
+  .row-index {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    color: var(--mid);
+    display: flex;
+    align-items: center;
+    padding: 36px 0 36px 40px;
+    letter-spacing: 0.05em;
+  }
+
+  .row-main {
+    padding: 36px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .row-title {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.05;
+    transition: transform 0.4s ease, color 0.4s;
+  }
+  .catalogue-row:hover .row-title { transform: translateX(16px); color: var(--red); }
+
+  .row-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .row-tag {
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mid);
+    border: 1px solid #2a2a2a;
+    padding: 4px 10px;
+  }
+
+  .row-director {
+    padding: 36px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    border-left: 1px solid #1a1a1a;
+    gap: 6px;
+  }
+  .row-director span { color: var(--white); font-size: 11px; }
+
+  .row-status {
+    padding: 36px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+    border-left: 1px solid #1a1a1a;
+  }
+
+  .status-pill {
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border: 1px solid var(--red);
+    color: var(--red);
+  }
+  .status-pill.open {
+    border-color: var(--mid);
+    color: var(--mid);
+  }
+  .status-pill.confirmed {
+    border-color: var(--red);
+    color: var(--red);
+    background: rgba(200,52,26,0.08);
+  }
+
+  .row-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid #1a1a1a;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--mid);
+    transition: transform 0.4s ease, color 0.4s;
+  }
+  .catalogue-row:hover .row-arrow { transform: translateX(8px); color: var(--red); }
+
+  /* Confirmed entry rows */
+  .catalogue-row.row-confirmed { background: #0d0606; }
+  .catalogue-row.row-confirmed:hover { background: #160808; }
+  .catalogue-row.row-confirmed .row-index { color: var(--red); }
+
+  /* Hover preview swatch that follows scroll */
+  .row-preview {
+    position: absolute;
+    top: 50%;
+    right: 220px;
+    transform: translateY(-50%) scale(0.9);
+    width: 160px;
+    height: 100px;
+    background: linear-gradient(160deg, #1c1c2e 0%, #0a0a0a 100%);
+    opacity: 0;
+    transition: opacity 0.4s, transform 0.4s;
+    pointer-events: none;
+    z-index: 2;
+    border: 1px solid #2a2a2a;
+  }
+  .catalogue-row:hover .row-preview { opacity: 1; transform: translateY(-50%) scale(1); }
+
+  .row-3 .row-preview,
+  .row-4 .row-preview,
+  .row-5 .row-preview,
+  .row-6 .row-preview,
+  .row-7 .row-preview,
+  .row-8 .row-preview,
+  .row-9 .row-preview,
+  .row-10 .row-preview,
+  .row-11 .row-preview,
+  .row-12 .row-preview {
+    background:
+      repeating-linear-gradient(45deg, #161616 0 12px, #0e0e0e 12px 24px);
+  }
+
+  .row-preview-eclat {
+    background: linear-gradient(160deg, #2e2410 0%, #1a0e08 50%, #0a0a0a 100%) !important;
+    border-color: var(--red) !important;
+  }
+
+  .row-preview-mldoe {
+    background: linear-gradient(160deg, #0d1a2e 0%, #0a0e1a 50%, #0a0a0a 100%) !important;
+    border-color: var(--red) !important;
+  }
+
+  @media (max-width: 900px) {
+    .catalogue-row { grid-template-columns: 60px 1fr 50px; }
+    .row-director, .row-status, .row-preview { display: none; }
+    .row-index { padding: 28px 0 28px 24px; }
+    .row-main { padding: 28px 16px; }
+  }
+
+  /* SUBMISSION COUNTER */
+  .submission-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #2a2a2a;
+    padding: 14px 24px;
+    margin: 32px 40px 0;
+    background: #0f0f0f;
+  }
+
+  .submission-counter-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--red);
+    flex-shrink: 0;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+
+  .submission-counter-text {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  .submission-counter-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    margin-right: 4px;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  @media (max-width: 768px) {
+    .submission-counter { margin: 24px 24px 0; }
+  }
+
+  /* TICKER (reused) */
+  .ticker {
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+    overflow: hidden;
+    padding: 12px 0;
+    background: var(--black);
+  }
+  .ticker-track {
+    display: flex;
+    gap: 60px;
+    animation: ticker 20s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-item {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mid);
+    flex-shrink: 0;
+  }
+  .ticker-item span { color: var(--red); margin-right: 10px; }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* CTA STRIP */
+  .cta-strip {
+    padding: 100px 40px;
+    text-align: center;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .cta-strip-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 6vw, 88px);
+    line-height: 1;
+    margin-bottom: 28px;
+  }
+  .cta-strip-heading em {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    color: var(--red);
+  }
+
+  .btn-primary {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--white);
+    padding: 16px 32px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-primary:hover { background: var(--red); color: var(--white); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid #1a1a1a;
+    padding: 48px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.15em; }
+  .footer-copy { font-size: 9px; letter-spacing: 0.15em; color: var(--mid); text-transform: uppercase; }
+  .footer-links { display: flex; gap: 32px; list-style: none; }
+  .footer-links a { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; mix-blend-mode: normal; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: fixed; inset: 0; width: 100%; height: 100vh;
+      background: var(--black);
+      flex-direction: column; justify-content: center; align-items: center; gap: 40px;
+      transform: translateY(-100%); opacity: 0; pointer-events: none;
+      transition: transform 0.4s ease, opacity 0.3s ease;
+      z-index: 99;
+    }
+    .nav-links.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    .nav-links a { font-size: 14px; letter-spacing: 0.25em; opacity: 1; }
+    .page-head { padding: 120px 24px 48px; }
+    footer { flex-direction: column; gap: 24px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">50% Film</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="catalogue.html" class="current">Catalogue</a></li>
+    <li><a href="collections.html">Collections</a></li>
+    <li><a href="archive.html">Archive</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="submit.html">Submit</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEAD -->
+<section class="page-head">
+  <div class="reel-marks">
+    <span>FRAME · 24FPS · FRAME · 24FPS · FRAME · 24FPS</span>
+    <span>NO COMPROMISE · SHORT CINEMA · NO COMPROMISE</span>
+  </div>
+  <p class="page-eyebrow">Every Frame On Record</p>
+  <h1 class="page-title">The<br><em>Cata-</em><br>logue.</h1>
+  <p class="page-sub">A running ledger of everything we platform — open slots waiting for the right submission, with confirmed premieres landing here as they're locked in. Sort, scan, click through.</p>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar reveal">
+  <button class="filter-btn active" data-filter="all">All Entries</button>
+  <button class="filter-btn" data-filter="confirmed">Coming Soon</button>
+  <button class="filter-btn" data-filter="open">Open Slot</button>
+  <span class="filter-count" id="filterCount">12 entries</span>
+</div>
+
+<!-- SUBMISSION COUNTER -->
+<div class="submission-counter reveal">
+  <div class="submission-counter-dot"></div>
+  <div class="submission-counter-text">
+    <span class="submission-counter-num">16</span> films currently under review
+  </div>
+</div>
+
+<!-- CATALOGUE LIST -->
+<div class="catalogue-list">
+
+  <a href="https://letterboxd.com/film/leclat-2026/" target="_blank" rel="noopener" class="catalogue-row row-confirmed reveal" data-tags="confirmed">
+    <span class="row-index">001</span>
+    <div class="row-main">
+      <div class="row-title">L'éclat</div>
+      <div class="row-tags">
+        <span class="row-tag">Drama</span>
+        <span class="row-tag">France</span>
+        <span class="row-tag">2026</span>
+      </div>
+    </div>
+    <div class="row-director">Director<br><span>Tansi Makele</span></div>
+    <div class="row-status">
+      <span class="status-pill confirmed">Coming Soon</span>
+    </div>
+    <div class="row-arrow">→</div>
+    <div class="row-preview row-preview-eclat"></div>
+  </a>
+
+  <a href="https://letterboxd.com/film/my-last-day-on-earth-1/" target="_blank" rel="noopener" class="catalogue-row row-confirmed reveal" data-tags="confirmed">
+    <span class="row-index">002</span>
+    <div class="row-main">
+      <div class="row-title">My Last Day on Earth</div>
+      <div class="row-tags">
+        <span class="row-tag">Sci-Fi</span>
+      </div>
+    </div>
+    <div class="row-director">Director<br><span>Pauliina Leskinen</span></div>
+    <div class="row-status">
+      <span class="status-pill confirmed">Coming Soon</span>
+    </div>
+    <div class="row-arrow">→</div>
+    <div class="row-preview row-preview-mldoe"></div>
+  </a>
+
+  <a href="#submit" class="catalogue-row row-3 reveal" data-tags="open">
+    <span class="row-index">003</span>
+    <div class="row-main">
+      <div class="row-title">Open Slot</div>
+      <div class="row-tags">
+        <span class="row-tag">Any Genre</span>
+        <span class="row-tag">Submissions Open</span>
+      </div>
+    </div>
+    <div class="row-director">Director<br><span>—</span></div>
+    <div class="row-status">
+      <span class="status-pill open">Awaiting Entry</span>
+    </div>
+    <div class="row-arrow">→</div>
+    <div class="row-preview"></div>
+  </a>
+
+  <a href="#submit" class="catalogue-row row-4 reveal" data-tags="open">
+    <span class="row-index">004</span>
+    <div class="row-main">
+      <div class="row-title">Open Slot</div>
+      <div class="row-tags">
+        <span class="row-tag">Any Genre</span>
+        <span class="row-tag">Submissions Open</span>
+      </div>
+    </div>
+    <div class="row-director">Director<br><span>—</span></div>
+    <div class="row-status">
+      <span class="status-pill open">Awaiting Entry</span>
+    </div>
+    <div class="row-arrow">→</div>
+    <div class="row-preview"></div>
+  </a>
+
+  <a href="#submit" class="catalogue-row row-5 reveal" data-tags="open">
+    <span class="row-index">005</span>
+    <div class="row-main">
+      <div class="row-title">Open Slot</div>
+      <div class="row-tags">
+        <span class="row-tag">Any Genre</span>
+        <span class="row-tag">Submissions Open</span>
+      </div>
+    </div>
+    <div class="row-director">Director<br><span>—</span></div>
+    <div class="row-status">
+      <span class="status-pill open">Awaiting Entry</span>
+    </div>
+    <div class="row-arrow">→</div>
+    <div class="row-preview"></div>
+  </a>
+
+  <a href="#submit" class="catalogue-row row-6 reveal" data-tags="open">
+    <span class="row-index">006</span>
+    <div class="row-main">
+      <div class="row-title">Open Slot</div>
+      <div class="row-tags">
+        <span class="row-tag">Any Genre</span>
+        <span class="row-tag">Submissions Open</span>
+      </div>
+    </div>
+    <div class="row-director">Director<br><span>—</span></div>
+    <div class="row-status">
+      <span class="status-pill open">Awaiting Entry</span>
+    </div>
+    <div class="row-arrow">→</div>
+    <div class="row-preview"></div>
+  </a>
+
+  <a href="#submit" class="catalogue-row row-7 reveal" data-tags="open">
+    <span class="row-index">007</span>
+    <div class="row-main">
+      <div class="row-title">Open Slot</div>
+      <div class="row-tags">
+        <span class="row-tag">Any Genre</span>
+        <span class="row-tag">Submissions Open</span>
+      </div>
+    </div>
+    <div class="row-director">Director<br><span>—</span></div>
+    <div class="row-status">
+      <span class="status-pill open">Awaiting Entry</span>
+    </div>
+    <div class="row-arrow">→</div>
+    <div class="row-preview"></div>
+  </a>
+
+  <a href="#submit" class="catalogue-row row-8 reveal" data-tags="open">
+    <span class="row-index">008</span>
+    <div class="row-main">
+      <div class="row-title">Open Slot</div>
+      <div class="row-tags">
+        <span class="row-tag">Any Genre</span>
+        <span class="row-tag">Submissions Open</span>
+      </div>
+    </div>
+    <div class="row-director">Director<br><span>—</span></div>
+    <div class="row-status">
+      <span class="status-pill open">Awaiting Entry</span>
+    </div>
+    <div class="row-arrow">→</div>
+    <div class="row-preview"></div>
+  </a>
+
+  <a href="#submit" class="catalogue-row row-9 reveal" data-tags="open">
+    <span class="row-index">009</span>
+    <div class="row-main">
+      <div class="row-title">Open Slot</div>
+      <div class="row-tags">
+        <span class="row-tag">Any Genre</span>
+        <span class="row-tag">Submissions Open</span>
+      </div>
+    </div>
+    <div class="row-director">Director<br><span>—</span></div>
+    <div class="row-status">
+      <span class="status-pill open">Awaiting Entry</span>
+    </div>
+    <div class="row-arrow">→</div>
+    <div class="row-preview"></div>
+  </a>
+
+  <a href="#submit" class="catalogue-row row-10 reveal" data-tags="open">
+    <span class="row-index">010</span>
+    <div class="row-main">
+      <div class="row-title">Open Slot</div>
+      <div class="row-tags">
+        <span class="row-tag">Any Genre</span>
+        <span class="row-tag">Submissions Open</span>
+      </div>
+    </div>
+    <div class="row-director">Director<br><span>—</span></div>
+    <div class="row-status">
+      <span class="status-pill open">Awaiting Entry</span>
+    </div>
+    <div class="row-arrow">→</div>
+    <div class="row-preview"></div>
+  </a>
+
+  <a href="#submit" class="catalogue-row row-11 reveal" data-tags="open">
+    <span class="row-index">011</span>
+    <div class="row-main">
+      <div class="row-title">Open Slot</div>
+      <div class="row-tags">
+        <span class="row-tag">Any Genre</span>
+        <span class="row-tag">Submissions Open</span>
+      </div>
+    </div>
+    <div class="row-director">Director<br><span>—</span></div>
+    <div class="row-status">
+      <span class="status-pill open">Awaiting Entry</span>
+    </div>
+    <div class="row-arrow">→</div>
+    <div class="row-preview"></div>
+  </a>
+
+  <a href="#submit" class="catalogue-row row-12 reveal" data-tags="open">
+    <span class="row-index">012</span>
+    <div class="row-main">
+      <div class="row-title">Open Slot</div>
+      <div class="row-tags">
+        <span class="row-tag">Any Genre</span>
+        <span class="row-tag">Submissions Open</span>
+      </div>
+    </div>
+    <div class="row-director">Director<br><span>—</span></div>
+    <div class="row-status">
+      <span class="status-pill open">Awaiting Entry</span>
+    </div>
+    <div class="row-arrow">→</div>
+    <div class="row-preview"></div>
+  </a>
+
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item"><span>✦</span> 2 confirmed for Coming Soon</div>
+    <div class="ticker-item"><span>✦</span> 10 slots open right now</div>
+    <div class="ticker-item"><span>✦</span> 16 films under review</div>
+    <div class="ticker-item"><span>✦</span> Free to submit — no fees</div>
+    <div class="ticker-item"><span>✦</span> 2 confirmed for Coming Soon</div>
+    <div class="ticker-item"><span>✦</span> 10 slots open right now</div>
+    <div class="ticker-item"><span>✦</span> 16 films under review</div>
+    <div class="ticker-item"><span>✦</span> Free to submit — no fees</div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-strip reveal">
+  <h2 class="cta-strip-heading">Your film could be<br><em>entry 003</em>.</h2>
+  <a href="submit.html" class="btn-primary">Begin Submission →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">50% Film</div>
+  <span class="footer-copy">© 2027 — Short Cinema Label — London, UK</span>
+  <ul class="footer-links">
+    <li><a href="https://www.instagram.com/50percentfilm/" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="#">Letterboxd</a></li>
+    <li><a href="#">Newsletter</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
+  });
+
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('big'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+  });
+
+  // Catalogue row cursor label
+  document.querySelectorAll('.catalogue-row').forEach(row => {
+    row.addEventListener('mouseenter', () => {
+      cursor.classList.remove('big');
+      cursor.classList.add('label');
+      cursor.textContent = row.getAttribute('data-tags').includes('open') ? 'Claim This Slot' : 'View on Letterboxd';
+    });
+    row.addEventListener('mouseleave', () => {
+      cursor.classList.remove('label');
+      cursor.textContent = '';
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Filter bar
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const rows = document.querySelectorAll('.catalogue-row');
+  const filterCount = document.getElementById('filterCount');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+      let visible = 0;
+      rows.forEach(row => {
+        const tags = row.getAttribute('data-tags');
+        const show = filter === 'all' || tags.includes(filter);
+        row.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      filterCount.textContent = visible + (visible === 1 ? ' entry' : ' entries');
+    });
+  });
+</script>
+
+</body>
+</html>
