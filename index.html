@@ -33,7 +33,6 @@
     overflow-x: hidden;
   }
 
-  /* Custom cursor */
   .cursor {
     position: fixed;
     width: 10px;
@@ -46,12 +45,8 @@
     transition: transform 0.1s, width 0.2s, height 0.2s;
     mix-blend-mode: difference;
   }
-  .cursor.big {
-    width: 40px;
-    height: 40px;
-  }
+  .cursor.big { width: 40px; height: 40px; }
 
-  /* Grain overlay */
   body::before {
     content: '';
     position: fixed;
@@ -62,12 +57,9 @@
     opacity: 0.35;
   }
 
-  /* NAV */
   nav {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     z-index: 100;
     display: flex;
     justify-content: space-between;
@@ -84,7 +76,6 @@
     text-decoration: none;
   }
 
-  /* Menu toggle button */
   .menu-toggle {
     display: flex;
     align-items: center;
@@ -126,11 +117,9 @@
   .menu-toggle.open .menu-toggle-bars span:nth-child(2) { opacity: 0; }
   .menu-toggle.open .menu-toggle-bars span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  /* Dropdown menu panel */
   .nav-dropdown {
     position: fixed;
-    top: 0;
-    right: 0;
+    top: 0; right: 0;
     width: min(420px, 100%);
     height: 100vh;
     background: var(--black);
@@ -145,9 +134,7 @@
     padding: 100px 48px;
   }
 
-  .nav-dropdown.open {
-    transform: translateX(0);
-  }
+  .nav-dropdown.open { transform: translateX(0); }
 
   .nav-dropdown-eyebrow {
     font-size: 9px;
@@ -157,15 +144,8 @@
     margin-bottom: 20px;
   }
 
-  .nav-dropdown-list {
-    list-style: none;
-    border-top: 1px solid #1a1a1a;
-  }
-
-  .nav-dropdown-list li {
-    border-bottom: 1px solid #1a1a1a;
-  }
-
+  .nav-dropdown-list { list-style: none; border-top: 1px solid #1a1a1a; }
+  .nav-dropdown-list li { border-bottom: 1px solid #1a1a1a; }
   .nav-dropdown-list a {
     display: flex;
     justify-content: space-between;
@@ -178,12 +158,7 @@
     text-decoration: none;
     transition: padding-left 0.3s, color 0.3s;
   }
-
-  .nav-dropdown-list a:hover {
-    color: var(--red);
-    padding-left: 12px;
-  }
-
+  .nav-dropdown-list a:hover { color: var(--red); padding-left: 12px; }
   .nav-dropdown-list a .nav-dropdown-num {
     font-family: 'Space Mono', monospace;
     font-style: normal;
@@ -192,18 +167,9 @@
     color: var(--mid);
     transition: color 0.3s;
   }
+  .nav-dropdown-list a:hover .nav-dropdown-num { color: var(--red); }
 
-  .nav-dropdown-list a:hover .nav-dropdown-num {
-    color: var(--red);
-  }
-
-  .nav-dropdown-footer {
-    margin-top: 48px;
-    display: flex;
-    gap: 28px;
-    flex-wrap: wrap;
-  }
-
+  .nav-dropdown-footer { margin-top: 48px; display: flex; gap: 28px; flex-wrap: wrap; }
   .nav-dropdown-footer a {
     font-size: 9px;
     letter-spacing: 0.2em;
@@ -214,7 +180,6 @@
   }
   .nav-dropdown-footer a:hover { color: var(--white); }
 
-  /* Dimmed backdrop */
   .nav-backdrop {
     position: fixed;
     inset: 0;
@@ -225,10 +190,7 @@
     pointer-events: none;
     transition: opacity 0.4s;
   }
-  .nav-backdrop.open {
-    opacity: 1;
-    pointer-events: auto;
-  }
+  .nav-backdrop.open { opacity: 1; pointer-events: auto; }
 
   @media (max-width: 600px) {
     .nav-dropdown { padding: 100px 28px; width: 100%; }
@@ -326,10 +288,7 @@
   }
   .btn-ghost:hover { color: var(--white); }
 
-  .hero-right {
-    position: relative;
-    overflow: hidden;
-  }
+  .hero-right { position: relative; overflow: hidden; }
 
   .hero-film-grid {
     position: absolute;
@@ -341,270 +300,233 @@
     animation: fadeIn 1.2s 0.4s forwards;
   }
 
-  .film-strip {
-    background: var(--gray);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .film-strip::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, transparent 40%, rgba(200,52,26,0.15));
-  }
-
+  .film-strip { background: var(--gray); position: relative; overflow: hidden; }
+  .film-strip::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent 40%, rgba(200,52,26,0.15)); }
   .film-strip:nth-child(1) { background: #1a1a1a; }
   .film-strip:nth-child(2) { background: #141414; }
   .film-strip:nth-child(3) { background: #111; }
-
-  .film-strip-label {
-    position: absolute;
-    bottom: 16px;
-    left: 20px;
-    font-size: 9px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: rgba(240,236,228,0.25);
-  }
-
-  .film-strip-title {
-    position: absolute;
-    bottom: 38px;
-    left: 20px;
-    right: 20px;
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-size: 15px;
-    color: rgba(240,236,228,0.6);
-    line-height: 1.2;
-  }
-
-  .film-strip-num {
-    position: absolute;
-    top: 16px;
-    right: 20px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 48px;
-    color: rgba(240,236,228,0.04);
-  }
-
-  .featured-badge {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--red);
-    border: 1px solid var(--red);
-    padding: 4px 10px;
-  }
-
-  /* Vertical text on right edge */
-  .hero-vertical-text {
-    position: absolute;
-    right: -8px;
-    top: 50%;
-    transform: translateY(-50%) rotate(90deg);
-    font-size: 9px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: rgba(240,236,228,0.15);
-    white-space: nowrap;
-    z-index: 2;
-  }
+  .film-strip-label { position: absolute; bottom: 16px; left: 20px; font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(240,236,228,0.25); }
+  .film-strip-num { position: absolute; top: 16px; right: 20px; font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: rgba(240,236,228,0.04); }
+  .hero-vertical-text { position: absolute; right: -8px; top: 50%; transform: translateY(-50%) rotate(90deg); font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: rgba(240,236,228,0.15); white-space: nowrap; z-index: 2; }
 
   /* TICKER */
-  .ticker {
-    border-top: 1px solid #222;
-    border-bottom: 1px solid #222;
-    overflow: hidden;
-    padding: 12px 0;
-    background: var(--black);
-    position: relative;
-    z-index: 10;
-  }
+  .ticker { border-top: 1px solid #222; border-bottom: 1px solid #222; overflow: hidden; padding: 12px 0; background: var(--black); position: relative; z-index: 10; }
+  .ticker-track { display: flex; gap: 60px; animation: ticker 20s linear infinite; white-space: nowrap; }
+  .ticker-item { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); flex-shrink: 0; }
+  .ticker-item span { color: var(--red); margin-right: 10px; }
 
-  .ticker-track {
-    display: flex;
-    gap: 60px;
-    animation: ticker 20s linear infinite;
-    white-space: nowrap;
-  }
+  /* CATALOGUE */
+  .section { padding: 120px 40px; }
+  .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; border-bottom: 1px solid #1e1e1e; padding-bottom: 24px; }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 5vw, 72px); letter-spacing: 0.02em; line-height: 1; }
+  .section-title em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--mid); }
+  .section-count { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); }
 
-  .ticker-item {
-    font-size: 9px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--mid);
-    flex-shrink: 0;
-  }
-
-  .ticker-item span {
-    color: var(--red);
-    margin-right: 10px;
-  }
-
-  /* CATALOGUE SECTION */
-  .section {
-    padding: 120px 40px;
-  }
-
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 64px;
-    border-bottom: 1px solid #1e1e1e;
-    padding-bottom: 24px;
-  }
-
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(40px, 5vw, 72px);
-    letter-spacing: 0.02em;
-    line-height: 1;
-  }
-
-  .section-title em {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    color: var(--mid);
-  }
-
-  .section-count {
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--mid);
-  }
-
-  /* Film grid */
-  .films-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-  }
+  .films-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
 
   .film-card {
     position: relative;
     aspect-ratio: 3/4;
-    background: var(--gray);
     overflow: hidden;
     cursor: none;
   }
 
+  /* Bottom gradient for text legibility */
   .film-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 50%);
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
     z-index: 1;
     transition: opacity 0.4s;
   }
-
-  .film-card:hover::before {
-    opacity: 0.5;
-  }
+  .film-card:hover::before { opacity: 0.4; }
 
   .film-card-bg {
     position: absolute;
     inset: 0;
-    transition: transform 0.6s ease;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
+  .film-card:hover .film-card-bg { transform: scale(1.06); }
 
-  .film-card:hover .film-card-bg {
-    transform: scale(1.04);
+  /* ── Named film backgrounds ── */
+
+  /* COSMO — deep space, purple-indigo */
+  .film-card.card-cosmo .film-card-bg {
+    background:
+      radial-gradient(ellipse 80% 60% at 60% 30%, #2d1b69 0%, #0d0620 60%, #050010 100%);
   }
-
-  /* Placeholder gradients for film card backgrounds */
-  .film-card:nth-child(1) .film-card-bg { background: linear-gradient(160deg, #1c1c2e 0%, #0a0a0a 100%); }
-  .film-card:nth-child(2) .film-card-bg { background: linear-gradient(160deg, #2e1c1c 0%, #0a0a0a 100%); }
-  .film-card:nth-child(3) .film-card-bg { background: linear-gradient(160deg, #1c2e1c 0%, #0a0a0a 100%); }
-  .film-card:nth-child(4) .film-card-bg { background: linear-gradient(160deg, #2e2a1c 0%, #0a0a0a 100%); }
-  .film-card:nth-child(5) .film-card-bg { background: linear-gradient(160deg, #1c2a2e 0%, #0a0a0a 100%); }
-  .film-card:nth-child(6) .film-card-bg { background: linear-gradient(160deg, #251c2e 0%, #0a0a0a 100%); }
-  .film-card:nth-child(7) .film-card-bg { background: linear-gradient(160deg, #1c1c1c 0%, #0a0a0a 100%); }
-
-  /* Abstract film shapes inside cards */
-  .film-card-bg::after {
+  .film-card.card-cosmo .film-card-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1.5px 1.5px at 15% 20%, rgba(255,255,255,0.9) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 15%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(2px 2px at 40% 60%, rgba(200,160,255,0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 40%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 25% 75%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 85%, rgba(180,140,255,0.7) 0%, transparent 100%),
+      radial-gradient(2px 2px at 10% 50%, rgba(255,220,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 50% 35%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 30% 90%, rgba(200,180,255,0.5) 0%, transparent 100%);
+  }
+  .film-card.card-cosmo .film-card-bg::after {
     content: '';
     position: absolute;
-    width: 60%;
-    height: 60%;
-    top: 20%;
-    left: 20%;
-    border-radius: 50% 30% 60% 40%;
-    opacity: 0.12;
-    background: var(--white);
+    width: 180px; height: 180px;
+    top: 10%; left: 50%;
+    transform: translate(-50%, 0);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(160,100,255,0.35) 0%, rgba(80,40,180,0.15) 50%, transparent 70%);
+    box-shadow: 0 0 60px 20px rgba(120,60,220,0.2);
   }
 
-  .film-card-info {
+  /* DEAR TOOTH FAIRY — warm amber, domestic */
+  .film-card.card-dtf .film-card-bg {
+    background: linear-gradient(160deg, #2a1a06 0%, #1a1008 40%, #0e0904 100%);
+  }
+  .film-card.card-dtf .film-card-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 65% 25%, rgba(255,180,60,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 30% 60%, rgba(200,100,30,0.15) 0%, transparent 60%);
+  }
+  /* coin/fairy sparkle dots */
+  .film-card.card-dtf .film-card-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(2px 2px at 60% 20%, rgba(255,220,80,0.9) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 45% 35%, rgba(255,200,60,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 75% 40%, rgba(255,230,100,0.6) 0%, transparent 100%),
+      radial-gradient(2px 2px at 30% 25%, rgba(255,210,70,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 80% 55%, rgba(255,200,50,0.4) 0%, transparent 100%);
+  }
+
+  /* NARBEN — cold steel blue, fragmented */
+  .film-card.card-narben .film-card-bg {
+    background: linear-gradient(135deg, #08101e 0%, #0c1520 50%, #060c14 100%);
+  }
+  .film-card.card-narben .film-card-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 40% at 40% 40%, rgba(60,100,160,0.2) 0%, transparent 70%),
+      repeating-linear-gradient(108deg, transparent 0px, transparent 28px, rgba(80,120,180,0.04) 28px, rgba(80,120,180,0.04) 29px),
+      repeating-linear-gradient(18deg, transparent 0px, transparent 40px, rgba(60,80,140,0.03) 40px, rgba(60,80,140,0.03) 41px);
+  }
+  .film-card.card-narben .film-card-bg::after {
+    content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 24px;
-    z-index: 2;
+    top: 20%; left: 50%; transform: translateX(-50%);
+    width: 1px; height: 55%;
+    background: linear-gradient(to bottom, transparent, rgba(100,150,220,0.4), transparent);
+    box-shadow: -20px 0 0 rgba(80,130,200,0.1), 20px 0 0 rgba(80,130,200,0.1);
   }
 
-  .film-card-genre {
-    font-size: 8px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 8px;
+  /* L'ÉCLAT — burnt gold, French warmth */
+  .film-card.card-leclat .film-card-bg {
+    background: linear-gradient(150deg, #1e1200 0%, #2a1a04 35%, #120c00 100%);
+  }
+  .film-card.card-leclat .film-card-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 55% 65% at 55% 35%, rgba(220,160,30,0.3) 0%, rgba(180,100,10,0.1) 50%, transparent 75%),
+      radial-gradient(ellipse 30% 20% at 20% 70%, rgba(180,80,10,0.15) 0%, transparent 60%);
+  }
+  .film-card.card-leclat .film-card-bg::after {
+    content: '';
+    position: absolute;
+    top: 5%; right: 15%;
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,200,50,0.2) 0%, rgba(200,140,20,0.08) 50%, transparent 70%);
+    box-shadow: 0 0 40px 10px rgba(220,160,30,0.15);
   }
 
-  .film-card-title {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-size: 22px;
-    line-height: 1.1;
-    margin-bottom: 8px;
+  /* MY LAST DAY ON EARTH — deep navy, lone astronaut */
+  .film-card.card-mlde .film-card-bg {
+    background: radial-gradient(ellipse 100% 100% at 50% 0%, #0a1628 0%, #060c18 50%, #030610 100%);
+  }
+  .film-card.card-mlde .film-card-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 20% 15%, rgba(255,255,255,0.8) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 75% 10%, rgba(200,220,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 30%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(2px 2px at 85% 35%, rgba(180,200,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 10% 55%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 60% 20%, rgba(220,230,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 70%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 60%, rgba(200,210,255,0.4) 0%, transparent 100%);
+  }
+  .film-card.card-mlde .film-card-bg::after {
+    content: '';
+    position: absolute;
+    width: 60px; height: 60px;
+    top: 28%; left: 50%;
+    transform: translate(-50%, 0);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(160,200,255,0.15) 0%, transparent 70%);
+    box-shadow: 0 0 30px 8px rgba(100,160,255,0.1);
   }
 
-  .film-card-meta {
-    font-size: 9px;
-    color: var(--mid);
-    letter-spacing: 0.1em;
-  }
+  /* ── Empty slot backgrounds — each one distinct ── */
+  .film-card.slot-1 .film-card-bg { background: linear-gradient(145deg, #1a0a0a 0%, #2a0808 40%, #0a0505 100%); }
+  .film-card.slot-1 .film-card-bg::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent 0, transparent 18px, rgba(200,52,26,0.05) 18px, rgba(200,52,26,0.05) 19px); }
+  .film-card.slot-1 .film-card-bg::after { content: ''; position: absolute; top: 25%; left: 50%; transform: translateX(-50%); width: 80px; height: 80px; border: 1px solid rgba(200,52,26,0.2); border-radius: 50%; box-shadow: 0 0 0 20px rgba(200,52,26,0.04), 0 0 0 40px rgba(200,52,26,0.02); }
+
+  .film-card.slot-2 .film-card-bg { background: linear-gradient(200deg, #0a1a10 0%, #061208 50%, #030a04 100%); }
+  .film-card.slot-2 .film-card-bg::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(40,120,60,0.18) 0%, transparent 70%); }
+  .film-card.slot-2 .film-card-bg::after { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(90deg, transparent 0, transparent 22px, rgba(40,120,60,0.04) 22px, rgba(40,120,60,0.04) 23px), repeating-linear-gradient(0deg, transparent 0, transparent 22px, rgba(40,120,60,0.04) 22px, rgba(40,120,60,0.04) 23px); }
+
+  .film-card.slot-3 .film-card-bg { background: linear-gradient(125deg, #14101e 0%, #0e0c1a 50%, #080610 100%); }
+  .film-card.slot-3 .film-card-bg::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 70% at 60% 35%, rgba(100,60,200,0.2) 0%, transparent 65%); }
+  .film-card.slot-3 .film-card-bg::after { content: ''; position: absolute; top: 20%; left: 50%; transform: translateX(-50%); width: 100px; height: 100px; border: 1px solid rgba(120,80,220,0.15); border-radius: 30% 70% 60% 40% / 40% 50% 60% 50%; box-shadow: inset 0 0 30px rgba(100,60,200,0.1); }
+
+  .film-card.slot-4 .film-card-bg { background: linear-gradient(170deg, #1a1208 0%, #140e04 50%, #0a0800 100%); }
+  .film-card.slot-4 .film-card-bg::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 40% 40%, rgba(200,140,30,0.18) 0%, transparent 65%); }
+  .film-card.slot-4 .film-card-bg::after { content: ''; position: absolute; top: 15%; right: 20%; width: 70px; height: 70px; border-radius: 50%; background: radial-gradient(circle, rgba(220,160,40,0.15) 0%, transparent 70%); box-shadow: 0 0 40px 15px rgba(200,140,30,0.08); }
+
+  .film-card.slot-5 .film-card-bg { background: linear-gradient(115deg, #0a1418 0%, #060e12 50%, #030810 100%); }
+  .film-card.slot-5 .film-card-bg::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(30,100,140,0.2) 0%, transparent 70%); }
+  .film-card.slot-5 .film-card-bg::after { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(75deg, transparent 0, transparent 35px, rgba(30,100,140,0.04) 35px, rgba(30,100,140,0.04) 36px); }
+
+  .film-card.slot-6 .film-card-bg { background: linear-gradient(155deg, #180a10 0%, #120608 50%, #0a0406 100%); }
+  .film-card.slot-6 .film-card-bg::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 55% 60% at 55% 40%, rgba(180,40,80,0.2) 0%, transparent 65%); }
+  .film-card.slot-6 .film-card-bg::after { content: ''; position: absolute; top: 20%; left: 50%; transform: translateX(-50%); width: 90px; height: 90px; border: 1px solid rgba(180,40,80,0.2); transform: translateX(-50%) rotate(45deg); box-shadow: inset 0 0 20px rgba(180,40,80,0.08); }
+
+  .film-card.slot-7 .film-card-bg { background: linear-gradient(135deg, #101810 0%, #0c140c 50%, #060e06 100%); }
+  .film-card.slot-7 .film-card-bg::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(135deg, transparent 0, transparent 20px, rgba(60,140,60,0.04) 20px, rgba(60,140,60,0.04) 21px), repeating-linear-gradient(45deg, transparent 0, transparent 20px, rgba(60,140,60,0.03) 20px, rgba(60,140,60,0.03) 21px); }
+  .film-card.slot-7 .film-card-bg::after { content: ''; position: absolute; top: 25%; left: 50%; transform: translateX(-50%); width: 60px; height: 60px; border-radius: 50%; background: rgba(60,140,60,0.08); box-shadow: 0 0 0 15px rgba(60,140,60,0.04), 0 0 0 30px rgba(60,140,60,0.02); }
+
+  .film-card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px; z-index: 2; }
+  .film-card-genre { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+  .film-card-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 22px; line-height: 1.1; margin-bottom: 8px; }
+  .film-card-meta { font-size: 9px; color: var(--mid); letter-spacing: 0.1em; }
 
   .film-card-overlay {
     position: absolute;
     inset: 0;
-    background: var(--black);
+    background: rgba(10,10,10,0.93);
     opacity: 0;
     z-index: 3;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.3s;
+    transition: opacity 0.35s;
     text-align: center;
     padding: 32px;
   }
+  .film-card:hover .film-card-overlay { opacity: 1; }
 
-  .film-card:hover .film-card-overlay {
-    opacity: 0.92;
-  }
-
-  .film-card-overlay-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
-    letter-spacing: 0.05em;
-    margin-bottom: 12px;
-  }
-
-  .film-card-overlay-dir {
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--mid);
-    margin-bottom: 24px;
-  }
-
+  .film-card-overlay-title { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 0.05em; margin-bottom: 12px; }
+  .film-card-overlay-dir { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); margin-bottom: 24px; }
   .film-card-overlay-btn {
     font-size: 9px;
     letter-spacing: 0.2em;
@@ -617,21 +539,10 @@
   }
   .film-card-overlay-btn:hover { background: var(--white); color: var(--black); }
 
-  /* Coming soon card */
-  .film-card.coming-soon {
-    cursor: none;
-  }
-
-  .film-card.coming-soon .film-card-bg {
-    filter: brightness(0.5) saturate(0.4);
-  }
-
   .coming-soon-banner {
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 0;
-    height: 0;
+    top: 0; right: 0;
+    width: 0; height: 0;
     border-style: solid;
     border-width: 0 90px 90px 0;
     border-color: transparent var(--red) transparent transparent;
@@ -640,8 +551,7 @@
 
   .coming-soon-banner span {
     position: absolute;
-    top: 18px;
-    right: -82px;
+    top: 18px; right: -82px;
     font-size: 7px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -652,10 +562,6 @@
     width: 80px;
     text-align: center;
     line-height: 1.3;
-  }
-
-  .film-card.coming-soon .film-card-overlay {
-    background: rgba(10,10,10,0.96);
   }
 
   .coming-soon-tag {
@@ -669,7 +575,7 @@
     display: inline-block;
   }
 
-  /* Confirmed selection cards */
+  /* Confirmed cards */
   .film-card.confirmed {
     text-decoration: none;
     color: var(--white);
@@ -686,13 +592,23 @@
     opacity: 0.6;
   }
 
-  .film-card.confirmed .coming-soon-banner {
-    border-color: transparent var(--red) transparent transparent;
+  /* Award badge on card */
+  .card-award-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 4;
+    font-size: 7px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--red);
+    padding: 4px 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
-
-  .film-card.confirmed .film-card-bg::after {
-    opacity: 0.06;
-  }
+  .card-award-badge::before { content: '✦'; font-size: 6px; }
 
   /* SUBMISSION COUNTER */
   .submission-counter {
@@ -704,37 +620,13 @@
     margin-bottom: 40px;
     background: #0f0f0f;
   }
+  .submission-counter-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); flex-shrink: 0; animation: pulse 1.8s ease-in-out infinite; }
+  .submission-counter-text { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); }
+  .submission-counter-num { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.05em; color: var(--white); margin-right: 4px; }
 
-  .submission-counter-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--red);
-    flex-shrink: 0;
-    animation: pulse 1.8s ease-in-out infinite;
-  }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
 
-  .submission-counter-text {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--mid);
-  }
-
-  .submission-counter-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 16px;
-    letter-spacing: 0.05em;
-    color: var(--white);
-    margin-right: 4px;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.8); }
-  }
-
-  /* MANIFESTO SECTION */
+  /* MANIFESTO */
   .manifesto {
     padding: 120px 40px;
     background: var(--white);
@@ -744,308 +636,60 @@
     gap: 80px;
     align-items: start;
   }
+  .manifesto-left { position: sticky; top: 120px; }
+  .manifesto-tag { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
+  .manifesto-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 5vw, 80px); line-height: 0.95; letter-spacing: 0.01em; }
+  .manifesto-heading em { font-family: 'DM Serif Display', serif; font-style: italic; }
+  .manifesto-body { padding-top: 8px; }
+  .manifesto-p { font-size: 13px; line-height: 2; color: #333; margin-bottom: 28px; max-width: 560px; }
+  .manifesto-stat-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-top: 60px; }
+  .stat-box { background: var(--black); color: var(--white); padding: 32px 24px; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 56px; line-height: 1; color: var(--red); }
+  .stat-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); margin-top: 8px; }
 
-  .manifesto-left {
-    position: sticky;
-    top: 120px;
-  }
-
-  .manifesto-tag {
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 16px;
-  }
-
-  .manifesto-heading {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(48px, 5vw, 80px);
-    line-height: 0.95;
-    letter-spacing: 0.01em;
-  }
-
-  .manifesto-heading em {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-  }
-
-  .manifesto-body {
-    padding-top: 8px;
-  }
-
-  .manifesto-p {
-    font-size: 13px;
-    line-height: 2;
-    color: #333;
-    margin-bottom: 28px;
-    max-width: 560px;
-  }
-
-  .manifesto-stat-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 2px;
-    margin-top: 60px;
-  }
-
-  .stat-box {
-    background: var(--black);
-    color: var(--white);
-    padding: 32px 24px;
-  }
-
-  .stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 56px;
-    line-height: 1;
-    color: var(--red);
-  }
-
-  .stat-label {
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--mid);
-    margin-top: 8px;
-  }
-
-  /* SUBMIT SECTION */
-  .submit {
-    padding: 120px 40px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    min-height: 80vh;
-  }
-
-  .submit-left {
-    background: var(--red);
-    padding: 80px 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .submit-heading {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(56px, 6vw, 96px);
-    line-height: 0.9;
-    color: var(--white);
-  }
-
-  .submit-heading em {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    display: block;
-    color: rgba(240,236,228,0.5);
-  }
-
-  .submit-price {
-    margin-top: 40px;
-  }
-
-  .submit-price-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 120px;
-    line-height: 0.85;
-    color: var(--white);
-    opacity: 0.15;
-  }
-
-  .submit-price-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(240,236,228,0.7);
-    margin-top: 8px;
-  }
-
-  .submit-right {
-    background: #111;
-    padding: 80px 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .submit-what-tag {
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 40px;
-  }
-
-  .submit-list {
-    list-style: none;
-    flex: 1;
-  }
-
-  .submit-list li {
-    font-size: 12px;
-    line-height: 1.6;
-    color: var(--mid);
-    padding: 18px 0;
-    border-bottom: 1px solid #1e1e1e;
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-  }
-
-  .submit-list li::before {
-    content: '—';
-    color: var(--red);
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .submit-btn {
-    margin-top: 60px;
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--black);
-    background: var(--white);
-    padding: 18px 36px;
-    text-decoration: none;
-    display: inline-block;
-    transition: background 0.2s, color 0.2s;
-    align-self: flex-start;
-  }
+  /* SUBMIT */
+  .submit { padding: 120px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; min-height: 80vh; }
+  .submit-left { background: var(--red); padding: 80px 60px; display: flex; flex-direction: column; justify-content: space-between; }
+  .submit-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(56px, 6vw, 96px); line-height: 0.9; color: var(--white); }
+  .submit-heading em { font-family: 'DM Serif Display', serif; font-style: italic; display: block; color: rgba(240,236,228,0.5); }
+  .submit-price { margin-top: 40px; }
+  .submit-price-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(240,236,228,0.7); margin-top: 8px; }
+  .submit-right { background: #111; padding: 80px 60px; display: flex; flex-direction: column; justify-content: space-between; }
+  .submit-what-tag { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 40px; }
+  .submit-list { list-style: none; flex: 1; }
+  .submit-list li { font-size: 12px; line-height: 1.6; color: var(--mid); padding: 18px 0; border-bottom: 1px solid #1e1e1e; display: flex; gap: 16px; align-items: flex-start; }
+  .submit-list li::before { content: '—'; color: var(--red); flex-shrink: 0; margin-top: 1px; }
+  .submit-btn { margin-top: 60px; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--black); background: var(--white); padding: 18px 36px; text-decoration: none; display: inline-block; transition: background 0.2s, color 0.2s; align-self: flex-start; }
   .submit-btn:hover { background: var(--red); color: var(--white); }
 
-  /* FOOTER */
-  footer {
-    border-top: 1px solid #1a1a1a;
-    padding: 48px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .footer-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    letter-spacing: 0.15em;
-  }
-
-  .footer-copy {
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    color: var(--mid);
-    text-transform: uppercase;
-  }
-
-  .footer-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-  }
-
-  .footer-links a {
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--mid);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .footer-links a:hover { color: var(--white); }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  @keyframes ticker {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  /* Scroll reveal */
-  .reveal {
-    opacity: 0;
-    transform: translateY(32px);
-    transition: opacity 0.7s, transform 0.7s;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Divider */
-  .divider {
-    width: 100%;
-    height: 1px;
-    background: #1a1a1a;
-  }
-
-  /* Collections strip */
-  .collections {
-    padding: 80px 40px;
-    border-top: 1px solid #1a1a1a;
-  }
-
-  .collections-scroll {
-    display: flex;
-    gap: 2px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    padding-bottom: 4px;
-  }
+  /* COLLECTIONS */
+  .collections { padding: 80px 40px; border-top: 1px solid #1a1a1a; }
+  .collections-scroll { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; }
   .collections-scroll::-webkit-scrollbar { display: none; }
-
-  .collection-pill {
-    flex-shrink: 0;
-    padding: 48px 40px;
-    background: #111;
-    min-width: 220px;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 60px;
-    transition: background 0.2s;
-  }
+  .collection-pill { flex-shrink: 0; padding: 48px 40px; background: #111; min-width: 220px; text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; gap: 60px; transition: background 0.2s; }
   .collection-pill:hover { background: var(--red); }
   .collection-pill:hover .collection-name { color: var(--white); }
   .collection-pill:hover .collection-count { color: rgba(240,236,228,0.6); }
+  .collection-pill-tag { font-size: 8px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); border: 1px solid var(--red); padding: 4px 10px; display: inline-block; margin-bottom: 8px; }
+  .collection-name { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 28px; color: var(--white); line-height: 1.1; }
+  .collection-count { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); }
 
-  .collection-pill-tag {
-    font-size: 8px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--red);
-    border: 1px solid var(--red);
-    padding: 4px 10px;
-    display: inline-block;
-    margin-bottom: 8px;
-  }
+  /* FOOTER */
+  footer { border-top: 1px solid #1a1a1a; padding: 48px 40px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.15em; }
+  .footer-copy { font-size: 9px; letter-spacing: 0.15em; color: var(--mid); text-transform: uppercase; }
+  .footer-links { display: flex; gap: 32px; list-style: none; }
+  .footer-links a { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
 
-  .collection-name {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-size: 28px;
-    color: var(--white);
-    line-height: 1.1;
-  }
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  .collection-count {
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--mid);
-  }
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s, transform 0.7s; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* Responsive basic */
   @media (max-width: 768px) {
     nav { padding: 20px 24px; mix-blend-mode: normal; }
     .hero { grid-template-columns: 1fr; min-height: auto; }
@@ -1067,11 +711,8 @@
 <body>
 
 <div class="cursor" id="cursor"></div>
-
-<!-- BACKDROP -->
 <div class="nav-backdrop" id="navBackdrop"></div>
 
-<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">50% Film</a>
   <button class="menu-toggle" id="navToggle" aria-label="Toggle menu">
@@ -1080,7 +721,6 @@
   </button>
 </nav>
 
-<!-- DROPDOWN MENU -->
 <div class="nav-dropdown" id="navDropdown">
   <div class="nav-dropdown-eyebrow">Navigate</div>
   <ul class="nav-dropdown-list">
@@ -1091,6 +731,7 @@
     <li><a href="news.html"><span>News</span><span class="nav-dropdown-num">04</span></a></li>
     <li><a href="about.html"><span>About</span><span class="nav-dropdown-num">05</span></a></li>
     <li><a href="submit.html"><span>Submit</span><span class="nav-dropdown-num">06</span></a></li>
+    <li><a href="contact.html"><span>Contact</span><span class="nav-dropdown-num">07</span></a></li>
   </ul>
   <div class="nav-dropdown-footer">
     <a href="https://www.instagram.com/50percentfilm/" target="_blank" rel="noopener">Instagram</a>
@@ -1113,18 +754,9 @@
   </div>
   <div class="hero-right">
     <div class="hero-film-grid">
-      <div class="film-strip">
-        <div class="film-strip-num">01</div>
-        <div class="film-strip-label">Coming Soon</div>
-      </div>
-      <div class="film-strip">
-        <div class="film-strip-num">02</div>
-        <div class="film-strip-label">Coming Soon</div>
-      </div>
-      <div class="film-strip">
-        <div class="film-strip-num">03</div>
-        <div class="film-strip-label">Coming Soon</div>
-      </div>
+      <div class="film-strip"><div class="film-strip-num">01</div><div class="film-strip-label">Coming Soon</div></div>
+      <div class="film-strip"><div class="film-strip-num">02</div><div class="film-strip-label">Coming Soon</div></div>
+      <div class="film-strip"><div class="film-strip-num">03</div><div class="film-strip-label">Coming Soon</div></div>
     </div>
     <div class="hero-vertical-text">50% Film — Short Cinema Label — London</div>
   </div>
@@ -1159,12 +791,12 @@
     <a href="collections.html" class="collection-pill reveal">
       <div class="collection-pill-tag">Slow &amp; Contemplative</div>
       <div class="collection-name">Quiet Worlds</div>
-      <div class="collection-count">0 films · Open</div>
+      <div class="collection-count">2 films · Open</div>
     </a>
     <a href="collections.html" class="collection-pill reveal">
       <div class="collection-pill-tag">Debut Shorts</div>
       <div class="collection-name">First Light</div>
-      <div class="collection-count">0 films · Open</div>
+      <div class="collection-count">1 film · Open</div>
     </a>
     <a href="collections.html" class="collection-pill reveal">
       <div class="collection-pill-tag">Night &amp; Urban</div>
@@ -1174,7 +806,7 @@
     <a href="collections.html" class="collection-pill reveal">
       <div class="collection-pill-tag">Sci-Fi &amp; Speculative</div>
       <div class="collection-name">Signal</div>
-      <div class="collection-count">0 films · Open</div>
+      <div class="collection-count">1 film · Open</div>
     </a>
     <a href="collections.html" class="collection-pill reveal">
       <div class="collection-pill-tag">Documentary &amp; Portrait</div>
@@ -1188,7 +820,7 @@
 <section class="section" id="catalogue">
   <div class="section-header reveal">
     <h2 class="section-title">The <em>Catalogue</em></h2>
-    <span class="section-count">2 selected · 10 slots open</span>
+    <span class="section-count">5 selected · 7 slots open</span>
   </div>
   <div class="submission-counter reveal">
     <div class="submission-counter-dot"></div>
@@ -1198,9 +830,59 @@
   </div>
   <div class="films-grid">
 
-    <a href="https://letterboxd.com/film/leclat-2026/" target="_blank" rel="noopener" class="film-card confirmed reveal">
+    <!-- COSMO -->
+    <div class="film-card coming-soon card-cosmo reveal">
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
-      <div class="film-card-bg" style="background: linear-gradient(160deg, #2e2410 0%, #1a0e08 50%, #0a0a0a 100%);"></div>
+      <div class="card-award-badge">Award-winning</div>
+      <div class="film-card-bg"></div>
+      <div class="film-card-info">
+        <div class="film-card-genre">Animation · Sci-Fi</div>
+        <div class="film-card-title">COSMO</div>
+        <div class="film-card-meta">Dir. Joey Lever · 3 min</div>
+      </div>
+      <div class="film-card-overlay">
+        <div class="coming-soon-tag">Coming Soon</div>
+        <div class="film-card-overlay-title">COSMO</div>
+        <div class="film-card-overlay-dir">Dir. Joey Lever · Animation</div>
+      </div>
+    </div>
+
+    <!-- DEAR TOOTH FAIRY -->
+    <div class="film-card coming-soon card-dtf reveal">
+      <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
+      <div class="film-card-bg"></div>
+      <div class="film-card-info">
+        <div class="film-card-genre">Drama · UK</div>
+        <div class="film-card-title">Dear Tooth Fairy</div>
+        <div class="film-card-meta">Dir. Liah Danquah</div>
+      </div>
+      <div class="film-card-overlay">
+        <div class="coming-soon-tag">Coming Soon</div>
+        <div class="film-card-overlay-title">Dear Tooth Fairy</div>
+        <div class="film-card-overlay-dir">Dir. Liah Danquah · Drama</div>
+      </div>
+    </div>
+
+    <!-- NARBEN -->
+    <div class="film-card coming-soon card-narben reveal">
+      <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
+      <div class="film-card-bg"></div>
+      <div class="film-card-info">
+        <div class="film-card-genre">Drama · Austria</div>
+        <div class="film-card-title">Narben</div>
+        <div class="film-card-meta">Dir. Joshua Haiden · 9 min</div>
+      </div>
+      <div class="film-card-overlay">
+        <div class="coming-soon-tag">Coming Soon</div>
+        <div class="film-card-overlay-title">Narben</div>
+        <div class="film-card-overlay-dir">Dir. Joshua Haiden · Austria</div>
+      </div>
+    </div>
+
+    <!-- L'ÉCLAT -->
+    <div class="film-card coming-soon card-leclat reveal">
+      <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
+      <div class="film-card-bg"></div>
       <div class="film-card-info">
         <div class="film-card-genre">Drama · France</div>
         <div class="film-card-title">L'éclat</div>
@@ -1210,13 +892,13 @@
         <div class="coming-soon-tag">Coming Soon</div>
         <div class="film-card-overlay-title">L'éclat</div>
         <div class="film-card-overlay-dir">Dir. Tansi Makele · 2026</div>
-        <a href="https://letterboxd.com/film/leclat-2026/" target="_blank" rel="noopener" class="film-card-overlay-btn">View on Letterboxd</a>
       </div>
-    </a>
+    </div>
 
-    <a href="https://letterboxd.com/film/my-last-day-on-earth-1/" target="_blank" rel="noopener" class="film-card confirmed reveal">
+    <!-- MY LAST DAY ON EARTH -->
+    <div class="film-card coming-soon card-mlde reveal">
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
-      <div class="film-card-bg" style="background: linear-gradient(160deg, #0d1a2e 0%, #0a0e1a 50%, #0a0a0a 100%);"></div>
+      <div class="film-card-bg"></div>
       <div class="film-card-info">
         <div class="film-card-genre">Sci-Fi</div>
         <div class="film-card-title">My Last Day on Earth</div>
@@ -1226,174 +908,63 @@
         <div class="coming-soon-tag">Coming Soon</div>
         <div class="film-card-overlay-title">My Last Day<br>on Earth</div>
         <div class="film-card-overlay-dir">Dir. Pauliina Leskinen</div>
-        <a href="https://letterboxd.com/film/my-last-day-on-earth-1/" target="_blank" rel="noopener" class="film-card-overlay-btn">View on Letterboxd</a>
-      </div>
-    </a>
-
-    <div class="film-card coming-soon reveal">
-      <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
-      <div class="film-card-bg"></div>
-      <div class="film-card-info">
-        <div class="film-card-genre">TBA</div>
-        <div class="film-card-title">Coming Soon</div>
-        <div class="film-card-meta">Submissions Open</div>
-      </div>
-      <div class="film-card-overlay">
-        <div class="coming-soon-tag">Coming Soon</div>
-        <div class="film-card-overlay-title">Coming Soon</div>
-        <div class="film-card-overlay-dir">A film could be here</div>
-        <a href="#submit" class="film-card-overlay-btn">Submit Your Film</a>
       </div>
     </div>
 
-    <div class="film-card coming-soon reveal">
+    <!-- EMPTY SLOTS -->
+    <div class="film-card coming-soon slot-1 reveal">
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
       <div class="film-card-bg"></div>
-      <div class="film-card-info">
-        <div class="film-card-genre">TBA</div>
-        <div class="film-card-title">Coming Soon</div>
-        <div class="film-card-meta">Submissions Open</div>
-      </div>
-      <div class="film-card-overlay">
-        <div class="coming-soon-tag">Coming Soon</div>
-        <div class="film-card-overlay-title">Coming Soon</div>
-        <div class="film-card-overlay-dir">A film could be here</div>
-        <a href="#submit" class="film-card-overlay-btn">Submit Your Film</a>
-      </div>
+      <div class="film-card-info"><div class="film-card-genre">TBA</div><div class="film-card-title">Coming Soon</div><div class="film-card-meta">Submissions Open</div></div>
+      <div class="film-card-overlay"><div class="coming-soon-tag">Coming Soon</div><div class="film-card-overlay-title">Coming Soon</div><div class="film-card-overlay-dir">A film could be here</div><a href="#submit" class="film-card-overlay-btn">Submit Your Film</a></div>
     </div>
 
-    <div class="film-card coming-soon reveal">
+    <div class="film-card coming-soon slot-2 reveal">
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
       <div class="film-card-bg"></div>
-      <div class="film-card-info">
-        <div class="film-card-genre">TBA</div>
-        <div class="film-card-title">Coming Soon</div>
-        <div class="film-card-meta">Submissions Open</div>
-      </div>
-      <div class="film-card-overlay">
-        <div class="coming-soon-tag">Coming Soon</div>
-        <div class="film-card-overlay-title">Coming Soon</div>
-        <div class="film-card-overlay-dir">A film could be here</div>
-        <a href="#submit" class="film-card-overlay-btn">Submit Your Film</a>
-      </div>
+      <div class="film-card-info"><div class="film-card-genre">TBA</div><div class="film-card-title">Coming Soon</div><div class="film-card-meta">Submissions Open</div></div>
+      <div class="film-card-overlay"><div class="coming-soon-tag">Coming Soon</div><div class="film-card-overlay-title">Coming Soon</div><div class="film-card-overlay-dir">A film could be here</div><a href="#submit" class="film-card-overlay-btn">Submit Your Film</a></div>
     </div>
 
-    <div class="film-card coming-soon reveal">
+    <div class="film-card coming-soon slot-3 reveal">
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
       <div class="film-card-bg"></div>
-      <div class="film-card-info">
-        <div class="film-card-genre">TBA</div>
-        <div class="film-card-title">Coming Soon</div>
-        <div class="film-card-meta">Submissions Open</div>
-      </div>
-      <div class="film-card-overlay">
-        <div class="coming-soon-tag">Coming Soon</div>
-        <div class="film-card-overlay-title">Coming Soon</div>
-        <div class="film-card-overlay-dir">A film could be here</div>
-        <a href="#submit" class="film-card-overlay-btn">Submit Your Film</a>
-      </div>
+      <div class="film-card-info"><div class="film-card-genre">TBA</div><div class="film-card-title">Coming Soon</div><div class="film-card-meta">Submissions Open</div></div>
+      <div class="film-card-overlay"><div class="coming-soon-tag">Coming Soon</div><div class="film-card-overlay-title">Coming Soon</div><div class="film-card-overlay-dir">A film could be here</div><a href="#submit" class="film-card-overlay-btn">Submit Your Film</a></div>
     </div>
 
-    <div class="film-card coming-soon reveal">
+    <div class="film-card coming-soon slot-4 reveal">
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
       <div class="film-card-bg"></div>
-      <div class="film-card-info">
-        <div class="film-card-genre">TBA</div>
-        <div class="film-card-title">Coming Soon</div>
-        <div class="film-card-meta">Submissions Open</div>
-      </div>
-      <div class="film-card-overlay">
-        <div class="coming-soon-tag">Coming Soon</div>
-        <div class="film-card-overlay-title">Coming Soon</div>
-        <div class="film-card-overlay-dir">A film could be here</div>
-        <a href="#submit" class="film-card-overlay-btn">Submit Your Film</a>
-      </div>
+      <div class="film-card-info"><div class="film-card-genre">TBA</div><div class="film-card-title">Coming Soon</div><div class="film-card-meta">Submissions Open</div></div>
+      <div class="film-card-overlay"><div class="coming-soon-tag">Coming Soon</div><div class="film-card-overlay-title">Coming Soon</div><div class="film-card-overlay-dir">A film could be here</div><a href="#submit" class="film-card-overlay-btn">Submit Your Film</a></div>
     </div>
 
-    <div class="film-card coming-soon reveal">
+    <div class="film-card coming-soon slot-5 reveal">
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
       <div class="film-card-bg"></div>
-      <div class="film-card-info">
-        <div class="film-card-genre">TBA</div>
-        <div class="film-card-title">Coming Soon</div>
-        <div class="film-card-meta">Submissions Open</div>
-      </div>
-      <div class="film-card-overlay">
-        <div class="coming-soon-tag">Coming Soon</div>
-        <div class="film-card-overlay-title">Coming Soon</div>
-        <div class="film-card-overlay-dir">A film could be here</div>
-        <a href="#submit" class="film-card-overlay-btn">Submit Your Film</a>
-      </div>
+      <div class="film-card-info"><div class="film-card-genre">TBA</div><div class="film-card-title">Coming Soon</div><div class="film-card-meta">Submissions Open</div></div>
+      <div class="film-card-overlay"><div class="coming-soon-tag">Coming Soon</div><div class="film-card-overlay-title">Coming Soon</div><div class="film-card-overlay-dir">A film could be here</div><a href="#submit" class="film-card-overlay-btn">Submit Your Film</a></div>
     </div>
 
-    <div class="film-card coming-soon reveal">
+    <div class="film-card coming-soon slot-6 reveal">
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
       <div class="film-card-bg"></div>
-      <div class="film-card-info">
-        <div class="film-card-genre">TBA</div>
-        <div class="film-card-title">Coming Soon</div>
-        <div class="film-card-meta">Submissions Open</div>
-      </div>
-      <div class="film-card-overlay">
-        <div class="coming-soon-tag">Coming Soon</div>
-        <div class="film-card-overlay-title">Coming Soon</div>
-        <div class="film-card-overlay-dir">A film could be here</div>
-        <a href="#submit" class="film-card-overlay-btn">Submit Your Film</a>
-      </div>
+      <div class="film-card-info"><div class="film-card-genre">TBA</div><div class="film-card-title">Coming Soon</div><div class="film-card-meta">Submissions Open</div></div>
+      <div class="film-card-overlay"><div class="coming-soon-tag">Coming Soon</div><div class="film-card-overlay-title">Coming Soon</div><div class="film-card-overlay-dir">A film could be here</div><a href="#submit" class="film-card-overlay-btn">Submit Your Film</a></div>
     </div>
 
-    <div class="film-card coming-soon reveal">
+    <div class="film-card coming-soon slot-7 reveal">
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
       <div class="film-card-bg"></div>
-      <div class="film-card-info">
-        <div class="film-card-genre">TBA</div>
-        <div class="film-card-title">Coming Soon</div>
-        <div class="film-card-meta">Submissions Open</div>
-      </div>
-      <div class="film-card-overlay">
-        <div class="coming-soon-tag">Coming Soon</div>
-        <div class="film-card-overlay-title">Coming Soon</div>
-        <div class="film-card-overlay-dir">A film could be here</div>
-        <a href="#submit" class="film-card-overlay-btn">Submit Your Film</a>
-      </div>
-    </div>
-
-    <div class="film-card coming-soon reveal">
-      <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
-      <div class="film-card-bg"></div>
-      <div class="film-card-info">
-        <div class="film-card-genre">TBA</div>
-        <div class="film-card-title">Coming Soon</div>
-        <div class="film-card-meta">Submissions Open</div>
-      </div>
-      <div class="film-card-overlay">
-        <div class="coming-soon-tag">Coming Soon</div>
-        <div class="film-card-overlay-title">Coming Soon</div>
-        <div class="film-card-overlay-dir">A film could be here</div>
-        <a href="#submit" class="film-card-overlay-btn">Submit Your Film</a>
-      </div>
-    </div>
-
-    <div class="film-card coming-soon reveal">
-      <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
-      <div class="film-card-bg"></div>
-      <div class="film-card-info">
-        <div class="film-card-genre">TBA</div>
-        <div class="film-card-title">Coming Soon</div>
-        <div class="film-card-meta">Submissions Open</div>
-      </div>
-      <div class="film-card-overlay">
-        <div class="coming-soon-tag">Coming Soon</div>
-        <div class="film-card-overlay-title">Coming Soon</div>
-        <div class="film-card-overlay-dir">A film could be here</div>
-        <a href="#submit" class="film-card-overlay-btn">Submit Your Film</a>
-      </div>
+      <div class="film-card-info"><div class="film-card-genre">TBA</div><div class="film-card-title">Coming Soon</div><div class="film-card-meta">Submissions Open</div></div>
+      <div class="film-card-overlay"><div class="coming-soon-tag">Coming Soon</div><div class="film-card-overlay-title">Coming Soon</div><div class="film-card-overlay-dir">A film could be here</div><a href="#submit" class="film-card-overlay-btn">Submit Your Film</a></div>
     </div>
 
   </div>
 </section>
 
-<!-- MANIFESTO / ABOUT -->
+<!-- MANIFESTO -->
 <section class="manifesto" id="about">
   <div class="manifesto-left reveal">
     <div class="manifesto-tag">Our Belief</div>
@@ -1419,7 +990,7 @@
       <h2 class="submit-heading">Submit<br><em>Your</em><br>Film.</h2>
     </div>
     <div class="submit-price">
-      <div class="submit-price-num" style="font-size:48px; opacity:0.15; line-height:1;">Free<br>to<br>Submit</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:48px;opacity:0.15;line-height:1;color:var(--white);">Free<br>to<br>Submit</div>
       <div class="submit-price-label" style="margin-top:12px;">No fees. No barriers.</div>
     </div>
   </div>
@@ -1450,7 +1021,6 @@
 </footer>
 
 <script>
-  // Dropdown menu toggle
   const navToggle = document.getElementById('navToggle');
   const navDropdown = document.getElementById('navDropdown');
   const navBackdrop = document.getElementById('navBackdrop');
@@ -1464,9 +1034,8 @@
 
   function toggleMenu() {
     const isOpen = navDropdown.classList.contains('open');
-    if (isOpen) {
-      closeMenu();
-    } else {
+    if (isOpen) { closeMenu(); }
+    else {
       navToggle.classList.add('open');
       navDropdown.classList.add('open');
       navBackdrop.classList.add('open');
@@ -1476,14 +1045,9 @@
 
   navToggle.addEventListener('click', toggleMenu);
   navBackdrop.addEventListener('click', closeMenu);
-  navDropdown.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeMenu();
-  });
+  navDropdown.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
-  // Cursor
   const cursor = document.getElementById('cursor');
   document.addEventListener('mousemove', e => {
     cursor.style.left = e.clientX + 'px';
@@ -1494,7 +1058,6 @@
     el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
   });
 
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
@@ -1507,7 +1070,6 @@
   reveals.forEach(el => observer.observe(el));
 </script>
 
-<!-- Mailchimp popup -->
 <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/12a97cd0e17be8e1c3b072af3/0fd964ebe43e0ed6a5f64e8de.js");</script>
 
 </body>
