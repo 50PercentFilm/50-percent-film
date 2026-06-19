@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Last Day on Earth — 50% Film</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512x512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="description" content="My Last Day on Earth, a sci-fi short by Pauliina Leskinen about an astronaut spending their last day on earth. Coming soon to 50% Film.">
+<link rel="canonical" href="https://50percentfilm.com/my-last-day-on-earth">
+<meta property="og:type" content="video.movie">
+<meta property="og:site_name" content="50% Film">
+<meta property="og:title" content="My Last Day on Earth — 50% Film">
+<meta property="og:description" content="My Last Day on Earth, a sci-fi short by Pauliina Leskinen about an astronaut spending their last day on earth. Coming soon to 50% Film.">
+<meta property="og:url" content="https://50percentfilm.com/my-last-day-on-earth">
+<meta property="og:image" content="https://50percentfilm.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="My Last Day on Earth — 50% Film">
+<meta name="twitter:description" content="My Last Day on Earth, a sci-fi short by Pauliina Leskinen about an astronaut spending their last day on earth. Coming soon to 50% Film.">
+<meta name="twitter:image" content="https://50percentfilm.com/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --black: #0a0a0a; --white: #f0ece4; --cream: #e8e2d6; --red: #c8341a; --gray: #2a2a2a; --mid: #888; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: 'Space Mono', monospace; cursor: none; overflow-x: hidden; }
+  .cursor { position: fixed; width: 10px; height: 10px; background: var(--red); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s; mix-blend-mode: difference; }
+  .cursor.big { width: 40px; height: 40px; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9998; opacity: 0.35; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 40px; background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%); }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.15em; color: var(--white); text-decoration: none; }
+  .nav-back { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; display: flex; align-items: center; gap: 10px; transition: color 0.2s; }
+  .nav-back:hover { color: var(--white); }
+  .nav-back::before { content: '←'; }
+
+  .film-hero { min-height: 80vh; position: relative; display: flex; align-items: flex-end; overflow: hidden; }
+  .film-hero-bg { position: absolute; inset: 0; background: linear-gradient(160deg, #0a0a14 0%, #14101a 40%, #0a0a0a 100%); z-index: 0; }
+  /* Animated star field */
+  .film-hero-bg::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.6) 0%, transparent 100%), radial-gradient(1px 1px at 60% 10%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 40% 70%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 80% 50%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(2px 2px at 10% 80%, rgba(200,180,255,0.6) 0%, transparent 100%), radial-gradient(1px 1px at 70% 90%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 90% 20%, rgba(180,200,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(1px 1px at 30% 60%, rgba(255,220,180,0.5) 0%, transparent 100%), radial-gradient(2px 2px at 85% 75%, rgba(255,255,200,0.4) 0%, transparent 100%); }
+  .film-hero-bg::after { content: ''; position: absolute; width: 300px; height: 300px; top: 15%; left: 55%; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, rgba(200,150,255,0.15) 0%, rgba(100,50,200,0.08) 40%, transparent 70%); box-shadow: 0 0 80px 20px rgba(150,100,255,0.1); }
+
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.4) 50%, rgba(10,10,10,0.2) 100%); z-index: 1; }
+  .film-hero-content { position: relative; z-index: 2; padding: 0 40px 64px; width: 100%; display: grid; grid-template-columns: 1fr auto; align-items: flex-end; gap: 40px; }
+  .film-collection-tag { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; opacity: 0; animation: fadeUp 0.7s 0.2s forwards; }
+  .film-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 8vw, 120px); line-height: 0.88; letter-spacing: 0.01em; opacity: 0; animation: fadeUp 0.7s 0.4s forwards; }
+  .film-title em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--cream); opacity: 0.6; font-size: 0.55em; display: block; margin-top: 8px; }
+  .film-hero-meta { display: flex; gap: 32px; margin-top: 24px; opacity: 0; animation: fadeUp 0.7s 0.6s forwards; flex-wrap: wrap; }
+  .meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .meta-label { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); }
+  .meta-value { font-size: 11px; letter-spacing: 0.05em; color: var(--white); }
+  .film-hero-right { opacity: 0; animation: fadeUp 0.7s 0.5s forwards; text-align: right; }
+  .film-number { font-family: 'Bebas Neue', sans-serif; font-size: 120px; line-height: 1; color: rgba(240,236,228,0.04); }
+
+  /* Awards banner */
+  .awards-strip { background: #0f0f0f; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; padding: 20px 40px; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+  .awards-label { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); flex-shrink: 0; }
+  .award-item { display: flex; align-items: center; gap: 10px; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); }
+  .award-item::before { content: '✦'; color: var(--red); font-size: 8px; }
+
+  .film-body { max-width: 1200px; margin: 0 auto; padding: 80px 40px 120px; }
+  .video-section { margin-bottom: 16px; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
+  .video-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); margin-bottom: 16px; }
+  .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; background: #111; overflow: hidden; border: 1px solid #1a1a1a; }
+  .video-wrapper iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+
+  .film-links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+  .film-ext-link { display: inline-flex; align-items: center; gap: 12px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; padding: 12px 20px; border: 1px solid #1e1e1e; transition: border-color 0.2s, color 0.2s; }
+  .film-ext-link:hover { border-color: var(--red); color: var(--white); }
+  .film-ext-link.letterboxd:hover { border-color: #00e054; color: #00e054; }
+  .link-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-green { background: #00e054; }
+  .dot-red { background: var(--red); }
+
+  .info-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 80px; margin-top: 80px; padding-top: 80px; border-top: 1px solid #1a1a1a; }
+  .section-tag { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 24px; }
+  .synopsis-text { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(18px, 2.5vw, 26px); line-height: 1.6; color: var(--cream); margin-bottom: 32px; }
+  .synopsis-body { font-size: 12px; line-height: 2; color: var(--mid); max-width: 560px; }
+
+  /* Production highlight box */
+  .production-highlight { margin-top: 40px; padding: 32px; border: 1px solid #1e1e1e; border-left: 2px solid var(--red); background: #0d0d0d; }
+  .production-highlight-label { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
+  .production-highlight-text { font-size: 11px; line-height: 1.9; color: var(--mid); }
+  .production-highlight-text strong { color: var(--white); font-weight: 400; }
+
+  .director-section { border-left: 1px solid #1a1a1a; padding-left: 40px; }
+  .director-name { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 0.03em; margin-bottom: 4px; }
+  .director-role { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); margin-bottom: 24px; }
+  .director-bio { font-size: 11px; line-height: 1.9; color: var(--mid); margin-bottom: 32px; }
+  .interview-placeholder { margin-top: 32px; padding: 24px; border: 1px solid #1a1a1a; border-left: 2px solid var(--red); }
+  .interview-placeholder-label { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+  .interview-placeholder-text { font-size: 11px; letter-spacing: 0.1em; color: var(--mid); }
+  .film-details { margin-top: 40px; border-top: 1px solid #1a1a1a; padding-top: 32px; }
+  .detail-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #111; font-size: 10px; }
+  .detail-key { letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); }
+  .detail-val { color: var(--white); text-align: right; }
+
+  .cast-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid #1a1a1a; }
+  .cast-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 32px; }
+  .cast-card { background: #0f0f0f; padding: 28px 24px; }
+  .cast-role { font-size: 8px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); margin-bottom: 8px; }
+  .cast-name { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; color: var(--white); line-height: 1.2; }
+
+  .crew-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid #1a1a1a; }
+  .crew-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 32px; }
+  .crew-card { background: #0f0f0f; padding: 24px 20px; }
+  .crew-dept { font-size: 8px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); margin-bottom: 8px; }
+  .crew-name { font-size: 12px; letter-spacing: 0.05em; color: var(--white); line-height: 1.4; }
+
+  .note-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid #1a1a1a; display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start; }
+  .note-heading { font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 0.9; letter-spacing: 0.01em; }
+  .note-heading em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--mid); display: block; }
+  .note-body { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 18px; line-height: 1.8; color: var(--cream); opacity: 0.8; }
+
+  .back-section { margin-top: 100px; padding-top: 60px; border-top: 1px solid #1a1a1a; display: flex; justify-content: space-between; align-items: center; }
+  .back-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); }
+  .back-btn { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--black); background: var(--white); padding: 14px 28px; text-decoration: none; transition: background 0.2s, color 0.2s; }
+  .back-btn:hover { background: var(--red); color: var(--white); }
+
+  footer { border-top: 1px solid #1a1a1a; padding: 48px 40px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.15em; }
+  .footer-copy { font-size: 9px; letter-spacing: 0.15em; color: var(--mid); text-transform: uppercase; }
+  .footer-links { display: flex; gap: 32px; list-style: none; }
+  .footer-links a { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s, transform 0.7s; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .film-hero-content { grid-template-columns: 1fr; padding: 0 24px 48px; }
+    .film-hero-right { display: none; }
+    .film-body { padding: 48px 24px 80px; }
+    .info-grid { grid-template-columns: 1fr; gap: 48px; }
+    .director-section { border-left: none; padding-left: 0; border-top: 1px solid #1a1a1a; padding-top: 40px; }
+    .cast-grid { grid-template-columns: 1fr 1fr; }
+    .crew-grid { grid-template-columns: 1fr 1fr; }
+    .note-section { grid-template-columns: 1fr; gap: 32px; }
+    .back-section { flex-direction: column; gap: 24px; text-align: center; }
+    footer { flex-direction: column; gap: 24px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+    .awards-strip { padding: 16px 24px; gap: 20px; }
+  }
+
+  .coming-poster { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; background:linear-gradient(160deg,#111 0%,#0d0d0d 100%); }
+  .coming-poster .cp-eyebrow { font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:var(--red); }
+  .coming-poster .cp-main { font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,5vw,52px); letter-spacing:0.04em; color:var(--cream); }
+  .status-item.live::before { content:'●'; color:var(--red); }
+
+
+  /* HERO ART — film-strip grid, matches the index hero */
+  .film-hero-art { position:absolute; inset:0; z-index:0; display:grid; grid-template-columns:repeat(4,1fr); }
+  .fh-strip { position:relative; overflow:hidden; }
+  .fh-strip + .fh-strip { border-left:1px solid rgba(240,236,228,0.03); }
+  .fh-strip::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg, transparent 38%, rgba(200,52,26,0.16)); }
+  .fh-strip:nth-child(1){ background:#171717; }
+  .fh-strip:nth-child(2){ background:#131313; }
+  .fh-strip:nth-child(3){ background:#101010; }
+  .fh-strip:nth-child(4){ background:#0d0d0d; }
+  .fh-strip-num { position:absolute; top:28px; left:50%; transform:translateX(-50%); font-family:'Bebas Neue',sans-serif; font-size:clamp(70px,11vw,150px); line-height:1; color:rgba(240,236,228,0.04); }
+  .fh-perf { position:absolute; top:0; bottom:0; width:20px; z-index:1; background-image:repeating-linear-gradient(to bottom, transparent 0 16px, rgba(240,236,228,0.05) 16px 28px); }
+  .fh-perf.l { left:0; } .fh-perf.r { right:0; }
+  .fh-vert { position:absolute; right:-6px; top:50%; transform:translateY(-50%) rotate(90deg); font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:rgba(240,236,228,0.16); white-space:nowrap; z-index:1; }
+
+  .coming-poster .cp-eyebrow { color:var(--red); }
+  .coming-poster .cp-main { font-size:clamp(34px,6vw,68px); }
+  .coming-poster .cp-sub { font-family:'DM Serif Display',serif; font-style:italic; font-size:clamp(16px,2.6vw,26px); color:var(--mid); }
+
+/* hero art: My Last Day card */
+.film-hero-bg { background: radial-gradient(ellipse 100% 100% at 50% 0%, #0a1628 0%, #060c18 50%, #030610 100%) !important; }
+.film-hero-bg::before { content:'' !important; display:block !important; position:absolute; inset:0; background-image: radial-gradient(1px 1px at 20% 15%, rgba(255,255,255,0.8) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 75% 10%, rgba(200,220,255,0.7) 0%, transparent 100%), radial-gradient(1px 1px at 45% 30%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(2px 2px at 85% 35%, rgba(180,200,255,0.6) 0%, transparent 100%), radial-gradient(1px 1px at 10% 55%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 60% 20%, rgba(220,230,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 35% 70%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(1px 1px at 90% 60%, rgba(200,210,255,0.4) 0%, transparent 100%) !important; }
+.film-hero-bg::after { content:'' !important; display:block !important; position:absolute; width:130px; height:130px; top:22%; left:50%; transform:translate(-50%,0); border-radius:50%; background: radial-gradient(circle, rgba(160,200,255,0.15) 0%, transparent 70%) !important; box-shadow: 0 0 60px 20px rgba(100,160,255,0.1) !important; }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">50% Film</a>
+  <a href="catalogue.html" class="nav-back">Back to Catalogue</a>
+</nav>
+
+<section class="film-hero">
+  <div class="film-hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="film-hero-content">
+    <div>
+      <p class="film-collection-tag">Signal Collection · Sci-Fi</p>
+      <h1 class="film-title">My Last Day<br>on Earth<em>An astronaut&rsquo;s last day on Earth.</em></h1>
+      <div class="film-hero-meta">
+        <div class="meta-item"><span class="meta-label">Director</span><span class="meta-value">Pauliina Leskinen</span></div>
+        <div class="meta-item"><span class="meta-label">Runtime</span><span class="meta-value">3 min</span></div>
+        <div class="meta-item"><span class="meta-label">Genre</span><span class="meta-value">Sci-Fi</span></div>
+        <div class="meta-item"><span class="meta-label">Status</span><span class="meta-value">Coming Soon</span></div>
+      </div>
+    </div>
+    <div class="film-hero-right"><div class="film-number">02</div></div>
+  </div>
+</section>
+
+<div class="awards-strip">
+  <span class="awards-label">Status</span>
+  <div class="award-item">Coming soon to 50% Film</div>
+  <div class="award-item">Science-fiction short</div>
+  <div class="award-item">Selected for the catalogue</div>
+</div>
+
+<div class="film-body">
+
+  <div class="video-section">
+    <p class="video-label">Watch Film</p>
+    <div class="video-wrapper">
+      <div class="coming-poster">
+        <span class="cp-eyebrow">Take your seats</span>
+        <span class="cp-main">Grab your popcorn.</span>
+        <span class="cp-sub">Film coming soon</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="film-links">
+    <a href="https://letterboxd.com/film/my-last-day-on-earth-1/" class="film-ext-link letterboxd" target="_blank" rel="noopener">
+      <span class="link-dot dot-green"></span>
+      View on Letterboxd
+    </a>
+  </div>
+
+  <div class="info-grid">
+    <div class="synopsis-section reveal">
+      <p class="section-tag">Synopsis</p>
+      <p class="synopsis-text">An astronaut spending their last day on Earth.</p>
+      <p class="synopsis-body">A science-fiction short directed by Pauliina Leskinen. Full synopsis and stills to follow ahead of release. Until then, you can follow the film on Letterboxd.</p>
+    </div>
+
+    <div class="director-section reveal">
+      <p class="section-tag">Director</p>
+      <h2 class="director-name">Pauliina Leskinen</h2>
+      <p class="director-role">Director</p>
+      <p class="director-bio">Pauliina Leskinen directed My Last Day on Earth. More on the director to come.</p>
+
+      <div class="interview-placeholder">
+        <p class="interview-placeholder-label">Director Interview</p>
+        <p class="interview-placeholder-text">Coming soon...</p>
+      </div>
+
+      <div class="film-details">
+        <div class="detail-row"><span class="detail-key">Runtime</span><span class="detail-val">3 min</span></div>
+        <div class="detail-row"><span class="detail-key">Genre</span><span class="detail-val">Sci-Fi</span></div>
+        <div class="detail-row"><span class="detail-key">Collection</span><span class="detail-val">Signal</span></div>
+        <div class="detail-row"><span class="detail-key">Status</span><span class="detail-val">Coming Soon</span></div>
+        <div class="detail-row"><span class="detail-key">Label</span><span class="detail-val">50% Film</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cast-section reveal">
+    <p class="section-tag">Cast</p>
+    <div class="cast-grid">
+      <div class="cast-card"><div class="cast-role">Astronaut</div><div class="cast-name">Meltem Orujova</div></div>
+    </div>
+  </div>
+
+  <div class="crew-section reveal">
+    <p class="section-tag">Crew</p>
+    <div class="crew-grid">
+      <div class="crew-card"><div class="crew-dept">Director</div><div class="crew-name">Pauliina Leskinen</div></div>
+      <div class="crew-card"><div class="crew-dept">Producer</div><div class="crew-name">Meltem Orujova</div></div>
+      <div class="crew-card"><div class="crew-dept">Cinematography</div><div class="crew-name">Arsenii Morin</div></div>
+      <div class="crew-card"><div class="crew-dept">Editor</div><div class="crew-name">Stanislav Ogurov</div></div>
+    </div>
+  </div>
+
+  <div class="back-section reveal">
+    <span class="back-label">50% Film — Short Cinema Label</span>
+    <a href="catalogue.html" class="back-btn">← Back to Catalogue</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">50% Film</div>
+  <span class="footer-copy">© 2025–2026 — Short Cinema Label — London, UK</span>
+  <ul class="footer-links">
+    <li><a href="https://www.instagram.com/50percentfilm/" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="https://letterboxd.com/film/my-last-day-on-earth-1/" target="_blank" rel="noopener">Letterboxd</a></li>
+    <li><a href="submit.html">Submit</a></li>
+    <li><a href="index.html">Home</a></li>
+  </ul>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('big'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+  });
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
+
+</body>
+</html>

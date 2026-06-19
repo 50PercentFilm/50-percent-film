@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Narben — 50% Film</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512x512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="description" content="Narben (Scars), a 9-minute Austrian drama by Joshua Haiden. A woman meets her younger self in the space between memory and imagination. On 50% Film.">
+<link rel="canonical" href="https://50percentfilm.com/narben">
+<meta property="og:type" content="video.movie">
+<meta property="og:site_name" content="50% Film">
+<meta property="og:title" content="Narben — 50% Film">
+<meta property="og:description" content="Narben (Scars), a 9-minute Austrian drama by Joshua Haiden. A woman meets her younger self in the space between memory and imagination. On 50% Film.">
+<meta property="og:url" content="https://50percentfilm.com/narben">
+<meta property="og:image" content="https://50percentfilm.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Narben — 50% Film">
+<meta name="twitter:description" content="Narben (Scars), a 9-minute Austrian drama by Joshua Haiden. A woman meets her younger self in the space between memory and imagination. On 50% Film.">
+<meta name="twitter:image" content="https://50percentfilm.com/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --black: #0a0a0a; --white: #f0ece4; --cream: #e8e2d6; --red: #c8341a; --gray: #2a2a2a; --mid: #888; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: 'Space Mono', monospace; cursor: none; overflow-x: hidden; }
+  .cursor { position: fixed; width: 10px; height: 10px; background: var(--red); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s; mix-blend-mode: difference; }
+  .cursor.big { width: 40px; height: 40px; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9998; opacity: 0.35; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 40px; background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%); }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.15em; color: var(--white); text-decoration: none; }
+  .nav-back { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; display: flex; align-items: center; gap: 10px; transition: color 0.2s; }
+  .nav-back:hover { color: var(--white); }
+  .nav-back::before { content: '←'; }
+
+  .film-hero { min-height: 80vh; position: relative; display: flex; align-items: flex-end; overflow: hidden; }
+  /* Cold, desaturated — memory and wound motif */
+  .film-hero-bg { position: absolute; inset: 0; background: linear-gradient(160deg, #0e1018 0%, #0a0c10 50%, #0a0a0a 100%); z-index: 0; }
+  .film-hero-bg::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 60% at 30% 40%, rgba(100,120,180,0.08) 0%, transparent 70%); }
+  /* Scar/wound visual motif — thin diagonal lines */
+  .film-hero-bg::after { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(105deg, transparent 0px, transparent 60px, rgba(255,255,255,0.012) 60px, rgba(255,255,255,0.012) 61px); }
+
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.4) 55%, rgba(10,10,10,0.15) 100%); z-index: 1; }
+  .film-hero-content { position: relative; z-index: 2; padding: 0 40px 64px; width: 100%; display: grid; grid-template-columns: 1fr auto; align-items: flex-end; gap: 40px; }
+  .film-collection-tag { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; opacity: 0; animation: fadeUp 0.7s 0.2s forwards; }
+  .film-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 8vw, 120px); line-height: 0.88; letter-spacing: 0.01em; opacity: 0; animation: fadeUp 0.7s 0.4s forwards; }
+  .film-title em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--cream); opacity: 0.6; font-size: 0.55em; display: block; margin-top: 8px; }
+  .film-hero-meta { display: flex; gap: 32px; margin-top: 24px; opacity: 0; animation: fadeUp 0.7s 0.6s forwards; flex-wrap: wrap; }
+  .meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .meta-label { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); }
+  .meta-value { font-size: 11px; letter-spacing: 0.05em; color: var(--white); }
+  .film-hero-right { opacity: 0; animation: fadeUp 0.7s 0.5s forwards; text-align: right; }
+  .film-number { font-family: 'Bebas Neue', sans-serif; font-size: 120px; line-height: 1; color: rgba(240,236,228,0.04); }
+
+  /* Translation note strip */
+  .translation-strip { background: #0d0d0d; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; padding: 14px 40px; display: flex; gap: 20px; align-items: center; }
+  .translation-label { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); flex-shrink: 0; }
+  .translation-text { font-size: 10px; letter-spacing: 0.1em; color: var(--mid); }
+  .translation-text em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--cream); }
+
+  .film-body { max-width: 1200px; margin: 0 auto; padding: 80px 40px 120px; }
+  .video-section { margin-bottom: 16px; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
+  .video-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); margin-bottom: 16px; }
+  .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; background: #111; overflow: hidden; border: 1px solid #1a1a1a; }
+  .video-wrapper iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+  .video-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+  .video-placeholder-icon { width: 60px; height: 60px; border: 1px solid #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .video-placeholder-icon::after { content: '▶'; font-size: 18px; color: var(--mid); margin-left: 4px; }
+  .video-placeholder p { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); }
+
+  .film-links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+  .film-ext-link { display: inline-flex; align-items: center; gap: 12px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; padding: 12px 20px; border: 1px solid #1e1e1e; transition: border-color 0.2s, color 0.2s; }
+  .film-ext-link:hover { border-color: var(--red); color: var(--white); }
+  .link-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; background: var(--red); }
+
+  .info-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 80px; margin-top: 80px; padding-top: 80px; border-top: 1px solid #1a1a1a; }
+  .section-tag { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 24px; }
+  .synopsis-text { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(18px, 2.5vw, 26px); line-height: 1.6; color: var(--cream); margin-bottom: 32px; }
+  .synopsis-body { font-size: 12px; line-height: 2; color: var(--mid); max-width: 560px; }
+
+  .director-section { border-left: 1px solid #1a1a1a; padding-left: 40px; }
+  .director-name { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 0.03em; margin-bottom: 4px; }
+  .director-role { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); margin-bottom: 24px; }
+  .director-bio { font-size: 11px; line-height: 1.9; color: var(--mid); margin-bottom: 32px; }
+  .interview-placeholder { margin-top: 32px; padding: 24px; border: 1px solid #1a1a1a; border-left: 2px solid var(--red); }
+  .interview-placeholder-label { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+  .interview-placeholder-text { font-size: 11px; letter-spacing: 0.1em; color: var(--mid); }
+  .film-details { margin-top: 40px; border-top: 1px solid #1a1a1a; padding-top: 32px; }
+  .detail-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #111; font-size: 10px; }
+  .detail-key { letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); }
+  .detail-val { color: var(--white); text-align: right; }
+
+  .crew-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid #1a1a1a; }
+  .crew-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 32px; }
+  .crew-card { background: #0f0f0f; padding: 24px 20px; }
+  .crew-dept { font-size: 8px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); margin-bottom: 8px; }
+  .crew-name { font-size: 12px; letter-spacing: 0.05em; color: var(--white); line-height: 1.4; }
+
+  .note-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid #1a1a1a; display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start; }
+  .note-heading { font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 0.9; letter-spacing: 0.01em; }
+  .note-heading em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--mid); display: block; }
+  .note-body { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 18px; line-height: 1.8; color: var(--cream); opacity: 0.8; }
+
+  .back-section { margin-top: 100px; padding-top: 60px; border-top: 1px solid #1a1a1a; display: flex; justify-content: space-between; align-items: center; }
+  .back-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); }
+  .back-btn { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--black); background: var(--white); padding: 14px 28px; text-decoration: none; transition: background 0.2s, color 0.2s; }
+  .back-btn:hover { background: var(--red); color: var(--white); }
+
+  footer { border-top: 1px solid #1a1a1a; padding: 48px 40px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.15em; }
+  .footer-copy { font-size: 9px; letter-spacing: 0.15em; color: var(--mid); text-transform: uppercase; }
+  .footer-links { display: flex; gap: 32px; list-style: none; }
+  .footer-links a { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s, transform 0.7s; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .film-hero-content { grid-template-columns: 1fr; padding: 0 24px 48px; }
+    .film-hero-right { display: none; }
+    .film-body { padding: 48px 24px 80px; }
+    .info-grid { grid-template-columns: 1fr; gap: 48px; }
+    .director-section { border-left: none; padding-left: 0; border-top: 1px solid #1a1a1a; padding-top: 40px; }
+    .crew-grid { grid-template-columns: 1fr 1fr; }
+    .note-section { grid-template-columns: 1fr; gap: 32px; }
+    .back-section { flex-direction: column; gap: 24px; text-align: center; }
+    footer { flex-direction: column; gap: 24px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+    .translation-strip { padding: 14px 24px; }
+  }
+
+  /* HERO ART — film-strip grid, matches the index hero */
+  .film-hero-art { position:absolute; inset:0; z-index:0; display:grid; grid-template-columns:repeat(4,1fr); }
+  .fh-strip { position:relative; overflow:hidden; }
+  .fh-strip + .fh-strip { border-left:1px solid rgba(240,236,228,0.03); }
+  .fh-strip::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg, transparent 38%, rgba(200,52,26,0.16)); }
+  .fh-strip:nth-child(1){ background:#171717; }
+  .fh-strip:nth-child(2){ background:#131313; }
+  .fh-strip:nth-child(3){ background:#101010; }
+  .fh-strip:nth-child(4){ background:#0d0d0d; }
+  .fh-strip-num { position:absolute; top:28px; left:50%; transform:translateX(-50%); font-family:'Bebas Neue',sans-serif; font-size:clamp(70px,11vw,150px); line-height:1; color:rgba(240,236,228,0.04); }
+  .fh-perf { position:absolute; top:0; bottom:0; width:20px; z-index:1; background-image:repeating-linear-gradient(to bottom, transparent 0 16px, rgba(240,236,228,0.05) 16px 28px); }
+  .fh-perf.l { left:0; } .fh-perf.r { right:0; }
+  .fh-vert { position:absolute; right:-6px; top:50%; transform:translateY(-50%) rotate(90deg); font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:rgba(240,236,228,0.16); white-space:nowrap; z-index:1; }
+
+/* hero art: Narben card */
+.film-hero-bg { background: linear-gradient(135deg, #08101e 0%, #0c1520 50%, #060c14 100%) !important; }
+.film-hero-bg::before { content:'' !important; display:block !important; position:absolute; inset:0; background: radial-gradient(ellipse 70% 40% at 40% 40%, rgba(60,100,160,0.2) 0%, transparent 70%), repeating-linear-gradient(108deg, transparent 0px, transparent 28px, rgba(80,120,180,0.04) 28px, rgba(80,120,180,0.04) 29px), repeating-linear-gradient(18deg, transparent 0px, transparent 40px, rgba(60,80,140,0.03) 40px, rgba(60,80,140,0.03) 41px) !important; }
+.film-hero-bg::after { content:'' !important; display:block !important; position:absolute; top:16%; left:50%; transform:translateX(-50%); width:1px; height:62%; background: linear-gradient(to bottom, transparent, rgba(100,150,220,0.4), transparent) !important; box-shadow: -50px 0 0 rgba(80,130,200,0.12), 50px 0 0 rgba(80,130,200,0.12), -100px 0 0 rgba(80,130,200,0.06), 100px 0 0 rgba(80,130,200,0.06) !important; }
+
+  .coming-poster { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; background:linear-gradient(160deg,#111 0%,#0d0d0d 100%); text-align:center; padding:24px; }
+  .coming-poster .cp-eyebrow { font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:var(--red); }
+  .coming-poster .cp-main { font-family:'Bebas Neue',sans-serif; font-size:clamp(34px,6vw,68px); letter-spacing:0.04em; color:var(--cream); line-height:1; }
+  .coming-poster .cp-sub { font-family:'DM Serif Display',serif; font-style:italic; font-size:clamp(16px,2.6vw,26px); color:var(--mid); }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">50% Film</a>
+  <a href="catalogue.html" class="nav-back">Back to Catalogue</a>
+</nav>
+
+<section class="film-hero">
+  <div class="film-hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="film-hero-content">
+    <div>
+      <p class="film-collection-tag">Quiet Worlds Collection · Drama</p>
+      <h1 class="film-title">Narben<em>Some wounds will heal.<br>Their traces remain.</em></h1>
+      <div class="film-hero-meta">
+        <div class="meta-item">
+          <span class="meta-label">Director</span>
+          <span class="meta-value">Joshua Haiden</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Runtime</span>
+          <span class="meta-value">9 min 10 sec</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Genre</span>
+          <span class="meta-value">Drama / Fiction</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Country</span>
+          <span class="meta-value">Austria · 2025</span>
+        </div>
+      </div>
+    </div>
+    <div class="film-hero-right">
+      <div class="film-number">06</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSLATION STRIP -->
+<div class="translation-strip">
+  <span class="translation-label">Title</span>
+  <span class="translation-text"><em>Narben</em> — German for <em>Scars</em>. Austria, 2025.</span>
+</div>
+
+<div class="film-body">
+
+  <div class="video-section">
+    <p class="video-label">Watch Film</p>
+    <div class="video-wrapper">
+      <div class="coming-poster">
+        <span class="cp-eyebrow">Take your seats</span>
+        <span class="cp-main">Grab your popcorn.</span>
+        <span class="cp-sub">Film coming soon</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="film-links">
+    <a href="https://shortfilmwire.com/en/embedded/film/200140933/Narben" class="film-ext-link" target="_blank" rel="noopener">
+      <span class="link-dot"></span>
+      View on Short Film Wire
+    </a>
+    <a href="https://www.crew-united.com/en/Narben__362491.html" class="film-ext-link" target="_blank" rel="noopener">
+      <span class="link-dot"></span>
+      Crew United
+    </a>
+  </div>
+
+  <div class="info-grid">
+
+    <div class="synopsis-section reveal">
+      <p class="section-tag">Synopsis</p>
+      <p class="synopsis-text">"A moment suspended between memory and imagination."</p>
+      <p class="synopsis-body">Lina revisits a time marked by emptiness and quiet despair. As she encounters her younger self, a silent truth emerges: some wounds will heal, but their traces remain. Narben is a film about the meeting point between who we were and who we became — told through a structure that moves between the remembered and the imagined, never fully separating the two. At nine minutes, it holds more interior weight than films many times its length.</p>
+    </div>
+
+    <div class="director-section reveal">
+      <p class="section-tag">Director</p>
+      <h2 class="director-name">Joshua Haiden</h2>
+      <p class="director-role">Director / Writer / Producer</p>
+      <p class="director-bio">Joshua Haiden is an Austrian filmmaker and the driving creative force behind Narben. Writing, directing and producing the film through his own production company, Haiden constructs a quietly devastating portrait of psychological recovery — one that trusts its audience to sit with ambiguity and find meaning in the space between memory and imagination.</p>
+
+      <div class="interview-placeholder">
+        <p class="interview-placeholder-label">Director Interview</p>
+        <p class="interview-placeholder-text">Coming soon...</p>
+      </div>
+
+      <div class="film-details">
+        <div class="detail-row">
+          <span class="detail-key">Runtime</span>
+          <span class="detail-val">9 min 10 sec</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-key">Genre</span>
+          <span class="detail-val">Drama / Fiction</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-key">Country</span>
+          <span class="detail-val">Austria</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-key">Year</span>
+          <span class="detail-val">2025</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-key">Production</span>
+          <span class="detail-val">Joshua Haiden Produktion</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-key">Collection</span>
+          <span class="detail-val">Quiet Worlds</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-key">Label</span>
+          <span class="detail-val">50% Film</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CREW -->
+  <div class="crew-section reveal">
+    <p class="section-tag">Crew</p>
+    <div class="crew-grid">
+      <div class="crew-card">
+        <div class="crew-dept">Director / Writer</div>
+        <div class="crew-name">Joshua Haiden</div>
+      </div>
+      <div class="crew-card">
+        <div class="crew-dept">Producer</div>
+        <div class="crew-name">Maximilian Gübitz</div>
+      </div>
+      <div class="crew-card">
+        <div class="crew-dept">Art Department</div>
+        <div class="crew-name">Lou Riera</div>
+      </div>
+      <div class="crew-card">
+        <div class="crew-dept">Film Processing</div>
+        <div class="crew-name">Cosmix Studios</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIRECTOR'S NOTE -->
+  <div class="note-section reveal">
+    <div>
+      <p class="section-tag">On the Film</p>
+      <h3 class="note-heading">Memory.<br>Self.<br><em>Healing.</em></h3>
+    </div>
+    <p class="note-body">Narben operates in the space that most films avoid — the interior life of recovery, where progress is not linear and the self you left behind does not simply disappear. By staging a literal encounter between Lina and her younger self, Haiden finds a formal language for something usually left to words: the way we carry our past versions within us, not as weight alone, but as evidence of survival.</p>
+  </div>
+
+  <div class="back-section reveal">
+    <span class="back-label">50% Film — Short Cinema Label</span>
+    <a href="catalogue.html" class="back-btn">← Back to Catalogue</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">50% Film</div>
+  <span class="footer-copy">© 2025–2026 — Short Cinema Label — London, UK</span>
+  <ul class="footer-links">
+    <li><a href="https://www.instagram.com/50percentfilm/" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="https://letterboxd.com" target="_blank" rel="noopener">Letterboxd</a></li>
+    <li><a href="submit.html">Submit</a></li>
+    <li><a href="index.html">Home</a></li>
+  </ul>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('big'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+  });
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

@@ -7,6 +7,20 @@
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="description" content="Reviews, essays and notes on short cinema from 50% Film.">
+<link rel="canonical" href="https://50percentfilm.com/news">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="50% Film">
+<meta property="og:title" content="News &amp; Reviews — 50% Film">
+<meta property="og:description" content="Reviews, essays and notes on short cinema from 50% Film.">
+<meta property="og:url" content="https://50percentfilm.com/news">
+<meta property="og:image" content="https://50percentfilm.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="News &amp; Reviews — 50% Film">
+<meta name="twitter:description" content="Reviews, essays and notes on short cinema from 50% Film.">
+<meta name="twitter:image" content="https://50percentfilm.com/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
@@ -789,12 +803,12 @@
   <aside class="news-sidebar reveal">
     <span class="sidebar-section-label">Browse by type</span>
     <ul class="filter-list">
-      <li><a href="#" class="active">All <span class="count">02</span></a></li>
-      <li><a href="#">News <span class="count">01</span></a></li>
-      <li><a href="#">Reviews <span class="count">—</span></a></li>
-      <li><a href="#">Interviews <span class="count">—</span></a></li>
-      <li><a href="#">Features <span class="count">01</span></a></li>
-      <li><a href="#">Festival <span class="count">01</span></a></li>
+      <li><a href="#" class="active" data-filter="all">All <span class="count">02</span></a></li>
+      <li><a href="#" data-filter="news">News <span class="count">01</span></a></li>
+      <li><a href="#" data-filter="reviews">Reviews <span class="count">—</span></a></li>
+      <li><a href="#" data-filter="interviews">Interviews <span class="count">—</span></a></li>
+      <li><a href="#" data-filter="features">Features <span class="count">01</span></a></li>
+      <li><a href="#" data-filter="festival">Festival <span class="count">01</span></a></li>
     </ul>
 
     <hr class="sidebar-divider">
@@ -808,7 +822,7 @@
   <main class="articles-feed">
 
     <!-- ARTICLE 1: FEATURES PIECE (NEW) -->
-    <article class="article-card">
+    <article class="article-card" data-cat="features essay">
 
       <button class="article-toggle" aria-expanded="false">
         <div class="article-toggle-inner">
@@ -893,7 +907,7 @@
     </article>
 
     <!-- ARTICLE 2: VIENNA / SCHMECKT NEWS -->
-    <article class="article-card secondary">
+    <article class="article-card secondary" data-cat="news festival">
 
       <button class="article-toggle" aria-expanded="false">
         <div class="article-toggle-inner">
@@ -988,12 +1002,12 @@
 
 <footer>
   <div class="footer-logo">50% Film</div>
-  <span class="footer-copy">© 2027 — Short Cinema Label — London, UK</span>
+  <span class="footer-copy">© 2025–2026 — Short Cinema Label — London, UK</span>
   <ul class="footer-links">
     <li><a href="https://www.instagram.com/50percentfilm/" target="_blank" rel="noopener">Instagram</a></li>
-    <li><a href="#">Letterboxd</a></li>
+    <li><a href="https://boxd.it/lHBGz" target="_blank" rel="noopener">Letterboxd</a></li>
     <li><a href="#">Newsletter</a></li>
-    <li><a href="#">Contact</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
 </footer>
 
@@ -1041,5 +1055,32 @@
   });
 </script>
 
+
+<script>
+  (function(){
+    const tabs=document.querySelectorAll('.filter-list a[data-filter]');
+    const cards=document.querySelectorAll('.article-card');
+    let empty=document.createElement('p');
+    empty.className='filter-empty';
+    empty.style.cssText='display:none;padding:40px 0;color:var(--mid);font-size:12px;letter-spacing:0.05em;';
+    empty.textContent='Nothing filed under this category yet. Check back soon.';
+    const list=cards.length?cards[cards.length-1].parentNode:null;
+    if(list) list.appendChild(empty);
+    tabs.forEach(tab=>tab.addEventListener('click',e=>{
+      e.preventDefault();
+      tabs.forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+      const f=tab.getAttribute('data-filter');
+      let shown=0;
+      cards.forEach(c=>{
+        const cats=(c.getAttribute('data-cat')||'').split(' ');
+        const on=(f==='all'||cats.includes(f));
+        c.style.display=on?'':'none';
+        if(on) shown++;
+      });
+      empty.style.display=shown?'none':'block';
+    }));
+  })();
+</script>
 </body>
 </html>

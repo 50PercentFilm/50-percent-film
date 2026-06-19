@@ -9,6 +9,20 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="favicon-512x512.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="description" content="Short films grouped by mood, not just genre. Browse the curated collections from 50% Film.">
+<link rel="canonical" href="https://50percentfilm.com/collections">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="50% Film">
+<meta property="og:title" content="Collections — 50% Film">
+<meta property="og:description" content="Short films grouped by mood, not just genre. Browse the curated collections from 50% Film.">
+<meta property="og:url" content="https://50percentfilm.com/collections">
+<meta property="og:image" content="https://50percentfilm.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Collections — 50% Film">
+<meta name="twitter:description" content="Short films grouped by mood, not just genre. Browse the curated collections from 50% Film.">
+<meta name="twitter:image" content="https://50percentfilm.com/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
@@ -406,6 +420,10 @@
     footer { flex-direction: column; gap: 24px; text-align: center; }
     .footer-links { flex-wrap: wrap; justify-content: center; }
   }
+
+  .collection-films { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .collection-films a { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cream); text-decoration: none; border: 1px solid #2a2a2a; padding: 7px 12px; transition: border-color .2s, color .2s; position: relative; z-index: 3; }
+  .collection-films a:hover { border-color: var(--red); color: var(--white); }
 </style>
 </head>
 <body>
@@ -437,7 +455,7 @@
 <!-- COLLECTIONS LIST -->
 <div class="collections-wrap">
 
-  <a href="#" class="collection-block reveal">
+  <div class="collection-block reveal">
     <div class="collection-text">
       <div class="collection-index">Collection 01</div>
       <div class="collection-tag">Horror &amp; Psychological</div>
@@ -450,39 +468,46 @@
       <div class="collection-visual-num">01</div>
       <div class="collection-visual-label">Open</div>
     </div>
-  </a>
+  </div>
 
-  <a href="#" class="collection-block reveal">
+  <div class="collection-block reveal">
     <div class="collection-text">
       <div class="collection-index">Collection 02</div>
       <div class="collection-tag">Slow &amp; Contemplative</div>
       <h2 class="collection-title">Quiet Worlds</h2>
       <p class="collection-desc">Films that sit with silence. Long takes, small gestures, and stories that trust the audience to feel before they're told.</p>
-      <div class="collection-status"><span class="dot"></span> Open for submissions · 0 films</div>
+      <div class="collection-status"><span class="dot"></span> 2 films · In the collection</div>
+      <div class="collection-films">
+        <a href="narben.html">Narben</a>
+        <a href="leclat.html">L&rsquo;éclat</a>
+      </div>
     </div>
     <div class="collection-visual">
       <div class="collection-visual-bg visual-3"></div>
       <div class="collection-visual-num">02</div>
-      <div class="collection-visual-label">Open</div>
+      <div class="collection-visual-label">2 Films</div>
     </div>
-  </a>
+  </div>
 
-  <a href="#" class="collection-block reveal">
+  <div class="collection-block reveal">
     <div class="collection-text">
       <div class="collection-index">Collection 03</div>
       <div class="collection-tag">Debut Shorts</div>
       <h2 class="collection-title">First Light</h2>
       <p class="collection-desc">A home for first-time directors. Rough edges welcome — we're looking for the spark, not the polish.</p>
-      <div class="collection-status"><span class="dot"></span> Open for submissions · 0 films</div>
+      <div class="collection-status"><span class="dot"></span> 1 film · In the collection</div>
+      <div class="collection-films">
+        <a href="dear-tooth-fairy.html">Dear Tooth Fairy</a>
+      </div>
     </div>
     <div class="collection-visual">
       <div class="collection-visual-bg visual-4"></div>
       <div class="collection-visual-num">03</div>
-      <div class="collection-visual-label">Open</div>
+      <div class="collection-visual-label">1 Film</div>
     </div>
-  </a>
+  </div>
 
-  <a href="#" class="collection-block reveal">
+  <div class="collection-block reveal">
     <div class="collection-text">
       <div class="collection-index">Collection 04</div>
       <div class="collection-tag">Night &amp; Urban</div>
@@ -495,24 +520,28 @@
       <div class="collection-visual-num">04</div>
       <div class="collection-visual-label">Open</div>
     </div>
-  </a>
+  </div>
 
-  <a href="#" class="collection-block reveal">
+  <div class="collection-block reveal">
     <div class="collection-text">
       <div class="collection-index">Collection 05</div>
       <div class="collection-tag">Sci-Fi &amp; Speculative</div>
       <h2 class="collection-title">Signal</h2>
       <p class="collection-desc">Big ideas on small budgets. Worlds slightly off from our own — close enough to feel like a warning.</p>
-      <div class="collection-status"><span class="dot"></span> Open for submissions · 0 films</div>
+      <div class="collection-status"><span class="dot"></span> 2 films · In the collection</div>
+      <div class="collection-films">
+        <a href="cosmo.html">COSMO</a>
+        <a href="my-last-day-on-earth.html">My Last Day on Earth</a>
+      </div>
     </div>
     <div class="collection-visual">
       <div class="collection-visual-bg visual-6"></div>
       <div class="collection-visual-num">05</div>
-      <div class="collection-visual-label">Open</div>
+      <div class="collection-visual-label">2 Films</div>
     </div>
-  </a>
+  </div>
 
-  <a href="#" class="collection-block reveal">
+  <div class="collection-block reveal">
     <div class="collection-text">
       <div class="collection-index">Collection 06</div>
       <div class="collection-tag">Documentary &amp; Portrait</div>
@@ -525,7 +554,7 @@
       <div class="collection-visual-num">06</div>
       <div class="collection-visual-label">Open</div>
     </div>
-  </a>
+  </div>
 
 </div>
 
@@ -538,12 +567,12 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">50% Film</div>
-  <span class="footer-copy">© 2027 — Short Cinema Label — London, UK</span>
+  <span class="footer-copy">© 2025–2026 — Short Cinema Label — London, UK</span>
   <ul class="footer-links">
     <li><a href="https://www.instagram.com/50percentfilm/" target="_blank" rel="noopener">Instagram</a></li>
-    <li><a href="#">Letterboxd</a></li>
+    <li><a href="https://boxd.it/lHBGz" target="_blank" rel="noopener">Letterboxd</a></li>
     <li><a href="#">Newsletter</a></li>
-    <li><a href="#">Contact</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
 </footer>
 
