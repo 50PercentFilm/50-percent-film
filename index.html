@@ -722,9 +722,61 @@
   }
 
   a.film-card { text-decoration: none; color: inherit; display: block; }
+
+  /* FILM LEADER COUNTDOWN */
+  #leader { position: fixed; inset: 0; z-index: 100000; background: #0a0a0a; display: flex; align-items: center; justify-content: center; cursor: none; transition: opacity 0.55s ease; }
+  #leader.done { opacity: 0; pointer-events: none; }
+  #leader.flash::after { content: ''; position: absolute; inset: 0; background: #f0ece4; animation: leaderflash 0.2s ease-out forwards; }
+  @keyframes leaderflash { from { opacity: 0.85; } to { opacity: 0; } }
+  .leader-grain { position: absolute; inset: 0; opacity: 0.06; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .leader-cross-h { position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(240,236,228,0.16); }
+  .leader-cross-v { position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: rgba(240,236,228,0.16); }
+  .leader-frame { position: relative; width: min(68vmin, 540px); height: min(68vmin, 540px); }
+  .leader-ring { position: absolute; inset: 0; border: 1px solid rgba(240,236,228,0.28); border-radius: 50%; }
+  .leader-ring.inner { inset: 13%; border-color: rgba(240,236,228,0.14); }
+  .leader-ticks { position: absolute; inset: 2%; border-radius: 50%;
+    background: repeating-conic-gradient(from 0deg, rgba(240,236,228,0.35) 0deg 0.35deg, transparent 0.35deg 6deg);
+    -webkit-mask: radial-gradient(circle, transparent 45%, #000 46%, #000 49%, transparent 50%);
+            mask: radial-gradient(circle, transparent 45%, #000 46%, #000 49%, transparent 50%); }
+  .leader-disc { position: absolute; inset: 0; border-radius: 50%; }
+  .leader-arm { position: absolute; left: 50%; top: 50%; width: 1px; height: 50%;
+    background: linear-gradient(to top, rgba(240,236,228,0.85), rgba(240,236,228,0.05));
+    transform-origin: bottom center; transform: translate(-50%, -100%) rotate(0deg); }
+  .leader-dot { position: absolute; left: 50%; top: 50%; width: 8px; height: 8px; border-radius: 50%; background: var(--red); transform: translate(-50%, -50%); }
+  .leader-num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: min(34vmin, 260px); line-height: 1; color: var(--white); }
+  .leader-num.pop { animation: numpop 0.5s cubic-bezier(.2,.8,.2,1); }
+  @keyframes numpop { 0% { transform: scale(1.35); opacity: 0; } 30% { opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+  .leader-meta { position: absolute; bottom: 7%; left: 0; right: 0; text-align: center;
+    font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(240,236,228,0.38); }
+  .leader-skip { position: absolute; bottom: 6%; right: 6%; background: transparent; border: 1px solid rgba(240,236,228,0.3);
+    color: var(--white); font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 10px 18px; cursor: pointer; transition: border-color .2s, color .2s; z-index: 2; }
+  .leader-skip:hover { border-color: var(--red); color: var(--red); }
+  @media (prefers-reduced-motion: reduce) { #leader { display: none; } }
 </style>
 </head>
 <body>
+
+<!-- FILM LEADER COUNTDOWN -->
+<div id="leader" aria-hidden="true">
+  <div class="leader-grain"></div>
+  <div class="leader-cross-h"></div>
+  <div class="leader-cross-v"></div>
+  <div class="leader-frame">
+    <div class="leader-ticks"></div>
+    <div class="leader-ring"></div>
+    <div class="leader-ring inner"></div>
+    <div class="leader-disc"></div>
+    <div class="leader-arm"></div>
+    <div class="leader-dot"></div>
+    <div class="leader-num">5</div>
+  </div>
+  <div class="leader-meta">50% Film — Reel 01 — Short Cinema Label</div>
+  <button class="leader-skip" type="button">Skip Intro →</button>
+</div>
+
 
 <div class="cursor" id="cursor"></div>
 <div class="nav-backdrop" id="navBackdrop"></div>
@@ -1088,5 +1140,47 @@
 
 <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/12a97cd0e17be8e1c3b072af3/0fd964ebe43e0ed6a5f64e8de.js");</script>
 
+
+<script>
+  (function(){
+    var el = document.getElementById('leader');
+    if (!el) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || sessionStorage.getItem('leaderShown')) { el.parentNode && el.parentNode.removeChild(el); return; }
+    document.body.style.overflow = 'hidden';
+    var num = el.querySelector('.leader-num');
+    var disc = el.querySelector('.leader-disc');
+    var arm = el.querySelector('.leader-arm');
+    var COUNT = 5, PER = 580, start = null, last = -1;
+    function frame(t){
+      if (start === null) start = t;
+      var e = t - start, total = COUNT * PER;
+      if (e >= total) { finish(); return; }
+      var idx = Math.floor(e / PER);
+      var within = (e % PER) / PER;
+      var shown = COUNT - idx;
+      if (shown !== last) {
+        last = shown; num.textContent = shown;
+        num.classList.remove('pop'); void num.offsetWidth; num.classList.add('pop');
+      }
+      var ang = within * 360;
+      disc.style.background = 'conic-gradient(from -90deg, rgba(240,236,228,0.10) 0deg, rgba(240,236,228,0.10) ' + ang + 'deg, transparent ' + ang + 'deg)';
+      arm.style.transform = 'translate(-50%, -100%) rotate(' + ang + 'deg)';
+      requestAnimationFrame(frame);
+    }
+    function finish(){
+      sessionStorage.setItem('leaderShown', '1');
+      el.classList.add('flash');
+      setTimeout(function(){ el.classList.add('done'); document.body.style.overflow = ''; }, 130);
+      setTimeout(function(){ el.parentNode && el.parentNode.removeChild(el); }, 750);
+    }
+    el.querySelector('.leader-skip').addEventListener('click', function(){
+      sessionStorage.setItem('leaderShown', '1');
+      el.classList.add('done'); document.body.style.overflow = '';
+      setTimeout(function(){ el.parentNode && el.parentNode.removeChild(el); }, 550);
+    });
+    requestAnimationFrame(frame);
+  })();
+</script>
 </body>
 </html>
