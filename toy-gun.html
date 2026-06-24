@@ -213,6 +213,11 @@
 .film-hero-bg { background: linear-gradient(135deg, #100f0a 0%, #0a0906 60%, #060503 100%) !important; }
 .film-hero-bg::before { content:'' !important; display:block !important; position:absolute; inset:0; background: repeating-linear-gradient(8deg, transparent 0 22px, rgba(212,176,82,0.10) 22px, rgba(212,176,82,0.10) 26px, transparent 26px 46px) !important; }
 .film-hero-bg::after { content:'' !important; display:block !important; position:absolute; top:14%; right:16%; width:300px; height:300px; border-radius:50%; background: radial-gradient(circle, rgba(222,182,82,0.20) 0%, transparent 68%) !important; box-shadow: 0 0 80px 24px rgba(180,140,50,0.10) !important; }
+
+  /* notify: centered, no form */
+  .notify-sub { max-width: 54ch; margin-left: auto; margin-right: auto; }
+  .notify-letterboxd { display: inline-block; margin-top: 6px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.08em; font-size: 18px; padding: 13px 28px; border: 1px solid #00e054; color: #00e054; text-decoration: none; transition: background .2s, color .2s; }
+  .notify-letterboxd:hover { background: #00e054; color: var(--black); }
 </style>
 </head>
 <body>
@@ -267,18 +272,17 @@
       <p class="section-tag">Synopsis</p>
       <p class="synopsis-text">A washed-up detective chases a homeless outlaw to restore his glory.</p>
       <p class="synopsis-body">Jesse van Moof, a washed-up and broke detective, becomes obsessed with a newspaper story about the "Crazy Cowboy," a homeless outlaw who ambushes couriers and steals their food. Convinced this bizarre criminal will restore his glory, Jesse builds a case and prepares a trap. When his plan fails, he stumbles upon the Cowboy by chance and chases him to his hideout, only to discover a laughing, wordless drifter who cannot even explain himself.</p>
+      <div class="interview-placeholder">
+        <p class="interview-placeholder-label">Director Interview</p>
+        <p class="interview-placeholder-text">Coming soon...</p>
+      </div>
     </div>
 
     <div class="director-section reveal">
       <p class="section-tag">Director</p>
       <h2 class="director-name">Emre Karabacak</h2>
       <p class="director-role">Director</p>
-      <p class="director-bio">Emre Karabacak directed Toy-Gun. More on the director to come.</p>
-
-      <div class="interview-placeholder">
-        <p class="interview-placeholder-label">Director Interview</p>
-        <p class="interview-placeholder-text">Coming soon...</p>
-      </div>
+      <p class="director-bio">Emre Karabacak is a Turkish artist based in Amsterdam, working across photography, video, sculpture and design. He treats the visual language of his work as seriously as words, making art to express rather than impress, pieces meant to linger and quietly stir. Toy-Gun carries that instinct into moving image.</p>
 
       <div class="film-details">
         <div class="detail-row"><span class="detail-key">Runtime</span><span class="detail-val">16 min</span></div>
@@ -299,17 +303,12 @@
     </div>
   </div>
 
-  <!-- NOTIFY (connect to Mailchimp later) -->
+  <!-- NOTIFY -->
   <div class="notify-section reveal">
     <div class="notify-eyebrow">Don't miss it</div>
     <h3 class="notify-title">Be first to <em>see it.</em></h3>
-    <p class="notify-sub">We'll email you the moment it goes live. No noise, just the film.</p>
-    <form class="notify-form" action="#REPLACE-WITH-MAILCHIMP-ACTION" method="post" target="_blank">
-      <input type="email" name="EMAIL" placeholder="your@email.com" required class="notify-input" aria-label="Email address">
-      <button type="submit" class="notify-btn">Notify Me →</button>
-    </form>
-    <p class="notify-or">or <a href="https://boxd.it/lHBGz" target="_blank" rel="noopener">follow us on Letterboxd</a></p>
-    <p class="notify-done">You're on the list. We'll be in touch.</p>
+    <p class="notify-sub">Every film we take lands on our Letterboxd first. Follow along and you'll catch it the moment it's live.</p>
+    <a href="https://boxd.it/lHBGz" target="_blank" rel="noopener" class="notify-letterboxd">Follow on Letterboxd →</a>
   </div>
 
   <div class="back-section reveal">

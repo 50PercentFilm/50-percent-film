@@ -213,6 +213,11 @@
 .film-hero-bg { background: linear-gradient(160deg, #100a1c 0%, #0a0814 60%, #060410 100%) !important; }
 .film-hero-bg::before { content:'' !important; display:block !important; position:absolute; inset:0; background: repeating-linear-gradient(125deg, transparent 0 14px, rgba(152,122,232,0.06) 14px, rgba(152,122,232,0.06) 16px, transparent 16px 34px) !important; }
 .film-hero-bg::after { content:'' !important; display:block !important; position:absolute; top:16%; left:54%; transform:translateX(-50%); width:320px; height:320px; border-radius:50%; background: radial-gradient(circle, rgba(172,142,252,0.30) 0%, rgba(110,80,200,0.12) 50%, transparent 72%) !important; box-shadow: 0 0 90px 30px rgba(120,90,220,0.14) !important; }
+
+  /* notify: centered, no form */
+  .notify-sub { max-width: 54ch; margin-left: auto; margin-right: auto; }
+  .notify-letterboxd { display: inline-block; margin-top: 6px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.08em; font-size: 18px; padding: 13px 28px; border: 1px solid #00e054; color: #00e054; text-decoration: none; transition: background .2s, color .2s; }
+  .notify-letterboxd:hover { background: #00e054; color: var(--black); }
 </style>
 </head>
 <body>
@@ -267,18 +272,17 @@
       <p class="section-tag">Synopsis</p>
       <p class="synopsis-text">A young woman finds a way out of her reality through dance.</p>
       <p class="synopsis-body">Full synopsis to follow ahead of release.</p>
+      <div class="interview-placeholder">
+        <p class="interview-placeholder-label">Director Interview</p>
+        <p class="interview-placeholder-text">Coming soon...</p>
+      </div>
     </div>
 
     <div class="director-section reveal">
       <p class="section-tag">Director</p>
       <h2 class="director-name">Masha Maroutitch</h2>
       <p class="director-role">Director</p>
-      <p class="director-bio">Masha Maroutitch directed Escape. More on the director to come.</p>
-
-      <div class="interview-placeholder">
-        <p class="interview-placeholder-label">Director Interview</p>
-        <p class="interview-placeholder-text">Coming soon...</p>
-      </div>
+      <p class="director-bio">Masha Maroutitch is a multidisciplinary artist of Ukrainian, Russian and Jewish heritage, and Artistic Director of OPIA Collective, an associate company of the National Youth Theatre of Great Britain. Her production of LALI by Shadi Hamta (VAULT Festival, Mercury Theatre) was nominated for the Origins Award for Outstanding Theatre, and she was a 2022 JMK Finalist for her staging of Sarah Kane's Crave. As a writer and director, her work has been developed and performed by the Royal Shakespeare Company, the Royal Court, Theatre Royal Stratford East, Battersea Arts Centre, the Lyric Hammersmith and the National Youth Theatre. Escape is her debut short film.</p>
 
       <div class="film-details">
         <div class="detail-row"><span class="detail-key">Runtime</span><span class="detail-val">3 min 57 sec</span></div>
@@ -298,17 +302,12 @@
     </div>
   </div>
 
-  <!-- NOTIFY (connect to Mailchimp later) -->
+  <!-- NOTIFY -->
   <div class="notify-section reveal">
     <div class="notify-eyebrow">Don't miss it</div>
     <h3 class="notify-title">Be first to <em>see it.</em></h3>
-    <p class="notify-sub">We'll email you the moment it goes live. No noise, just the film.</p>
-    <form class="notify-form" action="#REPLACE-WITH-MAILCHIMP-ACTION" method="post" target="_blank">
-      <input type="email" name="EMAIL" placeholder="your@email.com" required class="notify-input" aria-label="Email address">
-      <button type="submit" class="notify-btn">Notify Me →</button>
-    </form>
-    <p class="notify-or">or <a href="https://boxd.it/lHBGz" target="_blank" rel="noopener">follow us on Letterboxd</a></p>
-    <p class="notify-done">You're on the list. We'll be in touch.</p>
+    <p class="notify-sub">Every film we take lands on our Letterboxd first. Follow along and you'll catch it the moment it's live.</p>
+    <a href="https://boxd.it/lHBGz" target="_blank" rel="noopener" class="notify-letterboxd">Follow on Letterboxd →</a>
   </div>
 
   <div class="back-section reveal">

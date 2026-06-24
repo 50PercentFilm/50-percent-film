@@ -213,6 +213,11 @@
 .film-hero-bg { background: radial-gradient(ellipse 80% 90% at 55% 40%, #1b0b08 0%, #0c0504 68%, #050202 100%) !important; }
 .film-hero-bg::before { content:'' !important; display:block !important; position:absolute; inset:0; background: radial-gradient(ellipse 8% 30% at 58% 30%, rgba(255,172,72,0.5) 0%, rgba(220,110,30,0.16) 45%, transparent 70%) !important; }
 .film-hero-bg::after { content:'' !important; display:block !important; position:absolute; inset:0; box-shadow: inset 0 0 160px 50px rgba(120,12,12,0.45) !important; background: radial-gradient(ellipse 50% 40% at 50% 100%, rgba(180,30,20,0.18) 0%, transparent 60%) !important; }
+
+  /* notify: centered, no form */
+  .notify-sub { max-width: 54ch; margin-left: auto; margin-right: auto; }
+  .notify-letterboxd { display: inline-block; margin-top: 6px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.08em; font-size: 18px; padding: 13px 28px; border: 1px solid #00e054; color: #00e054; text-decoration: none; transition: background .2s, color .2s; }
+  .notify-letterboxd:hover { background: #00e054; color: var(--black); }
 </style>
 </head>
 <body>
@@ -272,18 +277,17 @@
       <p class="section-tag">Synopsis</p>
       <p class="synopsis-text">A dinner where the couple first met, under quiet pressure.</p>
       <p class="synopsis-body">Amy and her boyfriend share a nice dinner at the place where they first met, but it turns out there is some pressure on their relationship. Shot in a single continuous take.</p>
+      <div class="interview-placeholder">
+        <p class="interview-placeholder-label">Director Interview</p>
+        <p class="interview-placeholder-text">Coming soon...</p>
+      </div>
     </div>
 
     <div class="director-section reveal">
       <p class="section-tag">Director</p>
       <h2 class="director-name">Bastiaan Rook</h2>
       <p class="director-role">Director</p>
-      <p class="director-bio">Bastiaan Rook directed Amy & I. More on the director to come.</p>
-
-      <div class="interview-placeholder">
-        <p class="interview-placeholder-label">Director Interview</p>
-        <p class="interview-placeholder-text">Coming soon...</p>
-      </div>
+      <p class="director-bio">Bastiaan Rook is a Dutch director, editor and actor born in Heemstede in 1982. He made his directorial debut with On Air (2019) and founded the production house B. Rogue Productions. Amy &amp; I (2022), shot in a single continuous take, became his most awarded work, taking prizes for direction, performance, sound and music across the international festival circuit, including a Best Actress win for Eline Havenaar. His more recent credits include Citroen (2024).</p>
 
       <div class="film-details">
         <div class="detail-row"><span class="detail-key">Runtime</span><span class="detail-val">7:12</span></div>
@@ -297,24 +301,31 @@
     </div>
   </div>
 
+  <div class="cast-section reveal">
+    <p class="section-tag">Cast</p>
+    <div class="cast-grid">
+      <div class="cast-card"><div class="cast-role">Amy</div><div class="cast-name">Eline Havenaar</div></div>
+      <div class="cast-card"><div class="cast-name">Sytse Faber</div></div>
+      <div class="cast-card"><div class="cast-name">David Gibbs</div></div>
+      <div class="cast-card"><div class="cast-name">Gwen Guegan</div></div>
+    </div>
+  </div>
+
   <div class="crew-section reveal">
     <p class="section-tag">Crew</p>
     <div class="crew-grid">
       <div class="crew-card"><div class="crew-dept">Director</div><div class="crew-name">Bastiaan Rook</div></div>
+      <div class="crew-card"><div class="crew-dept">Writer</div><div class="crew-name">Martijn Daamen</div></div>
+      <div class="crew-card"><div class="crew-dept">Producers</div><div class="crew-name">Nick Vasilikos · Bastiaan Rook</div></div>
     </div>
   </div>
 
-  <!-- NOTIFY (connect to Mailchimp later) -->
+  <!-- NOTIFY -->
   <div class="notify-section reveal">
     <div class="notify-eyebrow">Don't miss it</div>
     <h3 class="notify-title">Be first to <em>see it.</em></h3>
-    <p class="notify-sub">We'll email you the moment it goes live. No noise, just the film.</p>
-    <form class="notify-form" action="#REPLACE-WITH-MAILCHIMP-ACTION" method="post" target="_blank">
-      <input type="email" name="EMAIL" placeholder="your@email.com" required class="notify-input" aria-label="Email address">
-      <button type="submit" class="notify-btn">Notify Me →</button>
-    </form>
-    <p class="notify-or">or <a href="https://boxd.it/lHBGz" target="_blank" rel="noopener">follow us on Letterboxd</a></p>
-    <p class="notify-done">You're on the list. We'll be in touch.</p>
+    <p class="notify-sub">Every film we take lands on our Letterboxd first. Follow along and you'll catch it the moment it's live.</p>
+    <a href="https://boxd.it/lHBGz" target="_blank" rel="noopener" class="notify-letterboxd">Follow on Letterboxd →</a>
   </div>
 
   <div class="back-section reveal">

@@ -213,6 +213,11 @@
 .film-hero-bg { background: linear-gradient(150deg, #1a1408 0%, #120d06 55%, #0a0704 100%) !important; }
 .film-hero-bg::before { content:'' !important; display:block !important; position:absolute; inset:0; background: linear-gradient(115deg, transparent 34%, rgba(255,140,40,0.22) 46%, rgba(255,200,90,0.10) 52%, transparent 62%), radial-gradient(ellipse 40% 50% at 80% 20%, rgba(255,170,60,0.22) 0%, transparent 60%) !important; }
 .film-hero-bg::after { content:'' !important; display:block !important; position:absolute; inset:0; opacity:0.55; background-image: radial-gradient(1px 1px at 20% 30%, rgba(255,230,180,0.5) 0, transparent 100%), radial-gradient(1px 1px at 62% 60%, rgba(255,220,160,0.4) 0, transparent 100%), radial-gradient(1px 1px at 80% 42%, rgba(255,210,150,0.35) 0, transparent 100%), radial-gradient(1px 1px at 38% 80%, rgba(255,225,170,0.3) 0, transparent 100%) !important; }
+
+  /* notify: centered, no form */
+  .notify-sub { max-width: 54ch; margin-left: auto; margin-right: auto; }
+  .notify-letterboxd { display: inline-block; margin-top: 6px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.08em; font-size: 18px; padding: 13px 28px; border: 1px solid #00e054; color: #00e054; text-decoration: none; transition: background .2s, color .2s; }
+  .notify-letterboxd:hover { background: #00e054; color: var(--black); }
 </style>
 </head>
 <body>
@@ -267,18 +272,17 @@
       <p class="section-tag">Synopsis</p>
       <p class="synopsis-text">A modern retelling of the Perseus myth, shot on Super 8 in Kent.</p>
       <p class="synopsis-body">A modern-day telling of the Perseus story: a woman, a chain, a knife, a mirror, a key and a suitcase. Shot on Super 8 Kodachrome on a beach in Kent.</p>
+      <div class="interview-placeholder">
+        <p class="interview-placeholder-label">Director Interview</p>
+        <p class="interview-placeholder-text">Coming soon...</p>
+      </div>
     </div>
 
     <div class="director-section reveal">
       <p class="section-tag">Director</p>
       <h2 class="director-name">Jack Davies</h2>
       <p class="director-role">Director</p>
-      <p class="director-bio">Jack Davies directed Perseus. More on the director to come.</p>
-
-      <div class="interview-placeholder">
-        <p class="interview-placeholder-label">Director Interview</p>
-        <p class="interview-placeholder-text">Coming soon...</p>
-      </div>
+      <p class="director-bio">Jack Davies is a London-based senior creative producer and director who specialises in complex corporate campaigns, with a focus on ESG, B2B and global sustainability narratives. He has overseen large-scale corporate film portfolios at Zinc Media across international territories, including COP, and has exec produced work for McKinsey through the LA agency Wondras. Across fifteen years in short-form documentary, branded content and advertising he has produced and directed around 150 films and interviewed more than 350 contributors. Perseus, shot on Super 8, is a more personal, experimental turn.</p>
 
       <div class="film-details">
         <div class="detail-row"><span class="detail-key">Runtime</span><span class="detail-val">3 min</span></div>
@@ -295,20 +299,18 @@
     <p class="section-tag">Crew</p>
     <div class="crew-grid">
       <div class="crew-card"><div class="crew-dept">Director</div><div class="crew-name">Jack Davies</div></div>
+      <div class="crew-card"><div class="crew-dept">Writer</div><div class="crew-name">Jack Davies</div></div>
+      <div class="crew-card"><div class="crew-dept">Camera</div><div class="crew-name">Jack Davies</div></div>
+      <div class="crew-card"><div class="crew-dept">Editor</div><div class="crew-name">Jack Davies</div></div>
     </div>
   </div>
 
-  <!-- NOTIFY (connect to Mailchimp later) -->
+  <!-- NOTIFY -->
   <div class="notify-section reveal">
     <div class="notify-eyebrow">Don't miss it</div>
     <h3 class="notify-title">Be first to <em>see it.</em></h3>
-    <p class="notify-sub">We'll email you the moment it goes live. No noise, just the film.</p>
-    <form class="notify-form" action="#REPLACE-WITH-MAILCHIMP-ACTION" method="post" target="_blank">
-      <input type="email" name="EMAIL" placeholder="your@email.com" required class="notify-input" aria-label="Email address">
-      <button type="submit" class="notify-btn">Notify Me →</button>
-    </form>
-    <p class="notify-or">or <a href="https://boxd.it/lHBGz" target="_blank" rel="noopener">follow us on Letterboxd</a></p>
-    <p class="notify-done">You're on the list. We'll be in touch.</p>
+    <p class="notify-sub">Every film we take lands on our Letterboxd first. Follow along and you'll catch it the moment it's live.</p>
+    <a href="https://boxd.it/lHBGz" target="_blank" rel="noopener" class="notify-letterboxd">Follow on Letterboxd →</a>
   </div>
 
   <div class="back-section reveal">

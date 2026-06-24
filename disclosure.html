@@ -213,6 +213,11 @@
 .film-hero-bg { background: linear-gradient(160deg, #0c1018 0%, #0a0d14 55%, #06080c 100%) !important; }
 .film-hero-bg::before { content:'' !important; display:block !important; position:absolute; inset:0; background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(150,180,220,0.035) 3px 4px), radial-gradient(ellipse 60% 50% at 62% 30%, rgba(70,110,160,0.18) 0%, transparent 65%) !important; }
 .film-hero-bg::after { content:'' !important; display:block !important; position:absolute; top:34%; left:0; right:0; height:12%; background: linear-gradient(180deg, transparent, rgba(200,52,26,0.22), transparent) !important; box-shadow: 0 0 60px 16px rgba(200,52,26,0.12) !important; }
+
+  /* notify: centered, no form */
+  .notify-sub { max-width: 54ch; margin-left: auto; margin-right: auto; }
+  .notify-letterboxd { display: inline-block; margin-top: 6px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.08em; font-size: 18px; padding: 13px 28px; border: 1px solid #00e054; color: #00e054; text-decoration: none; transition: background .2s, color .2s; }
+  .notify-letterboxd:hover { background: #00e054; color: var(--black); }
 </style>
 </head>
 <body>
@@ -267,6 +272,10 @@
       <p class="section-tag">Synopsis</p>
       <p class="synopsis-text">A cable-access host is handed proof of a government conspiracy.</p>
       <p class="synopsis-body">Former network news anchor turned cable access television host Gary Carmichael wants nothing more than to return to his old life, when a mysterious visitor presents him with proof of a government conspiracy. Gary must now choose to either conform to corporate expectations or come forward with the revelation and risk ruining his career once and for all.</p>
+      <div class="interview-placeholder">
+        <p class="interview-placeholder-label">Director Interview</p>
+        <p class="interview-placeholder-text">Coming soon...</p>
+      </div>
     </div>
 
     <div class="director-section reveal">
@@ -274,11 +283,6 @@
       <h2 class="director-name">Alex Valderana</h2>
       <p class="director-role">Director</p>
       <p class="director-bio">Alex Valderana is a Chilean-American filmmaker based in New Jersey. After seven years in television post-production for Paramount Global and Vice Media, he returned to indie filmmaking with Disclosure (2025), written by Raul Barquet. He previously created the long-running web series Nightwing: Escalation, starring David Howard Thornton, and is in pre-production on the horror short Surfaces while co-writing the feature Trench Rot.</p>
-
-      <div class="interview-placeholder">
-        <p class="interview-placeholder-label">Director Interview</p>
-        <p class="interview-placeholder-text">Coming soon...</p>
-      </div>
 
       <div class="film-details">
         <div class="detail-row"><span class="detail-key">Runtime</span><span class="detail-val">20 min</span></div>
@@ -292,25 +296,33 @@
     </div>
   </div>
 
-  <div class="crew-section reveal">
-    <p class="section-tag">Crew</p>
-    <div class="crew-grid">
-      <div class="crew-card"><div class="crew-dept">Director</div><div class="crew-name">Alex Valderana</div></div>
-      <div class="crew-card"><div class="crew-dept">Writer</div><div class="crew-name">Raul Barquet</div></div>
+  <div class="cast-section reveal">
+    <p class="section-tag">Cast</p>
+    <div class="cast-grid">
+      <div class="cast-card"><div class="cast-name">Bob Jaffe</div></div>
+      <div class="cast-card"><div class="cast-name">Chase Cortland Erwin</div></div>
+      <div class="cast-card"><div class="cast-name">KC Connor</div></div>
+      <div class="cast-card"><div class="cast-name">Nicholas James Reilly</div></div>
+      <div class="cast-card"><div class="cast-name">Jacob A. Ware</div></div>
     </div>
   </div>
 
-  <!-- NOTIFY (connect to Mailchimp later) -->
+  <div class="crew-section reveal">
+    <p class="section-tag">Crew</p>
+    <div class="crew-grid">
+      <div class="crew-card"><div class="crew-dept">Director / Editor</div><div class="crew-name">Alex Valderana</div></div>
+      <div class="crew-card"><div class="crew-dept">Writer</div><div class="crew-name">Raul Barquet</div></div>
+      <div class="crew-card"><div class="crew-dept">Producers</div><div class="crew-name">Raul Barquet · Alex Valderana · Jared DiCroce</div></div>
+      <div class="crew-card"><div class="crew-dept">Cinematography</div><div class="crew-name">Mattie Cameron Rosen</div></div>
+    </div>
+  </div>
+
+  <!-- NOTIFY -->
   <div class="notify-section reveal">
     <div class="notify-eyebrow">Don't miss it</div>
     <h3 class="notify-title">Be first to <em>see it.</em></h3>
-    <p class="notify-sub">We'll email you the moment it goes live. No noise, just the film.</p>
-    <form class="notify-form" action="#REPLACE-WITH-MAILCHIMP-ACTION" method="post" target="_blank">
-      <input type="email" name="EMAIL" placeholder="your@email.com" required class="notify-input" aria-label="Email address">
-      <button type="submit" class="notify-btn">Notify Me →</button>
-    </form>
-    <p class="notify-or">or <a href="https://boxd.it/lHBGz" target="_blank" rel="noopener">follow us on Letterboxd</a></p>
-    <p class="notify-done">You're on the list. We'll be in touch.</p>
+    <p class="notify-sub">Every film we take lands on our Letterboxd first. Follow along and you'll catch it the moment it's live.</p>
+    <a href="https://boxd.it/lHBGz" target="_blank" rel="noopener" class="notify-letterboxd">Follow on Letterboxd →</a>
   </div>
 
   <div class="back-section reveal">

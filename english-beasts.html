@@ -213,6 +213,11 @@
 .film-hero-bg { background: linear-gradient(170deg, #0e1116 0%, #0a0d12 60%, #07090d 100%) !important; }
 .film-hero-bg::before { content:'' !important; display:block !important; position:absolute; inset:0; background: radial-gradient(ellipse 70% 55% at 50% 20%, rgba(150,178,208,0.14) 0%, transparent 60%), repeating-linear-gradient(72deg, transparent 0 30px, rgba(150,178,208,0.03) 30px 31px) !important; }
 .film-hero-bg::after { content:'' !important; display:block !important; position:absolute; top:0; bottom:0; left:60%; width:7%; background: linear-gradient(105deg, transparent, rgba(192,42,32,0.34), transparent) !important; transform: skewX(-12deg) !important; box-shadow: 0 0 60px 12px rgba(170,30,25,0.12) !important; }
+
+  /* notify: centered, no form */
+  .notify-sub { max-width: 54ch; margin-left: auto; margin-right: auto; }
+  .notify-letterboxd { display: inline-block; margin-top: 6px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.08em; font-size: 18px; padding: 13px 28px; border: 1px solid #00e054; color: #00e054; text-decoration: none; transition: background .2s, color .2s; }
+  .notify-letterboxd:hover { background: #00e054; color: var(--black); }
 </style>
 </head>
 <body>
@@ -267,18 +272,17 @@
       <p class="section-tag">Synopsis</p>
       <p class="synopsis-text">1862. Two Englishmen climb toward gold, and unravel.</p>
       <p class="synopsis-body">1862, the Canadian wilderness. Two Englishmen have been climbing for weeks, but the peak is still not in sight. Driven by ignorance, arrogance and colonial greed, they are desperate to reach the fabled Cariboo gold fields. But the mountain is indifferent to their pride. As their bodies fail and their masks of civility crack, a blood-stained axe and a stolen photograph trigger a violent psychological break.</p>
+      <div class="interview-placeholder">
+        <p class="interview-placeholder-label">Director Interview</p>
+        <p class="interview-placeholder-text">Coming soon...</p>
+      </div>
     </div>
 
     <div class="director-section reveal">
       <p class="section-tag">Director</p>
       <h2 class="director-name">Nikolas Harris</h2>
-      <p class="director-role">Director</p>
-      <p class="director-bio">Nikolas Harris directed English Beasts. More on the director to come.</p>
-
-      <div class="interview-placeholder">
-        <p class="interview-placeholder-label">Director Interview</p>
-        <p class="interview-placeholder-text">Coming soon...</p>
-      </div>
+      <p class="director-role">Writer &amp; Director</p>
+      <p class="director-bio">Nikolas Harris is a writer and director based in London, drawn to character-led stories about people pushed to their physical, psychological and emotional limits. He picked up his mother's 35mm camera at eleven and made his first feature, Then I Was Lost, at nineteen, winning Best Director on the festival circuit. His work since includes the period thriller Once Upon a Time in England, which won him Best Student Director, and the WWII drama The Deserter, screened internationally. English Beasts continues his interest in what happens when control slips and the line between what's said and unsaid grows thin.</p>
 
       <div class="film-details">
         <div class="detail-row"><span class="detail-key">Runtime</span><span class="detail-val">14:49</span></div>
@@ -292,24 +296,30 @@
     </div>
   </div>
 
-  <div class="crew-section reveal">
-    <p class="section-tag">Crew</p>
-    <div class="crew-grid">
-      <div class="crew-card"><div class="crew-dept">Director</div><div class="crew-name">Nikolas Harris</div></div>
+  <div class="cast-section reveal">
+    <p class="section-tag">Cast</p>
+    <div class="cast-grid">
+      <div class="cast-card"><div class="cast-name">Paul Dewdney</div></div>
+      <div class="cast-card"><div class="cast-name">Edmund Fargher</div></div>
     </div>
   </div>
 
-  <!-- NOTIFY (connect to Mailchimp later) -->
+  <div class="crew-section reveal">
+    <p class="section-tag">Crew</p>
+    <div class="crew-grid">
+      <div class="crew-card"><div class="crew-dept">Writer / Producer / Director</div><div class="crew-name">Nikolas Harris</div></div>
+      <div class="crew-card"><div class="crew-dept">Production Design</div><div class="crew-name">Edward Thompson</div></div>
+      <div class="crew-card"><div class="crew-dept">Editor</div><div class="crew-name">Harrison Sanders</div></div>
+      <div class="crew-card"><div class="crew-dept">Sound</div><div class="crew-name">Sam Pay</div></div>
+    </div>
+  </div>
+
+  <!-- NOTIFY -->
   <div class="notify-section reveal">
     <div class="notify-eyebrow">Don't miss it</div>
     <h3 class="notify-title">Be first to <em>see it.</em></h3>
-    <p class="notify-sub">We'll email you the moment it goes live. No noise, just the film.</p>
-    <form class="notify-form" action="#REPLACE-WITH-MAILCHIMP-ACTION" method="post" target="_blank">
-      <input type="email" name="EMAIL" placeholder="your@email.com" required class="notify-input" aria-label="Email address">
-      <button type="submit" class="notify-btn">Notify Me →</button>
-    </form>
-    <p class="notify-or">or <a href="https://boxd.it/lHBGz" target="_blank" rel="noopener">follow us on Letterboxd</a></p>
-    <p class="notify-done">You're on the list. We'll be in touch.</p>
+    <p class="notify-sub">Every film we take lands on our Letterboxd first. Follow along and you'll catch it the moment it's live.</p>
+    <a href="https://boxd.it/lHBGz" target="_blank" rel="noopener" class="notify-letterboxd">Follow on Letterboxd →</a>
   </div>
 
   <div class="back-section reveal">
