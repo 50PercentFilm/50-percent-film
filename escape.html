@@ -42,10 +42,6 @@
 
   .film-hero { min-height: 80vh; position: relative; display: flex; align-items: flex-end; overflow: hidden; }
   .film-hero-bg { position: absolute; inset: 0; background: linear-gradient(160deg, #0a0a14 0%, #14101a 40%, #0a0a0a 100%); z-index: 0; }
-  /* Animated star field */
-  .film-hero-bg::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.6) 0%, transparent 100%), radial-gradient(1px 1px at 60% 10%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 40% 70%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 80% 50%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(2px 2px at 10% 80%, rgba(200,180,255,0.6) 0%, transparent 100%), radial-gradient(1px 1px at 70% 90%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 90% 20%, rgba(180,200,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(1px 1px at 30% 60%, rgba(255,220,180,0.5) 0%, transparent 100%), radial-gradient(2px 2px at 85% 75%, rgba(255,255,200,0.4) 0%, transparent 100%); }
-  .film-hero-bg::after { content: ''; position: absolute; width: 300px; height: 300px; top: 15%; left: 55%; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, rgba(200,150,255,0.15) 0%, rgba(100,50,200,0.08) 40%, transparent 70%); box-shadow: 0 0 80px 20px rgba(150,100,255,0.1); }
-
   .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.4) 50%, rgba(10,10,10,0.2) 100%); z-index: 1; }
   .film-hero-content { position: relative; z-index: 2; padding: 0 40px 64px; width: 100%; display: grid; grid-template-columns: 1fr auto; align-items: flex-end; gap: 40px; }
   .film-collection-tag { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; opacity: 0; animation: fadeUp 0.7s 0.2s forwards; }
@@ -58,7 +54,6 @@
   .film-hero-right { opacity: 0; animation: fadeUp 0.7s 0.5s forwards; text-align: right; }
   .film-number { font-family: 'Bebas Neue', sans-serif; font-size: 120px; line-height: 1; color: rgba(240,236,228,0.04); }
 
-  /* Awards banner */
   .awards-strip { background: #0f0f0f; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; padding: 20px 40px; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
   .awards-label { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); flex-shrink: 0; }
   .award-item { display: flex; align-items: center; gap: 10px; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); }
@@ -70,53 +65,25 @@
   .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; background: #111; overflow: hidden; border: 1px solid #1a1a1a; }
   .video-wrapper iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
 
-  .film-links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
-  .film-ext-link { display: inline-flex; align-items: center; gap: 12px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; padding: 12px 20px; border: 1px solid #1e1e1e; transition: border-color 0.2s, color 0.2s; }
-  .film-ext-link:hover { border-color: var(--red); color: var(--white); }
-  .film-ext-link.letterboxd:hover { border-color: #00e054; color: #00e054; }
-  .link-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .dot-green { background: #00e054; }
-  .dot-red { background: var(--red); }
-
   .info-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 80px; margin-top: 80px; padding-top: 80px; border-top: 1px solid #1a1a1a; }
   .section-tag { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 24px; }
   .synopsis-text { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(18px, 2.5vw, 26px); line-height: 1.6; color: var(--cream); margin-bottom: 32px; }
   .synopsis-body { font-size: 12px; line-height: 2; color: var(--mid); max-width: 560px; }
 
-  /* Production highlight box */
-  .production-highlight { margin-top: 40px; padding: 32px; border: 1px solid #1e1e1e; border-left: 2px solid var(--red); background: #0d0d0d; }
-  .production-highlight-label { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
-  .production-highlight-text { font-size: 11px; line-height: 1.9; color: var(--mid); }
-  .production-highlight-text strong { color: var(--white); font-weight: 400; }
-
   .director-section { border-left: 1px solid #1a1a1a; padding-left: 40px; }
   .director-name { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 0.03em; margin-bottom: 4px; }
   .director-role { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); margin-bottom: 24px; }
   .director-bio { font-size: 11px; line-height: 1.9; color: var(--mid); margin-bottom: 32px; }
-  .interview-placeholder { margin-top: 32px; padding: 24px; border: 1px solid #1a1a1a; border-left: 2px solid var(--red); }
-  .interview-placeholder-label { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
-  .interview-placeholder-text { font-size: 11px; letter-spacing: 0.1em; color: var(--mid); }
   .film-details { margin-top: 40px; border-top: 1px solid #1a1a1a; padding-top: 32px; }
   .detail-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #111; font-size: 10px; }
   .detail-key { letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); }
   .detail-val { color: var(--white); text-align: right; }
-
-  .cast-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid #1a1a1a; }
-  .cast-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 32px; }
-  .cast-card { background: #0f0f0f; padding: 28px 24px; }
-  .cast-role { font-size: 8px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); margin-bottom: 8px; }
-  .cast-name { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; color: var(--white); line-height: 1.2; }
 
   .crew-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid #1a1a1a; }
   .crew-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 32px; }
   .crew-card { background: #0f0f0f; padding: 24px 20px; }
   .crew-dept { font-size: 8px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); margin-bottom: 8px; }
   .crew-name { font-size: 12px; letter-spacing: 0.05em; color: var(--white); line-height: 1.4; }
-
-  .note-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid #1a1a1a; display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start; }
-  .note-heading { font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 0.9; letter-spacing: 0.01em; }
-  .note-heading em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--mid); display: block; }
-  .note-body { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 18px; line-height: 1.8; color: var(--cream); opacity: 0.8; }
 
   .back-section { margin-top: 100px; padding-top: 60px; border-top: 1px solid #1a1a1a; display: flex; justify-content: space-between; align-items: center; }
   .back-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); }
@@ -141,83 +108,97 @@
     .film-hero-right { display: none; }
     .film-body { padding: 48px 24px 80px; }
     .info-grid { grid-template-columns: 1fr; gap: 48px; }
-    .director-section { border-left: none; padding-left: 0; border-top: 1px solid #1a1a1a; padding-top: 40px; }
-    .cast-grid { grid-template-columns: 1fr 1fr; }
     .crew-grid { grid-template-columns: 1fr 1fr; }
-    .note-section { grid-template-columns: 1fr; gap: 32px; }
     .back-section { flex-direction: column; gap: 24px; text-align: center; }
     footer { flex-direction: column; gap: 24px; text-align: center; }
     .footer-links { flex-wrap: wrap; justify-content: center; }
     .awards-strip { padding: 16px 24px; gap: 20px; }
   }
 
-  /* HERO ART — film-strip grid, matches the index hero */
-  .film-hero-art { position:absolute; inset:0; z-index:0; display:grid; grid-template-columns:repeat(4,1fr); }
-  .fh-strip { position:relative; overflow:hidden; }
-  .fh-strip + .fh-strip { border-left:1px solid rgba(240,236,228,0.03); }
-  .fh-strip::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg, transparent 38%, rgba(200,52,26,0.16)); }
-  .fh-strip:nth-child(1){ background:#171717; }
-  .fh-strip:nth-child(2){ background:#131313; }
-  .fh-strip:nth-child(3){ background:#101010; }
-  .fh-strip:nth-child(4){ background:#0d0d0d; }
-  .fh-strip-num { position:absolute; top:28px; left:50%; transform:translateX(-50%); font-family:'Bebas Neue',sans-serif; font-size:clamp(70px,11vw,150px); line-height:1; color:rgba(240,236,228,0.04); }
-  .fh-perf { position:absolute; top:0; bottom:0; width:20px; z-index:1; background-image:repeating-linear-gradient(to bottom, transparent 0 16px, rgba(240,236,228,0.05) 16px 28px); }
-  .fh-perf.l { left:0; } .fh-perf.r { right:0; }
-  .fh-vert { position:absolute; right:-6px; top:50%; transform:translateY(-50%) rotate(90deg); font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:rgba(240,236,228,0.16); white-space:nowrap; z-index:1; }
-
-/* hero art: COSMO card */
-.film-hero-bg { background: radial-gradient(ellipse 80% 60% at 60% 30%, #2d1b69 0%, #0d0620 60%, #050010 100%) !important; }
-.film-hero-bg::before { content:'' !important; display:block !important; position:absolute; inset:0; background-image: radial-gradient(1.5px 1.5px at 15% 20%, rgba(255,255,255,0.9) 0%, transparent 100%), radial-gradient(1px 1px at 70% 15%, rgba(255,255,255,0.7) 0%, transparent 100%), radial-gradient(2px 2px at 40% 60%, rgba(200,160,255,0.8) 0%, transparent 100%), radial-gradient(1px 1px at 85% 40%, rgba(255,255,255,0.6) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 25% 75%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 55% 85%, rgba(180,140,255,0.7) 0%, transparent 100%), radial-gradient(2px 2px at 10% 50%, rgba(255,220,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 90% 70%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 50% 35%, rgba(255,255,255,0.6) 0%, transparent 100%), radial-gradient(1px 1px at 30% 90%, rgba(200,180,255,0.5) 0%, transparent 100%) !important; }
-.film-hero-bg::after { content:'' !important; display:block !important; position:absolute; width:360px; height:360px; top:6%; left:55%; transform:translate(-50%,0); border-radius:50%; background: radial-gradient(circle, rgba(160,100,255,0.35) 0%, rgba(80,40,180,0.15) 50%, transparent 70%) !important; box-shadow: 0 0 100px 35px rgba(120,60,220,0.2) !important; }
-
   .coming-poster { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; background:linear-gradient(160deg,#111 0%,#0d0d0d 100%); text-align:center; padding:24px; }
   .coming-poster .cp-eyebrow { font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:var(--red); }
   .coming-poster .cp-main { font-family:'Bebas Neue',sans-serif; font-size:clamp(34px,6vw,68px); letter-spacing:0.04em; color:var(--cream); line-height:1; }
   .coming-poster .cp-sub { font-family:'DM Serif Display',serif; font-style:italic; font-size:clamp(16px,2.6vw,26px); color:var(--mid); }
 
-  .notify-block { margin-top: 80px; padding: 40px; border: 1px solid #1e1e1e; background: linear-gradient(135deg, rgba(200,52,26,0.05), transparent 60%); }
-  .notify-eyebrow { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--red); margin-bottom: 12px; }
-  .notify-head { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(22px, 3.5vw, 32px); color: var(--white); margin-bottom: 10px; }
-  .notify-sub { font-size: 12px; line-height: 1.8; color: var(--mid); max-width: 56ch; margin-bottom: 24px; }
-  .notify-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: stretch; }
-  .notify-btn { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.08em; font-size: 16px; padding: 14px 26px; border: 1px solid var(--white); background: transparent; color: var(--white); text-decoration: none; cursor: none; transition: background .2s, color .2s, border-color .2s; display: inline-flex; align-items: center; }
-  .notify-btn.primary { border-color: #00e054; color: #00e054; }
-  .notify-btn.primary:hover { background: #00e054; color: var(--black); }
-  .notify-form { display: flex; gap: 12px; flex: 1; min-width: 240px; }
-  .notify-input { flex: 1; background: #0d0d0d; border: 1px solid #1e1e1e; color: var(--white); font-family: 'Space Mono', monospace; font-size: 12px; padding: 0 16px; min-width: 0; }
-  .notify-input:focus { outline: none; border-color: var(--red); }
-  .notify-btn[type="submit"]:hover { background: var(--white); color: var(--black); }
-  .notify-msg { font-size: 11px; color: var(--cream); letter-spacing: 0.05em; margin-top: 14px; min-height: 1em; }
-
-  /* NOTIFY / email capture (wire to Mailchimp later) */
+  /* NOTIFY / Letterboxd follow */
   .notify-section { margin-top: 80px; padding: 64px 0; border-top: 1px solid #1a1a1a; text-align: center; }
   .notify-eyebrow { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
   .notify-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px,6vw,56px); letter-spacing: 0.03em; line-height: 1; margin-bottom: 14px; }
   .notify-title em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--red); }
-  .notify-sub { font-size: 13px; color: var(--cream); margin-bottom: 28px; }
-  .notify-form { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; max-width: 480px; margin: 0 auto; }
-  .notify-input { flex: 1; min-width: 220px; background: #111; border: 1px solid #2a2a2a; color: var(--white); padding: 14px 16px; font-family: 'Space Mono', monospace; font-size: 13px; }
-  .notify-input:focus { outline: none; border-color: var(--red); }
-  .notify-btn { background: var(--red); color: var(--white); border: none; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.08em; font-size: 18px; padding: 0 30px; cursor: pointer; transition: background .2s, color .2s; }
-  .notify-btn:hover { background: var(--white); color: var(--black); }
-  .notify-or { font-size: 11px; color: var(--mid); margin-top: 18px; }
-  .notify-or a { color: var(--cream); }
-  .notify-done { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--cream); margin-top: 20px; font-size: 18px; display: none; }
-
-  /* hero art */
-  .film-hero-bg { background: linear-gradient(155deg, #0e0a18 0%, #0a0812 52%, #0a0a0a 100%) !important; }
-  .film-hero-bg::before { content:'' !important; display:block !important; position:absolute; inset:0; background: radial-gradient(ellipse 72% 55% at 62% 32%, rgba(150,120,230,0.16) 0%, transparent 66%) !important; }
-  .film-hero-bg::after { content:'' !important; display:block !important; position:absolute; top:6%; right:15%; width:320px; height:320px; border-radius:50%; background: radial-gradient(circle, rgba(150,120,230,0.22) 0%, transparent 70%) !important; box-shadow: 0 0 95px 32px rgba(120,90,200,0.12) !important; }
-
-/* bespoke hero art */
-.film-hero-bg { background: linear-gradient(160deg, #100a1c 0%, #0a0814 60%, #060410 100%) !important; }
-.film-hero-bg::before { content:'' !important; display:block !important; position:absolute; inset:0; background: repeating-linear-gradient(125deg, transparent 0 14px, rgba(152,122,232,0.06) 14px, rgba(152,122,232,0.06) 16px, transparent 16px 34px) !important; }
-.film-hero-bg::after { content:'' !important; display:block !important; position:absolute; top:16%; left:54%; transform:translateX(-50%); width:320px; height:320px; border-radius:50%; background: radial-gradient(circle, rgba(172,142,252,0.30) 0%, rgba(110,80,200,0.12) 50%, transparent 72%) !important; box-shadow: 0 0 90px 30px rgba(120,90,220,0.14) !important; }
-
-  /* notify: centered, no form */
-  .notify-sub { max-width: 54ch; margin-left: auto; margin-right: auto; }
+  .notify-sub { font-size: 13px; color: var(--cream); margin-bottom: 28px; max-width: 54ch; margin-left: auto; margin-right: auto; }
   .notify-letterboxd { display: inline-block; margin-top: 6px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.08em; font-size: 18px; padding: 13px 28px; border: 1px solid #00e054; color: #00e054; text-decoration: none; transition: background .2s, color .2s; }
   .notify-letterboxd:hover { background: #00e054; color: var(--black); }
+
+  /* Director interview */
+  .interview-section { margin-top: 80px; padding-top: 70px; border-top: 1px solid #1a1a1a; }
+  .interview-intro { font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.05em; color: var(--mid); margin: -8px 0 36px; max-width: 64ch; line-height: 1.7; }
+  .qa-list { border-top: 1px solid #1c1c1c; }
+  .qa { display: grid; grid-template-columns: 38% 1fr; gap: 40px; border-bottom: 1px solid #1c1c1c; align-items: start; }
+  .qa-q { background: transparent; border: 0; margin: 0; width: 100%; text-align: left; cursor: pointer; display: flex; gap: 14px; align-items: flex-start; padding: 28px 0; font-family: inherit; }
+  .qa-num { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--red); opacity: 0.65; padding-top: 7px; min-width: 24px; }
+  .qa-qtext { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 21px; line-height: 1.32; color: var(--red); flex: 1; }
+  .qa-toggle { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 20px; color: var(--red); margin-left: 12px; transition: transform 0.3s ease; padding-top: 3px; }
+  .qa.open .qa-toggle { transform: rotate(45deg); }
+  .qa-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.45s ease; }
+  .qa.open .qa-a { grid-template-rows: 1fr; }
+  .qa-a-inner { overflow: hidden; }
+  .qa-a-inner p { font-family: 'Space Mono', monospace; font-size: 14px; line-height: 1.85; color: var(--white); margin: 0 0 18px; }
+  .qa-a-inner p:last-child { margin-bottom: 0; }
+  .qa.open .qa-a-inner { padding: 28px 0 30px; }
+  @media (max-width: 760px) {
+    .qa { grid-template-columns: 1fr; gap: 0; }
+    .qa.open .qa-a-inner { padding: 2px 0 22px; }
+    .qa-qtext { font-size: 19px; }
+  }
+
+  /* ============================================================
+     ESCAPE — film-led treatment (real hero still, stills, poster)
+     ============================================================ */
+
+  /* Hero now carries the opening still */
+  .film-hero-bg { background: #060410 url('escape-hero.jpg') center 38% / cover no-repeat; }
+  .hero-overlay { background:
+      linear-gradient(to top, rgba(10,10,10,0.98) 0%, rgba(10,10,10,0.55) 46%, rgba(10,10,10,0.28) 100%),
+      linear-gradient(90deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.1) 55%, transparent 100%); }
+
+  /* Details panel sits cleanly under its tag in the grid */
+  .details-section .film-details { margin-top: 0; border-top: none; padding-top: 0; }
+
+  /* Director is now a full-width section below the interview */
+  .director-section { border-left: none; padding-left: 0; margin-top: 80px; padding-top: 60px; border-top: 1px solid #1a1a1a; }
+  .director-section .director-name { font-size: 44px; }
+  .director-bio { margin-bottom: 0; max-width: 78ch; }
+  .director-bio p { margin-bottom: 14px; }
+  .director-bio p:last-child { margin-bottom: 0; }
+  .director-bio em { font-style: italic; color: var(--cream); }
+
+  /* Stills */
+  .stills-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid #1a1a1a; }
+  .stills-grid { margin-top: 28px; }
+  .still-frame { position: relative; overflow: hidden; background: #0d0d0d; display: block; }
+  .still-frame img { width: 100%; display: block; transition: transform 1.1s cubic-bezier(.2,.7,.2,1); }
+  .still-frame:hover img { transform: scale(1.035); }
+  .stills-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin: 2px 0; }
+
+  /* Poster — one-sheet feature with the billing block beside it */
+  .poster-feature { display: grid; grid-template-columns: 360px 1fr; gap: 64px; align-items: center; margin-top: 80px; padding-top: 60px; border-top: 1px solid #1a1a1a; }
+  .poster-wrap { position: relative; }
+  .poster-wrap::before { content: ''; position: absolute; inset: -8% -10% -12% -8%; background: radial-gradient(ellipse at 45% 40%, rgba(200,52,26,0.22) 0%, transparent 68%); z-index: 0; filter: blur(8px); }
+  .poster-wrap img { position: relative; z-index: 1; width: 100%; display: block; box-shadow: 0 34px 80px rgba(0,0,0,0.65); }
+  .poster-credits .section-tag { margin-bottom: 28px; }
+  .poster-billing { display: grid; grid-template-columns: auto 1fr; gap: 14px 22px; }
+  .pb-role { font-size: 8px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); padding-top: 4px; white-space: nowrap; }
+  .pb-name { font-size: 13px; letter-spacing: 0.04em; color: var(--white); line-height: 1.5; }
+  .pb-name.lead { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; color: var(--cream); }
+  .poster-studios { margin-top: 32px; padding-top: 24px; border-top: 1px solid #1a1a1a; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); }
+  .poster-studios em { font-style: italic; color: var(--cream); }
+
+  @media (max-width: 768px) {
+    .poster-feature { grid-template-columns: 1fr; gap: 36px; justify-items: center; }
+    .poster-wrap { max-width: 300px; }
+    .poster-credits { width: 100%; }
+    .stills-pair { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -266,25 +247,17 @@
     </div>
   </div>
 
-
   <div class="info-grid">
     <div class="synopsis-section reveal">
       <p class="section-tag">Synopsis</p>
       <p class="synopsis-text">A young woman finds a way out of her reality through dance.</p>
       <p class="synopsis-body">Full synopsis to follow ahead of release.</p>
-      <div class="interview-placeholder">
-        <p class="interview-placeholder-label">Director Interview</p>
-        <p class="interview-placeholder-text">Coming soon...</p>
-      </div>
     </div>
 
-    <div class="director-section reveal">
-      <p class="section-tag">Director</p>
-      <h2 class="director-name">Masha Maroutitch</h2>
-      <p class="director-role">Director</p>
-      <p class="director-bio">Masha Maroutitch is a multidisciplinary artist of Ukrainian, Russian and Jewish heritage, and Artistic Director of OPIA Collective, an associate company of the National Youth Theatre of Great Britain. Her production of LALI by Shadi Hamta (VAULT Festival, Mercury Theatre) was nominated for the Origins Award for Outstanding Theatre, and she was a 2022 JMK Finalist for her staging of Sarah Kane's Crave. As a writer and director, her work has been developed and performed by the Royal Shakespeare Company, the Royal Court, Theatre Royal Stratford East, Battersea Arts Centre, the Lyric Hammersmith and the National Youth Theatre. Escape is her debut short film.</p>
-
+    <div class="details-section reveal">
+      <p class="section-tag">Details</p>
       <div class="film-details">
+        <div class="detail-row"><span class="detail-key">Director</span><span class="detail-val">Masha Maroutitch</span></div>
         <div class="detail-row"><span class="detail-key">Runtime</span><span class="detail-val">3 min 57 sec</span></div>
         <div class="detail-row"><span class="detail-key">Genre</span><span class="detail-val">Experimental</span></div>
         <div class="detail-row"><span class="detail-key">Language</span><span class="detail-val">English</span></div>
@@ -295,10 +268,80 @@
     </div>
   </div>
 
-  <div class="crew-section reveal">
-    <p class="section-tag">Crew</p>
-    <div class="crew-grid">
-      <div class="crew-card"><div class="crew-dept">Director</div><div class="crew-name">Masha Maroutitch</div></div>
+  <div class="interview-section reveal">
+    <p class="section-tag">Director Interview</p>
+    <p class="interview-intro">Director Masha Maroutitch on the making of Escape. Tap a question to read her answer.</p>
+    <div class="qa-list">
+      <div class="qa">
+        <button class="qa-q" aria-expanded="false"><span class="qa-num">01</span><span class="qa-qtext">Where did the idea for Escape come from?</span><span class="qa-toggle">+</span></button>
+        <div class="qa-a"><div class="qa-a-inner"><p>Escape came from really wanting to practise filmmaking. I was aware that I'd never made a film before and I wanted to practise, so I started thinking about what idea I could do using the resources I had. That was Joe, the DP I was collaborating with, who had a camera, and an actress I knew who was a dancer. I was trying to work out what I could test out using what I'd got.</p><p>What I like to do in life is collect images that I see. There was one image, when I was in rehearsal and walked out on my tea break, of a girl in trackies smoking a cigarette and doing ballet, with the sun backlighting her, and I thought, I fucking love that. In my head I thought, that's going to be in a movie somewhere.</p><p>Then, when I was trying to think of a really simple story with no dialogue, I thought, someone using dance as an escape. That was the image, and I wanted to capture it. So I wrote a script that tried to capture the feeling of escaping, and that image I'd seen in real life. That was the inception, and I built everything else around what I had at hand: my resources, the park I knew that had a great view, things like that.</p></div></div>
+      </div>
+      <div class="qa">
+        <button class="qa-q" aria-expanded="false"><span class="qa-num">02</span><span class="qa-qtext">Is dance freedom in this film, or is it also a kind of avoidance? Did you want that to stay ambiguous?</span><span class="qa-toggle">+</span></button>
+        <div class="qa-a"><div class="qa-a-inner"><p>It's interesting that it can also be read as avoidance. I saw it as a way to escape reality, because sometimes life is really hard. When you tune in, when you listen to music or allow your body to move, you can reconnect back to yourself. So it was this relationship of a girl escaping her reality.</p><p>What was really interesting is what happens subconsciously. When you film something and then edit it, you start to see things you didn't plan. The final image of the film is her standing against Canary Wharf, with all these skyscrapers, and it's like, ah, she hasn't really escaped, because she's still faced with that commercial, capitalist thing, the cycle she's trapped in. You might film something and subconsciously something else comes out.</p><p>The intention was to find escape through dance, and we played with the camera movement too, to find freedom and flow, so it goes from static to flow. But it's interesting how we're still trapped. So it's fine that you call it avoidance.</p></div></div>
+      </div>
+      <div class="qa">
+        <button class="qa-q" aria-expanded="false"><span class="qa-num">03</span><span class="qa-qtext">You've spent years making work for stages, from the Royal Court to the RSC. What did film let you do with this story that theatre wouldn't?</span><span class="qa-toggle">+</span></button>
+        <div class="qa-a"><div class="qa-a-inner"><p>A really big difference between theatre and film is that with film you have control of the image. I can choose exactly what I want in the frame, and exactly what I want the audience to look at, whether that's a hand gesture or a specific landscape. As the director and storyteller, I choose where the audience looks, and the rhythm of it.</p><p>In theatre you don't have control over where the audience looks. They might be looking at the actor fiddling with their top downstage, or their attention might be caught by a light up in the rig. The audience can look anywhere, and your job as a director is to focus the storytelling through tension and rhythm, but you don't have control of the frame. Being able to control that, and the rhythm, was something I found quite liberating in film.</p><p>The second difference is process. In theatre, if you're lucky, you have five to eight weeks to create a show. In film, your creative process actually happens before the shoot. When you're on set you have a bit of creativity, but mainly you've got to hit the beats and the shot list; it's a race against time. In theatre that period comes in tech, when you bring in the lights and the sound, right at the very end. So it was understanding that in film all the creative decisions happen beforehand, whilst in theatre you have the luxury of making them with the actors over four to eight weeks.</p></div></div>
+      </div>
+      <div class="qa">
+        <button class="qa-q" aria-expanded="false"><span class="qa-num">04</span><span class="qa-qtext">You describe yourself as a multidisciplinary artist. How do the other disciplines leak into how you direct?</span><span class="qa-toggle">+</span></button>
+        <div class="qa-a"><div class="qa-a-inner"><p>With visual art, I do a lot of painting. When I storyboard, I'll draw out each image, so I put that skill as a visual artist into my theatre and film work, being really specific about the frames, the colours, the visual language. For me, the most exciting thing is when you weave different art forms together. I've always loved it when stories are told using music, dance, all these different elements, because it can really help expand the story.</p><p>A big part of my work is dance. I trained as an ice dancer when I was very young, so when I'm using space I think about the relationship the camera has with the actor, how you choreograph that, and what the rhythm of it is. That's a skill that only comes into place if you have a background in movement, an understanding of how you sculpt space with people, the same as with blocking.</p><p>You also weave in your background as a writer. I write my own work, and that gives you a very specific training in story beats, language, dialogue and rhythm, and in how a strong draft translates visually. So it's weaving these elements together, and leaning on collaborators who have different skill sets from yours so you can keep weaving.</p><p>I really appreciate when stories are told using all of these: music, visual art, text. Putting them together often creates the most exciting piece of art. In Greece they talked about this; the highest form of art was when all three were merged together, and I think that's true. If you can communicate something using different art forms, you can touch different points with the audience. Someone might hear the score and be moved, someone might see the visual language, someone might hear the text. If you can tap into that, you can sculpt a story that's more three-dimensional.</p></div></div>
+      </div>
+      <div class="qa">
+        <button class="qa-q" aria-expanded="false"><span class="qa-num">05</span><span class="qa-qtext">What's next, and does it grow out of this, or push against it?</span><span class="qa-toggle">+</span></button>
+        <div class="qa-a"><div class="qa-a-inner"><p>What we've got next is Ubiquitous, which is currently doing its festival route, which has been really exciting; it's been lovely to build a community with other filmmakers. I also have a third short film in post-production, so right now we're finalising the score and the sound design, and hopefully it gets screened soon. I wanted to push into something more dialogue-heavy, so that one primarily explores dialogue and Gothic horror, which I think is going to be really fun, fun and camp.</p><p>I'm currently developing my feature script, spending a lot of time writing. This September I'll be making a music video for Aragore, who's a brilliant artist, with Gary Stu, an amazing cinematographer. Something I always like to do is one project a year, to film something, because it keeps the muscle growing.</p><p>I'm also building my production company, OPIA Collective. I want to find how I can, as a filmmaker and an artist, create resources and a platform for other people. Often you can wait around for someone to say yes, or to hand you funding, and if you do that, you'll be waiting for ages. So I want to build a platform that enables and validates people to think, fuck it, I can make something for £300, which Escape essentially was, made for £500 in total including post. Just to give those resources, and more transparency. So that's what's in the bag.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="director-section reveal">
+    <p class="section-tag">Director</p>
+    <h2 class="director-name">Masha Maroutitch</h2>
+    <p class="director-role">Writer &amp; Director</p>
+    <div class="director-bio">
+      <p>Masha Maroutitch is a multidisciplinary artist of Ukrainian, Russian and Jewish heritage, and Artistic Director of OPIA Collective, an associate company of the National Youth Theatre of Great Britain.</p>
+      <p>In 2023 her production of LALI by Shadi Hamta (VAULT Festival, Mercury Theatre) was nominated for the Origins Award for Outstanding Theatre. She was a JMK Finalist in 2022 for her production of Crave by Sarah Kane. In 2020 she was awarded the inaugural Bryan Forbes Bursary for the NYT REP Company, assisting Ed Stambollouian and Miranda Cromwell before writing and directing <em>Ordinary Miracle</em>, which premiered at the National Youth Theatre. Her debut play, <em>The Girl With Glitter In Her Eye</em>, premiered at the Bunker Theatre to strong critical reception. She is currently developing her third play, <em>BABEL</em>, with JFR Productions, shortlisted for the Jerwood Writers in Residence Award 2025.</p>
+      <p>Her debut short films <em>Ubiquitous</em> and <em>Escape</em> are currently on the festival circuit, selected for BIFA, BAFTA and Oscar-qualifying festivals. <em>Ubiquitous</em> premiered at BFI Flare earlier this year before winning Best LGBTQIA+ Film at the BIFA-qualifying Brighton Rocks International Film Festival.</p>
+      <p>As a writer and director, her work has been performed, commissioned and developed by the BFI, the Royal Albert Hall, the Bunker Theatre, Theatre Royal Stratford East, the National Youth Theatre, Battersea Arts Centre, nabokov, the Royal Shakespeare Company, Harts Theatre Company, the Lyric Hammersmith, the Royal Court and the Pleasance Theatre.</p>
+    </div>
+  </div>
+
+  <div class="stills-section reveal">
+    <p class="section-tag">Stills</p>
+    <div class="stills-grid">
+      <a class="still-frame" href="escape-still-3.jpg" target="_blank" rel="noopener">
+        <img src="escape-still-3.jpg" alt="Escape film still — a dancer in motion against the London skyline at dusk" loading="lazy">
+      </a>
+      <div class="stills-pair">
+        <a class="still-frame" href="escape-still-1.jpg" target="_blank" rel="noopener">
+          <img src="escape-still-1.jpg" alt="Escape film still — a quiet moment in golden light" loading="lazy">
+        </a>
+        <a class="still-frame" href="escape-still-2.jpg" target="_blank" rel="noopener">
+          <img src="escape-still-2.jpg" alt="Escape film still — hands reaching toward the sky" loading="lazy">
+        </a>
+      </div>
+      <a class="still-frame" href="escape-still-4.jpg" target="_blank" rel="noopener">
+        <img src="escape-still-4.jpg" alt="Escape film still — head tilted back, arms open at dusk" loading="lazy">
+      </a>
+    </div>
+  </div>
+
+  <div class="poster-feature reveal">
+    <div class="poster-wrap">
+      <img src="escape-poster.jpg" alt="Escape — official poster, written and directed by Masha Maroutitch" loading="lazy">
+    </div>
+    <div class="poster-credits">
+      <p class="section-tag">The One-Sheet</p>
+      <div class="poster-billing">
+        <span class="pb-role">Starring</span><span class="pb-name lead">Erika Sviderskyte</span>
+        <span class="pb-role">Written &amp; Directed</span><span class="pb-name">Masha Maroutitch</span>
+        <span class="pb-role">Cinematography</span><span class="pb-name">Joseph Hobbs</span>
+        <span class="pb-role">Editor</span><span class="pb-name">Joseph Hobbs</span>
+        <span class="pb-role">Choreography</span><span class="pb-name">Maria Koripas</span>
+        <span class="pb-role">Music</span><span class="pb-name">Ben Ramsden</span>
+      </div>
+      <p class="poster-studios">OPIA Collective &amp; Yestermorrow Studios present <em>Escape</em></p>
     </div>
   </div>
 
@@ -350,26 +393,11 @@
 </script>
 
 <script>
-  document.querySelectorAll('.notify-form').forEach(function(f){
-    f.addEventListener('submit', function(e){
-      var msg = f.closest('.notify-block').querySelector('.notify-msg');
-      if (f.getAttribute('action') === 'MAILCHIMP_FORM_ACTION_URL') {
-        e.preventDefault();
-        if (msg) msg.textContent = "Email updates are connecting soon — follow on Letterboxd to be first.";
-      }
-    });
-  });
-</script>
-<script>
-  document.querySelectorAll('.notify-form').forEach(function(f){
-    f.addEventListener('submit',function(e){
-      // NOTE: until the Mailchimp action is set above, this just shows the confirmation and does not store the email.
-      if(f.getAttribute('action').indexOf('REPLACE-WITH-MAILCHIMP')!==-1){
-        e.preventDefault();
-        f.style.display='none';
-        var d=f.parentNode.querySelector('.notify-done');
-        if(d) d.style.display='block';
-      }
+  document.querySelectorAll('.qa-q').forEach(function(b){
+    b.addEventListener('click', function(){
+      var qa=b.closest('.qa'); var open=qa.classList.toggle('open');
+      b.setAttribute('aria-expanded', open ? 'true':'false');
+      b.querySelector('.qa-toggle').textContent = open ? '\u00d7' : '+';
     });
   });
 </script>
