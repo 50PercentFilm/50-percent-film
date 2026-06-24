@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volume One — 50% Film</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512x512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="description" content="Volume One: the first 50% Film anthology. Short films on a real screen, the way they were meant to be seen. In assembly.">
+<link rel="canonical" href="https://50percentfilm.com/vol-1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="50% Film">
+<meta property="og:title" content="Volume One — 50% Film">
+<meta property="og:description" content="Volume One: the first 50% Film anthology. Short films on a real screen, the way they were meant to be seen. In assembly.">
+<meta property="og:url" content="https://50percentfilm.com/vol-1">
+<meta property="og:image" content="https://50percentfilm.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Volume One — 50% Film">
+<meta name="twitter:description" content="Volume One: the first 50% Film anthology. Short films on a real screen, the way they were meant to be seen. In assembly.">
+<meta name="twitter:image" content="https://50percentfilm.com/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f0ece4;
+    --cream: #e8e2d6;
+    --red: #c8341a;
+    --gray: #2a2a2a;
+    --mid: #888;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    cursor: none;
+    overflow-x: hidden;
+  }
+
+  .cursor {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: var(--red);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.2s, height 0.2s;
+    mix-blend-mode: difference;
+  }
+  .cursor.big { width: 40px; height: 40px; }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.35;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 28px 40px;
+    mix-blend-mode: difference;
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.15em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  /* Menu toggle button */
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: none;
+    border: none;
+    cursor: none;
+    padding: 0;
+    z-index: 101;
+    color: var(--white);
+  }
+
+  .menu-toggle-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  .menu-toggle-bars {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 26px;
+    height: 18px;
+  }
+
+  .menu-toggle-bars span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--white);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .menu-toggle.open .menu-toggle-bars span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle.open .menu-toggle-bars span:nth-child(2) { opacity: 0; }
+  .menu-toggle.open .menu-toggle-bars span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Dropdown menu panel */
+  .nav-dropdown {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(420px, 100%);
+    height: 100vh;
+    background: var(--black);
+    border-left: 1px solid #1a1a1a;
+    z-index: 99;
+    transform: translateX(100%);
+    transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 100px 48px;
+  }
+
+  .nav-dropdown.open {
+    transform: translateX(0);
+  }
+
+  .nav-dropdown-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 20px;
+  }
+
+  .nav-dropdown-list {
+    list-style: none;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .nav-dropdown-list li {
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .nav-dropdown-list a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 0;
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--white);
+    text-decoration: none;
+    transition: padding-left 0.3s, color 0.3s;
+  }
+
+  .nav-dropdown-list a:hover {
+    color: var(--red);
+    padding-left: 12px;
+  }
+
+  .nav-dropdown-list a.current {
+    color: var(--red);
+  }
+
+  .nav-dropdown-list a .nav-dropdown-num {
+    font-family: 'Space Mono', monospace;
+    font-style: normal;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--mid);
+    transition: color 0.3s;
+  }
+
+  .nav-dropdown-list a:hover .nav-dropdown-num,
+  .nav-dropdown-list a.current .nav-dropdown-num {
+    color: var(--red);
+  }
+
+  .nav-dropdown-footer {
+    margin-top: 48px;
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+
+  .nav-dropdown-footer a {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-dropdown-footer a:hover { color: var(--white); }
+
+  /* Dimmed backdrop */
+  .nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,10,10,0.6);
+    backdrop-filter: blur(2px);
+    z-index: 98;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+  }
+  .nav-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (max-width: 600px) {
+    .nav-dropdown { padding: 100px 28px; width: 100%; }
+    .nav-dropdown-list a { font-size: 22px; }
+    .menu-toggle-label { display: none; }
+  }
+
+  /* PAGE HEAD — mirror booth */
+  .page-head {
+    min-height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 160px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Spotlight glow behind the title */
+  .page-head::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70vw;
+    height: 70vw;
+    transform: translate(-50%, -55%);
+    background: radial-gradient(circle, rgba(200,52,26,0.10) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 13vw, 180px);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-title em {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    color: var(--mid);
+  }
+
+  /* The "you talkin to me" line */
+  .mirror-line {
+    margin-top: 28px;
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: clamp(20px, 3.5vw, 36px);
+    color: var(--cream);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+    position: relative;
+    z-index: 1;
+  }
+
+  .mirror-line::before,
+  .mirror-line::after {
+    content: '—';
+    color: var(--red);
+    margin: 0 12px;
+    font-family: 'Space Mono', monospace;
+    font-style: normal;
+    opacity: 0.5;
+  }
+
+  .mirror-sub {
+    margin-top: 24px;
+    font-size: 11px;
+    line-height: 1.9;
+    color: var(--mid);
+    max-width: 480px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* SLATE / CLAPPERBOARD INTRO STRIP */
+  .slate-strip {
+    border-top: 1px solid #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .slate-cell {
+    padding: 28px 32px;
+    border-right: 1px solid #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .slate-cell:last-child { border-right: none; }
+
+  .slate-label {
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  .slate-value {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  @media (max-width: 768px) {
+    .slate-strip { grid-template-columns: 1fr 1fr; }
+    .slate-cell { padding: 24px; border-bottom: 1px solid #1a1a1a; }
+    .slate-cell:nth-child(2) { border-right: none; }
+    .slate-cell:nth-child(4) { border-right: none; border-bottom: none; }
+    .slate-cell:nth-child(3) { border-bottom: none; }
+  }
+
+  /* CONTACT SECTION */
+  .contact {
+    padding: 120px 40px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 64px;
+    border-bottom: 1px solid #1e1e1e;
+    padding-bottom: 24px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 5vw, 72px);
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+
+  .section-title em {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    color: var(--mid);
+  }
+
+  .section-count {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+  }
+
+  .contact-p {
+    font-size: 12px;
+    line-height: 2;
+    color: var(--mid);
+    margin-bottom: 24px;
+    max-width: 440px;
+  }
+
+  .contact-email {
+    color: var(--white);
+    text-decoration: underline;
+    text-decoration-color: var(--red);
+    text-underline-offset: 4px;
+    transition: color 0.2s;
+  }
+  .contact-email:hover { color: var(--red); }
+
+  .contact-fact {
+    margin-top: 48px;
+    border: 1px solid #1e1e1e;
+    padding: 28px;
+    background: #0f0f0f;
+    max-width: 440px;
+  }
+
+  .contact-fact-label {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+
+  .contact-fact-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--white);
+  }
+
+  .contact-fact-note {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: none;
+    color: var(--mid);
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+
+  /* Credits-style sign-off list */
+  .contact-credits {
+    margin-top: 32px;
+    border-top: 1px solid #1e1e1e;
+    padding-top: 24px;
+  }
+
+  .contact-credits-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    padding: 10px 0;
+    border-bottom: 1px solid #161616;
+  }
+  .contact-credits-row:last-child { border-bottom: none; }
+
+  .contact-credits-row span:last-child {
+    color: var(--white);
+    text-transform: none;
+    letter-spacing: 0.05em;
+    text-align: right;
+  }
+
+  /* CONTACT FORM */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form-group label {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  .form-group input,
+  .form-group textarea {
+    background: #111;
+    border: 1px solid #2a2a2a;
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    padding: 16px 18px;
+    transition: border-color 0.2s, background 0.2s;
+    resize: vertical;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: #555;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--red);
+    background: #141414;
+  }
+
+  .form-submit {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--white);
+    border: none;
+    padding: 18px 36px;
+    cursor: none;
+    transition: background 0.2s, color 0.2s;
+    align-self: flex-start;
+  }
+  .form-submit:hover { background: var(--red); color: var(--white); }
+  .form-submit:disabled { opacity: 0.6; cursor: none; }
+
+  .form-note {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+    min-height: 1.5em;
+  }
+  .form-note.success { color: var(--red); }
+
+  @media (max-width: 768px) {
+    .contact { padding: 80px 24px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  /* TICKER */
+  .ticker {
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+    overflow: hidden;
+    padding: 12px 0;
+    background: var(--black);
+  }
+  .ticker-track {
+    display: flex;
+    gap: 60px;
+    animation: ticker 24s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-item {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mid);
+    flex-shrink: 0;
+  }
+  .ticker-item span { color: var(--red); margin-right: 10px; }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid #1a1a1a;
+    padding: 48px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.15em; }
+  .footer-copy { font-size: 9px; letter-spacing: 0.15em; color: var(--mid); text-transform: uppercase; }
+  .footer-links { display: flex; gap: 32px; list-style: none; }
+  .footer-links a { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; mix-blend-mode: normal; }
+    .page-head { padding: 120px 24px 60px; min-height: 65vh; }
+    footer { flex-direction: column; gap: 24px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+
+  .about-section { max-width: 900px; margin: 0 auto; padding: 70px 32px; }
+  .about-section .section-header { margin-bottom: 32px; }
+  .about-lede { font-family: 'DM Serif Display', serif; font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.3; color: var(--white); margin-bottom: 28px; }
+  .about-p { font-size: 0.95rem; line-height: 1.85; color: var(--cream); margin-bottom: 22px; max-width: 68ch; }
+  .about-p em { color: var(--red); font-style: italic; }
+  .about-cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; padding: 20px 32px 110px; }
+  .about-cta { display: inline-block; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.08em; font-size: 1.35rem; padding: 16px 40px; border: 1px solid var(--white); color: var(--white); text-decoration: none; transition: background .25s, color .25s; }
+  .about-cta:hover { background: var(--white); color: var(--black); }
+  .about-cta.primary { background: var(--red); border-color: var(--red); }
+  .about-cta.primary:hover { background: var(--white); border-color: var(--white); color: var(--black); }
+
+  .notify-section { margin: 20px auto 0; padding: 56px 0 0; text-align: center; max-width: 560px; }
+  .notify-eyebrow { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--red); margin-bottom: 14px; }
+  .notify-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(30px,5vw,48px); letter-spacing: 0.03em; line-height: 1; margin-bottom: 12px; }
+  .notify-title em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--red); }
+  .notify-sub { font-size: 13px; color: var(--cream); margin-bottom: 26px; }
+  .notify-form { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .notify-input { flex: 1; min-width: 220px; background: #111; border: 1px solid #2a2a2a; color: var(--white); padding: 14px 16px; font-family: 'Space Mono', monospace; font-size: 13px; }
+  .notify-input:focus { outline: none; border-color: var(--red); }
+  .notify-btn { background: var(--red); color: var(--white); border: none; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.08em; font-size: 18px; padding: 0 30px; cursor: pointer; transition: background .2s, color .2s; }
+  .notify-btn:hover { background: var(--white); color: var(--black); }
+  .notify-done { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--cream); margin-top: 20px; font-size: 18px; display: none; }
+  .vol-films { max-width: 760px; margin: 0 auto; }
+  .vol-film { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 20px 0; border-bottom: 1px solid #1a1a1a; text-decoration: none; transition: padding-left .2s; }
+  .vol-film:hover { padding-left: 12px; }
+  .vol-film:hover .vol-film-title { color: var(--red); }
+  .vol-film-l { display: flex; align-items: baseline; gap: 18px; }
+  .vol-film-num { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--mid); }
+  .vol-film-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(20px,3vw,28px); color: var(--white); transition: color .2s; }
+  .vol-film-dir { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); }
+  .vol-film-run { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--cream); white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- BACKDROP -->
+<div class="nav-backdrop" id="navBackdrop"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">50% Film</a>
+  <button class="menu-toggle" id="navToggle" aria-label="Toggle menu">
+    <span class="menu-toggle-label">Menu</span>
+    <span class="menu-toggle-bars"><span></span><span></span><span></span></span>
+  </button>
+</nav>
+
+<!-- DROPDOWN MENU -->
+<div class="nav-dropdown" id="navDropdown">
+  <div class="nav-dropdown-eyebrow">Navigate</div>
+  <ul class="nav-dropdown-list">
+    <li><a href="index.html"><span>Home</span><span class="nav-dropdown-num">00</span></a></li>
+    <li><a href="catalogue.html"><span>Catalogue</span><span class="nav-dropdown-num">01</span></a></li>
+    <li><a href="collections.html"><span>Collections</span><span class="nav-dropdown-num">02</span></a></li>
+    <li><a href="archive.html"><span>Archive</span><span class="nav-dropdown-num">03</span></a></li>
+    <li><a href="news.html"><span>News</span><span class="nav-dropdown-num">04</span></a></li>
+    <li><a href="about.html"><span>About</span><span class="nav-dropdown-num">05</span></a></li>
+    <li><a href="submit.html"><span>Submit</span><span class="nav-dropdown-num">06</span></a></li>
+    <li><a href="contact.html"><span>Contact</span><span class="nav-dropdown-num">07</span></a></li>
+  </ul>
+  <div class="nav-dropdown-footer">
+    <a href="https://www.instagram.com/50percentfilm/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://boxd.it/lHBGz" target="_blank" rel="noopener">Letterboxd</a>
+    <a href="#">Newsletter</a>
+    <a href="mailto:50percentfilm@gmail.com">Email</a>
+  </div>
+</div>
+
+<!-- PAGE HEAD -->
+<section class="page-head">
+  <p class="page-eyebrow">Volume One</p>
+  <h1 class="page-title">The First<br><em>Programme.</em></h1>
+  <p class="mirror-line">Short films, on a real screen, the way they were meant to be seen.</p>
+  <p class="mirror-sub">The long-term plan was always bigger than a website. Volume One is the first step toward it: a curated anthology of short films, built to play start to finish in a cinema. Half the runtime of a feature, all of the feeling.</p>
+</section>
+
+<div class="slate-strip">
+  <div class="slate-cell reveal"><div class="slate-label">Format</div><div class="slate-value">Anthology</div></div>
+  <div class="slate-cell reveal"><div class="slate-label">Runtime</div><div class="slate-value">Half a Feature</div></div>
+  <div class="slate-cell reveal"><div class="slate-label">Venue</div><div class="slate-value">To Be Announced</div></div>
+  <div class="slate-cell reveal"><div class="slate-label">Status</div><div class="slate-value">In Assembly</div></div>
+</div>
+
+<section class="about-section">
+  <div class="section-header reveal">
+    <h2 class="section-title">The <em>Idea</em></h2>
+    <span class="section-count">Why a programme</span>
+  </div>
+  <p class="about-p reveal">A great short deserves more than an autoplay thumbnail and a scroll past. It deserves a dark room, a big screen, and an audience that chose to be there. Volume One gathers a handful of the films we love into a single sitting, programmed like an album, ordered to be felt as one piece.</p>
+  <p class="about-p reveal">The films below are the ones confirmed so far. The final running order locks closer to the first screening. If you make short films, or just want to be in that room, leave your email and you'll be first to know when and where.</p>
+</section>
+
+<section class="about-section">
+  <div class="section-header reveal">
+    <h2 class="section-title">The Selection <em>So Far</em></h2>
+    <span class="section-count">Confirmed</span>
+  </div>
+  <div class="vol-films reveal">
+    <a href="cosmo.html" class="vol-film">
+      <span class="vol-film-l"><span class="vol-film-num">01</span><span><span class="vol-film-title">COSMO</span> &nbsp;<span class="vol-film-dir">Dir. Joey Lever</span></span></span>
+      <span class="vol-film-run">4 min</span>
+    </a>
+    <a href="dear-tooth-fairy.html" class="vol-film">
+      <span class="vol-film-l"><span class="vol-film-num">02</span><span><span class="vol-film-title">Dear Tooth Fairy</span> &nbsp;<span class="vol-film-dir">Dir. Liah Danquah</span></span></span>
+      <span class="vol-film-run">4 min</span>
+    </a>
+    <a href="narben.html" class="vol-film">
+      <span class="vol-film-l"><span class="vol-film-num">03</span><span><span class="vol-film-title">Narben</span> &nbsp;<span class="vol-film-dir">Dir. Joshua Haiden</span></span></span>
+      <span class="vol-film-run">9 min</span>
+    </a>
+    <a href="leclat.html" class="vol-film">
+      <span class="vol-film-l"><span class="vol-film-num">04</span><span><span class="vol-film-title">L&rsquo;éclat</span> &nbsp;<span class="vol-film-dir">Dir. Tansi Makele</span></span></span>
+      <span class="vol-film-run">2 min</span>
+    </a>
+    <a href="my-last-day-on-earth.html" class="vol-film">
+      <span class="vol-film-l"><span class="vol-film-num">05</span><span><span class="vol-film-title">My Last Day on Earth</span> &nbsp;<span class="vol-film-dir">Dir. Pauliina Leskinen</span></span></span>
+      <span class="vol-film-run">4 min</span>
+    </a>
+    <a href="disclosure.html" class="vol-film">
+      <span class="vol-film-l"><span class="vol-film-num">06</span><span><span class="vol-film-title">Disclosure</span> &nbsp;<span class="vol-film-dir">Dir. Alex Valderana</span></span></span>
+      <span class="vol-film-run">20 min</span>
+    </a>
+    <a href="ilovethettc102.html" class="vol-film">
+      <span class="vol-film-l"><span class="vol-film-num">07</span><span><span class="vol-film-title">@ilovethettc102</span> &nbsp;<span class="vol-film-dir">Dir. Saga Ardyanto</span></span></span>
+      <span class="vol-film-run">10 min</span>
+    </a>
+    <a href="thinking-vulnerability.html" class="vol-film">
+      <span class="vol-film-l"><span class="vol-film-num">08</span><span><span class="vol-film-title">Thinking Vulnerability</span> &nbsp;<span class="vol-film-dir">Dir. Miloushka Bokma</span></span></span>
+      <span class="vol-film-run">12 min</span>
+    </a>
+    <a href="amy-and-i.html" class="vol-film">
+      <span class="vol-film-l"><span class="vol-film-num">09</span><span><span class="vol-film-title">Amy &amp; I</span> &nbsp;<span class="vol-film-dir">Dir. Bastiaan Rook</span></span></span>
+      <span class="vol-film-run">7 min</span>
+    </a>
+    <a href="perseus.html" class="vol-film">
+      <span class="vol-film-l"><span class="vol-film-num">10</span><span><span class="vol-film-title">Perseus</span> &nbsp;<span class="vol-film-dir">Dir. Jack Davies</span></span></span>
+      <span class="vol-film-run">3 min</span>
+    </a>
+    <a href="toy-gun.html" class="vol-film">
+      <span class="vol-film-l"><span class="vol-film-num">11</span><span><span class="vol-film-title">Toy-Gun</span> &nbsp;<span class="vol-film-dir">Dir. Emre Karabacak</span></span></span>
+      <span class="vol-film-run">16 min</span>
+    </a>
+    <a href="escape.html" class="vol-film">
+      <span class="vol-film-l"><span class="vol-film-num">12</span><span><span class="vol-film-title">Escape</span> &nbsp;<span class="vol-film-dir">Dir. Masha Maroutitch</span></span></span>
+      <span class="vol-film-run">4 min</span>
+    </a>
+    <a href="english-beasts.html" class="vol-film">
+      <span class="vol-film-l"><span class="vol-film-num">13</span><span><span class="vol-film-title">English Beasts</span> &nbsp;<span class="vol-film-dir">Dir. Nikolas Harris</span></span></span>
+      <span class="vol-film-run">15 min</span>
+    </a>
+  </div>
+</section>
+
+<div class="notify-section reveal">
+  <div class="notify-eyebrow">First screening</div>
+  <h3 class="notify-title">Be in the <em>room.</em></h3>
+  <p class="notify-sub">We'll email you the moment the date and venue are set. Nothing else.</p>
+  <form class="notify-form" action="#REPLACE-WITH-MAILCHIMP-ACTION" method="post" target="_blank">
+    <input type="email" name="EMAIL" placeholder="your@email.com" required class="notify-input" aria-label="Email address">
+    <button type="submit" class="notify-btn">Keep Me Posted →</button>
+  </form>
+  <p class="notify-done">You're on the list. We'll be in touch.</p>
+</div>
+
+<div class="about-cta-row">
+  <a href="catalogue.html" class="about-cta">See the Catalogue</a>
+  <a href="submit.html" class="about-cta primary">Submit Your Film</a>
+</div>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item"><span>✦</span> Volume One — in assembly</div>
+    <div class="ticker-item"><span>✦</span> Short films on a real screen</div>
+    <div class="ticker-item"><span>✦</span> Half a feature, all the feeling</div>
+    <div class="ticker-item"><span>✦</span> Volume One — in assembly</div>
+    <div class="ticker-item"><span>✦</span> Short films on a real screen</div>
+    <div class="ticker-item"><span>✦</span> Half a feature, all the feeling</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">50% Film</div>
+  <span class="footer-copy">© 2025–2026 — Short Cinema Label — London, UK</span>
+  <ul class="footer-links">
+    <li><a href="https://www.instagram.com/50percentfilm/" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="https://boxd.it/lHBGz" target="_blank" rel="noopener">Letterboxd</a></li>
+    <li><a href="#">Newsletter</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Dropdown menu toggle
+  const navToggle = document.getElementById('navToggle');
+  const navDropdown = document.getElementById('navDropdown');
+  const navBackdrop = document.getElementById('navBackdrop');
+
+  function closeMenu() {
+    navToggle.classList.remove('open');
+    navDropdown.classList.remove('open');
+    navBackdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function toggleMenu() {
+    const isOpen = navDropdown.classList.contains('open');
+    if (isOpen) {
+      closeMenu();
+    } else {
+      navToggle.classList.add('open');
+      navDropdown.classList.add('open');
+      navBackdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  navToggle.addEventListener('click', toggleMenu);
+  navBackdrop.addEventListener('click', closeMenu);
+  navDropdown.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('big'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 70);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Contact form submission (Formspree)
+  const contactForm = document.getElementById('contactForm');
+  const formNote = document.getElementById('formNote');
+
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const submitBtn = contactForm.querySelector('.form-submit');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    formNote.textContent = '';
+    formNote.classList.remove('success');
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        contactForm.reset();
+        formNote.textContent = 'Message sent. Cut! That\'s a wrap — we\'ll get back to you soon.';
+        formNote.classList.add('success');
+        submitBtn.textContent = 'Sent ✓';
+      } else {
+        formNote.textContent = 'Something went wrong. Try again, or email us directly at 50percentfilm@gmail.com.';
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }
+    } catch (err) {
+      formNote.textContent = 'Something went wrong. Try again, or email us directly at 50percentfilm@gmail.com.';
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }
+  });
+</script>
+
+<script>
+  document.querySelectorAll('.notify-form').forEach(function(f){
+    f.addEventListener('submit',function(e){
+      if(f.getAttribute('action').indexOf('REPLACE-WITH-MAILCHIMP')!==-1){
+        e.preventDefault(); f.style.display='none';
+        var d=f.parentNode.querySelector('.notify-done'); if(d) d.style.display='block';
+      }
+    });
+  });
+</script>
+</body>
+</html>

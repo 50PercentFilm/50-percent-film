@@ -1,30 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<!DOCTYPE html>
-<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Last Day on Earth — 50% Film</title>
+<title>Amy &amp; I — 50% Film</title>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="favicon-512x512.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<meta name="description" content="My Last Day on Earth, a sci-fi short by Pauliina Leskinen about an astronaut spending their last day on earth. Coming soon to 50% Film.">
-<link rel="canonical" href="https://50percentfilm.com/my-last-day-on-earth">
+<meta name="description" content="Amy &amp; I, a 7-minute Dutch horror short by Bastiaan Rook, shot in one continuous take. On 50% Film.">
+<link rel="canonical" href="https://50percentfilm.com/amy-and-i">
 <meta property="og:type" content="video.movie">
 <meta property="og:site_name" content="50% Film">
-<meta property="og:title" content="My Last Day on Earth — 50% Film">
-<meta property="og:description" content="My Last Day on Earth, a sci-fi short by Pauliina Leskinen about an astronaut spending their last day on earth. Coming soon to 50% Film.">
-<meta property="og:url" content="https://50percentfilm.com/my-last-day-on-earth">
-<meta property="og:image" content="https://50percentfilm.com/og-my-last-day-on-earth.jpg">
+<meta property="og:title" content="Amy &amp; I — 50% Film">
+<meta property="og:description" content="Amy &amp; I, a 7-minute Dutch horror short by Bastiaan Rook, shot in one continuous take. On 50% Film.">
+<meta property="og:url" content="https://50percentfilm.com/amy-and-i">
+<meta property="og:image" content="https://50percentfilm.com/og-cosmo.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="My Last Day on Earth — 50% Film">
-<meta name="twitter:description" content="My Last Day on Earth, a sci-fi short by Pauliina Leskinen about an astronaut spending their last day on earth. Coming soon to 50% Film.">
-<meta name="twitter:image" content="https://50percentfilm.com/og-my-last-day-on-earth.jpg">
+<meta name="twitter:title" content="Amy &amp; I — 50% Film">
+<meta name="twitter:description" content="Amy &amp; I, a 7-minute Dutch horror short by Bastiaan Rook, shot in one continuous take. On 50% Film.">
+<meta name="twitter:image" content="https://50percentfilm.com/og-cosmo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
@@ -153,12 +151,6 @@
     .awards-strip { padding: 16px 24px; gap: 20px; }
   }
 
-  .coming-poster { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; background:linear-gradient(160deg,#111 0%,#0d0d0d 100%); }
-  .coming-poster .cp-eyebrow { font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:var(--red); }
-  .coming-poster .cp-main { font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,5vw,52px); letter-spacing:0.04em; color:var(--cream); }
-  .status-item.live::before { content:'●'; color:var(--red); }
-
-
   /* HERO ART — film-strip grid, matches the index hero */
   .film-hero-art { position:absolute; inset:0; z-index:0; display:grid; grid-template-columns:repeat(4,1fr); }
   .fh-strip { position:relative; overflow:hidden; }
@@ -173,14 +165,15 @@
   .fh-perf.l { left:0; } .fh-perf.r { right:0; }
   .fh-vert { position:absolute; right:-6px; top:50%; transform:translateY(-50%) rotate(90deg); font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:rgba(240,236,228,0.16); white-space:nowrap; z-index:1; }
 
-  .coming-poster .cp-eyebrow { color:var(--red); }
-  .coming-poster .cp-main { font-size:clamp(34px,6vw,68px); }
-  .coming-poster .cp-sub { font-family:'DM Serif Display',serif; font-style:italic; font-size:clamp(16px,2.6vw,26px); color:var(--mid); }
+/* hero art: COSMO card */
+.film-hero-bg { background: radial-gradient(ellipse 80% 60% at 60% 30%, #2d1b69 0%, #0d0620 60%, #050010 100%) !important; }
+.film-hero-bg::before { content:'' !important; display:block !important; position:absolute; inset:0; background-image: radial-gradient(1.5px 1.5px at 15% 20%, rgba(255,255,255,0.9) 0%, transparent 100%), radial-gradient(1px 1px at 70% 15%, rgba(255,255,255,0.7) 0%, transparent 100%), radial-gradient(2px 2px at 40% 60%, rgba(200,160,255,0.8) 0%, transparent 100%), radial-gradient(1px 1px at 85% 40%, rgba(255,255,255,0.6) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 25% 75%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 55% 85%, rgba(180,140,255,0.7) 0%, transparent 100%), radial-gradient(2px 2px at 10% 50%, rgba(255,220,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 90% 70%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 50% 35%, rgba(255,255,255,0.6) 0%, transparent 100%), radial-gradient(1px 1px at 30% 90%, rgba(200,180,255,0.5) 0%, transparent 100%) !important; }
+.film-hero-bg::after { content:'' !important; display:block !important; position:absolute; width:360px; height:360px; top:6%; left:55%; transform:translate(-50%,0); border-radius:50%; background: radial-gradient(circle, rgba(160,100,255,0.35) 0%, rgba(80,40,180,0.15) 50%, transparent 70%) !important; box-shadow: 0 0 100px 35px rgba(120,60,220,0.2) !important; }
 
-/* hero art: My Last Day card */
-.film-hero-bg { background: radial-gradient(ellipse 100% 100% at 50% 0%, #0a1628 0%, #060c18 50%, #030610 100%) !important; }
-.film-hero-bg::before { content:'' !important; display:block !important; position:absolute; inset:0; background-image: radial-gradient(1px 1px at 20% 15%, rgba(255,255,255,0.8) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 75% 10%, rgba(200,220,255,0.7) 0%, transparent 100%), radial-gradient(1px 1px at 45% 30%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(2px 2px at 85% 35%, rgba(180,200,255,0.6) 0%, transparent 100%), radial-gradient(1px 1px at 10% 55%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 60% 20%, rgba(220,230,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 35% 70%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(1px 1px at 90% 60%, rgba(200,210,255,0.4) 0%, transparent 100%) !important; }
-.film-hero-bg::after { content:'' !important; display:block !important; position:absolute; width:130px; height:130px; top:22%; left:50%; transform:translate(-50%,0); border-radius:50%; background: radial-gradient(circle, rgba(160,200,255,0.15) 0%, transparent 70%) !important; box-shadow: 0 0 60px 20px rgba(100,160,255,0.1) !important; }
+  .coming-poster { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; background:linear-gradient(160deg,#111 0%,#0d0d0d 100%); text-align:center; padding:24px; }
+  .coming-poster .cp-eyebrow { font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:var(--red); }
+  .coming-poster .cp-main { font-family:'Bebas Neue',sans-serif; font-size:clamp(34px,6vw,68px); letter-spacing:0.04em; color:var(--cream); line-height:1; }
+  .coming-poster .cp-sub { font-family:'DM Serif Display',serif; font-style:italic; font-size:clamp(16px,2.6vw,26px); color:var(--mid); }
 
   .notify-block { margin-top: 80px; padding: 40px; border: 1px solid #1e1e1e; background: linear-gradient(135deg, rgba(200,52,26,0.05), transparent 60%); }
   .notify-eyebrow { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--red); margin-bottom: 12px; }
@@ -210,10 +203,19 @@
   .notify-or { font-size: 11px; color: var(--mid); margin-top: 18px; }
   .notify-or a { color: var(--cream); }
   .notify-done { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--cream); margin-top: 20px; font-size: 18px; display: none; }
+
+  /* hero art */
+  .film-hero-bg { background: linear-gradient(155deg, #160808 0%, #100606 52%, #0a0a0a 100%) !important; }
+  .film-hero-bg::before { content:'' !important; display:block !important; position:absolute; inset:0; background: radial-gradient(ellipse 72% 55% at 62% 32%, rgba(200,60,40,0.16) 0%, transparent 66%) !important; }
+  .film-hero-bg::after { content:'' !important; display:block !important; position:absolute; top:6%; right:15%; width:320px; height:320px; border-radius:50%; background: radial-gradient(circle, rgba(200,40,30,0.26) 0%, transparent 70%) !important; box-shadow: 0 0 95px 32px rgba(180,30,20,0.14) !important; }
+
+/* bespoke hero art */
+.film-hero-bg { background: radial-gradient(ellipse 80% 90% at 55% 40%, #1b0b08 0%, #0c0504 68%, #050202 100%) !important; }
+.film-hero-bg::before { content:'' !important; display:block !important; position:absolute; inset:0; background: radial-gradient(ellipse 8% 30% at 58% 30%, rgba(255,172,72,0.5) 0%, rgba(220,110,30,0.16) 45%, transparent 70%) !important; }
+.film-hero-bg::after { content:'' !important; display:block !important; position:absolute; inset:0; box-shadow: inset 0 0 160px 50px rgba(120,12,12,0.45) !important; background: radial-gradient(ellipse 50% 40% at 50% 100%, rgba(180,30,20,0.18) 0%, transparent 60%) !important; }
 </style>
 </head>
 <body>
-
 <div class="cursor" id="cursor"></div>
 
 <nav>
@@ -226,23 +228,23 @@
   <div class="hero-overlay"></div>
   <div class="film-hero-content">
     <div>
-      <p class="film-collection-tag">Signal Collection · Sci-Fi</p>
-      <h1 class="film-title">My Last Day<br>on Earth<em>An astronaut&rsquo;s last day on Earth.</em></h1>
+      <p class="film-collection-tag">Dread Collection · Horror</p>
+      <h1 class="film-title">Amy &amp; I<em>One dinner. One take.</em></h1>
       <div class="film-hero-meta">
-        <div class="meta-item"><span class="meta-label">Director</span><span class="meta-value">Pauliina Leskinen</span></div>
-        <div class="meta-item"><span class="meta-label">Runtime</span><span class="meta-value">4 min</span></div>
-        <div class="meta-item"><span class="meta-label">Genre</span><span class="meta-value">Sci-Fi</span></div>
+        <div class="meta-item"><span class="meta-label">Director</span><span class="meta-value">Bastiaan Rook</span></div>
+        <div class="meta-item"><span class="meta-label">Runtime</span><span class="meta-value">7:12</span></div>
+        <div class="meta-item"><span class="meta-label">Genre</span><span class="meta-value">Horror</span></div>
         <div class="meta-item"><span class="meta-label">Status</span><span class="meta-value">Coming Soon</span></div>
       </div>
     </div>
-    <div class="film-hero-right"><div class="film-number">02</div></div>
+    <div class="film-hero-right"><div class="film-number">09</div></div>
   </div>
 </section>
 
 <div class="awards-strip">
   <span class="awards-label">Status</span>
   <div class="award-item">Coming soon to 50% Film</div>
-  <div class="award-item">Science-fiction short</div>
+  <div class="award-item">Horror · Netherlands</div>
   <div class="award-item">Selected for the catalogue</div>
 </div>
 
@@ -258,9 +260,8 @@
       </div>
     </div>
   </div>
-
   <div class="film-links">
-    <a href="https://letterboxd.com/film/my-last-day-on-earth-1/" class="film-ext-link letterboxd" target="_blank" rel="noopener">
+    <a href="https://letterboxd.com/film/amy-i/" class="film-ext-link letterboxd" target="_blank" rel="noopener">
       <span class="link-dot dot-green"></span>
       View on Letterboxd
     </a>
@@ -269,15 +270,15 @@
   <div class="info-grid">
     <div class="synopsis-section reveal">
       <p class="section-tag">Synopsis</p>
-      <p class="synopsis-text">An astronaut spending their last day on Earth.</p>
-      <p class="synopsis-body">A science-fiction short directed by Pauliina Leskinen. Full synopsis and stills to follow ahead of release. Until then, you can follow the film on Letterboxd.</p>
+      <p class="synopsis-text">A dinner where the couple first met, under quiet pressure.</p>
+      <p class="synopsis-body">Amy and her boyfriend share a nice dinner at the place where they first met, but it turns out there is some pressure on their relationship. Shot in a single continuous take.</p>
     </div>
 
     <div class="director-section reveal">
       <p class="section-tag">Director</p>
-      <h2 class="director-name">Pauliina Leskinen</h2>
+      <h2 class="director-name">Bastiaan Rook</h2>
       <p class="director-role">Director</p>
-      <p class="director-bio">Pauliina Leskinen directed My Last Day on Earth. More on the director to come.</p>
+      <p class="director-bio">Bastiaan Rook directed Amy & I. More on the director to come.</p>
 
       <div class="interview-placeholder">
         <p class="interview-placeholder-label">Director Interview</p>
@@ -285,47 +286,35 @@
       </div>
 
       <div class="film-details">
-        <div class="detail-row"><span class="detail-key">Runtime</span><span class="detail-val">4 min</span></div>
-        <div class="detail-row"><span class="detail-key">Genre</span><span class="detail-val">Sci-Fi</span></div>
-        <div class="detail-row"><span class="detail-key">Collection</span><span class="detail-val">Signal</span></div>
-        <div class="detail-row"><span class="detail-key">Status</span><span class="detail-val">Coming Soon</span></div>
+        <div class="detail-row"><span class="detail-key">Runtime</span><span class="detail-val">7:12</span></div>
+        <div class="detail-row"><span class="detail-key">Genre</span><span class="detail-val">Horror</span></div>
+        <div class="detail-row"><span class="detail-key">Year</span><span class="detail-val">2022</span></div>
+        <div class="detail-row"><span class="detail-key">Language</span><span class="detail-val">Dutch</span></div>
+        <div class="detail-row"><span class="detail-key">Country</span><span class="detail-val">Netherlands</span></div>
+        <div class="detail-row"><span class="detail-key">Collection</span><span class="detail-val">Dread</span></div>
         <div class="detail-row"><span class="detail-key">Label</span><span class="detail-val">50% Film</span></div>
       </div>
-    </div>
-  </div>
-
-  <div class="cast-section reveal">
-    <p class="section-tag">Cast</p>
-    <div class="cast-grid">
-      <div class="cast-card"><div class="cast-role">Astronaut</div><div class="cast-name">Meltem Orujova</div></div>
     </div>
   </div>
 
   <div class="crew-section reveal">
     <p class="section-tag">Crew</p>
     <div class="crew-grid">
-      <div class="crew-card"><div class="crew-dept">Director</div><div class="crew-name">Pauliina Leskinen</div></div>
-      <div class="crew-card"><div class="crew-dept">Producer</div><div class="crew-name">Meltem Orujova</div></div>
-      <div class="crew-card"><div class="crew-dept">Cinematography</div><div class="crew-name">Arsenii Morin</div></div>
-      <div class="crew-card"><div class="crew-dept">Editor</div><div class="crew-name">Stanislav Ogurov</div></div>
+      <div class="crew-card"><div class="crew-dept">Director</div><div class="crew-name">Bastiaan Rook</div></div>
     </div>
   </div>
 
-  <div class="notify-block reveal">
-    <div class="notify-copy">
-      <p class="notify-eyebrow">Don't miss the drop</p>
-      <h3 class="notify-head">Be first when it lands.</h3>
-      <p class="notify-sub">Follow the label on Letterboxd, or leave your email and we'll tell you the moment it goes live.</p>
-    </div>
-    <div class="notify-actions">
-      <a href="https://boxd.it/lHBGz" class="notify-btn primary" target="_blank" rel="noopener">Follow on Letterboxd</a>
-      <form class="notify-form" action="MAILCHIMP_FORM_ACTION_URL" method="post">
-        <!-- TODO: paste your Mailchimp form action URL into action="" above to enable email signup -->
-        <input type="email" name="EMAIL" class="notify-input" placeholder="your@email.com" aria-label="Email address" required>
-        <button type="submit" class="notify-btn">Notify me</button>
-      </form>
-    </div>
-    <p class="notify-msg" role="status"></p>
+  <!-- NOTIFY (connect to Mailchimp later) -->
+  <div class="notify-section reveal">
+    <div class="notify-eyebrow">Don't miss it</div>
+    <h3 class="notify-title">Be first to <em>see it.</em></h3>
+    <p class="notify-sub">We'll email you the moment it goes live. No noise, just the film.</p>
+    <form class="notify-form" action="#REPLACE-WITH-MAILCHIMP-ACTION" method="post" target="_blank">
+      <input type="email" name="EMAIL" placeholder="your@email.com" required class="notify-input" aria-label="Email address">
+      <button type="submit" class="notify-btn">Notify Me →</button>
+    </form>
+    <p class="notify-or">or <a href="https://boxd.it/lHBGz" target="_blank" rel="noopener">follow us on Letterboxd</a></p>
+    <p class="notify-done">You're on the list. We'll be in touch.</p>
   </div>
 
   <div class="back-section reveal">
@@ -334,25 +323,12 @@
   </div>
 </div>
 
-<!-- NOTIFY (email capture — connect to Mailchimp later: set the form action + audience hidden field) -->
-<div class="notify-section reveal">
-  <div class="notify-eyebrow">Don't miss it</div>
-  <h3 class="notify-title">Be first to <em>see it.</em></h3>
-  <p class="notify-sub">We'll email you the moment it goes live. No noise, just the film.</p>
-  <form class="notify-form" action="#REPLACE-WITH-MAILCHIMP-ACTION" method="post" target="_blank">
-    <input type="email" name="EMAIL" placeholder="your@email.com" required class="notify-input" aria-label="Email address">
-    <button type="submit" class="notify-btn">Notify Me →</button>
-  </form>
-  <p class="notify-or">or <a href="https://boxd.it/lHBGz" target="_blank" rel="noopener">follow us on Letterboxd</a></p>
-  <p class="notify-done">You're on the list. We'll be in touch.</p>
-</div>
-
 <footer>
   <div class="footer-logo">50% Film</div>
   <span class="footer-copy">© 2025–2026 — Short Cinema Label — London, UK</span>
   <ul class="footer-links">
     <li><a href="https://www.instagram.com/50percentfilm/" target="_blank" rel="noopener">Instagram</a></li>
-    <li><a href="https://letterboxd.com/film/my-last-day-on-earth-1/" target="_blank" rel="noopener">Letterboxd</a></li>
+    <li><a href="https://boxd.it/lHBGz" target="_blank" rel="noopener">Letterboxd</a></li>
     <li><a href="submit.html">Submit</a></li>
     <li><a href="index.html">Home</a></li>
   </ul>
@@ -379,6 +355,18 @@
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
 </script>
+
+<script>
+  document.querySelectorAll('.notify-form').forEach(function(f){
+    f.addEventListener('submit', function(e){
+      var msg = f.closest('.notify-block').querySelector('.notify-msg');
+      if (f.getAttribute('action') === 'MAILCHIMP_FORM_ACTION_URL') {
+        e.preventDefault();
+        if (msg) msg.textContent = "Email updates are connecting soon — follow on Letterboxd to be first.";
+      }
+    });
+  });
+</script>
 <script>
   document.querySelectorAll('.notify-form').forEach(function(f){
     f.addEventListener('submit',function(e){
@@ -388,21 +376,6 @@
         f.style.display='none';
         var d=f.parentNode.querySelector('.notify-done');
         if(d) d.style.display='block';
-      }
-    });
-  });
-</script>
-</body>
-</html>
-
-
-<script>
-  document.querySelectorAll('.notify-form').forEach(function(f){
-    f.addEventListener('submit', function(e){
-      var msg = f.closest('.notify-block').querySelector('.notify-msg');
-      if (f.getAttribute('action') === 'MAILCHIMP_FORM_ACTION_URL') {
-        e.preventDefault();
-        if (msg) msg.textContent = "Email updates are connecting soon — follow on Letterboxd to be first.";
       }
     });
   });

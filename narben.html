@@ -16,13 +16,13 @@
 <meta property="og:title" content="Narben — 50% Film">
 <meta property="og:description" content="Narben (Scars), a 9-minute Austrian drama by Joshua Haiden. A woman meets her younger self in the space between memory and imagination. On 50% Film.">
 <meta property="og:url" content="https://50percentfilm.com/narben">
-<meta property="og:image" content="https://50percentfilm.com/og-image.jpg">
+<meta property="og:image" content="https://50percentfilm.com/og-narben.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Narben — 50% Film">
 <meta name="twitter:description" content="Narben (Scars), a 9-minute Austrian drama by Joshua Haiden. A woman meets her younger self in the space between memory and imagination. On 50% Film.">
-<meta name="twitter:image" content="https://50percentfilm.com/og-image.jpg">
+<meta name="twitter:image" content="https://50percentfilm.com/og-narben.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
@@ -163,6 +163,35 @@
   .coming-poster .cp-eyebrow { font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:var(--red); }
   .coming-poster .cp-main { font-family:'Bebas Neue',sans-serif; font-size:clamp(34px,6vw,68px); letter-spacing:0.04em; color:var(--cream); line-height:1; }
   .coming-poster .cp-sub { font-family:'DM Serif Display',serif; font-style:italic; font-size:clamp(16px,2.6vw,26px); color:var(--mid); }
+
+  .notify-block { margin-top: 80px; padding: 40px; border: 1px solid #1e1e1e; background: linear-gradient(135deg, rgba(200,52,26,0.05), transparent 60%); }
+  .notify-eyebrow { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--red); margin-bottom: 12px; }
+  .notify-head { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(22px, 3.5vw, 32px); color: var(--white); margin-bottom: 10px; }
+  .notify-sub { font-size: 12px; line-height: 1.8; color: var(--mid); max-width: 56ch; margin-bottom: 24px; }
+  .notify-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: stretch; }
+  .notify-btn { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.08em; font-size: 16px; padding: 14px 26px; border: 1px solid var(--white); background: transparent; color: var(--white); text-decoration: none; cursor: none; transition: background .2s, color .2s, border-color .2s; display: inline-flex; align-items: center; }
+  .notify-btn.primary { border-color: #00e054; color: #00e054; }
+  .notify-btn.primary:hover { background: #00e054; color: var(--black); }
+  .notify-form { display: flex; gap: 12px; flex: 1; min-width: 240px; }
+  .notify-input { flex: 1; background: #0d0d0d; border: 1px solid #1e1e1e; color: var(--white); font-family: 'Space Mono', monospace; font-size: 12px; padding: 0 16px; min-width: 0; }
+  .notify-input:focus { outline: none; border-color: var(--red); }
+  .notify-btn[type="submit"]:hover { background: var(--white); color: var(--black); }
+  .notify-msg { font-size: 11px; color: var(--cream); letter-spacing: 0.05em; margin-top: 14px; min-height: 1em; }
+
+  /* NOTIFY / email capture (wire to Mailchimp later) */
+  .notify-section { margin-top: 80px; padding: 64px 0; border-top: 1px solid #1a1a1a; text-align: center; }
+  .notify-eyebrow { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
+  .notify-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px,6vw,56px); letter-spacing: 0.03em; line-height: 1; margin-bottom: 14px; }
+  .notify-title em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--red); }
+  .notify-sub { font-size: 13px; color: var(--cream); margin-bottom: 28px; }
+  .notify-form { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; max-width: 480px; margin: 0 auto; }
+  .notify-input { flex: 1; min-width: 220px; background: #111; border: 1px solid #2a2a2a; color: var(--white); padding: 14px 16px; font-family: 'Space Mono', monospace; font-size: 13px; }
+  .notify-input:focus { outline: none; border-color: var(--red); }
+  .notify-btn { background: var(--red); color: var(--white); border: none; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.08em; font-size: 18px; padding: 0 30px; cursor: pointer; transition: background .2s, color .2s; }
+  .notify-btn:hover { background: var(--white); color: var(--black); }
+  .notify-or { font-size: 11px; color: var(--mid); margin-top: 18px; }
+  .notify-or a { color: var(--cream); }
+  .notify-done { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--cream); margin-top: 20px; font-size: 18px; display: none; }
 </style>
 </head>
 <body>
@@ -321,11 +350,41 @@
     <p class="note-body">Narben operates in the space that most films avoid — the interior life of recovery, where progress is not linear and the self you left behind does not simply disappear. By staging a literal encounter between Lina and her younger self, Haiden finds a formal language for something usually left to words: the way we carry our past versions within us, not as weight alone, but as evidence of survival.</p>
   </div>
 
+  <div class="notify-block reveal">
+    <div class="notify-copy">
+      <p class="notify-eyebrow">Don't miss the drop</p>
+      <h3 class="notify-head">Be first when it lands.</h3>
+      <p class="notify-sub">Follow the label on Letterboxd, or leave your email and we'll tell you the moment it goes live.</p>
+    </div>
+    <div class="notify-actions">
+      <a href="https://boxd.it/lHBGz" class="notify-btn primary" target="_blank" rel="noopener">Follow on Letterboxd</a>
+      <form class="notify-form" action="MAILCHIMP_FORM_ACTION_URL" method="post">
+        <!-- TODO: paste your Mailchimp form action URL into action="" above to enable email signup -->
+        <input type="email" name="EMAIL" class="notify-input" placeholder="your@email.com" aria-label="Email address" required>
+        <button type="submit" class="notify-btn">Notify me</button>
+      </form>
+    </div>
+    <p class="notify-msg" role="status"></p>
+  </div>
+
   <div class="back-section reveal">
     <span class="back-label">50% Film — Short Cinema Label</span>
     <a href="catalogue.html" class="back-btn">← Back to Catalogue</a>
   </div>
 
+</div>
+
+<!-- NOTIFY (email capture — connect to Mailchimp later: set the form action + audience hidden field) -->
+<div class="notify-section reveal">
+  <div class="notify-eyebrow">Don't miss it</div>
+  <h3 class="notify-title">Be first to <em>see it.</em></h3>
+  <p class="notify-sub">We'll email you the moment it goes live. No noise, just the film.</p>
+  <form class="notify-form" action="#REPLACE-WITH-MAILCHIMP-ACTION" method="post" target="_blank">
+    <input type="email" name="EMAIL" placeholder="your@email.com" required class="notify-input" aria-label="Email address">
+    <button type="submit" class="notify-btn">Notify Me →</button>
+  </form>
+  <p class="notify-or">or <a href="https://boxd.it/lHBGz" target="_blank" rel="noopener">follow us on Letterboxd</a></p>
+  <p class="notify-done">You're on the list. We'll be in touch.</p>
 </div>
 
 <footer>
@@ -359,6 +418,31 @@
     });
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
+</script>
+
+<script>
+  document.querySelectorAll('.notify-form').forEach(function(f){
+    f.addEventListener('submit', function(e){
+      var msg = f.closest('.notify-block').querySelector('.notify-msg');
+      if (f.getAttribute('action') === 'MAILCHIMP_FORM_ACTION_URL') {
+        e.preventDefault();
+        if (msg) msg.textContent = "Email updates are connecting soon — follow on Letterboxd to be first.";
+      }
+    });
+  });
+</script>
+<script>
+  document.querySelectorAll('.notify-form').forEach(function(f){
+    f.addEventListener('submit',function(e){
+      // NOTE: until the Mailchimp action is set above, this just shows the confirmation and does not store the email.
+      if(f.getAttribute('action').indexOf('REPLACE-WITH-MAILCHIMP')!==-1){
+        e.preventDefault();
+        f.style.display='none';
+        var d=f.parentNode.querySelector('.notify-done');
+        if(d) d.style.display='block';
+      }
+    });
+  });
 </script>
 </body>
 </html>

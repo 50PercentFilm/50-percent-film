@@ -49,14 +49,13 @@
 
   .cursor {
     position: fixed;
-    width: 10px;
-    height: 10px;
+    width: 10px; height: 10px;
     background: var(--red);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: transform 0.1s, width 0.2s, height 0.2s;
+    transition: width 0.2s, height 0.2s;
     mix-blend-mode: difference;
   }
   .cursor.big { width: 40px; height: 40px; }
@@ -755,6 +754,103 @@
     padding: 10px 18px; cursor: pointer; transition: border-color .2s, color .2s; z-index: 2; }
   .leader-skip:hover { border-color: var(--red); color: var(--red); }
   @media (prefers-reduced-motion: reduce) { #leader { display: none; } }
+
+  /* PROJECTOR BEAM (spotlight) */
+  .hero-beam { position: absolute; top: -6%; left: 50%; transform: translateX(-50%); width: 85%; height: 112%; z-index: 0; pointer-events: none;
+    background: linear-gradient(to bottom, rgba(240,236,228,0.07) 0%, rgba(240,236,228,0.03) 45%, transparent 78%);
+    clip-path: polygon(47% 0, 53% 0, 82% 100%, 18% 100%); filter: blur(10px); mix-blend-mode: screen;
+    animation: beamflicker 4.2s steps(40) infinite; }
+  @keyframes beamflicker { 0%,100%{opacity:0.85} 18%{opacity:0.95} 33%{opacity:0.78} 52%{opacity:0.92} 70%{opacity:0.83} 88%{opacity:0.97} }
+  @media (prefers-reduced-motion: reduce) { .hero-beam { animation: none; } }
+  .hero-title { animation: fadeUp 0.8s 0.5s forwards; }
+
+  /* CARD SPOTLIGHT */
+  .film-card .film-card-bg { transition: transform 0.25s ease-out; }
+
+  /* FILMSTRIP REEL */
+  .reel { position: relative; padding: 26px 0; }
+  .reel::before, .reel::after { content: ''; position: absolute; left: 0; right: 0; height: 20px; z-index: 4; pointer-events: none;
+    background-color: #0c0c0c;
+    background-image: radial-gradient(circle at 14px 50%, rgba(240,236,228,0.16) 0 4px, transparent 5px);
+    background-size: 28px 100%; }
+  .reel::before { top: 0; } .reel::after { bottom: 0; }
+
+  a.stat-box { text-decoration: none; color: inherit; }
+
+
+  /* DISCLOSURE — broadcast scanlines + red signal bar */
+  .film-card.card-disclosure .film-card-bg { background: linear-gradient(160deg, #0c1018 0%, #0a0d14 55%, #06080c 100%); }
+  .film-card.card-disclosure .film-card-bg::before { content:''; position:absolute; inset:0;
+    background: repeating-linear-gradient(0deg, transparent 0 2px, rgba(150,180,220,0.04) 2px 3px),
+      radial-gradient(ellipse 72% 42% at 60% 22%, rgba(70,110,160,0.20) 0%, transparent 65%); }
+  .film-card.card-disclosure .film-card-bg::after { content:''; position:absolute; top:34%; left:0; right:0; height:13%;
+    background: linear-gradient(180deg, transparent, rgba(200,52,26,0.26), transparent);
+    box-shadow: 0 0 50px 12px rgba(200,52,26,0.14); }
+
+  /* @ilovethettc102 — online dot-grid + teal node */
+  .film-card.card-ilovethettc102 .film-card-bg { background: linear-gradient(150deg, #0a1418 0%, #08100f 60%, #050a0a 100%); }
+  .film-card.card-ilovethettc102 .film-card-bg::before { content:''; position:absolute; inset:0;
+    background-image: radial-gradient(rgba(80,185,175,0.16) 1px, transparent 1.5px); background-size: 15px 15px; }
+  .film-card.card-ilovethettc102 .film-card-bg::after { content:''; position:absolute; top:24%; left:54%; transform:translateX(-50%);
+    width:120px; height:120px; border-radius:50%;
+    background: radial-gradient(circle, rgba(95,205,195,0.30) 0%, transparent 66%); box-shadow: 0 0 44px 14px rgba(60,165,155,0.14); }
+
+  /* THINKING VULNERABILITY — soft intertwined rose bodies */
+  .film-card.card-thinkingvuln .film-card-bg { background: linear-gradient(165deg, #160a10 0%, #0f080c 60%, #090507 100%); }
+  .film-card.card-thinkingvuln .film-card-bg::before { content:''; position:absolute; inset:0;
+    background: radial-gradient(ellipse 42% 56% at 38% 42%, rgba(212,122,152,0.24) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 52% at 63% 56%, rgba(182,92,142,0.20) 0%, transparent 60%); }
+  .film-card.card-thinkingvuln .film-card-bg::after { content:''; position:absolute; inset:0;
+    background: radial-gradient(ellipse 30% 36% at 50% 48%, rgba(232,152,178,0.18) 0%, transparent 60%); mix-blend-mode: screen; }
+
+  /* AMY & I — candle glow + blood vignette */
+  .film-card.card-amyandi .film-card-bg { background: radial-gradient(ellipse 92% 82% at 50% 42%, #1b0b08 0%, #0c0504 68%, #050202 100%); }
+  .film-card.card-amyandi .film-card-bg::before { content:''; position:absolute; top:28%; left:50%; transform:translateX(-50%);
+    width:64px; height:120px; border-radius:50% 50% 46% 46%;
+    background: radial-gradient(ellipse 60% 70% at 50% 60%, rgba(255,172,72,0.55) 0%, rgba(220,110,30,0.20) 45%, transparent 70%); filter: blur(4px); }
+  .film-card.card-amyandi .film-card-bg::after { content:''; position:absolute; inset:0;
+    box-shadow: inset 0 0 90px 28px rgba(120,12,12,0.45);
+    background: radial-gradient(ellipse 60% 40% at 50% 100%, rgba(180,30,20,0.20) 0%, transparent 60%); }
+
+  /* PERSEUS — Super 8 light leak + grain */
+  .film-card.card-perseus .film-card-bg { background: linear-gradient(150deg, #1a1408 0%, #120d06 55%, #0a0704 100%); }
+  .film-card.card-perseus .film-card-bg::before { content:''; position:absolute; inset:0;
+    background: linear-gradient(115deg, transparent 30%, rgba(255,140,40,0.24) 46%, rgba(255,200,90,0.12) 52%, transparent 64%),
+      radial-gradient(ellipse 52% 40% at 76% 18%, rgba(255,170,60,0.26) 0%, transparent 60%); }
+  .film-card.card-perseus .film-card-bg::after { content:''; position:absolute; inset:0; opacity:0.6;
+    background-image: radial-gradient(1px 1px at 20% 30%, rgba(255,230,180,0.5) 0, transparent 100%),
+      radial-gradient(1px 1px at 62% 60%, rgba(255,220,160,0.4) 0, transparent 100%),
+      radial-gradient(1px 1px at 80% 42%, rgba(255,210,150,0.35) 0, transparent 100%),
+      radial-gradient(1px 1px at 38% 80%, rgba(255,225,170,0.3) 0, transparent 100%); }
+
+  /* TOY-GUN — film-noir venetian blinds + streetlight */
+  .film-card.card-toygun .film-card-bg { background: linear-gradient(135deg, #100f0a 0%, #0a0906 60%, #060503 100%); }
+  .film-card.card-toygun .film-card-bg::before { content:''; position:absolute; inset:0;
+    background: repeating-linear-gradient(8deg, transparent 0 16px, rgba(212,176,82,0.11) 16px, rgba(212,176,82,0.11) 19px, transparent 19px 34px); }
+  .film-card.card-toygun .film-card-bg::after { content:''; position:absolute; top:18%; right:14%; width:120px; height:120px; border-radius:50%;
+    background: radial-gradient(circle, rgba(222,182,82,0.22) 0%, transparent 68%); box-shadow: 0 0 46px 14px rgba(180,140,50,0.10); }
+
+  /* ESCAPE — violet motion + dream core */
+  .film-card.card-escape .film-card-bg { background: linear-gradient(160deg, #100a1c 0%, #0a0814 60%, #060410 100%); }
+  .film-card.card-escape .film-card-bg::before { content:''; position:absolute; inset:0;
+    background: repeating-linear-gradient(125deg, transparent 0 10px, rgba(152,122,232,0.07) 10px, rgba(152,122,232,0.07) 12px, transparent 12px 26px); }
+  .film-card.card-escape .film-card-bg::after { content:''; position:absolute; top:26%; left:50%; transform:translateX(-50%); width:130px; height:130px; border-radius:50%;
+    background: radial-gradient(circle, rgba(172,142,252,0.32) 0%, rgba(110,80,200,0.12) 50%, transparent 72%); box-shadow: 0 0 60px 22px rgba(120,90,220,0.14); }
+
+  /* ENGLISH BEASTS — cold wilderness + blood slash */
+  .film-card.card-englishbeasts .film-card-bg { background: linear-gradient(170deg, #0e1116 0%, #0a0d12 60%, #07090d 100%); }
+  .film-card.card-englishbeasts .film-card-bg::before { content:''; position:absolute; inset:0;
+    background: radial-gradient(ellipse 82% 50% at 50% 18%, rgba(150,178,208,0.15) 0%, transparent 60%),
+      repeating-linear-gradient(72deg, transparent 0 22px, rgba(150,178,208,0.03) 22px 23px); }
+  .film-card.card-englishbeasts .film-card-bg::after { content:''; position:absolute; top:0; bottom:0; left:56%; width:11%;
+    background: linear-gradient(105deg, transparent, rgba(192,42,32,0.38), transparent); transform: skewX(-12deg); box-shadow: 0 0 40px 8px rgba(170,30,25,0.12); }
+
+  /* CONFIRMED vs OPEN-SLOT treatment */
+  .film-card-index { position:absolute; top:15px; left:16px; z-index:4; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.18em; color:rgba(240,236,228,0.5); }
+  .film-card.confirmed-film .card-award-badge { top:38px; }
+  .film-card.confirmed-film::after { content:''; position:absolute; inset:0; border:1px solid rgba(200,52,26,0.28); z-index:2; pointer-events:none; }
+  .film-card.open-slot::after { content:''; position:absolute; inset:7px; border:1px dashed rgba(240,236,228,0.16); z-index:2; pointer-events:none; }
+  .film-card.open-slot .film-card-info { opacity:0.7; }
 </style>
 </head>
 <body>
@@ -811,6 +907,7 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-beam"></div>
   <div class="hero-left">
     <p class="hero-eyebrow">Short Film Label — Est. 2025</p>
     <h1 class="hero-title">Short<br><em>Films.</em><br>Full<br>Vision.</h1>
@@ -854,12 +951,12 @@
     <a href="collections.html" class="collection-pill reveal">
       <div class="collection-pill-tag">Horror &amp; Psychological</div>
       <div class="collection-name">Dread</div>
-      <div class="collection-count">0 films · Open</div>
+      <div class="collection-count">3 films · Open</div>
     </a>
     <a href="collections.html" class="collection-pill reveal">
       <div class="collection-pill-tag">Slow &amp; Contemplative</div>
       <div class="collection-name">Quiet Worlds</div>
-      <div class="collection-count">2 films · Open</div>
+      <div class="collection-count">5 films · Open</div>
     </a>
     <a href="collections.html" class="collection-pill reveal">
       <div class="collection-pill-tag">Debut Shorts</div>
@@ -869,7 +966,7 @@
     <a href="collections.html" class="collection-pill reveal">
       <div class="collection-pill-tag">Night &amp; Urban</div>
       <div class="collection-name">After Dark</div>
-      <div class="collection-count">0 films · Open</div>
+      <div class="collection-count">1 film · Open</div>
     </a>
     <a href="collections.html" class="collection-pill reveal">
       <div class="collection-pill-tag">Sci-Fi &amp; Speculative</div>
@@ -879,7 +976,7 @@
     <a href="collections.html" class="collection-pill reveal">
       <div class="collection-pill-tag">Documentary &amp; Portrait</div>
       <div class="collection-name">Still Life</div>
-      <div class="collection-count">0 films · Open</div>
+      <div class="collection-count">1 film · Open</div>
     </a>
   </div>
 </div>
@@ -888,7 +985,7 @@
 <section class="section" id="catalogue">
   <div class="section-header reveal">
     <h2 class="section-title">The <em>Catalogue</em></h2>
-    <span class="section-count">5 selected · 7 slots open</span>
+    <span class="section-count">13 selected · 7 slots open</span>
   </div>
   <div class="submission-counter reveal">
     <div class="submission-counter-dot"></div>
@@ -896,17 +993,19 @@
       <span class="submission-counter-num">16</span> films currently under review
     </div>
   </div>
+  <div class="reel">
   <div class="films-grid">
 
     <!-- COSMO -->
-    <a href="cosmo.html" class="film-card coming-soon card-cosmo reveal">
+    <a href="cosmo.html" class="film-card coming-soon card-cosmo reveal confirmed-film">
+      <div class="film-card-index">01</div>
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
       <div class="card-award-badge">Award-winning</div>
       <div class="film-card-bg"></div>
       <div class="film-card-info">
         <div class="film-card-genre">Animation · Sci-Fi</div>
         <div class="film-card-title">COSMO</div>
-        <div class="film-card-meta">Dir. Joey Lever · 3 min</div>
+        <div class="film-card-meta">Dir. Joey Lever · 4 min</div>
       </div>
       <div class="film-card-overlay">
         <div class="coming-soon-tag">Coming Soon</div>
@@ -916,7 +1015,8 @@
     </a>
 
     <!-- DEAR TOOTH FAIRY -->
-    <a href="dear-tooth-fairy.html" class="film-card coming-soon card-dtf reveal">
+    <a href="dear-tooth-fairy.html" class="film-card coming-soon card-dtf reveal confirmed-film">
+      <div class="film-card-index">02</div>
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
       <div class="film-card-bg"></div>
       <div class="film-card-info">
@@ -932,7 +1032,8 @@
     </a>
 
     <!-- NARBEN -->
-    <a href="narben.html" class="film-card coming-soon card-narben reveal">
+    <a href="narben.html" class="film-card coming-soon card-narben reveal confirmed-film">
+      <div class="film-card-index">03</div>
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
       <div class="film-card-bg"></div>
       <div class="film-card-info">
@@ -948,7 +1049,8 @@
     </a>
 
     <!-- L'ÉCLAT -->
-    <a href="leclat.html" class="film-card coming-soon card-leclat reveal">
+    <a href="leclat.html" class="film-card coming-soon card-leclat reveal confirmed-film">
+      <div class="film-card-index">04</div>
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
       <div class="film-card-bg"></div>
       <div class="film-card-info">
@@ -964,7 +1066,8 @@
     </a>
 
     <!-- MY LAST DAY ON EARTH -->
-    <a href="my-last-day-on-earth.html" class="film-card coming-soon card-mlde reveal">
+    <a href="my-last-day-on-earth.html" class="film-card coming-soon card-mlde reveal confirmed-film">
+      <div class="film-card-index">05</div>
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
       <div class="film-card-bg"></div>
       <div class="film-card-info">
@@ -979,56 +1082,179 @@
       </div>
     </a>
 
+
+    <a href="disclosure.html" class="film-card coming-soon card-disclosure reveal confirmed-film">
+      <div class="film-card-index">06</div>
+      <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
+      <div class="film-card-bg"></div>
+      <div class="film-card-info">
+        <div class="film-card-genre">Thriller · USA</div>
+        <div class="film-card-title">Disclosure</div>
+        <div class="film-card-meta">Dir. Alex Valderana · 20 min</div>
+      </div>
+      <div class="film-card-overlay">
+        <div class="coming-soon-tag">Coming Soon</div>
+        <div class="film-card-overlay-title">Disclosure</div>
+        <div class="film-card-overlay-dir">Dir. Alex Valderana · United States</div>
+      </div>
+    </a>
+    <a href="ilovethettc102.html" class="film-card coming-soon card-ilovethettc102 reveal confirmed-film">
+      <div class="film-card-index">07</div>
+      <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
+      <div class="film-card-bg"></div>
+      <div class="film-card-info">
+        <div class="film-card-genre">Documentary · Canada</div>
+        <div class="film-card-title">@ilovethettc102</div>
+        <div class="film-card-meta">Dir. Saga Ardyanto · 10 min</div>
+      </div>
+      <div class="film-card-overlay">
+        <div class="coming-soon-tag">Coming Soon</div>
+        <div class="film-card-overlay-title">@ilovethettc102</div>
+        <div class="film-card-overlay-dir">Dir. Saga Ardyanto · Canada</div>
+      </div>
+    </a>
+    <a href="thinking-vulnerability.html" class="film-card coming-soon card-thinkingvuln reveal confirmed-film">
+      <div class="film-card-index">08</div>
+      <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
+      <div class="film-card-bg"></div>
+      <div class="film-card-info">
+        <div class="film-card-genre">Experimental · Netherlands</div>
+        <div class="film-card-title">Thinking Vulnerability</div>
+        <div class="film-card-meta">Dir. Miloushka Bokma · 12 min</div>
+      </div>
+      <div class="film-card-overlay">
+        <div class="coming-soon-tag">Coming Soon</div>
+        <div class="film-card-overlay-title">Thinking Vulnerability</div>
+        <div class="film-card-overlay-dir">Dir. Miloushka Bokma · Netherlands</div>
+      </div>
+    </a>
+    <a href="amy-and-i.html" class="film-card coming-soon card-amyandi reveal confirmed-film">
+      <div class="film-card-index">09</div>
+      <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
+      <div class="film-card-bg"></div>
+      <div class="film-card-info">
+        <div class="film-card-genre">Horror · Netherlands</div>
+        <div class="film-card-title">Amy &amp; I</div>
+        <div class="film-card-meta">Dir. Bastiaan Rook · 7 min</div>
+      </div>
+      <div class="film-card-overlay">
+        <div class="coming-soon-tag">Coming Soon</div>
+        <div class="film-card-overlay-title">Amy &amp; I</div>
+        <div class="film-card-overlay-dir">Dir. Bastiaan Rook · Netherlands</div>
+      </div>
+    </a>
+    <a href="perseus.html" class="film-card coming-soon card-perseus reveal confirmed-film">
+      <div class="film-card-index">10</div>
+      <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
+      <div class="film-card-bg"></div>
+      <div class="film-card-info">
+        <div class="film-card-genre">Experimental · UK</div>
+        <div class="film-card-title">Perseus</div>
+        <div class="film-card-meta">Dir. Jack Davies · 3 min</div>
+      </div>
+      <div class="film-card-overlay">
+        <div class="coming-soon-tag">Coming Soon</div>
+        <div class="film-card-overlay-title">Perseus</div>
+        <div class="film-card-overlay-dir">Dir. Jack Davies · United Kingdom</div>
+      </div>
+    </a>
+    <a href="toy-gun.html" class="film-card coming-soon card-toygun reveal confirmed-film">
+      <div class="film-card-index">11</div>
+      <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
+      <div class="film-card-bg"></div>
+      <div class="film-card-info">
+        <div class="film-card-genre">Experimental · Netherlands</div>
+        <div class="film-card-title">Toy-Gun</div>
+        <div class="film-card-meta">Dir. Emre Karabacak · 16 min</div>
+      </div>
+      <div class="film-card-overlay">
+        <div class="coming-soon-tag">Coming Soon</div>
+        <div class="film-card-overlay-title">Toy-Gun</div>
+        <div class="film-card-overlay-dir">Dir. Emre Karabacak · Netherlands</div>
+      </div>
+    </a>
+    <a href="escape.html" class="film-card coming-soon card-escape reveal confirmed-film">
+      <div class="film-card-index">12</div>
+      <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
+      <div class="film-card-bg"></div>
+      <div class="film-card-info">
+        <div class="film-card-genre">Experimental · UK</div>
+        <div class="film-card-title">Escape</div>
+        <div class="film-card-meta">Dir. Masha Maroutitch · 4 min</div>
+      </div>
+      <div class="film-card-overlay">
+        <div class="coming-soon-tag">Coming Soon</div>
+        <div class="film-card-overlay-title">Escape</div>
+        <div class="film-card-overlay-dir">Dir. Masha Maroutitch · United Kingdom</div>
+      </div>
+    </a>
+    <a href="english-beasts.html" class="film-card coming-soon card-englishbeasts reveal confirmed-film">
+      <div class="film-card-index">13</div>
+      <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
+      <div class="film-card-bg"></div>
+      <div class="film-card-info">
+        <div class="film-card-genre">Thriller · UK</div>
+        <div class="film-card-title">English Beasts</div>
+        <div class="film-card-meta">Dir. Nikolas Harris · 15 min</div>
+      </div>
+      <div class="film-card-overlay">
+        <div class="coming-soon-tag">Coming Soon</div>
+        <div class="film-card-overlay-title">English Beasts</div>
+        <div class="film-card-overlay-dir">Dir. Nikolas Harris · United Kingdom</div>
+      </div>
+    </a>
+
     <!-- EMPTY SLOTS -->
-    <div class="film-card coming-soon slot-1 reveal">
+    <div class="film-card coming-soon slot-1 reveal open-slot">
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
       <div class="film-card-bg"></div>
       <div class="film-card-info"><div class="film-card-genre">TBA</div><div class="film-card-title">Coming Soon</div><div class="film-card-meta">Submissions Open</div></div>
       <div class="film-card-overlay"><div class="coming-soon-tag">Coming Soon</div><div class="film-card-overlay-title">Coming Soon</div><div class="film-card-overlay-dir">A film could be here</div><a href="#submit" class="film-card-overlay-btn">Submit Your Film</a></div>
     </div>
 
-    <div class="film-card coming-soon slot-2 reveal">
+    <div class="film-card coming-soon slot-2 reveal open-slot">
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
       <div class="film-card-bg"></div>
       <div class="film-card-info"><div class="film-card-genre">TBA</div><div class="film-card-title">Coming Soon</div><div class="film-card-meta">Submissions Open</div></div>
       <div class="film-card-overlay"><div class="coming-soon-tag">Coming Soon</div><div class="film-card-overlay-title">Coming Soon</div><div class="film-card-overlay-dir">A film could be here</div><a href="#submit" class="film-card-overlay-btn">Submit Your Film</a></div>
     </div>
 
-    <div class="film-card coming-soon slot-3 reveal">
+    <div class="film-card coming-soon slot-3 reveal open-slot">
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
       <div class="film-card-bg"></div>
       <div class="film-card-info"><div class="film-card-genre">TBA</div><div class="film-card-title">Coming Soon</div><div class="film-card-meta">Submissions Open</div></div>
       <div class="film-card-overlay"><div class="coming-soon-tag">Coming Soon</div><div class="film-card-overlay-title">Coming Soon</div><div class="film-card-overlay-dir">A film could be here</div><a href="#submit" class="film-card-overlay-btn">Submit Your Film</a></div>
     </div>
 
-    <div class="film-card coming-soon slot-4 reveal">
+    <div class="film-card coming-soon slot-4 reveal open-slot">
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
       <div class="film-card-bg"></div>
       <div class="film-card-info"><div class="film-card-genre">TBA</div><div class="film-card-title">Coming Soon</div><div class="film-card-meta">Submissions Open</div></div>
       <div class="film-card-overlay"><div class="coming-soon-tag">Coming Soon</div><div class="film-card-overlay-title">Coming Soon</div><div class="film-card-overlay-dir">A film could be here</div><a href="#submit" class="film-card-overlay-btn">Submit Your Film</a></div>
     </div>
 
-    <div class="film-card coming-soon slot-5 reveal">
+    <div class="film-card coming-soon slot-5 reveal open-slot">
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
       <div class="film-card-bg"></div>
       <div class="film-card-info"><div class="film-card-genre">TBA</div><div class="film-card-title">Coming Soon</div><div class="film-card-meta">Submissions Open</div></div>
       <div class="film-card-overlay"><div class="coming-soon-tag">Coming Soon</div><div class="film-card-overlay-title">Coming Soon</div><div class="film-card-overlay-dir">A film could be here</div><a href="#submit" class="film-card-overlay-btn">Submit Your Film</a></div>
     </div>
 
-    <div class="film-card coming-soon slot-6 reveal">
+    <div class="film-card coming-soon slot-6 reveal open-slot">
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
       <div class="film-card-bg"></div>
       <div class="film-card-info"><div class="film-card-genre">TBA</div><div class="film-card-title">Coming Soon</div><div class="film-card-meta">Submissions Open</div></div>
       <div class="film-card-overlay"><div class="coming-soon-tag">Coming Soon</div><div class="film-card-overlay-title">Coming Soon</div><div class="film-card-overlay-dir">A film could be here</div><a href="#submit" class="film-card-overlay-btn">Submit Your Film</a></div>
     </div>
 
-    <div class="film-card coming-soon slot-7 reveal">
+    <div class="film-card coming-soon slot-7 reveal open-slot">
       <div class="coming-soon-banner"><span>Coming<br>Soon</span></div>
       <div class="film-card-bg"></div>
       <div class="film-card-info"><div class="film-card-genre">TBA</div><div class="film-card-title">Coming Soon</div><div class="film-card-meta">Submissions Open</div></div>
       <div class="film-card-overlay"><div class="coming-soon-tag">Coming Soon</div><div class="film-card-overlay-title">Coming Soon</div><div class="film-card-overlay-dir">A film could be here</div><a href="#submit" class="film-card-overlay-btn">Submit Your Film</a></div>
     </div>
 
+  </div>
   </div>
 </section>
 
@@ -1043,10 +1269,10 @@
     <p class="manifesto-p reveal">50% Film exists to close the gap between exceptional short filmmaking and the audience it deserves. We curate with intention, platform with care, and believe that a 14-minute film can leave you just as changed as a two-hour one.</p>
     <p class="manifesto-p reveal">Every film we accept is listed on Letterboxd, published with full directorial credit, and treated as the serious work of art it is. We take submissions from anywhere, pay attention to everyone, and answer to nothing but quality.</p>
     <div class="manifesto-stat-row reveal">
-      <div class="stat-box">
+      <a href="vol-1.html" class="stat-box">
         <div class="stat-num">Vol.1</div>
-        <div class="stat-label">Anthology — Coming Soon</div>
-      </div>
+        <div class="stat-label">Anthology — In Assembly →</div>
+      </a>
     </div>
   </div>
 </section>
@@ -1125,7 +1351,6 @@
     el.addEventListener('mouseenter', () => cursor.classList.add('big'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
   });
-
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
@@ -1137,6 +1362,8 @@
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
 </script>
+
+<script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/12a97cd0e17be8e1c3b072af3/0fd964ebe43e0ed6a5f64e8de.js");</script>
 
 
 <script>
