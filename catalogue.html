@@ -993,7 +993,7 @@
     row.addEventListener('mouseenter', () => {
       cursor.classList.remove('big');
       cursor.classList.add('label');
-      cursor.textContent = row.getAttribute('data-tags').includes('open') ? 'Claim This Slot' : 'View on Letterboxd';
+      cursor.textContent = row.getAttribute('data-tags').includes('open') ? 'Claim This Slot' : 'See film';
     });
     row.addEventListener('mouseleave', () => {
       cursor.classList.remove('label');

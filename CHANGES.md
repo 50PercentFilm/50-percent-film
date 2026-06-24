@@ -160,3 +160,34 @@ All three are independent. Any can be dialled up, toned down, or removed.
 
 # Spotlight restored (June 2026)
 - Brought back the projector-beam spotlight at the top of the hero (the light cone). The title weave and the full-screen gate-flicker stay removed, so the title doesn't jitter — only the beam has its subtle projector pulse.
+
+---
+
+# Film page edits (June 2026)
+- Notify section reworked on every film page: centered, the broken email form removed (no automation), and "Follow on Letterboxd" is now the call to action (a real link). On the older 5 pages this also removed a duplicate notify block that had crept in.
+- Director Interview placeholder moved to sit underneath the synopsis instead of beside it, on all 13 pages.
+- Director bios added for the five new pages that lacked them:
+  - Escape — Masha Maroutitch (from supplied bio, condensed)
+  - Perseus — Jack Davies (supplied bio, rewritten in third person)
+  - Amy & I — Bastiaan Rook (researched: On Air debut, B. Rogue Productions, Amy & I awards, Citroen)
+  - Toy-Gun — Emre Karabacak (researched + his own site: Turkish artist in Amsterdam, photo/video/sculpture/design)
+  - English Beasts — Nikolas Harris (from his site: credited Writer & Director; Then I Was Lost, Once Upon a Time in England, The Deserter)
+
+---
+
+# Cast & crew research (June 2026)
+Expanded from research:
+- Disclosure — Cast: Bob Jaffe, Chase Cortland Erwin, KC Connor, Nicholas James Reilly, Jacob A. Ware. Crew: Alex Valderana (dir/editor), Raul Barquet (writer), producers Barquet/Valderana/DiCroce, Mattie Cameron Rosen (cinematography).
+- Amy & I — Cast: Eline Havenaar (Amy), Sytse Faber, David Gibbs, Gwen Guegan. Crew: Bastiaan Rook (dir), Martijn Daamen (writer), producers Vasilikos/Rook.
+- Thinking Vulnerability — Dancers: Victoria Moreira, Deborah Sounouvou, Tim Brugger, Lisa Birades. Dir Miloushka Bokma.
+- Perseus — Jack Davies (director, writer, camera, editor; solo work).
+- English Beasts — Cast: Paul Dewdney, Edmund Fargher. Crew: Nikolas Harris (writer/producer/dir), Edward Thompson (production design), Harrison Sanders (editor), Sam Pay (sound).
+Already complete: Cosmo, L'eclat, My Last Day on Earth, Narben.
+No additional credits findable online (left director-only): Dear Tooth Fairy, @ilovethettc102, Toy-Gun, Escape.
+
+---
+
+# Link previews + catalogue label (June 2026)
+- Catalogue hover cursor now reads "See film" instead of "View on Letterboxd" (the rows open the film page, not Letterboxd).
+- Share/link-preview image fixed: the 8 newer film pages were all pointing og:image and twitter:image at og-cosmo.jpg, so every link previewed as Cosmo. Generated a proper 1200x630 share card for each (disclosure, ilovethettc102, thinking-vulnerability, amy-and-i, perseus, toy-gun, escape, english-beasts) using each film's own hero art, and repointed both tags to og-<slug>.jpg.
+- Note: iMessage/social platforms cache previews, so already-sent links may still show the old image until the cache refreshes; new shares will be correct.
