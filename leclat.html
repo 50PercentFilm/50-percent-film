@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!DOCTYPE html>
-<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,19 +9,19 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="favicon-512x512.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<meta name="description" content="L'éclat, a French short film by Tansi Makele. Coming soon to 50% Film.">
+<meta name="description" content="L'éclat, a French short film written and directed by Tansi Makélé, selected for the Nikon Film Festival. Coming soon to 50% Film.">
 <link rel="canonical" href="https://50percentfilm.com/leclat">
 <meta property="og:type" content="video.movie">
 <meta property="og:site_name" content="50% Film">
 <meta property="og:title" content="L'éclat — 50% Film">
-<meta property="og:description" content="L'éclat, a French short film by Tansi Makele. Coming soon to 50% Film.">
+<meta property="og:description" content="L'éclat, a French short film written and directed by Tansi Makélé, selected for the Nikon Film Festival. Coming soon to 50% Film.">
 <meta property="og:url" content="https://50percentfilm.com/leclat">
 <meta property="og:image" content="https://50percentfilm.com/og-leclat.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="L'éclat — 50% Film">
-<meta name="twitter:description" content="L'éclat, a French short film by Tansi Makele. Coming soon to 50% Film.">
+<meta name="twitter:description" content="L'éclat, a French short film written and directed by Tansi Makélé, selected for the Nikon Film Festival. Coming soon to 50% Film.">
 <meta name="twitter:image" content="https://50percentfilm.com/og-leclat.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -43,12 +41,10 @@
   .nav-back::before { content: '←'; }
 
   .film-hero { min-height: 80vh; position: relative; display: flex; align-items: flex-end; overflow: hidden; }
-  .film-hero-bg { position: absolute; inset: 0; background: linear-gradient(160deg, #0a0a14 0%, #14101a 40%, #0a0a0a 100%); z-index: 0; }
-  /* Animated star field */
-  .film-hero-bg::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.6) 0%, transparent 100%), radial-gradient(1px 1px at 60% 10%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 40% 70%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 80% 50%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(2px 2px at 10% 80%, rgba(200,180,255,0.6) 0%, transparent 100%), radial-gradient(1px 1px at 70% 90%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 90% 20%, rgba(180,200,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(1px 1px at 30% 60%, rgba(255,220,180,0.5) 0%, transparent 100%), radial-gradient(2px 2px at 85% 75%, rgba(255,255,200,0.4) 0%, transparent 100%); }
-  .film-hero-bg::after { content: ''; position: absolute; width: 300px; height: 300px; top: 15%; left: 55%; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, rgba(200,150,255,0.15) 0%, rgba(100,50,200,0.08) 40%, transparent 70%); box-shadow: 0 0 80px 20px rgba(150,100,255,0.1); }
-
-  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.4) 50%, rgba(10,10,10,0.2) 100%); z-index: 1; }
+  .film-hero-bg { position: absolute; inset: 0; background: #0a0a0a url('leclat-hero.jpg') center 38% / cover no-repeat; z-index: 0; }
+  .hero-overlay { position: absolute; inset: 0; background:
+      linear-gradient(to top, rgba(10,10,10,0.99) 0%, rgba(10,10,10,0.6) 46%, rgba(10,10,10,0.3) 100%),
+      linear-gradient(90deg, rgba(10,10,10,0.78) 0%, rgba(10,10,10,0.25) 50%, transparent 100%); z-index: 1; }
   .film-hero-content { position: relative; z-index: 2; padding: 0 40px 64px; width: 100%; display: grid; grid-template-columns: 1fr auto; align-items: flex-end; gap: 40px; }
   .film-collection-tag { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; opacity: 0; animation: fadeUp 0.7s 0.2s forwards; }
   .film-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 8vw, 120px); line-height: 0.88; letter-spacing: 0.01em; opacity: 0; animation: fadeUp 0.7s 0.4s forwards; }
@@ -58,9 +54,8 @@
   .meta-label { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); }
   .meta-value { font-size: 11px; letter-spacing: 0.05em; color: var(--white); }
   .film-hero-right { opacity: 0; animation: fadeUp 0.7s 0.5s forwards; text-align: right; }
-  .film-number { font-family: 'Bebas Neue', sans-serif; font-size: 120px; line-height: 1; color: rgba(240,236,228,0.04); }
+  .film-number { font-family: 'Bebas Neue', sans-serif; font-size: 120px; line-height: 1; color: rgba(240,236,228,0.06); }
 
-  /* Awards banner */
   .awards-strip { background: #0f0f0f; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; padding: 20px 40px; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
   .awards-label { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); flex-shrink: 0; }
   .award-item { display: flex; align-items: center; gap: 10px; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); }
@@ -70,7 +65,6 @@
   .video-section { margin-bottom: 16px; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
   .video-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); margin-bottom: 16px; }
   .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; background: #111; overflow: hidden; border: 1px solid #1a1a1a; }
-  .video-wrapper iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
 
   .film-links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
   .film-ext-link { display: inline-flex; align-items: center; gap: 12px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; padding: 12px 20px; border: 1px solid #1e1e1e; transition: border-color 0.2s, color 0.2s; }
@@ -78,47 +72,58 @@
   .film-ext-link.letterboxd:hover { border-color: #00e054; color: #00e054; }
   .link-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   .dot-green { background: #00e054; }
-  .dot-red { background: var(--red); }
 
   .info-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 80px; margin-top: 80px; padding-top: 80px; border-top: 1px solid #1a1a1a; }
   .section-tag { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 24px; }
   .synopsis-text { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(18px, 2.5vw, 26px); line-height: 1.6; color: var(--cream); margin-bottom: 32px; }
   .synopsis-body { font-size: 12px; line-height: 2; color: var(--mid); max-width: 560px; }
 
-  /* Production highlight box */
-  .production-highlight { margin-top: 40px; padding: 32px; border: 1px solid #1e1e1e; border-left: 2px solid var(--red); background: #0d0d0d; }
-  .production-highlight-label { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
-  .production-highlight-text { font-size: 11px; line-height: 1.9; color: var(--mid); }
-  .production-highlight-text strong { color: var(--white); font-weight: 400; }
-
-  .director-section { border-left: 1px solid #1a1a1a; padding-left: 40px; }
-  .director-name { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 0.03em; margin-bottom: 4px; }
-  .director-role { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); margin-bottom: 24px; }
-  .director-bio { font-size: 11px; line-height: 1.9; color: var(--mid); margin-bottom: 32px; }
-  .interview-placeholder { margin-top: 32px; padding: 24px; border: 1px solid #1a1a1a; border-left: 2px solid var(--red); }
-  .interview-placeholder-label { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
-  .interview-placeholder-text { font-size: 11px; letter-spacing: 0.1em; color: var(--mid); }
+  .details-section .film-details { margin-top: 0; border-top: none; padding-top: 0; }
   .film-details { margin-top: 40px; border-top: 1px solid #1a1a1a; padding-top: 32px; }
   .detail-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #111; font-size: 10px; }
   .detail-key { letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); }
   .detail-val { color: var(--white); text-align: right; }
 
-  .cast-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid #1a1a1a; }
-  .cast-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 32px; }
-  .cast-card { background: #0f0f0f; padding: 28px 24px; }
-  .cast-role { font-size: 8px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); margin-bottom: 8px; }
-  .cast-name { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; color: var(--white); line-height: 1.2; }
+  .interview-section { margin-top: 80px; padding-top: 70px; border-top: 1px solid #1a1a1a; }
+  .interview-soon { margin-top: 4px; padding: 32px; border: 1px solid #1a1a1a; border-left: 2px solid var(--red); background: #0d0d0d; }
+  .interview-soon-text { font-size: 12px; letter-spacing: 0.08em; line-height: 1.8; color: var(--mid); }
 
-  .crew-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid #1a1a1a; }
-  .crew-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 32px; }
-  .crew-card { background: #0f0f0f; padding: 24px 20px; }
-  .crew-dept { font-size: 8px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); margin-bottom: 8px; }
-  .crew-name { font-size: 12px; letter-spacing: 0.05em; color: var(--white); line-height: 1.4; }
+  .director-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid #1a1a1a; }
+  .director-name { font-family: 'Bebas Neue', sans-serif; font-size: 44px; letter-spacing: 0.03em; margin-bottom: 4px; }
+  .director-role { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); margin-bottom: 24px; }
+  .director-bio { font-size: 11px; line-height: 1.9; color: var(--mid); max-width: 78ch; }
 
-  .note-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid #1a1a1a; display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start; }
-  .note-heading { font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 0.9; letter-spacing: 0.01em; }
-  .note-heading em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--mid); display: block; }
-  .note-body { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 18px; line-height: 1.8; color: var(--cream); opacity: 0.8; }
+  .stills-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid #1a1a1a; }
+  .stills-grid { margin-top: 28px; }
+  .still-frame { position: relative; overflow: hidden; background: #0d0d0d; display: block; }
+  .still-frame img { width: 100%; display: block; transition: transform 1.1s cubic-bezier(.2,.7,.2,1); }
+  .still-frame:hover img { transform: scale(1.035); }
+  .stills-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 2px; }
+
+  .poster-feature { display: grid; grid-template-columns: 340px 1fr; gap: 60px; align-items: center; margin-top: 80px; padding-top: 60px; border-top: 1px solid #1a1a1a; }
+  .poster-wrap { position: relative; }
+  .poster-wrap::before { content: ''; position: absolute; inset: -8% -10% -12% -8%; background: radial-gradient(ellipse at 50% 40%, rgba(70,120,80,0.20) 0%, transparent 68%); z-index: 0; filter: blur(8px); }
+  .poster-wrap img { position: relative; z-index: 1; width: 100%; display: block; box-shadow: 0 34px 80px rgba(0,0,0,0.65); }
+  .poster-credits .section-tag { margin-bottom: 28px; }
+  .poster-billing { display: grid; grid-template-columns: auto 1fr; gap: 13px 22px; }
+  .pb-role { font-size: 8px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); padding-top: 4px; white-space: nowrap; }
+  .pb-name { font-size: 13px; letter-spacing: 0.04em; color: var(--white); line-height: 1.5; }
+  .pb-name.lead { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; color: var(--cream); }
+  .poster-studios { margin-top: 30px; padding-top: 24px; border-top: 1px solid #1a1a1a; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); }
+  .poster-studios em { font-style: italic; color: var(--cream); }
+
+  .coming-poster { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; background:linear-gradient(160deg,#111 0%,#0d0d0d 100%); text-align:center; padding:24px; }
+  .coming-poster .cp-eyebrow { font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:var(--red); }
+  .coming-poster .cp-main { font-family:'Bebas Neue',sans-serif; font-size:clamp(34px,6vw,68px); letter-spacing:0.04em; color:var(--cream); line-height:1; }
+  .coming-poster .cp-sub { font-family:'DM Serif Display',serif; font-style:italic; font-size:clamp(16px,2.6vw,26px); color:var(--mid); }
+
+  .notify-section { margin-top: 80px; padding: 64px 0; border-top: 1px solid #1a1a1a; text-align: center; }
+  .notify-eyebrow { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
+  .notify-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px,6vw,56px); letter-spacing: 0.03em; line-height: 1; margin-bottom: 14px; }
+  .notify-title em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--red); }
+  .notify-sub { font-size: 13px; color: var(--cream); margin-bottom: 28px; max-width: 54ch; margin-left: auto; margin-right: auto; }
+  .notify-letterboxd { display: inline-block; margin-top: 6px; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.08em; font-size: 18px; padding: 13px 28px; border: 1px solid #00e054; color: #00e054; text-decoration: none; transition: background .2s, color .2s; }
+  .notify-letterboxd:hover { background: #00e054; color: var(--black); }
 
   .back-section { margin-top: 100px; padding-top: 60px; border-top: 1px solid #1a1a1a; display: flex; justify-content: space-between; align-items: center; }
   .back-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); }
@@ -134,7 +139,6 @@
 
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s, transform 0.7s; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
-
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
   @media (max-width: 768px) {
@@ -143,77 +147,15 @@
     .film-hero-right { display: none; }
     .film-body { padding: 48px 24px 80px; }
     .info-grid { grid-template-columns: 1fr; gap: 48px; }
-    .director-section { border-left: none; padding-left: 0; border-top: 1px solid #1a1a1a; padding-top: 40px; }
-    .cast-grid { grid-template-columns: 1fr 1fr; }
-    .crew-grid { grid-template-columns: 1fr 1fr; }
-    .note-section { grid-template-columns: 1fr; gap: 32px; }
+    .stills-trio { grid-template-columns: 1fr; }
+    .poster-feature { grid-template-columns: 1fr; gap: 36px; justify-items: center; }
+    .poster-wrap { max-width: 300px; }
+    .poster-credits { width: 100%; }
     .back-section { flex-direction: column; gap: 24px; text-align: center; }
     footer { flex-direction: column; gap: 24px; text-align: center; }
     .footer-links { flex-wrap: wrap; justify-content: center; }
     .awards-strip { padding: 16px 24px; gap: 20px; }
   }
-
-  .coming-poster { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; background:linear-gradient(160deg,#111 0%,#0d0d0d 100%); }
-  .coming-poster .cp-eyebrow { font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:var(--red); }
-  .coming-poster .cp-main { font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,5vw,52px); letter-spacing:0.04em; color:var(--cream); }
-  .status-item.live::before { content:'●'; color:var(--red); }
-
-  .film-hero-bg { background:linear-gradient(160deg,#1a0d0a 0%,#140a0a 45%,#0a0a0a 100%) !important; }
-  .film-hero-bg::before { display:none !important; }
-  .film-hero-bg::after { background:radial-gradient(circle, rgba(200,52,26,0.14) 0%, rgba(120,30,15,0.06) 45%, transparent 70%) !important; box-shadow:0 0 80px 20px rgba(200,52,26,0.05) !important; }
-
-
-  /* HERO ART — film-strip grid, matches the index hero */
-  .film-hero-art { position:absolute; inset:0; z-index:0; display:grid; grid-template-columns:repeat(4,1fr); }
-  .fh-strip { position:relative; overflow:hidden; }
-  .fh-strip + .fh-strip { border-left:1px solid rgba(240,236,228,0.03); }
-  .fh-strip::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg, transparent 38%, rgba(200,52,26,0.16)); }
-  .fh-strip:nth-child(1){ background:#171717; }
-  .fh-strip:nth-child(2){ background:#131313; }
-  .fh-strip:nth-child(3){ background:#101010; }
-  .fh-strip:nth-child(4){ background:#0d0d0d; }
-  .fh-strip-num { position:absolute; top:28px; left:50%; transform:translateX(-50%); font-family:'Bebas Neue',sans-serif; font-size:clamp(70px,11vw,150px); line-height:1; color:rgba(240,236,228,0.04); }
-  .fh-perf { position:absolute; top:0; bottom:0; width:20px; z-index:1; background-image:repeating-linear-gradient(to bottom, transparent 0 16px, rgba(240,236,228,0.05) 16px 28px); }
-  .fh-perf.l { left:0; } .fh-perf.r { right:0; }
-  .fh-vert { position:absolute; right:-6px; top:50%; transform:translateY(-50%) rotate(90deg); font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:rgba(240,236,228,0.16); white-space:nowrap; z-index:1; }
-
-  .coming-poster .cp-eyebrow { color:var(--red); }
-  .coming-poster .cp-main { font-size:clamp(34px,6vw,68px); }
-  .coming-poster .cp-sub { font-family:'DM Serif Display',serif; font-style:italic; font-size:clamp(16px,2.6vw,26px); color:var(--mid); }
-
-/* hero art: L'eclat card */
-.film-hero-bg { background: linear-gradient(150deg, #1e1200 0%, #2a1a04 35%, #120c00 100%) !important; }
-.film-hero-bg::before { content:'' !important; display:block !important; position:absolute; inset:0; background: radial-gradient(ellipse 55% 65% at 55% 35%, rgba(220,160,30,0.3) 0%, rgba(180,100,10,0.1) 50%, transparent 75%), radial-gradient(ellipse 30% 20% at 20% 70%, rgba(180,80,10,0.15) 0%, transparent 60%) !important; }
-.film-hero-bg::after { content:'' !important; display:block !important; position:absolute; top:5%; right:18%; width:180px; height:180px; border-radius:50%; background: radial-gradient(circle, rgba(255,200,50,0.2) 0%, rgba(200,140,20,0.08) 50%, transparent 70%) !important; box-shadow: 0 0 70px 22px rgba(220,160,30,0.15) !important; }
-
-  .notify-block { margin-top: 80px; padding: 40px; border: 1px solid #1e1e1e; background: linear-gradient(135deg, rgba(200,52,26,0.05), transparent 60%); }
-  .notify-eyebrow { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--red); margin-bottom: 12px; }
-  .notify-head { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(22px, 3.5vw, 32px); color: var(--white); margin-bottom: 10px; }
-  .notify-sub { font-size: 12px; line-height: 1.8; color: var(--mid); max-width: 56ch; margin-bottom: 24px; }
-  .notify-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: stretch; }
-  .notify-btn { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.08em; font-size: 16px; padding: 14px 26px; border: 1px solid var(--white); background: transparent; color: var(--white); text-decoration: none; cursor: none; transition: background .2s, color .2s, border-color .2s; display: inline-flex; align-items: center; }
-  .notify-btn.primary { border-color: #00e054; color: #00e054; }
-  .notify-btn.primary:hover { background: #00e054; color: var(--black); }
-  .notify-form { display: flex; gap: 12px; flex: 1; min-width: 240px; }
-  .notify-input { flex: 1; background: #0d0d0d; border: 1px solid #1e1e1e; color: var(--white); font-family: 'Space Mono', monospace; font-size: 12px; padding: 0 16px; min-width: 0; }
-  .notify-input:focus { outline: none; border-color: var(--red); }
-  .notify-btn[type="submit"]:hover { background: var(--white); color: var(--black); }
-  .notify-msg { font-size: 11px; color: var(--cream); letter-spacing: 0.05em; margin-top: 14px; min-height: 1em; }
-
-  /* NOTIFY / email capture (wire to Mailchimp later) */
-  .notify-section { margin-top: 80px; padding: 64px 0; border-top: 1px solid #1a1a1a; text-align: center; }
-  .notify-eyebrow { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
-  .notify-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px,6vw,56px); letter-spacing: 0.03em; line-height: 1; margin-bottom: 14px; }
-  .notify-title em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--red); }
-  .notify-sub { font-size: 13px; color: var(--cream); margin-bottom: 28px; }
-  .notify-form { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; max-width: 480px; margin: 0 auto; }
-  .notify-input { flex: 1; min-width: 220px; background: #111; border: 1px solid #2a2a2a; color: var(--white); padding: 14px 16px; font-family: 'Space Mono', monospace; font-size: 13px; }
-  .notify-input:focus { outline: none; border-color: var(--red); }
-  .notify-btn { background: var(--red); color: var(--white); border: none; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.08em; font-size: 18px; padding: 0 30px; cursor: pointer; transition: background .2s, color .2s; }
-  .notify-btn:hover { background: var(--white); color: var(--black); }
-  .notify-or { font-size: 11px; color: var(--mid); margin-top: 18px; }
-  .notify-or a { color: var(--cream); }
-  .notify-done { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--cream); margin-top: 20px; font-size: 18px; display: none; }
 </style>
 </head>
 <body>
@@ -231,9 +173,9 @@
   <div class="film-hero-content">
     <div>
       <p class="film-collection-tag">Drama · France</p>
-      <h1 class="film-title">L&rsquo;&eacute;clat<em>Coming 2026.</em></h1>
+      <h1 class="film-title">L&rsquo;&eacute;clat<em>&ldquo;The brilliance.&rdquo;</em></h1>
       <div class="film-hero-meta">
-        <div class="meta-item"><span class="meta-label">Director</span><span class="meta-value">Tansi Makele</span></div>
+        <div class="meta-item"><span class="meta-label">Director</span><span class="meta-value">Tansi Makélé</span></div>
         <div class="meta-item"><span class="meta-label">Runtime</span><span class="meta-value">2 min</span></div>
         <div class="meta-item"><span class="meta-label">Genre</span><span class="meta-value">Drama</span></div>
         <div class="meta-item"><span class="meta-label">Country</span><span class="meta-value">France · 2026</span></div>
@@ -246,7 +188,8 @@
 <div class="awards-strip">
   <span class="awards-label">Status</span>
   <div class="award-item">Coming soon to 50% Film</div>
-  <div class="award-item">Selected for the catalogue</div>
+  <div class="award-item">Official selection · Nikon Film Festival</div>
+  <div class="award-item">Drama · France</div>
 </div>
 
 <div class="film-body">
@@ -263,85 +206,106 @@
   </div>
 
   <div class="film-links">
-    <a href="https://letterboxd.com/film/leclat-2026/" class="film-ext-link letterboxd" target="_blank" rel="noopener">
-      <span class="link-dot dot-green"></span>
-      View on Letterboxd
-    </a>
+    <a href="https://letterboxd.com/film/leclat-2026/" class="film-ext-link letterboxd" target="_blank" rel="noopener"><span class="link-dot dot-green"></span>View on Letterboxd</a>
   </div>
 
   <div class="info-grid">
     <div class="synopsis-section reveal">
       <p class="section-tag">Synopsis</p>
-      <p class="synopsis-text">A new short from director Tansi Makele.</p>
-      <p class="synopsis-body">L&rsquo;&eacute;clat is a French short film written and directed by Tansi Makele, premiering in April 2026. Full synopsis and stills to follow ahead of release. Until then, you can follow the film on Letterboxd.</p>
-      <div class="interview-placeholder">
-        <p class="interview-placeholder-label">Director Interview</p>
-        <p class="interview-placeholder-text">Coming soon...</p>
-      </div>
+      <p class="synopsis-text">L&rsquo;&eacute;clat — the gleam, the flash, the shard of light.</p>
+      <p class="synopsis-body">A French short written and directed by Tansi Makélé, selected for the Nikon Film Festival. Shot with a fashion film's attention to light, skin and surface, built around a single radiant object and the figure who holds it. Full synopsis to follow ahead of release — until then, you can follow the film on Letterboxd.</p>
     </div>
 
-    <div class="director-section reveal">
-      <p class="section-tag">Director</p>
-      <h2 class="director-name">Tansi Makele</h2>
-      <p class="director-role">Writer / Director</p>
-      <p class="director-bio">Tansi Makele wrote and directed L&rsquo;&eacute;clat. More on the director to come.</p>
-
+    <div class="details-section reveal">
+      <p class="section-tag">Details</p>
       <div class="film-details">
+        <div class="detail-row"><span class="detail-key">Director</span><span class="detail-val">Tansi Makélé</span></div>
         <div class="detail-row"><span class="detail-key">Runtime</span><span class="detail-val">2 min</span></div>
         <div class="detail-row"><span class="detail-key">Genre</span><span class="detail-val">Drama</span></div>
         <div class="detail-row"><span class="detail-key">Country</span><span class="detail-val">France</span></div>
         <div class="detail-row"><span class="detail-key">Year</span><span class="detail-val">2026</span></div>
+        <div class="detail-row"><span class="detail-key">Festival</span><span class="detail-val">Nikon Film Festival</span></div>
         <div class="detail-row"><span class="detail-key">Label</span><span class="detail-val">50% Film</span></div>
       </div>
     </div>
   </div>
 
-  <div class="cast-section reveal">
-    <p class="section-tag">Cast</p>
-    <div class="cast-grid">
-      <div class="cast-card"><div class="cast-role">La mannequin</div><div class="cast-name">Idjima Masrangar</div></div>
-      <div class="cast-card"><div class="cast-role">Cast</div><div class="cast-name">Ferdinand Batsimba</div></div>
+  <div class="interview-section reveal">
+    <p class="section-tag">Director Interview</p>
+    <div class="interview-soon">
+      <p class="interview-soon-text">An interview with Tansi Makélé is coming soon.</p>
     </div>
   </div>
 
-  <div class="crew-section reveal">
-    <p class="section-tag">Crew</p>
-    <div class="crew-grid">
-      <div class="crew-card"><div class="crew-dept">Director / Writer</div><div class="crew-name">Tansi Makele</div></div>
-      <div class="crew-card"><div class="crew-dept">Cinematography</div><div class="crew-name">Ana Maria Miranda</div></div>
-      <div class="crew-card"><div class="crew-dept">Editor</div><div class="crew-name">Nathan Grosshans</div></div>
-      <div class="crew-card"><div class="crew-dept">Visual Effects</div><div class="crew-name">Nathan Grosshans</div></div>
-      <div class="crew-card"><div class="crew-dept">Sound</div><div class="crew-name">Th&eacute;o Eberhardt</div></div>
-      <div class="crew-card"><div class="crew-dept">Assistant Director</div><div class="crew-name">Kelly Kofi</div></div>
-      <div class="crew-card"><div class="crew-dept">Makeup</div><div class="crew-name">Nafik Bouchareb</div></div>
+  <div class="director-section reveal">
+    <p class="section-tag">Director</p>
+    <h2 class="director-name">Tansi Makélé</h2>
+    <p class="director-role">Writer / Director</p>
+    <p class="director-bio">Tansi Makélé wrote and directed L&rsquo;&eacute;clat, a French short selected for the Nikon Film Festival. A film built around texture and light — skin, jewellery, smoke, glass. More on the director to come.</p>
+  </div>
+
+  <div class="stills-section reveal">
+    <p class="section-tag">Stills</p>
+    <div class="stills-grid">
+      <a class="still-frame" href="leclat-still-1.jpg" target="_blank" rel="noopener">
+        <img src="leclat-still-1.jpg" alt="L'éclat film still — a figure exhaling smoke against a pale wall" loading="lazy">
+      </a>
+      <div class="stills-trio">
+        <a class="still-frame" href="leclat-still-2.jpg" target="_blank" rel="noopener">
+          <img src="leclat-still-2.jpg" alt="L'éclat film still — the title rendered in points of light" loading="lazy">
+        </a>
+        <a class="still-frame" href="leclat-still-3.jpg" target="_blank" rel="noopener">
+          <img src="leclat-still-3.jpg" alt="L'éclat film still — an eye glimpsed through a sheet of plastic" loading="lazy">
+        </a>
+        <a class="still-frame" href="leclat-still-4.jpg" target="_blank" rel="noopener">
+          <img src="leclat-still-4.jpg" alt="L'éclat film still — a figure curled on a field of dark sequins" loading="lazy">
+        </a>
+      </div>
     </div>
   </div>
 
-  <div class="notify-block reveal">
-    <div class="notify-copy">
-      <p class="notify-eyebrow">Don't miss the drop</p>
-      <h3 class="notify-head">Be first when it lands.</h3>
-      <p class="notify-sub">Follow the label on Letterboxd to catch it the moment it goes live.</p>
+  <div class="poster-feature reveal">
+    <div class="poster-wrap">
+      <img src="leclat-poster.jpg" alt="L'éclat — official poster, a film by Tansi Makélé" loading="lazy">
     </div>
-    <div class="notify-actions">
-      <a href="https://boxd.it/lHBGz" class="notify-btn primary" target="_blank" rel="noopener">Follow on Letterboxd</a>
+    <div class="poster-credits">
+      <p class="section-tag">The One-Sheet</p>
+      <div class="poster-billing">
+        <span class="pb-role">La mannequin</span><span class="pb-name lead">Ildjima Masrangar</span>
+        <span class="pb-role">Written &amp; Directed</span><span class="pb-name">Tansi Makélé</span>
+        <span class="pb-role">Cinematography</span><span class="pb-name">Ana-Maria Miranda</span>
+        <span class="pb-role">Art Direction</span><span class="pb-name">Hector Clark</span>
+        <span class="pb-role">Editor / VFX</span><span class="pb-name">Nathan Grosshans</span>
+        <span class="pb-role">Colour</span><span class="pb-name">Eudes Quittelier</span>
+        <span class="pb-role">Sound &amp; Mix</span><span class="pb-name">Cheng Zhuang</span>
+        <span class="pb-role">Makeup</span><span class="pb-name">Nafik Bouchareb</span>
+        <span class="pb-role">Jewellery</span><span class="pb-name">Ferdinand Batsimba</span>
+      </div>
+      <p class="poster-studios">France · Official selection, Nikon Film Festival</p>
     </div>
-    <p class="notify-msg" role="status"></p>
+  </div>
+
+  <!-- NOTIFY -->
+  <div class="notify-section reveal">
+    <div class="notify-eyebrow">Don't miss it</div>
+    <h3 class="notify-title">Be first to <em>see it.</em></h3>
+    <p class="notify-sub">Every film we take lands on our Letterboxd first. Follow along and you'll catch it the moment it's live.</p>
+    <a href="https://boxd.it/lHBGz" target="_blank" rel="noopener" class="notify-letterboxd">Follow on Letterboxd →</a>
   </div>
 
   <div class="back-section reveal">
     <span class="back-label">50% Film — Short Cinema Label</span>
     <a href="catalogue.html" class="back-btn">← Back to Catalogue</a>
   </div>
-</div>
 
+</div>
 
 <footer>
   <div class="footer-logo">50% Film</div>
   <span class="footer-copy">© 2025–2026 — Short Cinema Label — London, UK</span>
   <ul class="footer-links">
     <li><a href="https://www.instagram.com/50percentfilm/" target="_blank" rel="noopener">Instagram</a></li>
-    <li><a href="https://letterboxd.com/film/leclat-2026/" target="_blank" rel="noopener">Letterboxd</a></li>
+    <li><a href="https://boxd.it/lHBGz" target="_blank" rel="noopener">Letterboxd</a></li>
     <li><a href="submit.html">Submit</a></li>
     <li><a href="index.html">Home</a></li>
   </ul>
@@ -349,10 +313,7 @@
 
 <script>
   const cursor = document.getElementById('cursor');
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-  });
+  document.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
   document.querySelectorAll('a, button').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('big'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
@@ -360,41 +321,10 @@
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 100);
-        observer.unobserve(entry.target);
-      }
+      if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 100); observer.unobserve(entry.target); }
     });
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
-</script>
-<script>
-  document.querySelectorAll('.notify-form').forEach(function(f){
-    f.addEventListener('submit',function(e){
-      // NOTE: until the Mailchimp action is set above, this just shows the confirmation and does not store the email.
-      if(f.getAttribute('action').indexOf('REPLACE-WITH-MAILCHIMP')!==-1){
-        e.preventDefault();
-        f.style.display='none';
-        var d=f.parentNode.querySelector('.notify-done');
-        if(d) d.style.display='block';
-      }
-    });
-  });
-</script>
-</body>
-</html>
-
-
-<script>
-  document.querySelectorAll('.notify-form').forEach(function(f){
-    f.addEventListener('submit', function(e){
-      var msg = f.closest('.notify-block').querySelector('.notify-msg');
-      if (f.getAttribute('action') === 'MAILCHIMP_FORM_ACTION_URL') {
-        e.preventDefault();
-        if (msg) msg.textContent = "Email updates are connecting soon — follow on Letterboxd to be first.";
-      }
-    });
-  });
 </script>
 </body>
 </html>
