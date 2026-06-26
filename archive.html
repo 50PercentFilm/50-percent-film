@@ -47,513 +47,126 @@
     overflow-x: hidden;
   }
 
-  /* Custom cursor */
   .cursor {
-    position: fixed;
-    width: 10px;
-    height: 10px;
-    background: var(--red);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
+    position: fixed; width: 10px; height: 10px;
+    background: var(--red); border-radius: 50%;
+    pointer-events: none; z-index: 9999;
     transform: translate(-50%, -50%);
     transition: transform 0.1s, width 0.2s, height 0.2s;
     mix-blend-mode: difference;
   }
-  .cursor.big {
-    width: 40px;
-    height: 40px;
-  }
+  .cursor.big { width: 40px; height: 40px; }
 
-  /* Grain overlay */
   body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
+    content: ''; position: fixed; inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9998;
-    opacity: 0.35;
+    pointer-events: none; z-index: 9998; opacity: 0.35;
   }
 
-  /* NAV */
   nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 28px 40px;
-    mix-blend-mode: difference;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding: 28px 40px; mix-blend-mode: difference;
   }
-
-  .nav-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 0.15em;
-    color: var(--white);
-    text-decoration: none;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 36px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--white);
-    text-decoration: none;
-    opacity: 0.6;
-    transition: opacity 0.2s;
-  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.15em; color: var(--white); text-decoration: none; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); text-decoration: none; opacity: 0.6; transition: opacity 0.2s; }
   .nav-links a:hover, .nav-links a.active { opacity: 1; }
 
-  /* ARCHIVE INTRO */
-  .archive-hero {
-    min-height: 70vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 160px 40px 80px;
-    position: relative;
-    border-bottom: 1px solid #1a1a1a;
-  }
+  .archive-hero { min-height: 70vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 160px 40px 80px; position: relative; border-bottom: 1px solid #1a1a1a; }
+  .archive-eyebrow { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+  .archive-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(64px, 9vw, 140px); line-height: 0.9; letter-spacing: -0.01em; color: var(--white); opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+  .archive-title em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--mid); }
+  .archive-sub { margin-top: 32px; font-size: 12px; line-height: 2; color: var(--mid); max-width: 640px; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
+  .archive-sub strong { color: var(--white); font-weight: normal; }
+  .archive-note { margin-top: 24px; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); border-left: 2px solid var(--red); padding-left: 16px; max-width: 600px; line-height: 1.9; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
 
-  .archive-eyebrow {
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 24px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;
-  }
+  .filter-section { padding: 64px 40px 0; position: sticky; top: 0; z-index: 50; background: var(--black); border-bottom: 1px solid #1a1a1a; padding-bottom: 32px; }
+  .filter-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); margin-bottom: 20px; }
+  .filter-header { display: flex; align-items: center; justify-content: space-between; }
 
-  .archive-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(64px, 9vw, 140px);
-    line-height: 0.9;
-    letter-spacing: -0.01em;
-    color: var(--white);
-    opacity: 0;
-    animation: fadeUp 0.8s 0.4s forwards;
-  }
+  .search-wrap { position: relative; margin-bottom: 28px; max-width: 460px; }
+  .search-wrap .search-ico { position: absolute; left: 0; top: 50%; transform: translateY(-50%); color: var(--red); font-size: 14px; pointer-events: none; }
+  .search-input { width: 100%; background: transparent; border: none; border-bottom: 1px solid #222; color: var(--white); font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.04em; padding: 12px 30px 12px 26px; cursor: none; transition: border-color 0.2s; }
+  .search-input::placeholder { color: var(--mid); letter-spacing: 0.1em; }
+  .search-input:focus { outline: none; border-bottom-color: var(--red); }
+  .search-clear { position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: var(--mid); font-family: 'Space Mono', monospace; font-size: 14px; cursor: none; opacity: 0; transition: opacity 0.2s; padding: 4px 6px; }
+  .search-wrap.has-text .search-clear { opacity: 1; }
+  .search-clear:hover { color: var(--red); }
 
-  .archive-title em {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    color: var(--mid);
-  }
-
-  .archive-sub {
-    margin-top: 32px;
-    font-size: 12px;
-    line-height: 2;
-    color: var(--mid);
-    max-width: 640px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.6s forwards;
-  }
-
-  .archive-sub strong {
-    color: var(--white);
-    font-weight: normal;
-  }
-
-  .archive-note {
-    margin-top: 24px;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--mid);
-    border-left: 2px solid var(--red);
-    padding-left: 16px;
-    max-width: 600px;
-    line-height: 1.9;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.8s forwards;
-  }
-
-  /* FILTER BAR */
-  .filter-section {
-    padding: 64px 40px 0;
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: var(--black);
-    border-bottom: 1px solid #1a1a1a;
-    padding-bottom: 32px;
-  }
-
-  .filter-label {
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--mid);
-    margin-bottom: 20px;
-  }
-
-  .filter-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .filter-toggle {
-    display: none;
-    align-items: center;
-    gap: 10px;
-    font-family: 'Space Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--white);
-    background: transparent;
-    border: 1px solid #222;
-    padding: 10px 16px;
-    cursor: none;
-    margin-bottom: 20px;
-  }
-
-  .filter-toggle-arrow {
-    color: var(--red);
-    transition: transform 0.3s;
-    font-size: 11px;
-  }
-
-  .filter-section.open .filter-toggle-arrow {
-    transform: rotate(180deg);
-  }
-
-  .filter-body {
-    overflow: hidden;
-  }
-
-  .filter-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .filter-btn {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--mid);
-    background: transparent;
-    border: 1px solid #222;
-    padding: 12px 22px;
-    cursor: none;
-    transition: all 0.2s;
-  }
+  .filter-toggle { display: none; align-items: center; gap: 10px; font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); background: transparent; border: 1px solid #222; padding: 10px 16px; cursor: none; margin-bottom: 20px; }
+  .filter-toggle-arrow { color: var(--red); transition: transform 0.3s; font-size: 11px; }
+  .filter-section.open .filter-toggle-arrow { transform: rotate(180deg); }
+  .filter-body { overflow: hidden; }
+  .filter-bar { display: flex; flex-wrap: wrap; gap: 10px; }
+  .filter-btn { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); background: transparent; border: 1px solid #222; padding: 12px 22px; cursor: none; transition: all 0.2s; }
   .filter-btn:hover { color: var(--white); border-color: var(--mid); }
-  .filter-btn.active {
-    background: var(--red);
-    color: var(--white);
-    border-color: var(--red);
-  }
+  .filter-btn.active { background: var(--red); color: var(--white); border-color: var(--red); }
+  .filter-count { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); margin-top: 24px; }
 
-  .filter-count {
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--mid);
-    margin-top: 24px;
-  }
+  .no-results { display: none; padding: 80px 0; text-align: center; }
+  .no-results.show { display: block; }
+  .no-results h4 { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 26px; color: var(--cream); margin-bottom: 12px; }
+  .no-results p { font-size: 11px; letter-spacing: 0.1em; color: var(--mid); }
 
-  /* ARCHIVE GRID */
-  .archive-section {
-    padding: 64px 40px 120px;
-  }
+  .archive-section { padding: 64px 40px 120px; }
+  .archive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .archive-card { background: #111; display: flex; flex-direction: column; transition: opacity 0.3s, transform 0.3s; }
+  .archive-card.hidden { display: none; }
 
-  .archive-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-  }
+  .archive-video { position: relative; aspect-ratio: 16/9; background: #000; overflow: hidden; cursor: none; }
+  .archive-video img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.75; transition: opacity 0.4s, transform 0.6s ease; filter: grayscale(0.3); }
+  .archive-video:hover img { opacity: 1; transform: scale(1.04); filter: grayscale(0); }
+  .archive-video iframe { width: 100%; height: 100%; border: 0; display: block; }
 
-  .archive-card {
-    background: #111;
-    display: flex;
-    flex-direction: column;
-    transition: opacity 0.3s, transform 0.3s;
-  }
+  .video-fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; background-size: cover; background-position: center; }
+  .video-fallback::before { content: ''; position: absolute; inset: 0; background: rgba(10,10,10,0.72); }
+  .video-fallback-inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 24px; }
+  .video-fallback-note { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); }
+  .video-fallback-link { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); border: 1px solid var(--red); padding: 14px 28px; text-decoration: none; transition: background 0.2s, color 0.2s; }
+  .video-fallback-link:hover { background: var(--red); color: var(--white); }
 
-  .archive-card.hidden {
-    display: none;
-  }
+  .play-circle { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .play-circle span { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--red); background: rgba(10,10,10,0.4); display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 14px; transition: background 0.2s, transform 0.2s; }
+  .archive-video:hover .play-circle span { background: var(--red); transform: scale(1.08); }
 
-  .archive-video {
-    position: relative;
-    aspect-ratio: 16/9;
-    background: #000;
-    overflow: hidden;
-    cursor: none;
-  }
-
-  .archive-video img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    opacity: 0.75;
-    transition: opacity 0.4s, transform 0.6s ease;
-    filter: grayscale(0.3);
-  }
-
-  .archive-video:hover img {
-    opacity: 1;
-    transform: scale(1.04);
-    filter: grayscale(0);
-  }
-
-  .archive-video iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-    display: block;
-  }
-
-  .video-fallback {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background-size: cover;
-    background-position: center;
-  }
-
-  .video-fallback::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(10,10,10,0.72);
-  }
-
-  .video-fallback-inner {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    padding: 24px;
-  }
-
-  .video-fallback-note {
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--mid);
-  }
-
-  .video-fallback-link {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--white);
-    border: 1px solid var(--red);
-    padding: 14px 28px;
-    text-decoration: none;
-    transition: background 0.2s, color 0.2s;
-  }
-  .video-fallback-link:hover {
-    background: var(--red);
-    color: var(--white);
-  }
-
-  .play-circle {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .play-circle span {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    border: 1px solid var(--red);
-    background: rgba(10,10,10,0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--white);
-    font-size: 14px;
-    transition: background 0.2s, transform 0.2s;
-  }
-
-  .archive-video:hover .play-circle span {
-    background: var(--red);
-    transform: scale(1.08);
-  }
-
-  .archive-info {
-    padding: 24px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .archive-genre {
-    font-size: 8px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 10px;
-  }
-
-  .archive-card-title {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-size: 22px;
-    line-height: 1.15;
-    margin-bottom: 6px;
-  }
-
-  .archive-meta {
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    color: var(--mid);
-    margin-bottom: 14px;
-  }
-
-  .archive-desc {
-    font-size: 11px;
-    line-height: 1.85;
-    color: var(--mid);
-    margin-bottom: 18px;
-    flex: 1;
-  }
-
-  .archive-award {
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--white);
-    border-top: 1px solid #1e1e1e;
-    padding-top: 14px;
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    line-height: 1.6;
-  }
-
-  .archive-award-icon {
-    color: var(--red);
-    flex-shrink: 0;
-  }
-
-  .archive-links {
-    margin-top: 12px;
-    display: flex;
-    gap: 16px;
-  }
-
-  .archive-link {
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--mid);
-    text-decoration: none;
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 2px;
-    transition: color 0.2s;
-  }
+  .archive-info { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+  .archive-genre { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+  .archive-card-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 22px; line-height: 1.15; margin-bottom: 6px; }
+  .archive-meta { font-size: 9px; letter-spacing: 0.1em; color: var(--mid); margin-bottom: 14px; }
+  .archive-desc { font-size: 11px; line-height: 1.85; color: var(--mid); margin-bottom: 18px; flex: 1; }
+  .archive-award { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); border-top: 1px solid #1e1e1e; padding-top: 14px; display: flex; gap: 10px; align-items: flex-start; line-height: 1.6; }
+  .archive-award-icon { color: var(--red); flex-shrink: 0; }
+  .archive-links { margin-top: 12px; display: flex; gap: 16px; }
+  .archive-link { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; transition: color 0.2s; }
   .archive-link:hover { color: var(--white); }
 
-  /* FOOTER */
-  footer {
-    border-top: 1px solid #1a1a1a;
-    padding: 48px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .footer-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    letter-spacing: 0.15em;
-  }
-
-  .footer-copy {
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    color: var(--mid);
-    text-transform: uppercase;
-  }
-
-  .footer-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-  }
-
-  .footer-links a {
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--mid);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
+  footer { border-top: 1px solid #1a1a1a; padding: 48px 40px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.15em; }
+  .footer-copy { font-size: 9px; letter-spacing: 0.15em; color: var(--mid); text-transform: uppercase; }
+  .footer-links { display: flex; gap: 32px; list-style: none; }
+  .footer-links a { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: var(--white); }
 
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s, transform 0.6s; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.6s, transform 0.6s;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Responsive */
-  @media (max-width: 900px) {
-    .archive-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
+  @media (max-width: 900px) { .archive-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 640px) {
-    nav { padding: 20px 24px; }
-    .nav-links { gap: 20px; }
+    nav { padding: 20px 24px; } .nav-links { gap: 20px; }
     .archive-hero { padding: 120px 24px 60px; }
     .filter-section { padding: 48px 24px 24px; }
     .archive-section { padding: 48px 24px 80px; }
     .archive-grid { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 24px; text-align: center; padding: 48px 24px; }
     .footer-links { flex-wrap: wrap; justify-content: center; }
-
     .filter-label { display: none; }
     .filter-toggle { display: flex; width: 100%; justify-content: space-between; }
-    .filter-body {
-      max-height: 0;
-      transition: max-height 0.3s ease;
-    }
-    .filter-section.open .filter-body {
-      max-height: 600px;
-    }
+    .filter-body { max-height: 0; transition: max-height 0.3s ease; }
+    .filter-section.open .filter-body { max-height: 700px; }
     .filter-count { margin-top: 16px; }
+    .search-wrap { max-width: 100%; }
   }
 </style>
 </head>
@@ -561,7 +174,6 @@
 
 <div class="cursor" id="cursor"></div>
 
-<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">50% Film</a>
   <ul class="nav-links">
@@ -573,16 +185,20 @@
   </ul>
 </nav>
 
-<!-- ARCHIVE INTRO -->
 <section class="archive-hero">
   <p class="archive-eyebrow">Curated Selection — Free to Watch</p>
   <h1 class="archive-title">The <em>Archive.</em></h1>
   <p class="archive-sub">A hand-picked collection of some of the best short films ever made — all publicly available to watch right here, for free. The Archive sits alongside our own catalogue as a celebration of the form: Academy Award winners, festival favourites, and the viral shorts that quietly reshaped the internet. <strong>This isn't our work — it's a starting point.</strong> If you've never properly sat down with short film before, this is where to begin.</p>
-  <p class="archive-note">All films remain the property of their original creators and are embedded directly from YouTube. Use the filters below to browse by genre.</p>
+  <p class="archive-note">Search or filter below to browse. Every film is embedded from its original creator's channel and remains their property.</p>
 </section>
 
-<!-- FILTER BAR -->
 <div class="filter-section" id="filterSection">
+  <div class="search-wrap" id="searchWrap">
+    <span class="search-ico">⌕</span>
+    <input type="text" class="search-input" id="searchInput" placeholder="Search by title, director or genre…" autocomplete="off" spellcheck="false">
+    <button class="search-clear" id="searchClear" aria-label="Clear search">✕</button>
+  </div>
+
   <div class="filter-header">
     <p class="filter-label">Filter by Genre</p>
   </div>
@@ -600,902 +216,27 @@
       <button class="filter-btn" data-filter="scifi">Sci-Fi</button>
       <button class="filter-btn" data-filter="animation">Animation</button>
     </div>
-    <p class="filter-count" id="filterCount">Showing 60 of 60 films</p>
+    <p class="filter-count" id="filterCount"></p>
   </div>
 </div>
 
-<!-- ARCHIVE GRID -->
 <section class="archive-section">
-  <div class="archive-grid" id="archiveGrid">
-
-    <div class="archive-card reveal" data-genre="drama">
-      <div class="archive-video" data-video="k1vCrsZ80M4">
-        <img src="https://img.youtube.com/vi/k1vCrsZ80M4/hqdefault.jpg" alt="The Neighbors' Window thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Drama</div>
-        <h3 class="archive-card-title">The Neighbors' Window</h3>
-        <div class="archive-meta">Dir. Marshall Curry · 2019</div>
-        <p class="archive-desc">A New York mother becomes captivated by the carefree young couple living in the apartment across the street — until a sudden turn of events forces her to look at her own life differently.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Academy Award — Best Live Action Short Film, 2020</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/the-neighbors-window/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="drama">
-      <div class="archive-video" data-video="2m_VTZR5MU0">
-        <img src="https://img.youtube.com/vi/2m_VTZR5MU0/hqdefault.jpg" alt="Stutterer thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Romantic Drama</div>
-        <h3 class="archive-card-title">Stutterer</h3>
-        <div class="archive-meta">Dir. Benjamin Cleary · 2015</div>
-        <p class="archive-desc">A lonely typographer with a severe stutter retreats into his rich inner monologue as the day approaches when he must finally meet, in person, the woman he's been talking to online.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Academy Award — Best Live Action Short Film, 2016</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/stutterer/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="drama comedy">
-      <div class="archive-video" data-video="n_xMyx_SogA">
-        <img src="https://img.youtube.com/vi/n_xMyx_SogA/hqdefault.jpg" alt="Six Shooter thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Dark Comedy / Drama</div>
-        <h3 class="archive-card-title">Six Shooter</h3>
-        <div class="archive-meta">Dir. Martin McDonagh · 2004</div>
-        <p class="archive-desc">A grieving widower shares a train carriage with a foul-mouthed teenager and a couple in mourning, in a pitch-black comedy that builds, with horrifying inevitability, toward gunfire.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Academy Award — Best Live Action Short Film, 2006</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/six-shooter/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="comedy drama">
-      <div class="archive-video" data-video="Jsl6jeECeIA">
-        <img src="https://img.youtube.com/vi/Jsl6jeECeIA/hqdefault.jpg" alt="Thunder Road thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Comedy-Drama</div>
-        <h3 class="archive-card-title">Thunder Road</h3>
-        <div class="archive-meta">Dir. Jim Cummings · 2016</div>
-        <p class="archive-desc">A police officer delivers an increasingly unhinged eulogy for his mother in a single unbroken take, careening between grief, comedy and total breakdown. Later expanded into a feature film.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Short Film Grand Jury Prize, Sundance Film Festival 2016</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/thunder-road-2016/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="thriller">
-      <div class="archive-video" data-video="2dD3Fawk4y0">
-        <img src="https://img.youtube.com/vi/2dD3Fawk4y0/hqdefault.jpg" alt="Curve thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Psychological Thriller</div>
-        <h3 class="archive-card-title">Curve</h3>
-        <div class="archive-meta">Dir. Tim Egan · 2015</div>
-        <p class="archive-desc">A woman wakes up suspended over a deadly chasm with no memory of how she got there. With every movement raising the stakes, she has minutes to find a way out alive.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>A festival favourite watched tens of millions of times online</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/curve-2016/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="horror drama">
-      <div class="archive-video" data-video="gyfmwgOV6uo">
-        <img src="https://img.youtube.com/vi/gyfmwgOV6uo/hqdefault.jpg" alt="Cargo thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Zombie Drama</div>
-        <h3 class="archive-card-title">Cargo</h3>
-        <div class="archive-meta">Dir. Ben Howling & Yolanda Ramke · 2013</div>
-        <p class="archive-desc">A father, infected during a zombie outbreak, races against the clock to secure a future for his infant daughter — told almost entirely without dialogue. Later expanded into the Netflix feature starring Martin Freeman.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Tropfest Film Festival finalist, 2013 — went on to be viewed tens of millions of times online</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/cargo-2013/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="horror">
-      <div class="archive-video" data-video="FUQhNGEu2KA">
-        <img src="https://img.youtube.com/vi/FUQhNGEu2KA/hqdefault.jpg" alt="Lights Out thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Horror</div>
-        <h3 class="archive-card-title">Lights Out</h3>
-        <div class="archive-meta">Dir. David F. Sandberg · 2013</div>
-        <p class="archive-desc">A woman gets ready for bed, only to discover that switching off the hallway light reveals something standing in the dark. Under three minutes long and almost unbearably effective. Later expanded into a feature produced by James Wan.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Winner, Best Short Film — FANT Bilbao Fantastic Film Festival, 2014</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/lights-out-2013/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="comedy">
-      <div class="archive-video" data-video="cWs4WA--eKU">
-        <img src="https://img.youtube.com/vi/cWs4WA--eKU/hqdefault.jpg" alt="The Gunfighter thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Comedy / Western</div>
-        <h3 class="archive-card-title">The Gunfighter</h3>
-        <div class="archive-meta">Dir. Eric Kissack · 2014</div>
-        <p class="archive-desc">A classic Old West showdown is hijacked by an unseen narrator — whose running commentary the characters can somehow hear, with riotous and increasingly meta consequences.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Official Selection, SXSW Film Festival 2014</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/the-gunfighter/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="animation drama">
-      <div class="archive-video" data-video="WjqiU5FgsYc">
-        <img src="https://img.youtube.com/vi/WjqiU5FgsYc/hqdefault.jpg" alt="The Present thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Animated Drama</div>
-        <h3 class="archive-card-title">The Present</h3>
-        <div class="archive-meta">Dir. Jacob Frey · 2014</div>
-        <p class="archive-desc">A boy glued to his video games reluctantly receives a three-legged puppy as a gift from his mother. What begins with frustration becomes a quiet lesson in compassion — told entirely without words.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Winner of multiple international festival awards, including the German Short Film Award</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/the-present/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="animation comedy">
-      <div class="archive-video" data-video="dNJdJIwCF_Y">
-        <img src="https://img.youtube.com/vi/dNJdJIwCF_Y/hqdefault.jpg" alt="Fresh Guacamole thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Stop-Motion Comedy</div>
-        <h3 class="archive-card-title">Fresh Guacamole</h3>
-        <div class="archive-meta">Dir. PES · 2012</div>
-        <p class="archive-desc">Everyday objects — grenades, dice, a baseball — are sliced, diced and mixed into a bowl of guacamole in this stop-motion sleight-of-hand from animator PES. One of the shortest films ever made.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Academy Award nominee, Best Animated Short Film, 2013 — Guinness World Record for the shortest film ever Oscar-nominated</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/fresh-guacamole/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="animation drama">
-      <div class="archive-video" data-video="XrqSF2OOz_M">
-        <img src="https://img.youtube.com/vi/XrqSF2OOz_M/hqdefault.jpg" alt="Paperman thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Animated Romance</div>
-        <h3 class="archive-card-title">Paperman</h3>
-        <div class="archive-meta">Dir. John Kahrs · 2012</div>
-        <p class="archive-desc">A lonely office worker tries to reconnect with a woman he briefly met that morning, using nothing but a stack of paper airplanes — told in a striking blend of hand-drawn and CG animation.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Academy Award — Best Animated Short Film, 2013</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/paperman/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="animation scifi">
-      <div class="archive-video" data-video="4PUIxEWmsvI">
-        <img src="https://img.youtube.com/vi/4PUIxEWmsvI/hqdefault.jpg" alt="World of Tomorrow thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Animated Sci-Fi</div>
-        <h3 class="archive-card-title">World of Tomorrow</h3>
-        <div class="archive-meta">Dir. Don Hertzfeldt · 2015</div>
-        <p class="archive-desc">A young girl is taken on a tour of the future by a clone of herself, in a strange, funny and quietly devastating meditation on memory, mortality and what it means to be alive.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Academy Award nominee, Best Animated Short Film, 2016</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/world-of-tomorrow/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="comedy drama">
-      <div class="archive-video" data-video="Cbk980jV7Ao">
-        <img src="https://img.youtube.com/vi/Cbk980jV7Ao/hqdefault.jpg" alt="Validation thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Romantic Comedy</div>
-        <h3 class="archive-card-title">Validation</h3>
-        <div class="archive-meta">Dir. Kurt Kuenne · 2007</div>
-        <p class="archive-desc">A parking attendant gives away free validation — both the stamp and the compliment — to everyone he meets, becoming an overnight sensation. But the one smile he can't seem to win might be the one that matters most.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Winner, Best Short Grand Prize — Heartland Film Festival, 2007</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/validation/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="scifi drama">
-      <div class="archive-video" data-video="zo_nrcKUffw">
-        <img src="https://img.youtube.com/vi/zo_nrcKUffw/hqdefault.jpg" alt="The Answers thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Sci-Fi Drama</div>
-        <h3 class="archive-card-title">The Answers</h3>
-        <div class="archive-meta">2021</div>
-        <p class="archive-desc">A man wakes inside a strange testing facility where every question he asks is met with an unsettling answer, slowly revealing the truth of where — and what — he really is.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Independent sci-fi short</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/the-answers-2015/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="scifi thriller">
-      <div class="archive-video" data-video="mj1dd0Kcq8A">
-        <img src="https://img.youtube.com/vi/mj1dd0Kcq8A/hqdefault.jpg" alt="Operator thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Sci-Fi Thriller</div>
-        <h3 class="archive-card-title">Operator</h3>
-        <div class="archive-meta">2017</div>
-        <p class="archive-desc">A stranded astronaut depends entirely on an AI voice to guide them home — until the line between human operator and machine starts to blur, with chilling implications.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Independent sci-fi short</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/operator-2015/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="drama thriller">
-      <div class="archive-video" data-video="Yqiiwo49QJY">
-        <img src="https://img.youtube.com/vi/Yqiiwo49QJY/hqdefault.jpg" alt="Fauve thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Drama</div>
-        <h3 class="archive-card-title">Fauve</h3>
-        <div class="archive-meta">Dir. Jeremy Comte · 2018</div>
-        <p class="archive-desc">Two boys dare each other deeper and deeper into the grounds of an abandoned mine, their game of one-upmanship escalating until the danger becomes terrifyingly real.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Academy Award nominee, Best Live Action Short Film, 2019 — Canadian Screen Award winner</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/fauve/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="animation">
-      <div class="archive-video" data-video="HUngLgGRJpo">
-        <img src="https://img.youtube.com/vi/HUngLgGRJpo/hqdefault.jpg" alt="Nuggets thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Animated Drama</div>
-        <h3 class="archive-card-title">Nuggets</h3>
-        <div class="archive-meta">2022</div>
-        <p class="archive-desc">An ant stumbles across what looks like an enormous, glowing mound of sugar — and the discovery spirals into something far stranger and more unsettling than expected.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Episode from Netflix's Emmy-winning anthology series, Love, Death + Robots</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/nuggets/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="horror">
-      <div class="archive-video" data-video="H4dGpz6cnHo">
-        <img src="https://img.youtube.com/vi/H4dGpz6cnHo/hqdefault.jpg" alt="The Backrooms thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Found Footage Horror</div>
-        <h3 class="archive-card-title">The Backrooms (Found Footage)</h3>
-        <div class="archive-meta">Dir. Kane Parsons · 2022</div>
-        <p class="archive-desc">A first-person descent into an endless maze of empty, fluorescent-lit office corridors that shouldn't exist — based on the viral internet "Backrooms" creepypasta, and credited with kickstarting an entire horror subgenre.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Became a viral phenomenon on release, spawning a wave of imitators</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/the-backrooms/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="horror thriller">
-      <div class="archive-video" data-video="7qj6NsJfXJ0">
-        <img src="https://img.youtube.com/vi/7qj6NsJfXJ0/hqdefault.jpg" alt="Cautionary Tales thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Psychological Horror</div>
-        <h3 class="archive-card-title">Cautionary Tales</h3>
-        <div class="archive-meta">Short Film</div>
-        <p class="archive-desc">A slow, creeping descent into paranoia and isolation, as a character's grip on reality starts to come apart — and the audience is left unsure what's real.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Independent psychological horror short</div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="animation drama">
-      <div class="archive-video" data-video="8J4gM5e2A4E">
-        <img src="https://img.youtube.com/vi/8J4gM5e2A4E/hqdefault.jpg" alt="Bao thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Animated Family Drama</div>
-        <h3 class="archive-card-title">Bao</h3>
-        <div class="archive-meta">Dir. Domee Shi · 2018</div>
-        <p class="archive-desc">A Chinese-Canadian mother's homemade dumpling springs to life as a baby, giving her a second chance at motherhood — and forcing her to confront what it means to let go.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Academy Award — Best Animated Short Film, 2019</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/bao/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="animation drama">
-      <div class="archive-video" data-video="PDHIyrfMl_U">
-        <img src="https://img.youtube.com/vi/PDHIyrfMl_U/hqdefault.jpg" alt="Alike thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Animated Drama</div>
-        <h3 class="archive-card-title">Alike</h3>
-        <div class="archive-meta">Dir. Daniel Martínez Lara & Rafa Cano Méndez · 2015</div>
-        <p class="archive-desc">A father tries to help his young daughter hold on to her imagination and colour in a grey, conformist world that's slowly draining the colour out of him too.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Winner, Goya Award for Best Animated Short Film, 2017</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/alike/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="animation">
-      <div class="archive-video" data-video="qAIRXIckfMA">
-        <img src="https://img.youtube.com/vi/qAIRXIckfMA/hqdefault.jpg" alt="Piper thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Animated Family</div>
-        <h3 class="archive-card-title">Piper</h3>
-        <div class="archive-meta">Dir. Alan Barillaro · 2016</div>
-        <p class="archive-desc">A young sandpiper, terrified of the incoming waves, learns to find food for herself with some unexpected help from her hermit crab neighbours.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Academy Award — Best Animated Short Film, 2017</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/piper/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="animation comedy">
-      <div class="archive-video" data-video="kNw8V_Fkw28">
-        <img src="https://img.youtube.com/vi/kNw8V_Fkw28/hqdefault.jpg" alt="Hair Love thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Animated Family Comedy</div>
-        <h3 class="archive-card-title">Hair Love</h3>
-        <div class="archive-meta">Dir. Matthew A. Cherry & Everett Downing Jr. · 2019</div>
-        <p class="archive-desc">A father attempts to style his daughter's hair for a special day for the first time, fumbling his way through with a YouTube tutorial — and a whole lot of love.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Academy Award — Best Animated Short Film, 2020</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/hair-love/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="scifi comedy">
-      <div class="archive-video" data-video="vBkBS4O3yvY">
-        <img src="https://img.youtube.com/vi/vBkBS4O3yvY/hqdefault.jpg" alt="One-Minute Time Machine thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Sci-Fi Comedy</div>
-        <h3 class="archive-card-title">One-Minute Time Machine</h3>
-        <div class="archive-meta">Dir. Devon Avery</div>
-        <p class="archive-desc">A man demonstrates his newly invented time machine to a deeply unimpressed friend — and what follows is a perfectly escalating spiral of romantic comedy logic taken to its extreme.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>A long-running festival and online favourite</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/one-minute-time-machine/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="scifi comedy thriller">
-      <div class="archive-video" data-video="P5_Msrdg3Hk">
-        <img src="https://img.youtube.com/vi/P5_Msrdg3Hk/hqdefault.jpg" alt="The Black Hole thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Sci-Fi Thriller</div>
-        <h3 class="archive-card-title">The Black Hole</h3>
-        <div class="archive-meta">Dir. Phil Sansom & Olly Williams · 2008</div>
-        <p class="archive-desc">An exhausted office worker discovers his late-night photocopier mishap has produced a hole capable of passing through solid matter — and immediately starts thinking about everything he could take.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Winner, Virgin Media Shorts Grand Prize, 2008 (the award's inaugural year)</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/the-black-hole-2008/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="comedy">
-      <div class="archive-video" data-video="AdYaTa_lOf4">
-        <img src="https://img.youtube.com/vi/AdYaTa_lOf4/hqdefault.jpg" alt="I Am a Pencil thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Comedy</div>
-        <h3 class="archive-card-title">I Am a Pencil</h3>
-        <div class="archive-meta">Short Film</div>
-        <p class="archive-desc">A wry, deadpan comedy that turns the humble tools of creativity into the unlikely stars of their own story — a small, strange ode to the act of making things.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Independent comedy short</div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="horror">
-      <div class="archive-video" data-video="TGZg1YqXv9o">
-        <img src="https://img.youtube.com/vi/TGZg1YqXv9o/hqdefault.jpg" alt="Other Side of the Box thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Horror</div>
-        <h3 class="archive-card-title">Other Side of the Box</h3>
-        <div class="archive-meta">Short Film</div>
-        <p class="archive-desc">A mysterious box arrives with a simple warning not to open it — and, naturally, curiosity gets the better of everyone involved, with predictably horrifying results.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Independent horror short</div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="horror">
-      <div class="archive-video" data-video="OqSmb3n0j8o">
-        <img src="https://img.youtube.com/vi/OqSmb3n0j8o/hqdefault.jpg" alt="The Dollmaker thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Horror / Fantasy</div>
-        <h3 class="archive-card-title">The Dollmaker</h3>
-        <div class="archive-meta">Short Film · 2017</div>
-        <p class="archive-desc">A reclusive craftsman's exquisite dolls come at a far darker price than his customers realise, in a moody, atmospheric piece of fantasy-horror.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Independent fantasy-horror short</div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="horror thriller">
-      <div class="archive-video" data-video="f9jd6lyGvMI">
-        <img src="https://img.youtube.com/vi/f9jd6lyGvMI/hqdefault.jpg" alt="Don't Move thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Horror Thriller</div>
-        <h3 class="archive-card-title">Don't Move</h3>
-        <div class="archive-meta">Short Film · 2013</div>
-        <p class="archive-desc">A simple childhood game — stay perfectly still, no matter what — escalates into something far more sinister once the lights go out.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Independent horror short</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/dont-move-2013/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="drama">
-      <div class="archive-video" data-video="2GbxFIVQv8c">
-        <img src="https://img.youtube.com/vi/2GbxFIVQv8c/hqdefault.jpg" alt="The Silent Child thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Drama</div>
-        <h3 class="archive-card-title">The Silent Child</h3>
-        <div class="archive-meta">Dir. Chris Overton · 2017</div>
-        <p class="archive-desc">A profoundly deaf four-year-old girl, isolated within her own family, is given a sense of connection and communication by a social worker who teaches her sign language — against her parents' wishes.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Academy Award — Best Live Action Short Film, 2018</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/the-silent-child/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="drama">
-      <div class="archive-video" data-video="epuTZigxUY8">
-        <img src="https://img.youtube.com/vi/epuTZigxUY8/hqdefault.jpg" alt="The Lunch Date thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Drama</div>
-        <h3 class="archive-card-title">The Lunch Date</h3>
-        <div class="archive-meta">Dir. Adam Davidson · 12 min</div>
-        <p class="archive-desc">A well-to-do woman, having missed her train, returns to find her lunch gone and confronts a homeless man sitting nearby — a brief, wordless encounter that quietly dismantles her assumptions.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Academy Award — Best Live Action Short Film, 1991; Palme d'Or for Short Film, Cannes 1990</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/the-lunch-date/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="drama">
-      <div class="archive-video" data-video="H6M1OF_E0IA">
-        <img src="https://img.youtube.com/vi/H6M1OF_E0IA/hqdefault.jpg" alt="Spin thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Drama</div>
-        <h3 class="archive-card-title">Spin</h3>
-        <div class="archive-meta">12 min</div>
-        <p class="archive-desc">A character study built around a single sustained moment, following someone caught between the person they were and the person they're becoming.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Independent drama short</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/spin-2005/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="drama">
-      <div class="archive-video" data-video="7mEkvn5GxRg">
-        <img src="https://img.youtube.com/vi/7mEkvn5GxRg/hqdefault.jpg" alt="Skin thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Drama</div>
-        <h3 class="archive-card-title">Skin</h3>
-        <div class="archive-meta">Dir. Guy Nattiv · 20 min</div>
-        <p class="archive-desc">A young boy is raised inside a white supremacist family and gang, until a single violent act sets off a brutal cycle of retaliation that none of the adults around him can control.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Academy Award — Best Live Action Short Film, 2019</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/skin-2018/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="drama">
-      <div class="archive-video" data-video="O5jM6JQ5z9Q">
-        <img src="https://img.youtube.com/vi/O5jM6JQ5z9Q/hqdefault.jpg" alt="Brother thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Drama</div>
-        <h3 class="archive-card-title">Brother</h3>
-        <div class="archive-meta">13 min</div>
-        <p class="archive-desc">Old tensions between two brothers resurface over the course of a single day, as long-buried resentment and loyalty are forced back to the surface.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Independent drama short</div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="scifi thriller">
-      <div class="archive-video" data-video="J5b0RtoM2_8">
-        <img src="https://img.youtube.com/vi/J5b0RtoM2_8/hqdefault.jpg" alt="Room 8 thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Sci-Fi / Thriller</div>
-        <h3 class="archive-card-title">Room 8</h3>
-        <div class="archive-meta">Dir. James W. Griffiths · 8 min</div>
-        <p class="archive-desc">A prisoner thrown into a bleak cell discovers a mysterious red box on his bunk — and is warned, too late, never to open it.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Winner, BAFTA Award for Best British Short Film, 2014</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/room-8/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="drama">
-      <div class="archive-video" data-video="Q6M8wP8nphQ">
-        <img src="https://img.youtube.com/vi/Q6M8wP8nphQ/hqdefault.jpg" alt="The Fly thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Drama</div>
-        <h3 class="archive-card-title">The Fly</h3>
-        <div class="archive-meta">17 min</div>
-        <p class="archive-desc">An intimate character study told from an unexpected vantage point, observing a quiet domestic crisis unfold from the margins of the room.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Independent drama short</div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="drama">
-      <div class="archive-video" data-video="R8b6Q6mM5iY">
-        <img src="https://img.youtube.com/vi/R8b6Q6mM5iY/hqdefault.jpg" alt="Slut thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Drama</div>
-        <h3 class="archive-card-title">Slut</h3>
-        <div class="archive-meta">30 min</div>
-        <p class="archive-desc">A coming-of-age drama following a teenage girl as a single rumour begins to define how everyone around her — friends, family, and strangers — sees her.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Independent drama short</div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="drama">
-      <div class="archive-video" data-video="zk4Y7SbTQK8">
-        <img src="https://img.youtube.com/vi/zk4Y7SbTQK8/hqdefault.jpg" alt="The Smile Man thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Drama</div>
-        <h3 class="archive-card-title">The Smile Man</h3>
-        <div class="archive-meta">10 min</div>
-        <p class="archive-desc">A young girl becomes convinced that something is watching her from just out of sight, in a slow-burn drama built on dread and uncertainty.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Independent drama short</div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="drama">
-      <div class="archive-video" data-video="V7iMl4cR6LQ">
-        <img src="https://img.youtube.com/vi/V7iMl4cR6LQ/hqdefault.jpg" alt="The Ballerina thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Drama</div>
-        <h3 class="archive-card-title">The Ballerina</h3>
-        <div class="archive-meta">13 min</div>
-        <p class="archive-desc">A young dancer's pursuit of perfection comes at a cost, in a quiet character study about ambition, discipline and the body.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Independent drama short</div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="drama">
-      <div class="archive-video" data-video="Yq7m4nJQWJ8">
-        <img src="https://img.youtube.com/vi/Yq7m4nJQWJ8/hqdefault.jpg" alt="Death of a Shadow thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Fantasy / War</div>
-        <h3 class="archive-card-title">Death of a Shadow</h3>
-        <div class="archive-meta">Dir. Tom Van Avermaet · 20 min</div>
-        <p class="archive-desc">A soldier killed in the First World War is trapped between life and death, condemned to collect the shadows of the dying in exchange for a chance to return to the woman he loved.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Academy Award nominee, Best Live Action Short Film, 2014</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/death-of-a-shadow/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="horror scifi">
-      <div class="archive-video" data-video="pKWB-MVJ4sQ">
-        <img src="https://img.youtube.com/vi/pKWB-MVJ4sQ/hqdefault.jpg" alt="Zygote thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Sci-Fi Horror</div>
-        <h3 class="archive-card-title">Zygote</h3>
-        <div class="archive-meta">23 min</div>
-        <p class="archive-desc">Two survivors trapped in an isolated Arctic mining facility are hunted by a grotesque, ever-mutating creature assembled from the remains of the rest of their crew.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>From Oats Studios, Neill Blomkamp's experimental short-film anthology</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/zygote/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="scifi">
-      <div class="archive-video" data-video="VjQ2t_yNHQs">
-        <img src="https://img.youtube.com/vi/VjQ2t_yNHQs/hqdefault.jpg" alt="Rakka thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Sci-Fi</div>
-        <h3 class="archive-card-title">Rakka</h3>
-        <div class="archive-meta">22 min</div>
-        <p class="archive-desc">Earth has been conquered by an alien species that experiments on and enslaves the survivors, while a scattered human resistance plots a desperate fightback.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>From Oats Studios, Neill Blomkamp's experimental short-film anthology</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/rakka/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="scifi">
-      <div class="archive-video" data-video="Tm0V24IEHao">
-        <img src="https://img.youtube.com/vi/Tm0V24IEHao/hqdefault.jpg" alt="Firebase thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Sci-Fi War</div>
-        <h3 class="archive-card-title">Firebase</h3>
-        <div class="archive-meta">26 min</div>
-        <p class="archive-desc">During the Vietnam War, a remote American firebase calls in an experimental weapon — and tears open a doorway into something far more hostile than the enemy.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>From Oats Studios, Neill Blomkamp's experimental short-film anthology</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/firebase/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="scifi">
-      <div class="archive-video" data-video="GXI0l3yqBrA">
-        <img src="https://img.youtube.com/vi/GXI0l3yqBrA/hqdefault.jpg" alt="Adam: The Mirror thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Sci-Fi</div>
-        <h3 class="archive-card-title">Adam: The Mirror</h3>
-        <div class="archive-meta">8 min</div>
-        <p class="archive-desc">A newly-created synthetic being wakes inside a derelict facility and begins piecing together fragments of a memory that isn't entirely his own.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Part of Oats Studios' Adam trilogy</div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="scifi">
-      <div class="archive-video" data-video="GXI0l3yqBrA">
-        <img src="https://img.youtube.com/vi/GXI0l3yqBrA/hqdefault.jpg" alt="Adam thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Sci-Fi</div>
-        <h3 class="archive-card-title">Adam</h3>
-        <div class="archive-meta">6 min</div>
-        <p class="archive-desc">The opening chapter of Oats Studios' Adam trilogy, following a synthetic being's first, disorientating moments of consciousness in a hostile, decaying world.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>From Oats Studios, Neill Blomkamp's experimental short-film anthology</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/adam-2009/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="horror">
-      <div class="archive-video" data-video="JzYf6qskdfA">
-        <img src="https://img.youtube.com/vi/JzYf6qskdfA/hqdefault.jpg" alt="Bad Peter thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Horror</div>
-        <h3 class="archive-card-title">Bad Peter</h3>
-        <div class="archive-meta">15 min</div>
-        <p class="archive-desc">A children's bedtime story takes on a far darker meaning when an old wives' tale, told to keep kids in line, turns out to be horribly real.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Independent horror short</div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="horror">
-      <div class="archive-video" data-video="hs3paMLb9Qg">
-        <img src="https://img.youtube.com/vi/hs3paMLb9Qg/hqdefault.jpg" alt="Ignore It thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Horror</div>
-        <h3 class="archive-card-title">Ignore It</h3>
-        <div class="archive-meta">6 min</div>
-        <p class="archive-desc">A short, sharp horror about what happens when someone breaks the one rule they were given: don't acknowledge it, no matter what.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Independent horror short</div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="horror">
-      <div class="archive-video" data-video="BI9fKfX5V68">
-        <img src="https://img.youtube.com/vi/BI9fKfX5V68/hqdefault.jpg" alt="Portrait of God thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Horror</div>
-        <h3 class="archive-card-title">Portrait of God</h3>
-        <div class="archive-meta">7 min</div>
-        <p class="archive-desc">A painter is commissioned to create a portrait unlike anything they've attempted before — with consequences that test the limits of faith, talent and sanity.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Independent horror short</div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="horror">
-      <div class="archive-video" data-video="HVQzEzW4faA">
-        <img src="https://img.youtube.com/vi/HVQzEzW4faA/hqdefault.jpg" alt="Heck thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Horror</div>
-        <h3 class="archive-card-title">Heck</h3>
-        <div class="archive-meta">14 min</div>
-        <p class="archive-desc">A family road trip takes a sharp and unwelcome detour after a wrong turn down an unfamiliar road leads somewhere that shouldn't exist.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Independent horror short</div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="thriller">
-      <div class="archive-video" data-video="gf6nU0xG6oM">
-        <img src="https://img.youtube.com/vi/gf6nU0xG6oM/hqdefault.jpg" alt="Hostage thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Thriller</div>
-        <h3 class="archive-card-title">Hostage</h3>
-        <div class="archive-meta">9 min</div>
-        <p class="archive-desc">A tense hostage situation unfolds in real time, with every decision narrowing the odds of a peaceful resolution.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Independent thriller short</div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="animation scifi">
-      <div class="archive-video" data-video="uWCGK4nneeU">
-        <img src="https://img.youtube.com/vi/uWCGK4nneeU/hqdefault.jpg" alt="The OceanMaker thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Animated Sci-Fi</div>
-        <h3 class="archive-card-title">The OceanMaker</h3>
-        <div class="archive-meta">Dir. Lucas Martell · 10 min</div>
-        <p class="archive-desc">In a desert world where water has become the most valuable resource on Earth, a young pilot must outrun a gang of sky raiders to deliver a desperately needed cargo of clouds.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Crowdfunded animated short and multiple festival award winner</div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="animation drama">
-      <div class="archive-video" data-video="2REkk9SCRn0">
-        <img src="https://img.youtube.com/vi/2REkk9SCRn0/hqdefault.jpg" alt="In a Heartbeat thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Animated Romance</div>
-        <h3 class="archive-card-title">In a Heartbeat</h3>
-        <div class="archive-meta">Dir. Beth David & Esteban Bravo · 4 min</div>
-        <p class="archive-desc">A shy boy's own heart leaps out of his chest and chases after his crush, threatening to reveal a secret he isn't ready for everyone to know.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Winner, Student Academy Award for Best Animated Short Film, 2017 — also Academy Award shortlisted</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/in-a-heartbeat/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="animation drama">
-      <div class="archive-video" data-video="AZS5cgybKcI">
-        <img src="https://img.youtube.com/vi/AZS5cgybKcI/hqdefault.jpg" alt="Kitbull thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Animated Drama</div>
-        <h3 class="archive-card-title">Kitbull</h3>
-        <div class="archive-meta">Dir. Rosana Sullivan · 9 min</div>
-        <p class="archive-desc">An unlikely friendship forms between a stray kitten and an abused pit bull, both searching for safety on the same patch of street.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Academy Award nominee, Best Animated Short Film, 2020</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/kitbull/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="animation">
-      <div class="archive-video" data-video="XdKzUbAiswE">
-        <img src="https://img.youtube.com/vi/XdKzUbAiswE/hqdefault.jpg" alt="Float thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Animated Family</div>
-        <h3 class="archive-card-title">Float</h3>
-        <div class="archive-meta">Dir. Bobby Rubio · 7 min</div>
-        <p class="archive-desc">A father struggles to come to terms with his young son's unusual ability — and his own instinct to hide him away from a world that won't understand.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>From Pixar's SparkShorts programme</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/float-2019/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="animation drama">
-      <div class="archive-video" data-video="p4jvK3zN2eM">
-        <img src="https://img.youtube.com/vi/p4jvK3zN2eM/hqdefault.jpg" alt="Loop thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Animated Drama</div>
-        <h3 class="archive-card-title">Loop</h3>
-        <div class="archive-meta">Dir. Erica Milsom · 9 min</div>
-        <p class="archive-desc">Two kids share a canoe trip across a quiet lake — one of them autistic and non-speaking — in a gentle study of patience, communication and connection.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Pixar's first short to feature a nonverbal autistic character, from the SparkShorts programme</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/loop-2020/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="animation drama">
-      <div class="archive-video" data-video="FQHCJjJf4_g">
-        <img src="https://img.youtube.com/vi/FQHCJjJf4_g/hqdefault.jpg" alt="Borrowed Time thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Animated Western Drama</div>
-        <h3 class="archive-card-title">Borrowed Time</h3>
-        <div class="archive-meta">Dir. Andrew Coats & Lou Hamou-Lhadj · 7 min</div>
-        <p class="archive-desc">An ageing sheriff returns alone to the site of a childhood tragedy he's spent his whole life trying to outrun, in one of Pixar's darkest and most personal shorts.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Independent Pixar animated short</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/borrowed-time/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="animation drama">
-      <div class="archive-video" data-video="KI2lsdXJQ40">
-        <img src="https://img.youtube.com/vi/KI2lsdXJQ40/hqdefault.jpg" alt="Negative Space thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Animated Drama</div>
-        <h3 class="archive-card-title">Negative Space</h3>
-        <div class="archive-meta">Dir. Max Porter & Ru Kuwahata · 6 min</div>
-        <p class="archive-desc">A son reflects on the unusual bond he shared with his father — built almost entirely around the precise, near-sacred art of packing a suitcase.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Academy Award nominee, Best Animated Short Film, 2018</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/negative-space/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="animation drama">
-      <div class="archive-video" data-video="Yl4hWf8L6v4">
-        <img src="https://img.youtube.com/vi/Yl4hWf8L6v4/hqdefault.jpg" alt="Late Afternoon thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Animated Drama</div>
-        <h3 class="archive-card-title">Late Afternoon</h3>
-        <div class="archive-meta">Dir. Louise Bagnall · 10 min</div>
-        <p class="archive-desc">An elderly woman drifts through fragments of memory as she's cared for by a kind young nurse, in a tender meditation on ageing, recollection and the moments that stay with us.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Academy Award nominee, Best Animated Short Film, 2018</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/late-afternoon/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="animation">
-      <div class="archive-video" data-video="YDXOioU_OKM">
-        <img src="https://img.youtube.com/vi/YDXOioU_OKM/hqdefault.jpg" alt="The Maker thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Fantasy / Stop Motion</div>
-        <h3 class="archive-card-title">The Maker</h3>
-        <div class="archive-meta">Dir. Christopher Kezelos · 5 min</div>
-        <p class="archive-desc">A small, rabbit-like creature races against a draining hourglass to complete the most important and beautiful creation of his life.</p>
-        <div class="archive-award"><span class="archive-award-icon">🏆</span>Winner of 23+ international festival awards, including the Grand Prize at the Rhode Island International Film Festival; AACTA Award nominee for Best Short Animation, 2012</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/the-maker/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
-    <div class="archive-card reveal" data-genre="animation comedy">
-      <div class="archive-video" data-video="fxQcBKUPm8o">
-        <img src="https://img.youtube.com/vi/fxQcBKUPm8o/hqdefault.jpg" alt="Vincent thumbnail" loading="lazy">
-        <div class="play-circle"><span>▶</span></div>
-      </div>
-      <div class="archive-info">
-        <div class="archive-genre">Animated Gothic Comedy</div>
-        <h3 class="archive-card-title">Vincent</h3>
-        <div class="archive-meta">Dir. Tim Burton · 6 min</div>
-        <p class="archive-desc">A young boy obsessed with horror icon Vincent Price imagines his own suburban life as a gothic tale of doom, narrated in rhyme by Price himself.</p>
-        <div class="archive-award"><span class="archive-award-icon">★</span>Tim Burton's first professional short film, made while he was a Disney animator</div>
-        <div class="archive-links"><a href="https://letterboxd.com/film/vincent-1982/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>
-      </div>
-    </div>
-
+  <div class="archive-grid" id="archiveGrid"></div>
+  <div class="no-results" id="noResults">
+    <h4>Nothing on the shelf for that.</h4>
+    <p>Try another title, director or genre.</p>
   </div>
 </section>
 
-<!-- FOOTER -->
+<div style="border-top:1px solid #1a1a1a;padding:44px 40px;text-align:center;">
+  <p style="font-size:11px;letter-spacing:0.04em;line-height:1.9;color:var(--mid);max-width:520px;margin:0 auto;">
+    Yes, this works on your phone. No, your phone is not doing it justice. Find a laptop.
+  </p>
+  <p style="font-family:'DM Serif Display',serif;font-style:italic;font-size:16px;color:var(--cream);margin-top:14px;">
+    Riley Bowen, 2026
+  </p>
+</div>
+
 <footer>
   <div class="footer-logo">50% Film</div>
   <span class="footer-copy">© 2025–2026 — Short Cinema Label — London, UK</span>
@@ -1508,19 +249,351 @@
 </footer>
 
 <script>
-  // Cursor
+  /* ===== FILM DATA — every video ID verified live against YouTube ===== */
+  const FILMS = [
+    {t:"The Neighbors' Window", g:"drama", gen:"Drama", meta:"Dir. Marshall Curry · 2019", v:"k1vCrsZ80M4", ico:"🏆", lb:"the-neighbors-window",
+     syn:"A New York mother becomes captivated by the carefree young couple living in the apartment across the street — until a sudden turn of events forces her to look at her own life differently.",
+     aw:"Academy Award — Best Live Action Short Film, 2020"},
+    {t:"Stutterer", g:"drama", gen:"Romantic Drama", meta:"Dir. Benjamin Cleary · 2015", v:"2m_VTZR5MU0", ico:"🏆", lb:"stutterer",
+     syn:"A lonely typographer with a severe stutter retreats into his rich inner monologue as the day approaches when he must finally meet, in person, the woman he's been talking to online.",
+     aw:"Academy Award — Best Live Action Short Film, 2016"},
+    {t:"Six Shooter", g:"drama comedy", gen:"Dark Comedy / Drama", meta:"Dir. Martin McDonagh · 2004", v:"n_xMyx_SogA", ico:"🏆", lb:"six-shooter",
+     syn:"A grieving widower shares a train carriage with a foul-mouthed teenager and a couple in mourning, in a pitch-black comedy that builds, with horrifying inevitability, toward gunfire.",
+     aw:"Academy Award — Best Live Action Short Film, 2006"},
+    {t:"Curve", g:"thriller", gen:"Psychological Thriller", meta:"Dir. Tim Egan · 2015", v:"2dD3Fawk4y0", ico:"★", lb:"curve-2016",
+     syn:"A woman wakes up suspended over a deadly chasm with no memory of how she got there. With every movement raising the stakes, she has minutes to find a way out alive.",
+     aw:"A festival favourite watched tens of millions of times online"},
+    {t:"Cargo", g:"horror drama", gen:"Zombie Drama", meta:"Dir. Ben Howling & Yolanda Ramke · 2013", v:"gyfmwgOV6uo", ico:"🏆", lb:"cargo-2013",
+     syn:"A father, infected during a zombie outbreak, races against the clock to secure a future for his infant daughter — told almost entirely without dialogue. Later expanded into the Netflix feature starring Martin Freeman.",
+     aw:"Tropfest finalist, 2013 — later viewed tens of millions of times online"},
+    {t:"Lights Out", g:"horror", gen:"Horror", meta:"Dir. David F. Sandberg · 2013", v:"FUQhNGEu2KA", ico:"🏆", lb:"lights-out-2013",
+     syn:"A woman gets ready for bed, only to discover that switching off the hallway light reveals something standing in the dark. Under three minutes long and almost unbearably effective. Later expanded into a feature produced by James Wan.",
+     aw:"Winner, Best Short Film — FANT Bilbao Fantastic Film Festival, 2014"},
+    {t:"The Gunfighter", g:"comedy", gen:"Comedy / Western", meta:"Dir. Eric Kissack · 2014", v:"cWs4WA--eKU", ico:"★", lb:"the-gunfighter",
+     syn:"A classic Old West showdown is hijacked by an unseen narrator — whose running commentary the characters can somehow hear, with riotous and increasingly meta consequences.",
+     aw:"Official Selection, SXSW Film Festival 2014"},
+    {t:"The Present", g:"animation drama", gen:"Animated Drama", meta:"Dir. Jacob Frey · 2014", v:"WjqiU5FgsYc", ico:"🏆", lb:"the-present",
+     syn:"A boy glued to his video games reluctantly receives a three-legged puppy as a gift from his mother. What begins with frustration becomes a quiet lesson in compassion — told entirely without words.",
+     aw:"Winner of multiple international festival awards, including the German Short Film Award"},
+    {t:"Fresh Guacamole", g:"animation comedy", gen:"Stop-Motion Comedy", meta:"Dir. PES · 2012", v:"dNJdJIwCF_Y", ico:"🏆", lb:"fresh-guacamole",
+     syn:"Everyday objects — grenades, dice, a baseball — are sliced, diced and mixed into a bowl of guacamole in this stop-motion sleight-of-hand from animator PES. One of the shortest films ever made.",
+     aw:"Academy Award nominee, 2013 — Guinness World Record for shortest film ever Oscar-nominated"},
+    {t:"Paperman", g:"animation drama", gen:"Animated Romance", meta:"Dir. John Kahrs · 2012", v:"XrqSF2OOz_M", ico:"🏆", lb:"paperman",
+     syn:"A lonely office worker tries to reconnect with a woman he briefly met that morning, using nothing but a stack of paper airplanes — told in a striking blend of hand-drawn and CG animation.",
+     aw:"Academy Award — Best Animated Short Film, 2013"},
+    {t:"World of Tomorrow", g:"animation scifi", gen:"Animated Sci-Fi", meta:"Dir. Don Hertzfeldt · 2015", v:"4PUIxEWmsvI", ico:"🏆", lb:"world-of-tomorrow",
+     syn:"A young girl is taken on a tour of the future by a clone of herself, in a strange, funny and quietly devastating meditation on memory, mortality and what it means to be alive.",
+     aw:"Academy Award nominee, Best Animated Short Film, 2016"},
+    {t:"Validation", g:"comedy drama", gen:"Romantic Comedy", meta:"Dir. Kurt Kuenne · 2007", v:"Cbk980jV7Ao", ico:"🏆", lb:"validation",
+     syn:"A parking attendant gives away free validation — both the stamp and the compliment — to everyone he meets, becoming an overnight sensation. But the one smile he can't seem to win might be the one that matters most.",
+     aw:"Winner, Best Short Grand Prize — Heartland Film Festival, 2007"},
+    {t:"The Answers", g:"scifi drama", gen:"Sci-Fi Drama", meta:"2021", v:"zo_nrcKUffw", ico:"★", lb:"the-answers-2015",
+     syn:"A man wakes inside a strange testing facility where every question he asks is met with an unsettling answer, slowly revealing the truth of where — and what — he really is.",
+     aw:"Independent sci-fi short"},
+    {t:"Nuggets", g:"animation", gen:"Animated Drama", meta:"2022", v:"HUngLgGRJpo", ico:"★", lb:"nuggets",
+     syn:"An ant stumbles across what looks like an enormous, glowing mound of sugar — and the discovery spirals into something far stranger and more unsettling than expected.",
+     aw:"Episode from Netflix's Emmy-winning anthology series, Love, Death + Robots"},
+    {t:"The Backrooms", g:"horror", gen:"Found Footage Horror", meta:"Dir. Kane Parsons · 2022", v:"H4dGpz6cnHo", ico:"★", lb:"the-backrooms",
+     syn:"A first-person descent into an endless maze of empty, fluorescent-lit office corridors that shouldn't exist — based on the viral internet \"Backrooms\" creepypasta, and credited with kickstarting an entire horror subgenre.",
+     aw:"Became a viral phenomenon on release, spawning a wave of imitators"},
+    {t:"Alike", g:"animation drama", gen:"Animated Drama", meta:"Dir. D. Martínez Lara & R. Cano Méndez · 2015", v:"PDHIyrfMl_U", ico:"🏆", lb:"alike",
+     syn:"A father tries to help his young daughter hold on to her imagination and colour in a grey, conformist world that's slowly draining the colour out of him too.",
+     aw:"Winner, Goya Award for Best Animated Short Film, 2017"},
+    {t:"Piper", g:"animation", gen:"Animated Family", meta:"Dir. Alan Barillaro · 2016", v:"qAIRXIckfMA", ico:"🏆", lb:"piper",
+     syn:"A young sandpiper, terrified of the incoming waves, learns to find food for herself with some unexpected help from her hermit crab neighbours.",
+     aw:"Academy Award — Best Animated Short Film, 2017"},
+    {t:"Hair Love", g:"animation comedy", gen:"Animated Family Comedy", meta:"Dir. Matthew A. Cherry · 2019", v:"kNw8V_Fkw28", ico:"🏆", lb:"hair-love",
+     syn:"A father attempts to style his daughter's hair for a special day for the first time, fumbling his way through with a YouTube tutorial — and a whole lot of love.",
+     aw:"Academy Award — Best Animated Short Film, 2020"},
+    {t:"Other Side of the Box", g:"horror", gen:"Horror", meta:"Dir. Caleb J. Phillips · 2018", v:"TGZg1YqXv9o", ico:"★", lb:null,
+     syn:"A mysterious box arrives with a simple warning not to open it — and, naturally, curiosity gets the better of everyone involved, with predictably horrifying results.",
+     aw:"Award-winning independent horror short"},
+    {t:"The Dollmaker", g:"horror", gen:"Horror / Fantasy", meta:"Short Film · 2017", v:"OqSmb3n0j8o", ico:"★", lb:null,
+     syn:"A reclusive craftsman's exquisite dolls come at a far darker price than his customers realise, in a moody, atmospheric piece of fantasy-horror.",
+     aw:"Independent fantasy-horror short, presented by ALTER"},
+    {t:"Don't Move", g:"horror thriller", gen:"Horror Thriller", meta:"By Bloody Cuts · 2013", v:"f9jd6lyGvMI", ico:"★", lb:"dont-move-2013",
+     syn:"A simple childhood game — stay perfectly still, no matter what — escalates into something far more sinister once the lights go out.",
+     aw:"From the award-winning Bloody Cuts horror anthology"},
+    {t:"The Silent Child", g:"drama", gen:"Drama", meta:"Dir. Chris Overton · 2017", v:"2GbxFIVQv8c", ico:"🏆", lb:"the-silent-child",
+     syn:"A profoundly deaf four-year-old girl, isolated within her own family, is given a sense of connection and communication by a social worker who teaches her sign language — against her parents' wishes.",
+     aw:"Academy Award — Best Live Action Short Film, 2018"},
+    {t:"Zygote", g:"horror scifi", gen:"Sci-Fi Horror", meta:"Dir. Neill Blomkamp · 2017", v:"pKWB-MVJ4sQ", ico:"★", lb:"zygote",
+     syn:"Two survivors trapped in an isolated Arctic mining facility are hunted by a grotesque, ever-mutating creature assembled from the remains of the rest of their crew.",
+     aw:"From Oats Studios, Neill Blomkamp's experimental short-film anthology"},
+    {t:"Rakka", g:"scifi", gen:"Sci-Fi", meta:"Dir. Neill Blomkamp · 2017", v:"VjQ2t_yNHQs", ico:"★", lb:"rakka",
+     syn:"Earth has been conquered by an alien species that experiments on and enslaves the survivors, while a scattered human resistance plots a desperate fightback.",
+     aw:"From Oats Studios, Neill Blomkamp's experimental short-film anthology"},
+    {t:"Firebase", g:"scifi", gen:"Sci-Fi War", meta:"Dir. Neill Blomkamp · 2017", v:"Tm0V24IEHao", ico:"★", lb:"firebase",
+     syn:"During the Vietnam War, a remote American firebase calls in an experimental weapon — and tears open a doorway into something far more hostile than the enemy.",
+     aw:"From Oats Studios, Neill Blomkamp's experimental short-film anthology"},
+    {t:"Adam", g:"scifi", gen:"Sci-Fi", meta:"Unity · 2016", v:"GXI0l3yqBrA", ico:"★", lb:"adam-2009",
+     syn:"A synthetic being wakes inside a derelict facility and begins piecing together fragments of a memory that isn't entirely his own — the landmark real-time-rendered short later continued by Oats Studios.",
+     aw:"Landmark real-time-rendered short film"},
+    {t:"Ignore It", g:"horror", gen:"Horror", meta:"Short Film · 2016", v:"hs3paMLb9Qg", ico:"★", lb:null,
+     syn:"A short, sharp horror about what happens when someone breaks the one rule they were given: don't acknowledge it, no matter what.",
+     aw:"Award-winning independent horror short"},
+    {t:"Portrait of God", g:"horror", gen:"Horror", meta:"Short Film · 2021", v:"BI9fKfX5V68", ico:"★", lb:null,
+     syn:"A painter is commissioned to create a portrait unlike anything they've attempted before — with consequences that test the limits of faith, talent and sanity.",
+     aw:"Independent horror short"},
+    {t:"Heck", g:"horror", gen:"Horror", meta:"Short Film", v:"HVQzEzW4faA", ico:"★", lb:null,
+     syn:"A family road trip takes a sharp and unwelcome detour after a wrong turn down an unfamiliar road leads somewhere that shouldn't exist.",
+     aw:"Independent horror short"},
+    {t:"The OceanMaker", g:"animation scifi", gen:"Animated Sci-Fi", meta:"Dir. Lucas Martell · 2014", v:"uWCGK4nneeU", ico:"★", lb:null,
+     syn:"In a desert world where water has become the most valuable resource on Earth, a young pilot must outrun a gang of sky raiders to deliver a desperately needed cargo of clouds.",
+     aw:"Crowdfunded animated short and multiple festival award winner"},
+    {t:"In a Heartbeat", g:"animation drama", gen:"Animated Romance", meta:"Dir. Beth David & Esteban Bravo · 2017", v:"2REkk9SCRn0", ico:"🏆", lb:"in-a-heartbeat",
+     syn:"A shy boy's own heart leaps out of his chest and chases after his crush, threatening to reveal a secret he isn't ready for everyone to know.",
+     aw:"Winner, Student Academy Award for Best Animated Short Film, 2017 — also Oscar shortlisted"},
+    {t:"Negative Space", g:"animation drama", gen:"Animated Drama", meta:"Dir. Max Porter & Ru Kuwahata · 2017", v:"KI2lsdXJQ40", ico:"🏆", lb:"negative-space",
+     syn:"A son reflects on the unusual bond he shared with his father — built almost entirely around the precise, near-sacred art of packing a suitcase.",
+     aw:"Academy Award nominee, Best Animated Short Film, 2018"},
+    {t:"The Maker", g:"animation", gen:"Fantasy / Stop Motion", meta:"Dir. Christopher Kezelos · 2011", v:"YDXOioU_OKM", ico:"🏆", lb:"the-maker",
+     syn:"A small, rabbit-like creature races against a draining hourglass to complete the most important and beautiful creation of his life.",
+     aw:"Winner of 23+ international festival awards; AACTA Award nominee, 2012"},
+    {t:"Vincent", g:"animation comedy", gen:"Animated Gothic Comedy", meta:"Dir. Tim Burton · 1982", v:"fxQcBKUPm8o", ico:"★", lb:"vincent-1982",
+     syn:"A young boy obsessed with horror icon Vincent Price imagines his own suburban life as a gothic tale of doom, narrated in rhyme by Price himself.",
+     aw:"Tim Burton's first professional short film, made while he was a Disney animator"},
+
+    /* ===== NEW ADDITIONS — verified on official channels ===== */
+    {t:"Bear Story", g:"animation drama", gen:"Animated Drama", meta:"Dir. Gabriel Osorio · 2014", v:"mbN4cv8YUbQ", ico:"🏆", lb:"bear-story",
+     syn:"A lonely old bear performs a clockwork diorama on the street, telling the story of a family torn apart and a long road home — a tender allegory for exile under Chile's dictatorship. (In Spanish, as Historia de un oso.)",
+     aw:"Academy Award — Best Animated Short Film, 2016 · Chile's first-ever Oscar"},
+    {t:"Feeling Through", g:"drama", gen:"Drama", meta:"Dir. Doug Roland · 2019", v:"h1CqzntEZZ8", ico:"🏆", lb:"feeling-through",
+     syn:"A homeless teenager's late-night search for a place to sleep is interrupted by a chance encounter with a DeafBlind man waiting to cross the street — and a connection neither expected.",
+     aw:"Academy Award nominee, 2021 — the first film to star a DeafBlind actor"},
+    {t:"The Smiling Man", g:"horror", gen:"Horror", meta:"Dir. A.J. Briones · 2015", v:"zk-eY5S1Nck", ico:"★", lb:null,
+     syn:"A little girl, home alone, follows a trail of balloons through the house — and comes face to face with something that will not stop smiling. Six minutes of near-perfect dread.",
+     aw:"Viral horror landmark, presented by ALTER"},
+    {t:"FTL", g:"scifi", gen:"Sci-Fi", meta:"Dir. Adam Stern · 2018", v:"t8LD0iUYv80", ico:"★", lb:null,
+     syn:"A lone astronaut testing the first faster-than-light spacecraft travels farther than he ever imagined possible — and finds the trip back is the real problem.",
+     aw:"Hard sci-fi short, presented by DUST"},
+    {t:"Slaughterbots", g:"scifi thriller", gen:"Sci-Fi Thriller", meta:"Stop Autonomous Weapons · 2017", v:"O-2tpwW0kmU", ico:"★", lb:"slaughterbots",
+     syn:"A slick tech keynote unveils a palm-sized autonomous killer drone — and the demonstration spirals into a chillingly plausible vision of where lethal AI could lead.",
+     aw:"Acclaimed cautionary short on autonomous weapons, presented by DUST"},
+    {t:"Clones", g:"scifi", gen:"Sci-Fi", meta:"Starring Rutger Hauer · 2018", v:"2d0iJ4lFKFQ", ico:"★", lb:null,
+     syn:"Aboard a space station, a brilliant man preparing for a risky brain operation must overcome his fear of losing his own identity before the procedure begins.",
+     aw:"Sci-fi short starring Rutger Hauer, presented by DUST"},
+
+    /* ===== EXPANSION TO 100 — verified official-channel shorts ===== */
+    {t:"Ryan", g:"animation drama", gen:"Animated Documentary", meta:"Dir. Chris Landreth · 2004", v:"nbkBjZKBLHQ", ico:"🏆", lb:"ryan",
+     syn:"A documentary-animation portrait of Ryan Larkin, a once-celebrated Canadian animator living on welfare, his damage rendered as surreal, fractured 3D forms.",
+     aw:"Academy Award — Best Animated Short, 2005"},
+    {t:"Neighbours", g:"animation", gen:"Animated / Anti-War", meta:"Dir. Norman McLaren · 1952", v:"e_aSowDUUaY", ico:"🏆", lb:"neighbours-1952",
+     syn:"Two men living peacefully side by side come to blows over a single flower, in McLaren's pixilated anti-war landmark.",
+     aw:"Academy Award winner, 1953"},
+    {t:"The Cat Came Back", g:"animation comedy", gen:"Animated Comedy", meta:"Dir. Cordell Barker · 1988", v:"FJl_4IsQJ2g", ico:"🏆", lb:"the-cat-came-back-1988",
+     syn:"Old Mr Johnson tries everything to rid himself of an indestructible little yellow cat, with escalating and catastrophic results.",
+     aw:"Academy Award nominee, 1989"},
+    {t:"Madame Tutli-Putli", g:"animation", gen:"Stop-Motion", meta:"Dir. Chris Lavis & Maciek Szczerbowski · 2007", v:"KcdzdHoDvkg", ico:"🏆", lb:"madame-tutli-putli",
+     syn:"A woman boards a night train with all her worldly belongings and is drawn into a hallucinatory, metaphysical journey.",
+     aw:"Academy Award nominee, 2008"},
+    {t:"Wild Life", g:"animation drama", gen:"Animated Drama", meta:"Dir. Amanda Forbis & Wendy Tilby · 2011", v:"WtbkNCc0tj4", ico:"🏆", lb:"wild-life",
+     syn:"A dapper young Englishman emigrates to the Canadian prairie in 1909, hopelessly unprepared for the isolation of frontier life.",
+     aw:"Academy Award nominee, 2012"},
+    {t:"Affairs of the Art", g:"animation comedy", gen:"Animated Comedy", meta:"Dir. Joanna Quinn · 2021", v:"dIrNA_hy0l8", ico:"🏆", lb:"affairs-of-the-art",
+     syn:"Beryl, a fifty-something factory worker, becomes consumed by drawing, in a riotous portrait of one eccentric family's all-consuming obsessions.",
+     aw:"Academy Award nominee, 2022"},
+    {t:"The Street", g:"animation drama", gen:"Animated Drama", meta:"Dir. Caroline Leaf · 1976", v:"ed1RzYqgwqM", ico:"🏆", lb:"the-street-1976",
+     syn:"A boy waits for his ailing grandmother to die so he can finally have her room, in Leaf's fluid paint-on-glass adaptation of Mordecai Richler.",
+     aw:"Academy Award nominee, 1977"},
+    {t:"Runaway", g:"animation comedy", gen:"Animated Comedy", meta:"Dir. Cordell Barker · 2009", v:"qUGHv2VAESE", ico:"🏆", lb:"runaway-2009",
+     syn:"A merrily chugging train hurtles toward disaster while its passengers, divided by class, fail to notice — a darkly comic ride set to a rousing score.",
+     aw:"Academy Award nominee, 2010"},
+    {t:"Oktapodi", g:"animation comedy", gen:"Animated Comedy", meta:"GOBELINS · 2007", v:"uhQu4HqT7y8", ico:"🏆", lb:"oktapodi",
+     syn:"Two amorous octopuses stage a frantic, slapstick chase through a Greek island to avoid ending up on a dinner plate.",
+     aw:"Academy Award nominee, 2009 · GOBELINS"},
+    {t:"Best Friend", g:"animation scifi", gen:"Animated Sci-Fi", meta:"GOBELINS · 2018", v:"j01Hg4QJ6NE", ico:"★", lb:null,
+     syn:"In a near future, a lonely man is addicted to a product that supplies him with a perfect artificial best friend — until the subscription lapses.",
+     aw:"GOBELINS animation short"},
+    {t:"Thermostat 6", g:"animation", gen:"Animated Drama", meta:"GOBELINS · 2018", v:"j6Hz_gdqS1k", ico:"★", lb:null,
+     syn:"A daughter can no longer ignore a leak spreading through the family home, while her parents calmly refuse to acknowledge it.",
+     aw:"GOBELINS animation short"},
+    {t:"The Soloists", g:"animation", gen:"Animated Drama", meta:"GOBELINS · 2021", v:"lIyLRnB-eCY", ico:"★", lb:null,
+     syn:"In a village ruled by absurd laws, three sisters quietly defy the rules to sing out loud.",
+     aw:"GOBELINS animation short"},
+    {t:"Louise", g:"animation drama", gen:"Animated Drama", meta:"GOBELINS · 2021", v:"7GjJef2QkQU", ico:"★", lb:null,
+     syn:"A ballerina at the Paris Opera in 1895 chases a single fleeting moment of grace.",
+     aw:"GOBELINS animation short"},
+    {t:"Try Hard", g:"animation comedy", gen:"Animated Comedy", meta:"GOBELINS · 2023", v:"LWpRdTMjEmM", ico:"★", lb:null,
+     syn:"Alex, an art student, will do anything to impress the effortlessly cool classmate he's smitten with.",
+     aw:"GOBELINS animation short"},
+    {t:"Le Retour des Vagues", g:"animation drama", gen:"Animated Drama", meta:"GOBELINS · 2022", v:"t023ryQgguQ", ico:"★", lb:null,
+     syn:"Returning to his hometown in the hope of reconnecting with an old friend, a young man confronts what time has changed.",
+     aw:"GOBELINS animation short"},
+    {t:"Monsterbox", g:"animation", gen:"CGI Animation", meta:"ESMA · via TheCGBros", v:"DoLAoOkG5gY", ico:"★", lb:null,
+     syn:"A grumpy old shopkeeper and a little girl with a love of monsters form an unlikely, heartwarming friendship.",
+     aw:"Award-winning ESMA student film"},
+    {t:"Reaping for Dummies", g:"animation comedy", gen:"CGI Comedy", meta:"ESMA · via TheCGBros", v:"zCdRMYnShM8", ico:"★", lb:null,
+     syn:"Death takes on a hopelessly clumsy apprentice, and the lesson does not go to plan.",
+     aw:"Award-winning ESMA student film"},
+    {t:"R'ha", g:"scifi", gen:"Sci-Fi", meta:"Dir. Kaleb Lechowski · 2013", v:"Sgm_4WRcGRo", ico:"★", lb:"rha",
+     syn:"An alien is interrogated by the machine intelligence that has conquered its world, in a one-man-made short that launched its director's career.",
+     aw:"Viral sci-fi short, presented by DUST"},
+    {t:"Hyperlight", g:"scifi", gen:"Sci-Fi", meta:"Dir. Nguyen-Anh Nguyen · 2018", v:"Od49AfIS2-U", ico:"★", lb:null,
+     syn:"Two elite astronauts wake from stasis in the abyss of deep space and uncover a truth that turns them against each other.",
+     aw:"Presented by DUST"},
+    {t:"This Time Away", g:"scifi drama", gen:"Sci-Fi Drama", meta:"Dir. Magali Barbé · 2019", v:"RIKaRigsL44", ico:"★", lb:null,
+     syn:"A reclusive old man living alone with his memories has his shuttered world reopened by an unexpected little visitor.",
+     aw:"Presented by DUST"},
+    {t:"Seam", g:"scifi", gen:"Sci-Fi", meta:"Presented by DUST", v:"vDjcWlCT8rg", ico:"★", lb:null,
+     syn:"In a future after open war between humans and androids, a hybrid searches the wasteland for survivors as a fragile peace frays.",
+     aw:"Presented by DUST"},
+    {t:"Robert", g:"scifi", gen:"Sci-Fi", meta:"Presented by DUST", v:"rq1usf79cvc", ico:"★", lb:null,
+     syn:"A humble domestic android waits, with quiet devotion, for the return of the family it loves.",
+     aw:"Presented by DUST"},
+    {t:"The Collector", g:"scifi", gen:"Sci-Fi", meta:"Presented by DUST", v:"su0cBkVauV8", ico:"★", lb:null,
+     syn:"A lonely man restores a damaged android, and must decide whether he can ever let it go.",
+     aw:"Presented by DUST"},
+    {t:"Nothing", g:"scifi", gen:"Sci-Fi", meta:"Presented by DUST", v:"1ZrZvCPw_Yo", ico:"★", lb:null,
+     syn:"An astronaut returns from years away in space to a world where, in his absence, everything has quietly come undone.",
+     aw:"Presented by DUST"},
+    {t:"Strong", g:"scifi", gen:"Sci-Fi", meta:"Presented by DUST", v:"hpLUsAqCeQQ", ico:"★", lb:null,
+     syn:"With the help of her loyal AI dog, a sixteen-year-old girl races to get medicine to her sick brother across hostile ground.",
+     aw:"Presented by DUST"},
+    {t:"A Week With Rebecca", g:"scifi", gen:"Sci-Fi", meta:"Presented by DUST", v:"ViPefqVtHEA", ico:"★", lb:null,
+     syn:"A robotics executive pushes an android designed to stand in for human connection — and confronts what that connection really costs.",
+     aw:"Presented by DUST"},
+    {t:"Andromeda", g:"scifi", gen:"Sci-Fi", meta:"Presented by DUST", v:"8mc-NHYMK9k", ico:"★", lb:null,
+     syn:"When an android is given a human heart, she must fight to hold on to the feelings it brings.",
+     aw:"Presented by DUST"},
+    {t:"The Immortal", g:"scifi", gen:"Sci-Fi", meta:"Presented by DUST", v:"jyo_m_TdYj8", ico:"★", lb:null,
+     syn:"A man who cannot die confronts the slow, strange weight of living forever.",
+     aw:"Presented by DUST"},
+    {t:"Imminent Arrival", g:"scifi", gen:"Sci-Fi", meta:"Presented by DUST", v:"EHjgJWYj4Pk", ico:"★", lb:null,
+     syn:"A paranoid, gun-shy country survivalist convinces himself an alien arrival is coming — and prepares for the worst.",
+     aw:"Presented by DUST"},
+    {t:"Big Boom", g:"scifi comedy", gen:"Sci-Fi Comedy", meta:"Presented by DUST", v:"EcEI-nD4_oM", ico:"★", lb:null,
+     syn:"Every human on Earth vanishes at once, leaving a lone service robot to puzzle out what on earth just happened.",
+     aw:"Presented by DUST"},
+    {t:"Goliath", g:"scifi", gen:"Sci-Fi", meta:"Presented by DUST", v:"fejcv3XzpoA", ico:"★", lb:null,
+     syn:"In a world where colossal war robots clash for sport, a fighter begins to question the spectacle he serves.",
+     aw:"Presented by DUST"},
+    {t:"Alone Time", g:"horror", gen:"Horror", meta:"Presented by ALTER", v:"aewU9NfPYb4", ico:"★", lb:null,
+     syn:"Desperate to escape the noise of modern life, a woman retreats into solitude — and finds something already waiting there.",
+     aw:"Presented by ALTER"},
+    {t:"The Dinner After", g:"horror", gen:"Horror", meta:"Presented by ALTER", v:"-PZqZ4O4IBs", ico:"★", lb:null,
+     syn:"A guilt-stricken guest sits down to a dinner that slowly reveals it knows exactly what they've done.",
+     aw:"Presented by ALTER"},
+    {t:"My House", g:"horror", gen:"Horror", meta:"Presented by ALTER", v:"68ZSOlMpL94", ico:"★", lb:null,
+     syn:"A family game night curdles into something sinister once the rules of the house turn against them.",
+     aw:"Presented by ALTER"},
+    {t:"Model Family", g:"horror", gen:"Horror", meta:"Presented by ALTER", v:"tS2_ndoGT7A", ico:"★", lb:null,
+     syn:"The Johnsons look like the perfect American family — but perfection here comes at a terrible, hidden price.",
+     aw:"Presented by ALTER"},
+    {t:"Skin & Bone", g:"horror", gen:"Horror", meta:"Presented by ALTER", v:"illWLEB0vok", ico:"★", lb:null,
+     syn:"A drifter takes a strange job that turns out to be far darker, and far harder to leave, than advertised.",
+     aw:"Presented by ALTER"},
+    {t:"The Armoire", g:"horror", gen:"Horror", meta:"Presented by ALTER", v:"zHZxmkzdlmQ", ico:"★", lb:null,
+     syn:"A struggling actress new to Hollywood discovers an antique wardrobe that won't stay shut.",
+     aw:"Presented by ALTER"},
+    {t:"Eaglewalk", g:"horror", gen:"Horror", meta:"Presented by ALTER", v:"D-JXaclNEcY", ico:"★", lb:null,
+     syn:"Summer fun turns to terror at a remote camp when an ancient thing in the woods begins to hunt.",
+     aw:"Presented by ALTER"},
+    {t:"Milk Teeth", g:"horror", gen:"Horror", meta:"Presented by ALTER", v:"wtecRgmowFk", ico:"★", lb:null,
+     syn:"An orphanage harbours a spirit, and the children inside learn there are far worse things than being unwanted.",
+     aw:"Presented by ALTER"},
+    {t:"A Visitor", g:"horror", gen:"Horror", meta:"Presented by ALTER", v:"HoVslNEanJU", ico:"★", lb:null,
+     syn:"A young woman realises, too slowly, that a menacing stranger is determined to get inside her home.",
+     aw:"Presented by ALTER"},
+    {t:"Kookie", g:"horror", gen:"Horror", meta:"Presented by ALTER", v:"BTshCCwo5Tw", ico:"★", lb:null,
+     syn:"Bree, a dishonest nine-year-old left alone, opens the door to a very patient and very terrifying visitor.",
+     aw:"Presented by ALTER"},
+    {t:"FRAGILE.COM", g:"horror", gen:"Horror", meta:"Presented by ALTER", v:"IAjLsdIgpcg", ico:"★", lb:null,
+     syn:"A teenage girl who wants, more than anything, to be told she's special finds dangerous attention online.",
+     aw:"Presented by ALTER"},
+    {t:"The Rickety Man", g:"horror", gen:"Horror", meta:"Presented by ALTER", v:"xp0DIwYJbMw", ico:"★", lb:null,
+     syn:"Something gangly and wrong is calling in the dark, and answering it is the last mistake you'll make.",
+     aw:"Presented by ALTER"},
+    {t:"The Dead Collectors", g:"horror", gen:"Horror", meta:"Presented by ALTER", v:"RcTRGdePWGI", ico:"★", lb:null,
+     syn:"During a pandemic, two body collectors discover that not everything they cart away is willing to stay dead.",
+     aw:"Presented by ALTER"},
+    {t:"Heirlooms", g:"horror", gen:"Horror", meta:"Presented by ALTER", v:"QtJVgevKutA", ico:"★", lb:null,
+     syn:"Some family traits are best left un-inherited — as one young woman discovers about the thing in her bloodline.",
+     aw:"Presented by ALTER"},
+    {t:"Lost & Found", g:"animation drama", gen:"Stop-Motion Drama", meta:"Dir. Andrew Goldsmith & Bradley Slabe · 2018", v:"VBps1IvCyj0", ico:"★", lb:"lost-found-2018",
+     syn:"A crocheted dinosaur must completely unravel itself to save the fox it loves, in a tender stop-motion heartbreaker.",
+     aw:"Award-winning short, featured on Omeleto"},
+    {t:"After the Rain", g:"drama", gen:"Drama", meta:"Featured on Omeleto", v:"qEaoaRpRRzo", ico:"★", lb:null,
+     syn:"A shepherd living alone in a secluded valley, with only his flock and dog for company, has his quiet routine disturbed.",
+     aw:"Featured on Omeleto"},
+    {t:"Utopia", g:"scifi drama", gen:"Sci-Fi Drama", meta:"Featured on Omeleto", v:"vJYaXy5mmA8", ico:"★", lb:null,
+     syn:"Jack returns home in a relentlessly surveilled country, where even the smallest private act carries a cost.",
+     aw:"Featured on Omeleto"},
+    {t:"Tomorrow", g:"drama", gen:"Drama", meta:"Featured on Omeleto", v:"bVZl51CqUXk", ico:"★", lb:null,
+     syn:"A resilient ten-year-old street kid, surviving day to day, befriends a stray dog who needs him as much as he needs it.",
+     aw:"Featured on Omeleto"},
+    {t:"Reception", g:"drama", gen:"Drama", meta:"Featured on Omeleto", v:"z9ncrJM4gd4", ico:"★", lb:null,
+     syn:"The best man at a wedding spends the reception watching the woman he loves marry someone else.",
+     aw:"Featured on Omeleto"},
+    {t:"Guts", g:"drama", gen:"Drama", meta:"Featured on Omeleto", v:"gKiFXz1kbO0", ico:"★", lb:null,
+     syn:"Amelia, a young woman in recovery, shares an unexpectedly raw meal with a stranger.",
+     aw:"Featured on Omeleto"},
+    {t:"Stalled", g:"comedy thriller", gen:"Comedy Thriller", meta:"Featured on Omeleto", v:"7mSH86O2qzA", ico:"★", lb:null,
+     syn:"A ruthlessly ambitious executive finds himself trapped in an office bathroom at the worst possible moment.",
+     aw:"Featured on Omeleto"},
+    {t:"Nullarbor", g:"comedy", gen:"Comedy", meta:"Featured on Omeleto", v:"nfK79Xblpus", ico:"★", lb:null,
+     syn:"Two men's petty road rage escalates into all-out war across the vast, empty Australian outback.",
+     aw:"Featured on Omeleto"},
+    {t:"Exit Strategy", g:"drama", gen:"Drama", meta:"Featured on Omeleto", v:"68f27rqP_NY", ico:"★", lb:null,
+     syn:"A maths genius reunites with his estranged brother in a desperate bid to stop a fire before it's too late.",
+     aw:"Festival award-winning short, featured on Omeleto"},
+    {t:"The Cockroach", g:"drama", gen:"Drama", meta:"Featured on Omeleto", v:"hvC4wRmN5OY", ico:"★", lb:null,
+     syn:"After a life-altering accident, Emily struggles to find her way through an overwhelming sense of loss.",
+     aw:"Featured on Omeleto"},
+    {t:"Retouch", g:"drama", gen:"Drama", meta:"Dir. Kaveh Mazaheri · Featured on Omeleto", v:"E_zJgHRl6eI", ico:"★", lb:null,
+     syn:"A young mother in Tehran is forced into a sudden, wrenching moral choice one ordinary morning.",
+     aw:"Festival award-winning short, featured on Omeleto"},
+    {t:"The Fool's Mate", g:"comedy drama", gen:"Comedy-Drama", meta:"Featured on Omeleto", v:"KQEJiHeL1LM", ico:"★", lb:null,
+     syn:"Fred tries to break up with Holly over a pint and a game of chess — and badly misjudges his opponent.",
+     aw:"Featured on Omeleto"},
+    {t:"Cool for Five Seconds", g:"drama", gen:"Drama", meta:"Featured on Omeleto", v:"TGE60l5sBXs", ico:"★", lb:null,
+     syn:"Colleen invites her estranged sister Eleanor over, and old wounds resurface across a single tense visit.",
+     aw:"Featured on Omeleto"},
+    {t:"May I Have This Seat", g:"drama", gen:"Drama", meta:"Featured on Omeleto", v:"jNQbp1CADEw", ico:"★", lb:null,
+     syn:"During Lahore's smog season, a pregnant woman's simple request for a seat on the bus quietly tests everyone around her.",
+     aw:"Featured on Omeleto"},
+    {t:"Where Have You Been", g:"drama", gen:"Drama", meta:"Featured on Omeleto", v:"tOoeU0stgAE", ico:"★", lb:null,
+     syn:"Clara arrives unannounced on her ex's doorstep, and a single evening unspools everything left unsaid between them.",
+     aw:"Featured on Omeleto"}
+  ];
+
+  /* ===== CURSOR ===== */
   const cursor = document.getElementById('cursor');
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-  });
-  document.querySelectorAll('a, button, .archive-video').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('big'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+  document.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+  function bindCursor(el){ el.addEventListener('mouseenter',()=>cursor.classList.add('big')); el.addEventListener('mouseleave',()=>cursor.classList.remove('big')); }
+
+  /* ===== BUILD GRID (original card format) ===== */
+  const grid = document.getElementById('archiveGrid');
+  const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+  FILMS.forEach(f => {
+    const card = document.createElement('div');
+    card.className = 'archive-card reveal';
+    card.dataset.genre = f.g;
+    card.dataset.search = (f.t + ' ' + f.meta + ' ' + f.gen).toLowerCase();
+    const links = f.lb
+      ? `<div class="archive-links"><a href="https://letterboxd.com/film/${f.lb}/" target="_blank" rel="noopener" class="archive-link">Letterboxd ↗</a></div>`
+      : '';
+    card.innerHTML = `
+      <div class="archive-video" data-video="${f.v}">
+        <img src="https://img.youtube.com/vi/${f.v}/hqdefault.jpg" alt="${esc(f.t)} thumbnail" loading="lazy">
+        <div class="play-circle"><span>▶</span></div>
+      </div>
+      <div class="archive-info">
+        <div class="archive-genre">${esc(f.gen)}</div>
+        <h3 class="archive-card-title">${esc(f.t)}</h3>
+        <div class="archive-meta">${esc(f.meta)}</div>
+        <p class="archive-desc">${esc(f.syn)}</p>
+        <div class="archive-award"><span class="archive-award-icon">${f.ico}</span>${esc(f.aw)}</div>
+        ${links}
+        <div class="film-rating" data-variant="compact" data-film-slug="arch_${f.v}"></div>
+      </div>`;
+    grid.appendChild(card);
   });
 
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
+  document.querySelectorAll('a, button, .archive-video').forEach(bindCursor);
+
+  /* ===== SCROLL REVEAL ===== */
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
@@ -1529,31 +602,24 @@
       }
     });
   }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Click-to-play YouTube embeds, with fallback for videos that disable embedding
-  let ytApiReady = false;
-  let pendingPlayers = [];
-
+  /* ===== CLICK-TO-PLAY YOUTUBE (with embed-disabled fallback) ===== */
+  let ytApiReady = false, pendingPlayers = [];
   const ytTag = document.createElement('script');
   ytTag.src = 'https://www.youtube.com/iframe_api';
   document.head.appendChild(ytTag);
+  window.onYouTubeIframeAPIReady = function(){ ytApiReady = true; pendingPlayers.forEach(fn => fn()); pendingPlayers = []; };
 
-  window.onYouTubeIframeAPIReady = function() {
-    ytApiReady = true;
-    pendingPlayers.forEach(fn => fn());
-    pendingPlayers = [];
-  };
-
-  function showFallback(videoEl, id) {
+  function showFallback(videoEl, id){
     videoEl.innerHTML = `
       <div class="video-fallback" style="background-image:url('https://img.youtube.com/vi/${id}/hqdefault.jpg')">
         <div class="video-fallback-inner">
           <a class="video-fallback-link" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">Watch on YouTube ↗</a>
           <div class="video-fallback-note">Embedding disabled by the rights holder</div>
         </div>
-      </div>
-    `;
+      </div>`;
+    bindCursor(videoEl.querySelector('a'));
   }
 
   document.querySelectorAll('.archive-video').forEach(videoEl => {
@@ -1561,67 +627,78 @@
       const id = videoEl.getAttribute('data-video');
       const playerId = 'yt-player-' + Math.random().toString(36).slice(2);
       videoEl.innerHTML = `<div id="${playerId}" style="width:100%;height:100%;"></div>`;
-
-      const createPlayer = () => {
-        new YT.Player(playerId, {
-          videoId: id,
-          playerVars: { autoplay: 1, rel: 0 },
-          events: {
-            onError: function() {
-              showFallback(videoEl, id);
-            }
-          }
-        });
-      };
-
-      if (ytApiReady && window.YT && window.YT.Player) {
-        createPlayer();
-      } else {
-        pendingPlayers.push(createPlayer);
-      }
+      const createPlayer = () => new YT.Player(playerId, {
+        videoId: id, playerVars: { autoplay: 1, rel: 0 },
+        events: { onError: () => showFallback(videoEl, id) }
+      });
+      if (ytApiReady && window.YT && window.YT.Player) createPlayer();
+      else pendingPlayers.push(createPlayer);
     });
   });
 
-  // Genre filtering
+  /* ===== FILTER + SEARCH (combined) ===== */
+  const cards = Array.from(document.querySelectorAll('.archive-card'));
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.archive-card');
   const filterCount = document.getElementById('filterCount');
   const filterSection = document.getElementById('filterSection');
   const filterToggle = document.getElementById('filterToggle');
   const filterToggleLabel = document.getElementById('filterToggleLabel');
+  const searchInput = document.getElementById('searchInput');
+  const searchWrap = document.getElementById('searchWrap');
+  const searchClear = document.getElementById('searchClear');
+  const noResults = document.getElementById('noResults');
   const total = cards.length;
 
-  filterToggle.addEventListener('click', () => {
-    filterSection.classList.toggle('open');
-  });
+  let activeFilter = 'all';
+  let query = '';
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.getAttribute('data-filter');
-      let visible = 0;
-
-      cards.forEach(card => {
-        const genres = card.getAttribute('data-genre').split(' ');
-        if (filter === 'all' || genres.includes(filter)) {
-          card.classList.remove('hidden');
-          visible++;
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-
-      filterCount.textContent = filter === 'all'
-        ? `Showing ${total} of ${total} films`
-        : `Showing ${visible} of ${total} films`;
-
-      filterToggleLabel.textContent = `Filter: ${btn.textContent}`;
-      filterSection.classList.remove('open');
+  function apply(){
+    let visible = 0;
+    cards.forEach(card => {
+      const genres = card.dataset.genre.split(' ');
+      const matchGenre = activeFilter === 'all' || genres.includes(activeFilter);
+      const matchSearch = query === '' || card.dataset.search.includes(query);
+      if (matchGenre && matchSearch) { card.classList.remove('hidden'); visible++; }
+      else card.classList.add('hidden');
     });
+
+    noResults.classList.toggle('show', visible === 0);
+
+    let label;
+    if (query && activeFilter !== 'all') label = `Showing ${visible} ${activeFilter} film${visible!==1?'s':''} matching "${query}"`;
+    else if (query) label = `Showing ${visible} of ${total} films matching "${query}"`;
+    else if (activeFilter !== 'all') label = `Showing ${visible} of ${total} films`;
+    else label = `Showing all ${total} films`;
+    filterCount.textContent = label;
+  }
+
+  filterToggle.addEventListener('click', () => filterSection.classList.toggle('open'));
+
+  filterBtns.forEach(btn => btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.getAttribute('data-filter');
+    filterToggleLabel.textContent = `Filter: ${btn.textContent}`;
+    filterSection.classList.remove('open');
+    apply();
+  }));
+
+  let st;
+  searchInput.addEventListener('input', () => {
+    query = searchInput.value.trim().toLowerCase();
+    searchWrap.classList.toggle('has-text', query.length > 0);
+    clearTimeout(st); st = setTimeout(apply, 120);
+  });
+  searchClear.addEventListener('click', () => {
+    searchInput.value = ''; query = '';
+    searchWrap.classList.remove('has-text');
+    apply(); searchInput.focus();
   });
 
+  apply();
 </script>
+
+<script src="ratings.js"></script>
 
 </body>
 </html>
