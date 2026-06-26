@@ -118,6 +118,27 @@
   .note-heading em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--mid); display: block; }
   .note-body { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 18px; line-height: 1.8; color: var(--cream); opacity: 0.8; }
 
+  /* Stills */
+  .stills-section { margin-top: 80px; padding-top: 60px; border-top: 1px solid #1a1a1a; }
+  .stills-grid { margin-top: 28px; }
+  .still-frame { position: relative; overflow: hidden; background: #0d0d0d; display: block; }
+  .still-frame img { width: 100%; display: block; transition: transform 1.1s cubic-bezier(.2,.7,.2,1); }
+  .still-frame:hover img { transform: scale(1.035); }
+  .stills-duo { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: 2px; }
+
+  /* Poster */
+  .poster-feature { display: grid; grid-template-columns: 340px 1fr; gap: 60px; align-items: center; margin-top: 80px; padding-top: 60px; border-top: 1px solid #1a1a1a; }
+  .poster-wrap { position: relative; }
+  .poster-wrap::before { content: ''; position: absolute; inset: -8% -10% -12% -8%; background: radial-gradient(ellipse at 50% 45%, rgba(70,110,160,0.18) 0%, transparent 68%); z-index: 0; filter: blur(8px); }
+  .poster-wrap img { position: relative; z-index: 1; width: 100%; display: block; box-shadow: 0 34px 80px rgba(0,0,0,0.65); }
+  .poster-credits .section-tag { margin-bottom: 28px; }
+  .poster-billing { display: grid; grid-template-columns: auto 1fr; gap: 14px 22px; }
+  .pb-role { font-size: 8px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); padding-top: 4px; white-space: nowrap; }
+  .pb-name { font-size: 13px; letter-spacing: 0.04em; color: var(--white); line-height: 1.5; }
+  .pb-name.lead { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; color: var(--cream); }
+  .poster-studios { margin-top: 32px; padding-top: 24px; border-top: 1px solid #1a1a1a; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); }
+  .poster-studios em { font-style: italic; color: var(--cream); }
+
   .back-section { margin-top: 100px; padding-top: 60px; border-top: 1px solid #1a1a1a; display: flex; justify-content: space-between; align-items: center; }
   .back-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid); }
   .back-btn { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--black); background: var(--white); padding: 14px 28px; text-decoration: none; transition: background 0.2s, color 0.2s; }
@@ -145,6 +166,10 @@
     .cast-grid { grid-template-columns: 1fr 1fr; }
     .crew-grid { grid-template-columns: 1fr 1fr; }
     .note-section { grid-template-columns: 1fr; gap: 32px; }
+    .stills-duo { grid-template-columns: 1fr; }
+    .poster-feature { grid-template-columns: 1fr; gap: 36px; justify-items: center; }
+    .poster-wrap { max-width: 300px; }
+    .poster-credits { width: 100%; }
     .back-section { flex-direction: column; gap: 24px; text-align: center; }
     footer { flex-direction: column; gap: 24px; text-align: center; }
     .footer-links { flex-wrap: wrap; justify-content: center; }
@@ -267,6 +292,9 @@
   </div>
 
 
+  <!-- RATING -->
+  <div class="film-rating" data-film-slug="disclosure"></div>
+
   <div class="info-grid">
     <div class="synopsis-section reveal">
       <p class="section-tag">Synopsis</p>
@@ -314,6 +342,39 @@
       <div class="crew-card"><div class="crew-dept">Writer</div><div class="crew-name">Raul Barquet</div></div>
       <div class="crew-card"><div class="crew-dept">Producers</div><div class="crew-name">Raul Barquet · Alex Valderana · Jared DiCroce</div></div>
       <div class="crew-card"><div class="crew-dept">Cinematography</div><div class="crew-name">Mattie Cameron Rosen</div></div>
+    </div>
+  </div>
+
+  <div class="stills-section reveal">
+    <p class="section-tag">Stills</p>
+    <div class="stills-grid">
+      <a class="still-frame" href="disclosure-still-1.jpg" target="_blank" rel="noopener">
+        <img src="disclosure-still-1.jpg" alt="Disclosure film still — Gary Carmichael at the CVN news desk" loading="lazy">
+      </a>
+      <div class="stills-duo">
+        <a class="still-frame" href="disclosure-still-2.jpg" target="_blank" rel="noopener">
+          <img src="disclosure-still-2.jpg" alt="Disclosure film still — Gary Carmichael drinking" loading="lazy">
+        </a>
+        <a class="still-frame" href="disclosure-still-3.jpg" target="_blank" rel="noopener">
+          <img src="disclosure-still-3.jpg" alt="Disclosure film still — Gary Carmichael on the phone" loading="lazy">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="poster-feature reveal">
+    <div class="poster-wrap">
+      <img src="disclosure-poster.jpg" alt="Disclosure — official poster, a film by Alex Valderana" loading="lazy">
+    </div>
+    <div class="poster-credits">
+      <p class="section-tag">The One-Sheet</p>
+      <div class="poster-billing">
+        <span class="pb-role">Directed by</span><span class="pb-name lead">Alex Valderana</span>
+        <span class="pb-role">Written by</span><span class="pb-name">Raul Barquet</span>
+        <span class="pb-role">Starring</span><span class="pb-name">Bob Jaffe · Chase Cortland Erwin · KC Connor</span>
+        <span class="pb-role">Cinematography</span><span class="pb-name">Mattie Cameron Rosen</span>
+      </div>
+      <p class="poster-studios">IRT Pictures &amp; 12am Already Productions · United States</p>
     </div>
   </div>
 
@@ -388,5 +449,6 @@
     });
   });
 </script>
+<script src="ratings.js"></script>
 </body>
 </html>
