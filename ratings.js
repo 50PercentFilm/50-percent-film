@@ -10,7 +10,7 @@
   /* REPLACE the URL below with your Supabase Project URL.                  */
   /* Find it in the dashboard: Settings > API Keys (or the Connect dialog). */
   /* It looks like  https://abcdefghijklmnop.supabase.co                    */
-  var SUPABASE_URL = "https://YOUR-PROJECT-REF.supabase.co";
+  var SUPABASE_URL = "https://jdmhijroqkeibeyxmpgp.supabase.co";
   var SUPABASE_KEY = "sb_publishable_JYNRLgjUZwfrpZpLMywHsA_NMLnYgI2";
   /* ---------------------------------------------------------------------- */
 
