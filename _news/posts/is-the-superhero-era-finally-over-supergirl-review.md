@@ -24,7 +24,7 @@ In the year of 2026, we’ve seen a new wave of cinema dominate the zeitgeist. T
 
 If this tells us anything, it’s that audiences have finally become tired of the type of movie that dominated the previous decade, and unfortunately for the James Gunn-helmed DCU’s second feature instalment, *Supergirl*, I think it might just have gotten the memo a few years too late. With the film’s uninspired visual style, clunky CGI, underdeveloped villain and unpolished script simply no longer sufficient in a movie landscape that’s moved on from this relic of the 2010s. And whilst there’s obviously an awful lot wrong with *Supergirl* from a technical filmmaking standpoint — as has tended to be the case with this genre over the years — it’s the movie’s inability to position its titular character as an individual of any note whatsoever that raises the most questions, with the one most prominently at the forefront of my mind: why can this genre simply not figure out the answer to the female superhero question?
 
-![Captain Marvel (Dir. Anna Boden & Ryan Fleck, 2019)](/uploads/uraylm8g7g21vr2ruvzppc7navs.jpg)
+![Captain Marvel (Dir. Anna Boden & Ryan Fleck, 2019)](/uploads/uraylm8g7g21vr2ruvzppc7navs.jpg "Captain Marvel (Dir. Anna Boden & Ryan Fleck, 2019)")
 
 The movie that I thought about the most whilst watching *Supergirl* was *Captain Marvel* — a project that similarly failed to connect with audiences on a wider scale and stalled in its attempts to strap the rocket to its shiny new female lead. But what I came to realise is that beyond these two movies there seems to be a problem within the genre at large, as the likes of *Black Widow*, *Birds of Prey*, *Wonder Woman 1984*, and TV efforts *She Hulk* and *Ms. Marvel* ran into similar hurdles. Why is this?
 
