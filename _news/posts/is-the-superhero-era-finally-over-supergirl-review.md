@@ -1,7 +1,7 @@
 ---
 title: "Is the Superhero Era Finally Over?: Supergirl Review"
 category: Review
-date: 2026-06-29
+date: 2026-06-30
 standfirst: With the release and subsequent failure of the latest DCU
   instalment, Supergirl, has the era of the superhero movie finally drawn to a
   close? 50% Film's Hayyan Khawaja seeks to find out exactly what went wrong.
