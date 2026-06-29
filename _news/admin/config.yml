@@ -1,0 +1,84 @@
+# =============================================================
+#  50% Film — News & Reviews CMS configuration
+# =============================================================
+
+backend:
+  name: git-gateway
+  branch: main          # your repo's default branch is "main" — leave as is
+
+# APPROVAL GATE: pieces are saved as drafts and move through
+# Drafts -> In review -> Ready. Nothing is published until approved.
+publish_mode: editorial_workflow
+
+# Where writer-uploaded images are stored / served from.
+media_folder: "uploads"
+public_folder: "/uploads"
+
+site_url: https://50percentfilm.com
+display_url: https://50percentfilm.com
+logo_url: https://50percentfilm.com/og-image.jpg
+
+collections:
+  - name: "news"
+    label: "News & Reviews"
+    label_singular: "Piece"
+    description: "Write a new piece, fill in the fields, and Save. It goes to the editor for review before publishing."
+    folder: "_news/posts"
+    create: true
+    slug: "{{slug}}"
+    preview_path: "news/{{slug}}"
+    summary: "{{title}}  —  {{category}}"
+    sortable_fields: [date, title, category]
+    fields:
+      - label: "Headline"
+        name: "title"
+        widget: "string"
+        hint: "The main headline, minus the italic word(s). e.g. 'The Social Network is the Most Important Movie of'"
+
+      - label: "Italic accent (end of headline)"
+        name: "title_accent"
+        widget: "string"
+        required: false
+        hint: "Optional. The part shown in red italic, e.g. 'the 21st Century' or 'Vienna.'"
+
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options: ["News", "Review", "Interview", "Feature", "Festival", "Industry", "Essay"]
+
+      - label: "Publish date"
+        name: "date"
+        widget: "datetime"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        picker_utc: true
+
+      - label: "Standfirst / intro"
+        name: "standfirst"
+        widget: "text"
+        required: false
+        hint: "Optional one- or two-sentence intro shown under the headline."
+
+      - label: "Hero image"
+        name: "hero"
+        widget: "image"
+        required: false
+        hint: "Optional full-width image at the top of the piece. Drag and drop or pick a file."
+
+      - label: "Trailer / video link (YouTube)"
+        name: "trailer_url"
+        widget: "string"
+        required: false
+        pattern: ['youtube\.com|youtu\.be', "Please paste a YouTube link"]
+        hint: "Optional. Adds a 'Watch trailer' link at the foot of the piece."
+
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+        hint: "Short keywords at the foot of the piece — director names, themes, festival, etc."
+
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        hint: "The piece itself. Use the toolbar for bold, italics, headings, quotes, and images."

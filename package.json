@@ -1,0 +1,13 @@
+{
+  "name": "50-film-news-cms",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Self-serve news & reviews publishing for 50% Film.",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy && rm -f _site/.eleventy.js _site/package.json _site/package-lock.json _site/.eleventyignore"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

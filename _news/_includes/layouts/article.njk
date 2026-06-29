@@ -1,0 +1,41 @@
+---
+layout: layouts/base.njk
+ogType: article
+---
+<article class="piece">
+  <a class="back" href="/news/">← Back to News</a>
+
+  <p class="eyebrow">
+    <span class="cat">{{ category }}</span>
+    <span class="sep">✦</span>
+    <time datetime="{{ date }}">{{ date | monthYear }}</time>
+  </p>
+
+  <h1 class="headline">
+    {{ title }}{% if title_accent %} <em>{{ title_accent }}</em>{% endif %}
+  </h1>
+
+  {% if standfirst %}<p class="standfirst">{{ standfirst }}</p>{% endif %}
+
+  {% if hero %}
+  <figure class="hero"><img src="{{ hero }}" alt="" loading="lazy" /></figure>
+  {% endif %}
+
+  <div class="body">
+    {{ content | safe }}
+  </div>
+
+  {% if trailer_url %}
+  <p class="trailer">
+    <a href="{{ trailer_url }}" target="_blank" rel="noopener">▶ Watch trailer</a>
+  </p>
+  {% endif %}
+
+  {% if tags %}
+  <ul class="tags">
+    {% for tag in tags %}<li>{{ tag }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+
+  <a class="back back--foot" href="/news/">← Back to News</a>
+</article>

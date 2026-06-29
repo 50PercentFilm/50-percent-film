@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title or "News & Reviews" }} — {{ site.name }}</title>
+    {% if standfirst %}<meta name="description" content="{{ standfirst }}" />{% endif %}
+
+    <meta property="og:site_name" content="{{ site.name }}" />
+    <meta property="og:title" content="{{ title or 'News & Reviews' }} — {{ site.name }}" />
+    {% if standfirst %}<meta property="og:description" content="{{ standfirst }}" />{% endif %}
+    {% if hero %}<meta property="og:image" content="{{ site.url }}{{ hero }}" />{% endif %}
+    <meta property="og:type" content="{{ ogType or 'website' }}" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/news.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <main>
+      {{ content | safe }}
+    </main>
+    <script src="/assets/js/site.js" defer></script>
+  </body>
+</html>
