@@ -7,6 +7,7 @@ standfirst: >-
   Supergirl, has the era of the superhero movie finally drawn to a close? 
 
 
+
   Written by, Hayyan Khawaja
 hero: /uploads/hicjbwhglfbpwbuoubd5bhbwfgf.jpg
 trailer_url: https://youtu.be/s1-pfiVMKAs?si=sCdl-fG6aPug91u2
