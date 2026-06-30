@@ -1,41 +1,170 @@
----
-layout: layouts/base.njk
-ogType: article
----
-<article class="piece">
-  <a class="back" href="/news/">← Back to News</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ title }}{% if title_accent %} {{ title_accent }}{% endif %} — 50% Film</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+{% if standfirst %}<meta name="description" content="{{ standfirst }}">{% endif %}
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="50% Film">
+<meta property="og:title" content="{{ title }}{% if title_accent %} {{ title_accent }}{% endif %} — 50% Film">
+{% if standfirst %}<meta property="og:description" content="{{ standfirst }}">{% endif %}
+<meta property="og:url" content="https://50percentfilm.com{{ page.url }}">
+{% if hero %}<meta property="og:image" content="https://50percentfilm.com{{ hero }}">{% else %}<meta property="og:image" content="https://50percentfilm.com/og-image.jpg">{% endif %}
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ title }}{% if title_accent %} {{ title_accent }}{% endif %} — 50% Film">
+{% if standfirst %}<meta name="twitter:description" content="{{ standfirst }}">{% endif %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --black: #0a0a0a; --white: #f0ece4; --cream: #e8e2d6; --red: #c8341a; --mid: #888; }
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Space Mono', monospace; cursor: none; overflow-x: hidden; }
+.cursor { position: fixed; width: 10px; height: 10px; background: var(--red); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s; mix-blend-mode: difference; }
+.cursor.big { width: 40px; height: 40px; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9998; opacity: 0.35; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 40px; background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%); }
+.nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.15em; color: var(--white); text-decoration: none; }
+.nav-back { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; display: flex; align-items: center; gap: 10px; transition: color 0.2s; }
+.nav-back:hover { color: var(--white); }
+.nav-back::before { content: '←'; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 160px 40px 120px; }
+.article-kicker { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+.kicker-tag { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--white); background: var(--red); padding: 5px 12px; }
+.kicker-date { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: #444; }
+.article-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 7vw, 88px); line-height: 0.92; color: var(--white); margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s 0.35s forwards; }
+.article-headline em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--cream); opacity: 0.65; }
+.article-standfirst { font-size: 13px; line-height: 2; color: var(--mid); max-width: 620px; margin-bottom: 48px; opacity: 0; animation: fadeUp 0.8s 0.5s forwards; }
+.article-standfirst em { font-style: italic; font-family: 'DM Serif Display', serif; opacity: 0.85; }
+.article-hero { margin: 0 0 48px 0; border: 1px solid #1a1a1a; opacity: 0; animation: fadeIn 1s 0.6s forwards; }
+.article-hero img { width: 100%; display: block; }
+.film-strip { display: flex; align-items: center; gap: 0; margin-bottom: 48px; overflow: hidden; }
+.film-strip-hole { width: 8px; height: 12px; border: 1px solid #222; flex-shrink: 0; margin-right: 4px; }
+.film-strip-line { flex: 1; height: 1px; background: #1a1a1a; }
+.article-body p { font-size: 13px; line-height: 2.2; color: #bbb; margin-bottom: 28px; }
+.article-body p:first-child::first-letter { font-family: 'DM Serif Display', serif; font-size: 62px; line-height: 0.8; float: left; margin-right: 12px; margin-top: 8px; color: var(--red); opacity: 0.8; }
+.article-body em { font-style: italic; font-family: 'DM Serif Display', serif; opacity: 0.9; }
+.article-body strong { color: var(--white); }
+.article-body h2, .article-body h3 { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em; color: var(--white); margin: 48px 0 20px; line-height: 1; }
+.article-body h2 { font-size: 34px; }
+.article-body h3 { font-size: 26px; }
+.article-body a { color: var(--red); text-decoration: none; border-bottom: 1px solid rgba(200,52,26,0.4); transition: border-color 0.2s; }
+.article-body a:hover { border-color: var(--red); }
+.article-body blockquote { border-left: 2px solid var(--red); padding: 20px 28px; margin: 40px 0; background: #0d0d0d; }
+.article-body blockquote p { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 18px; line-height: 1.7; color: var(--cream); opacity: 0.85; margin-bottom: 0; }
+.article-body blockquote p::first-letter { all: unset; }
+.article-body img { max-width: 100%; width: 100%; height: auto; display: block; margin: 8px 0 8px 0; border: 1px solid #1a1a1a; }
+.article-body p img { margin-bottom: 0; }
+.article-body img + em { display: block; font-style: normal; font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: #444; opacity: 1; margin: 0 0 32px 0; }
+.video-embed { display: block; margin: 32px 0; border: 1px solid #1a1a1a; aspect-ratio: 16 / 9; background: #050505; position: relative; overflow: hidden; text-decoration: none; }
+.video-embed img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s, filter 0.4s; border: none; margin: 0; }
+.video-embed:hover img { transform: scale(1.04); filter: brightness(0.4); }
+.video-embed-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; opacity: 0; transition: opacity 0.3s; }
+.video-embed:hover .video-embed-overlay { opacity: 1; }
+.video-play-icon { width: 56px; height: 56px; border: 1px solid var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, background 0.2s; }
+.video-embed:hover .video-play-icon { border-color: var(--red); background: rgba(200, 52, 26, 0.15); }
+.video-play-icon::after { content: ''; width: 0; height: 0; border-style: solid; border-width: 9px 0 9px 14px; border-color: transparent transparent transparent var(--white); margin-left: 3px; }
+.video-embed-label { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--white); }
+.video-embed-tag { position: absolute; top: 16px; left: 16px; font-size: 8px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); background: rgba(10, 10, 10, 0.7); padding: 6px 12px; transition: opacity 0.3s; }
+.video-embed:hover .video-embed-tag { opacity: 0; }
+.article-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 48px; padding-top: 32px; border-top: 1px solid #1a1a1a; }
+.article-tag { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: #444; border: 1px solid #1a1a1a; padding: 6px 14px; }
+.back-foot { display: inline-flex; align-items: center; gap: 10px; margin-top: 56px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+.back-foot::before { content: '←'; }
+.back-foot:hover { color: var(--white); }
+footer { border-top: 1px solid #1a1a1a; padding: 48px 40px; display: flex; justify-content: space-between; align-items: center; }
+.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.15em; }
+.footer-copy { font-size: 9px; letter-spacing: 0.15em; color: var(--mid); text-transform: uppercase; }
+.footer-links { display: flex; gap: 32px; list-style: none; }
+.footer-links a { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--white); }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@media (max-width: 700px) {
+nav { padding: 20px 24px; }
+.wrap { padding: 120px 24px 80px; }
+footer { flex-direction: column; gap: 24px; text-align: center; }
+.footer-links { flex-wrap: wrap; justify-content: center; }
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
 
-  <p class="eyebrow">
-    <span class="cat">{{ category }}</span>
-    <span class="sep">✦</span>
-    <time datetime="{{ date }}">{{ date | monthYear }}</time>
-  </p>
+<nav>
+<a href="/" class="nav-logo">50% Film</a>
+<a href="/news/" class="nav-back">Back to News</a>
+</nav>
 
-  <h1 class="headline">
-    {{ title }}{% if title_accent %} <em>{{ title_accent }}</em>{% endif %}
-  </h1>
+<article class="wrap">
+<div class="article-kicker">
+<span class="kicker-tag">{{ category }}</span>
+<span class="kicker-date">{{ date | monthYear }}</span>
+</div>
 
-  {% if standfirst %}<p class="standfirst">{{ standfirst }}</p>{% endif %}
+<h1 class="article-headline">{{ title }}{% if title_accent %} <em>{{ title_accent }}</em>{% endif %}</h1>
 
-  {% if hero %}
-  <figure class="hero"><img src="{{ hero }}" alt="" loading="lazy" /></figure>
-  {% endif %}
+{% if standfirst %}<p class="article-standfirst">{{ standfirst }}</p>{% endif %}
 
-  <div class="body">
-    {{ content | safe }}
-  </div>
+{% if hero %}<figure class="article-hero"><img src="{{ hero }}" alt="" loading="lazy"></figure>{% endif %}
 
-  {% if trailer_url %}
-  <p class="trailer">
-    <a href="{{ trailer_url }}" target="_blank" rel="noopener">▶ Watch trailer</a>
-  </p>
-  {% endif %}
+<div class="film-strip">
+<div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+<div class="film-strip-line"></div>
+</div>
 
-  {% if tags %}
-  <ul class="tags">
-    {% for tag in tags %}<li>{{ tag }}</li>{% endfor %}
-  </ul>
-  {% endif %}
+<div class="article-body">
+{{ content | safe }}
+{% if trailer_url %}
+{%- set ytid = trailer_url | replace("https://youtu.be/", "") | replace("http://youtu.be/", "") | replace("https://www.youtube.com/watch?v=", "") | replace("https://youtube.com/watch?v=", "") | replace("https://m.youtube.com/watch?v=", "") -%}
+<a class="video-embed" href="{{ trailer_url }}" target="_blank" rel="noopener">
+<span class="video-embed-tag">Trailer</span>
+<img src="https://img.youtube.com/vi/{{ ytid }}/hqdefault.jpg" alt="Trailer thumbnail" loading="lazy">
+<div class="video-embed-overlay">
+<div class="video-play-icon"></div>
+<span class="video-embed-label">Watch trailer on YouTube</span>
+</div>
+</a>
+{% endif %}
+</div>
 
-  <a class="back back--foot" href="/news/">← Back to News</a>
+{% if tags %}
+<div class="article-tags">
+{% for tag in tags %}<span class="article-tag">{{ tag }}</span>{% endfor %}
+</div>
+{% endif %}
+
+<a class="back-foot" href="/news/">Back to News</a>
 </article>
+
+<footer>
+<span class="footer-logo">50% Film</span>
+<span class="footer-copy">© 2025–2026 — Short Cinema Label — London, UK</span>
+<ul class="footer-links">
+<li><a href="https://www.instagram.com/50percentfilm/" target="_blank" rel="noopener">Instagram</a></li>
+<li><a href="https://boxd.it/lHBGz" target="_blank" rel="noopener">Letterboxd</a></li>
+<li><a href="/#newsletter">Newsletter</a></li>
+<li><a href="/contact.html">Contact</a></li>
+</ul>
+</footer>
+
+<script>
+(function () {
+var cursor = document.getElementById('cursor');
+if (cursor && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+window.addEventListener('mousemove', function (e) { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+document.querySelectorAll('a, button').forEach(function (el) {
+el.addEventListener('mouseenter', function () { cursor.classList.add('big'); });
+el.addEventListener('mouseleave', function () { cursor.classList.remove('big'); });
+});
+} else if (cursor) { cursor.style.display = 'none'; document.body.style.cursor = 'auto'; }
+})();
+</script>
+</body>
+</html>
