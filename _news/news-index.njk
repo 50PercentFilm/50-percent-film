@@ -1,36 +1,599 @@
 ---
-layout: layouts/base.njk
 permalink: /news/index.html
 title: News & Reviews
 standfirst: Reviews, essays and notes on short cinema from 50% Film.
 ---
-<section class="news-index">
-  <a class="back" href="/">← Back to Home</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News & Reviews — 50% Film</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="description" content="Reviews, essays and notes on short cinema from 50% Film.">
+<link rel="canonical" href="https://50percentfilm.com/news">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="50% Film">
+<meta property="og:title" content="News &amp; Reviews — 50% Film">
+<meta property="og:description" content="Reviews, essays and notes on short cinema from 50% Film.">
+<meta property="og:url" content="https://50percentfilm.com/news">
+<meta property="og:image" content="https://50percentfilm.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="News &amp; Reviews — 50% Film">
+<meta name="twitter:description" content="Reviews, essays and notes on short cinema from 50% Film.">
+<meta name="twitter:image" content="https://50percentfilm.com/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+--black: #0a0a0a;
+--white: #f0ece4;
+--cream: #e8e2d6;
+--red: #c8341a;
+--gray: #2a2a2a;
+--mid: #888;
+}
+html { scroll-behavior: smooth; }
+body {
+background: var(--black);
+color: var(--white);
+font-family: 'Space Mono', monospace;
+cursor: none;
+overflow-x: hidden;
+}
+.cursor {
+position: fixed;
+width: 10px;
+height: 10px;
+background: var(--red);
+border-radius: 50%;
+pointer-events: none;
+z-index: 9999;
+transform: translate(-50%, -50%);
+transition: width 0.2s, height 0.2s;
+mix-blend-mode: difference;
+}
+.cursor.big { width: 40px; height: 40px; }
+body::before {
+content: '';
+position: fixed;
+inset: 0;
+background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+pointer-events: none;
+z-index: 9998;
+opacity: 0.35;
+}
+nav {
+position: fixed;
+top: 0; left: 0; right: 0;
+z-index: 100;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 28px 40px;
+background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%);
+}
+.nav-logo {
+font-family: 'Bebas Neue', sans-serif;
+font-size: 22px;
+letter-spacing: 0.15em;
+color: var(--white);
+text-decoration: none;
+}
+.nav-back {
+font-size: 10px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(--mid);
+text-decoration: none;
+display: flex;
+align-items: center;
+gap: 10px;
+transition: color 0.2s;
+}
+.nav-back:hover { color: var(--white); }
+.nav-back::before { content: '←'; }
+.hero {
+padding-top: 160px;
+padding-bottom: 80px;
+padding-left: 40px;
+padding-right: 40px;
+border-bottom: 1px solid #1a1a1a;
+display: grid;
+grid-template-columns: 1fr 1fr;
+align-items: end;
+gap: 40px;
+}
+.hero-eyebrow {
+font-size: 10px;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: var(--red);
+margin-bottom: 24px;
+opacity: 0;
+animation: fadeUp 0.8s 0.3s forwards;
+}
+.hero-title {
+font-family: 'Bebas Neue', sans-serif;
+font-size: clamp(72px, 10vw, 130px);
+line-height: 0.88;
+color: var(--white);
+opacity: 0;
+animation: fadeUp 0.8s 0.5s forwards;
+}
+.hero-title em {
+font-family: 'DM Serif Display', serif;
+font-style: italic;
+color: var(--cream);
+opacity: 0.6;
+}
+.hero-right {
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+gap: 20px;
+opacity: 0;
+animation: fadeIn 1s 0.6s forwards;
+}
+.hero-meta { text-align: right; }
+.hero-count {
+font-family: 'Bebas Neue', sans-serif;
+font-size: 80px;
+line-height: 1;
+color: #1a1a1a;
+letter-spacing: 0.05em;
+}
+.hero-count-label {
+font-size: 9px;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: #333;
+display: block;
+margin-top: -8px;
+}
+.hero-desc {
+font-size: 10px;
+line-height: 1.9;
+color: var(--mid);
+max-width: 320px;
+text-align: right;
+}
+.ticker {
+border-top: 1px solid #222;
+border-bottom: 1px solid #222;
+overflow: hidden;
+padding: 12px 0;
+background: var(--black);
+}
+.ticker-track {
+display: flex;
+gap: 60px;
+animation: ticker 22s linear infinite;
+white-space: nowrap;
+}
+.ticker-item { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); flex-shrink: 0; }
+.ticker-item span { color: var(--red); margin-right: 10px; }
+.news-layout {
+display: grid;
+grid-template-columns: 1fr 2fr;
+gap: 0;
+max-width: 1400px;
+margin: 0 auto;
+}
+.news-sidebar {
+border-right: 1px solid #1a1a1a;
+padding: 60px 40px 80px 40px;
+position: sticky;
+top: 100px;
+align-self: start;
+}
+.sidebar-section-label {
+font-size: 8px;
+letter-spacing: 0.35em;
+text-transform: uppercase;
+color: var(--red);
+margin-bottom: 32px;
+display: block;
+}
+.filter-list {
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: 2px;
+margin-bottom: 48px;
+}
+.filter-list li a {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px 14px;
+font-size: 9px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(--mid);
+text-decoration: none;
+border-left: 2px solid transparent;
+transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.filter-list li a:hover,
+.filter-list li a.active {
+color: var(--white);
+border-left-color: var(--red);
+background: #0f0f0f;
+}
+.filter-list li a .count { font-size: 8px; color: #333; }
+.filter-list li a.active .count { color: var(--red); }
+.sidebar-divider { border: none; border-top: 1px solid #1a1a1a; margin: 32px 0; }
+.sidebar-newsletter-label {
+font-size: 8px;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: var(--mid);
+display: block;
+margin-bottom: 16px;
+}
+.sidebar-newsletter-body { font-size: 9px; line-height: 1.9; color: #444; margin-bottom: 16px; }
+.sidebar-newsletter-link {
+font-size: 9px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(--red);
+text-decoration: none;
+transition: opacity 0.2s;
+}
+.sidebar-newsletter-link:hover { opacity: 0.7; }
+.articles-feed { padding: 60px 60px 120px 60px; }
+.article-card {
+border-left: 2px solid var(--red);
+margin-bottom: 2px;
+border-bottom: 1px solid #1a1a1a;
+opacity: 0;
+animation: fadeUp 0.8s 0.4s forwards;
+transition: border-left-color 0.3s;
+}
+.article-card.secondary { border-left-color: #2a2a2a; }
+.article-toggle {
+display: block;
+width: 100%;
+text-align: left;
+background: none;
+border: none;
+cursor: none;
+padding: 0;
+font-family: 'Space Mono', monospace;
+color: inherit;
+}
+.article-toggle-inner { padding: 40px 40px 40px 0; transition: background 0.2s; }
+.article-card.open .article-toggle-inner { padding-bottom: 28px; }
+.article-toggle:hover .article-toggle-inner { background: #0d0d0d; }
+.article-featured-kicker {
+display: flex;
+align-items: center;
+gap: 16px;
+margin-bottom: 28px;
+padding-left: 28px;
+}
+.kicker-tag {
+font-size: 8px;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: var(--white);
+background: var(--red);
+padding: 5px 12px;
+}
+.kicker-tag.muted { background: #111; color: var(--mid); }
+.kicker-date { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: #444; }
+.article-featured-headline {
+font-family: 'Bebas Neue', sans-serif;
+font-size: clamp(42px, 5vw, 72px);
+line-height: 0.92;
+color: var(--white);
+padding-left: 28px;
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+gap: 24px;
+}
+.article-featured-headline em {
+font-family: 'DM Serif Display', serif;
+font-style: italic;
+color: var(--cream);
+opacity: 0.65;
+}
+.headline-text { flex: 1; }
+.toggle-indicator {
+flex-shrink: 0;
+width: 36px;
+height: 36px;
+border: 1px solid #1a1a1a;
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+margin-top: 12px;
+transition: border-color 0.2s, transform 0.4s;
+}
+.article-toggle:hover .toggle-indicator { border-color: #333; }
+.toggle-indicator::before,
+.toggle-indicator::after { content: ''; position: absolute; background: var(--mid); transition: transform 0.3s, background 0.2s; }
+.toggle-indicator::before { width: 12px; height: 1px; }
+.toggle-indicator::after { width: 1px; height: 12px; }
+.article-toggle:hover .toggle-indicator::before,
+.article-toggle:hover .toggle-indicator::after { background: var(--white); }
+.article-card.open .toggle-indicator::after { transform: scaleY(0); }
+.article-card.open .toggle-indicator { transform: rotate(180deg); border-color: var(--red); }
+.article-card.open .toggle-indicator::before { background: var(--red); }
+.article-card.open .article-toggle:hover .toggle-indicator::before { background: var(--red); }
+.article-collapse { overflow: hidden; max-height: 0; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+.article-card.open .article-collapse { max-height: var(--collapse-height, 8000px); }
+.article-featured-standfirst {
+font-size: 11px;
+line-height: 2;
+color: var(--mid);
+max-width: 580px;
+padding-left: 28px;
+margin-bottom: 32px;
+}
+.article-featured-standfirst em { font-style: italic; font-family: 'DM Serif Display', serif; opacity: 0.8; }
+.film-strip { display: flex; align-items: center; gap: 0; padding-left: 28px; margin-bottom: 40px; overflow: hidden; }
+.film-strip-hole { width: 8px; height: 12px; border: 1px solid #222; flex-shrink: 0; margin-right: 4px; }
+.film-strip-line { flex: 1; height: 1px; background: #1a1a1a; }
+.article-body { padding-left: 28px; padding-bottom: 60px; }
+.article-body p { font-size: 11px; line-height: 2.1; color: #aaa; margin-bottom: 24px; max-width: 600px; }
+.article-body p:first-child::first-letter {
+font-family: 'DM Serif Display', serif;
+font-size: 52px;
+line-height: 0.8;
+float: left;
+margin-right: 10px;
+margin-top: 8px;
+color: var(--red);
+opacity: 0.8;
+}
+.article-body em { font-style: italic; font-family: 'DM Serif Display', serif; opacity: 0.85; }
+.article-body strong { color: var(--white); }
+.article-body blockquote { border-left: 2px solid var(--red); padding: 16px 24px; margin: 32px 0; background: #0d0d0d; max-width: 560px; }
+.article-body blockquote p { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 15px; line-height: 1.7; color: var(--cream); opacity: 0.8; margin-bottom: 0; }
+.article-body blockquote p::first-letter { all: unset; }
+.article-image { max-width: 600px; margin: 8px 0 32px 0; border: 1px solid #1a1a1a; }
+.article-image img { width: 100%; display: block; }
+.video-embed {
+max-width: 600px;
+margin: 8px 0 32px 0;
+border: 1px solid #1a1a1a;
+aspect-ratio: 16 / 9;
+background: #050505;
+position: relative;
+display: block;
+overflow: hidden;
+text-decoration: none;
+}
+.video-embed img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s, filter 0.4s; }
+.video-embed:hover img { transform: scale(1.04); filter: brightness(0.4); }
+.video-embed-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; opacity: 0; transition: opacity 0.3s; }
+.video-embed:hover .video-embed-overlay { opacity: 1; }
+.video-play-icon { width: 56px; height: 56px; border: 1px solid var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, background 0.2s; }
+.video-embed:hover .video-play-icon { border-color: var(--red); background: rgba(200, 52, 26, 0.15); }
+.video-play-icon::after { content: ''; width: 0; height: 0; border-style: solid; border-width: 9px 0 9px 14px; border-color: transparent transparent transparent var(--white); margin-left: 3px; }
+.video-embed-label { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--white); }
+.video-embed-tag { position: absolute; top: 16px; left: 16px; font-size: 8px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); background: rgba(10, 10, 10, 0.7); padding: 6px 12px; transition: opacity 0.3s; }
+.video-embed:hover .video-embed-tag { opacity: 0; }
+.article-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 0; padding-top: 28px; border-top: 1px solid #1a1a1a; padding-left: 28px; padding-bottom: 60px; }
+.article-tag { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: #444; border: 1px solid #1a1a1a; padding: 6px 14px; transition: color 0.2s, border-color 0.2s; }
+.article-tag:hover { color: var(--mid); border-color: #333; }
+.empty-feed { padding: 60px 28px; color: #444; font-size: 11px; line-height: 2; }
+footer { border-top: 1px solid #1a1a1a; padding: 48px 40px; display: flex; justify-content: space-between; align-items: center; }
+.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.15em; }
+.footer-copy { font-size: 9px; letter-spacing: 0.15em; color: var(--mid); text-transform: uppercase; }
+.footer-links { display: flex; gap: 32px; list-style: none; }
+.footer-links a { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--white); }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s, transform 0.7s; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (max-width: 900px) {
+.hero { grid-template-columns: 1fr; padding: 120px 24px 60px; }
+.hero-right { align-items: flex-start; }
+.hero-desc { text-align: left; }
+.news-layout { grid-template-columns: 1fr; }
+.news-sidebar { position: static; border-right: none; border-bottom: 1px solid #1a1a1a; padding: 40px 24px; }
+.filter-list { flex-direction: row; flex-wrap: wrap; }
+.filter-list li a { border-left: none; border-bottom: 2px solid transparent; }
+.filter-list li a:hover, .filter-list li a.active { border-left-color: transparent; border-bottom-color: var(--red); }
+.articles-feed { padding: 40px 24px 80px; }
+.article-featured-kicker, .article-featured-headline, .article-featured-standfirst, .article-body, .article-tags, .film-strip { padding-left: 16px; }
+.article-toggle-inner { padding-right: 16px; }
+footer { flex-direction: column; gap: 24px; text-align: center; }
+.footer-links { flex-wrap: wrap; justify-content: center; }
+nav { padding: 20px 24px; }
+.article-featured-headline { gap: 12px; }
+.toggle-indicator { width: 28px; height: 28px; margin-top: 8px; }
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
 
-  <p class="eyebrow">{{ site.tagline }}</p>
-  <h1 class="page-title">News &amp; <em>Reviews.</em></h1>
-  <p class="count">{{ collections.news | length }} pieces published</p>
-  <p class="blurb">
-    Festival coverage, filmmaker interviews, industry news, and critical writing on
-    the short form. More pieces added regularly.
-  </p>
+<nav>
+<a href="index.html" class="nav-logo">50% Film</a>
+<a href="index.html" class="nav-back">Back to Home</a>
+</nav>
 
-  <ul class="piece-list">
-    {% for post in collections.news %}
-    <li class="piece-card">
-      <a href="{{ post.url }}">
-        <p class="eyebrow">
-          <span class="cat">{{ post.data.category }}</span>
-          <span class="sep">✦</span>
-          <time datetime="{{ post.data.date }}">{{ post.data.date | monthYear }}</time>
-        </p>
-        <h2 class="card-title">
-          {{ post.data.title }}{% if post.data.title_accent %} <em>{{ post.data.title_accent }}</em>{% endif %}
-        </h2>
-        {% if post.data.standfirst %}<p class="card-standfirst">{{ post.data.standfirst }}</p>{% endif %}
-        <span class="read">Read →</span>
-      </a>
-    </li>
-    {% endfor %}
-  </ul>
+<section class="hero">
+<div class="hero-left">
+<p class="hero-eyebrow">Dispatches from Short Cinema</p>
+<h1 class="hero-title">News<br>&amp; <em>Reviews.</em></h1>
+</div>
+<div class="hero-right">
+<div class="hero-meta">
+<div class="hero-count">{% if collections.news | length < 10 %}0{% endif %}{{ collections.news | length }}</div>
+<span class="hero-count-label">Pieces published</span>
+</div>
+<p class="hero-desc">Festival coverage, filmmaker interviews, industry news, and critical writing on the short form. More pieces added regularly.</p>
+</div>
 </section>
+
+<div class="ticker">
+<div class="ticker-track">
+<div class="ticker-item"><span>✦</span> Festival coverage</div>
+<div class="ticker-item"><span>✦</span> Filmmaker interviews</div>
+<div class="ticker-item"><span>✦</span> Industry news</div>
+<div class="ticker-item"><span>✦</span> Short film criticism</div>
+<div class="ticker-item"><span>✦</span> 50% Film dispatches</div>
+<div class="ticker-item"><span>✦</span> Festival coverage</div>
+<div class="ticker-item"><span>✦</span> Filmmaker interviews</div>
+<div class="ticker-item"><span>✦</span> Industry news</div>
+<div class="ticker-item"><span>✦</span> Short film criticism</div>
+<div class="ticker-item"><span>✦</span> 50% Film dispatches</div>
+</div>
+</div>
+
+<div class="news-layout">
+<aside class="news-sidebar reveal">
+<span class="sidebar-section-label">Browse by type</span>
+<ul class="filter-list">
+<li><a href="#" class="active" data-filter="all">All <span class="count" data-count="all">—</span></a></li>
+<li><a href="#" data-filter="news">News <span class="count" data-count="news">—</span></a></li>
+<li><a href="#" data-filter="review">Reviews <span class="count" data-count="review">—</span></a></li>
+<li><a href="#" data-filter="interview">Interviews <span class="count" data-count="interview">—</span></a></li>
+<li><a href="#" data-filter="feature">Features <span class="count" data-count="feature">—</span></a></li>
+<li><a href="#" data-filter="festival">Festival <span class="count" data-count="festival">—</span></a></li>
+</ul>
+<hr class="sidebar-divider">
+<span class="sidebar-newsletter-label">Stay in the loop</span>
+<p class="sidebar-newsletter-body">New pieces, festival news, and anthology updates direct to your inbox. No noise.</p>
+<a href="#" class="sidebar-newsletter-link">Subscribe to the newsletter →</a>
+</aside>
+
+<main class="articles-feed">
+{%- for post in collections.news -%}
+<article class="article-card{% if not loop.first %} secondary{% endif %}" data-cat="{{ post.data.category | lower }}">
+<button class="article-toggle" aria-expanded="false">
+<div class="article-toggle-inner">
+<div class="article-featured-kicker">
+<span class="kicker-tag">{{ post.data.category }}</span>
+<span class="kicker-date">{{ post.data.date | monthYear }}</span>
+</div>
+<h2 class="article-featured-headline">
+<span class="headline-text">{{ post.data.title }}{% if post.data.title_accent %} <em>{{ post.data.title_accent }}</em>{% endif %}</span>
+<span class="toggle-indicator"></span>
+</h2>
+</div>
+</button>
+<div class="article-collapse">
+{% if post.data.standfirst %}<p class="article-featured-standfirst">{{ post.data.standfirst }}</p>{% endif %}
+<div class="film-strip">
+<div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
+<div class="film-strip-line"></div>
+</div>
+<div class="article-body">
+{{ post.templateContent | safe }}
+{% if post.data.trailer_url %}
+{%- set ytid = post.data.trailer_url | replace("https://youtu.be/", "") | replace("http://youtu.be/", "") | replace("https://www.youtube.com/watch?v=", "") | replace("https://youtube.com/watch?v=", "") | replace("https://m.youtube.com/watch?v=", "") -%}
+<a class="video-embed" href="{{ post.data.trailer_url }}" target="_blank" rel="noopener">
+<span class="video-embed-tag">Trailer</span>
+<img src="https://img.youtube.com/vi/{{ ytid }}/maxresdefault.jpg" alt="Trailer thumbnail" loading="lazy">
+<div class="video-embed-overlay">
+<div class="video-play-icon"></div>
+<span class="video-embed-label">Watch trailer on YouTube</span>
+</div>
+</a>
+{% endif %}
+</div>
+{% if post.data.tags %}
+<div class="article-tags">
+{% for tag in post.data.tags %}<span class="article-tag">{{ tag }}</span>{% endfor %}
+</div>
+{% endif %}
+</div>
+</article>
+{%- else -%}
+<p class="empty-feed">No pieces published yet. New writing appears here as it's added.</p>
+{%- endfor -%}
+</main>
+</div>
+
+<footer>
+<span class="footer-logo">50% Film</span>
+<span class="footer-copy">© 2025–2026 — Short Cinema Label — London, UK</span>
+<ul class="footer-links">
+<li><a href="https://www.instagram.com/50percentfilm/" target="_blank" rel="noopener">Instagram</a></li>
+<li><a href="https://boxd.it/lHBGz" target="_blank" rel="noopener">Letterboxd</a></li>
+<li><a href="#">Newsletter</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</footer>
+
+<script>
+// Custom cursor
+(function () {
+var cursor = document.getElementById('cursor');
+if (cursor && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+window.addEventListener('mousemove', function (e) {
+cursor.style.left = e.clientX + 'px';
+cursor.style.top = e.clientY + 'px';
+});
+document.querySelectorAll('a, button, .article-toggle').forEach(function (el) {
+el.addEventListener('mouseenter', function () { cursor.classList.add('big'); });
+el.addEventListener('mouseleave', function () { cursor.classList.remove('big'); });
+});
+} else if (cursor) {
+cursor.style.display = 'none';
+document.body.style.cursor = 'auto';
+}
+})();
+
+// Accordion open/close
+document.querySelectorAll('.article-toggle').forEach(function (btn) {
+btn.addEventListener('click', function () {
+var card = btn.closest('.article-card');
+var collapse = card.querySelector('.article-collapse');
+var isOpen = card.classList.toggle('open');
+btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+if (isOpen) {
+collapse.style.setProperty('--collapse-height', collapse.scrollHeight + 'px');
+}
+});
+});
+
+// Sidebar counts (computed from the rendered articles)
+(function () {
+var cards = Array.prototype.slice.call(document.querySelectorAll('.article-card'));
+document.querySelectorAll('.count[data-count]').forEach(function (el) {
+var key = el.getAttribute('data-count');
+var n = (key === 'all') ? cards.length : cards.filter(function (c) { return c.getAttribute('data-cat') === key; }).length;
+el.textContent = n > 0 ? (n < 10 ? '0' + n : n) : '—';
+});
+})();
+
+// Filter
+document.querySelectorAll('.filter-list a').forEach(function (link) {
+link.addEventListener('click', function (e) {
+e.preventDefault();
+document.querySelectorAll('.filter-list a').forEach(function (l) { l.classList.remove('active'); });
+link.classList.add('active');
+var filter = link.getAttribute('data-filter');
+document.querySelectorAll('.article-card').forEach(function (card) {
+var show = (filter === 'all') || (card.getAttribute('data-cat') === filter);
+card.style.display = show ? '' : 'none';
+});
+});
+});
+
+// Scroll reveal
+(function () {
+var obs = new IntersectionObserver(function (entries) {
+entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+})();
+</script>
+</body>
+</html>
