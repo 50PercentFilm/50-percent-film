@@ -283,6 +283,8 @@ padding: 5px 12px;
 }
 .kicker-tag.muted { background: #111; color: var(--mid); }
 .kicker-date { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: #444; }
+.kicker-byline { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream); opacity: 0.75; }
+.kicker-byline::before { content: '·'; color: #444; margin-right: 16px; }
 .article-featured-headline {
 font-family: 'Bebas Neue', sans-serif;
 font-size: clamp(42px, 5vw, 72px);
@@ -487,6 +489,7 @@ nav { padding: 20px 24px; }
 <div class="article-featured-kicker">
 <span class="kicker-tag">{{ post.data.category }}</span>
 <span class="kicker-date">{{ post.data.date | monthYear }}</span>
+{% if post.data.author %}<span class="kicker-byline">Words — {{ post.data.author }}</span>{% endif %}
 </div>
 <h2 class="article-featured-headline">
 <span class="headline-text">{{ post.data.title }}{% if post.data.title_accent %} <em>{{ post.data.title_accent }}</em>{% endif %}</span>
