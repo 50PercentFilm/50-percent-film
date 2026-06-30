@@ -362,6 +362,9 @@ opacity: 0.8;
 .article-body blockquote p::first-letter { all: unset; }
 .article-image { max-width: 600px; margin: 8px 0 32px 0; border: 1px solid #1a1a1a; }
 .article-image img { width: 100%; display: block; }
+.article-body img { max-width: 600px; width: 100%; height: auto; display: block; margin: 8px 0 8px 0; border: 1px solid #1a1a1a; }
+.article-body p img { margin-bottom: 0; }
+.article-body img + em, .article-body img + br + em { display: block; font-family: 'Space Mono', monospace; font-style: normal; font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: #444; opacity: 1; margin: 0 0 32px 0; }
 .video-embed {
 max-width: 600px;
 margin: 8px 0 32px 0;
@@ -499,7 +502,7 @@ nav { padding: 20px 24px; }
 {%- set ytid = post.data.trailer_url | replace("https://youtu.be/", "") | replace("http://youtu.be/", "") | replace("https://www.youtube.com/watch?v=", "") | replace("https://youtube.com/watch?v=", "") | replace("https://m.youtube.com/watch?v=", "") -%}
 <a class="video-embed" href="{{ post.data.trailer_url }}" target="_blank" rel="noopener">
 <span class="video-embed-tag">Trailer</span>
-<img src="https://img.youtube.com/vi/{{ ytid }}/maxresdefault.jpg" alt="Trailer thumbnail" loading="lazy">
+<img src="https://img.youtube.com/vi/{{ ytid }}/hqdefault.jpg" alt="Trailer thumbnail" loading="lazy">
 <div class="video-embed-overlay">
 <div class="video-play-icon"></div>
 <span class="video-embed-label">Watch trailer on YouTube</span>
