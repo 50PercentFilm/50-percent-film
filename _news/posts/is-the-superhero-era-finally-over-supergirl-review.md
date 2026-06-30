@@ -1,5 +1,6 @@
 ---
-title: "Is the Superhero Era Finally Over?: Supergirl Review"
+title: "Is the Superhero Era Finally Over?: "
+title_accent: Supergirl Review
 category: Review
 date: 2026-06-30
 standfirst: With the release and subsequent failure of the latest DCU
