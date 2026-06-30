@@ -257,20 +257,15 @@ animation: fadeUp 0.8s 0.4s forwards;
 transition: border-left-color 0.3s;
 }
 .article-card.secondary { border-left-color: #2a2a2a; }
-.article-toggle {
+.article-link {
 display: block;
 width: 100%;
-text-align: left;
-background: none;
-border: none;
-cursor: none;
-padding: 0;
-font-family: 'Space Mono', monospace;
+text-decoration: none;
 color: inherit;
+cursor: none;
 }
-.article-toggle-inner { padding: 40px 40px 40px 0; transition: background 0.2s; }
-.article-card.open .article-toggle-inner { padding-bottom: 28px; }
-.article-toggle:hover .article-toggle-inner { background: #0d0d0d; }
+.article-link-inner { padding: 40px 40px 44px 0; transition: background 0.2s; }
+.article-link:hover .article-link-inner { background: #0d0d0d; }
 .article-featured-kicker {
 display: flex;
 align-items: center;
@@ -298,6 +293,7 @@ display: flex;
 justify-content: space-between;
 align-items: flex-start;
 gap: 24px;
+transition: color 0.2s;
 }
 .article-featured-headline em {
 font-family: 'DM Serif Display', serif;
@@ -306,7 +302,7 @@ color: var(--cream);
 opacity: 0.65;
 }
 .headline-text { flex: 1; }
-.toggle-indicator {
+.read-arrow {
 flex-shrink: 0;
 width: 36px;
 height: 36px;
@@ -316,30 +312,38 @@ align-items: center;
 justify-content: center;
 position: relative;
 margin-top: 12px;
-transition: border-color 0.2s, transform 0.4s;
+transition: border-color 0.2s, background 0.2s;
 }
-.article-toggle:hover .toggle-indicator { border-color: #333; }
-.toggle-indicator::before,
-.toggle-indicator::after { content: ''; position: absolute; background: var(--mid); transition: transform 0.3s, background 0.2s; }
-.toggle-indicator::before { width: 12px; height: 1px; }
-.toggle-indicator::after { width: 1px; height: 12px; }
-.article-toggle:hover .toggle-indicator::before,
-.article-toggle:hover .toggle-indicator::after { background: var(--white); }
-.article-card.open .toggle-indicator::after { transform: scaleY(0); }
-.article-card.open .toggle-indicator { transform: rotate(180deg); border-color: var(--red); }
-.article-card.open .toggle-indicator::before { background: var(--red); }
-.article-card.open .article-toggle:hover .toggle-indicator::before { background: var(--red); }
-.article-collapse { overflow: hidden; max-height: 0; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-.article-card.open .article-collapse { max-height: var(--collapse-height, 8000px); }
+.read-arrow::after {
+content: '→';
+font-family: 'Space Mono', monospace;
+font-size: 16px;
+color: var(--mid);
+transition: transform 0.3s, color 0.2s;
+}
+.article-link:hover .read-arrow { border-color: var(--red); background: rgba(200,52,26,0.12); }
+.article-link:hover .read-arrow::after { color: var(--red); transform: translateX(3px); }
 .article-featured-standfirst {
 font-size: 11px;
 line-height: 2;
 color: var(--mid);
 max-width: 580px;
 padding-left: 28px;
-margin-bottom: 32px;
+margin-top: 24px;
+margin-bottom: 0;
 }
 .article-featured-standfirst em { font-style: italic; font-family: 'DM Serif Display', serif; opacity: 0.8; }
+.read-cue {
+display: inline-block;
+margin-top: 24px;
+margin-left: 28px;
+font-size: 9px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(--red);
+transition: opacity 0.2s;
+}
+.article-link:hover .read-cue { opacity: 0.7; }
 .film-strip { display: flex; align-items: center; gap: 0; padding-left: 28px; margin-bottom: 40px; overflow: hidden; }
 .film-strip-hole { width: 8px; height: 12px; border: 1px solid #222; flex-shrink: 0; margin-right: 4px; }
 .film-strip-line { flex: 1; height: 1px; background: #1a1a1a; }
@@ -412,12 +416,12 @@ footer { border-top: 1px solid #1a1a1a; padding: 48px 40px; display: flex; justi
 .filter-list li a:hover, .filter-list li a.active { border-left-color: transparent; border-bottom-color: var(--red); }
 .articles-feed { padding: 40px 24px 80px; }
 .article-featured-kicker, .article-featured-headline, .article-featured-standfirst, .article-body, .article-tags, .film-strip { padding-left: 16px; }
-.article-toggle-inner { padding-right: 16px; }
+.article-link-inner { padding-right: 16px; }
 footer { flex-direction: column; gap: 24px; text-align: center; }
 .footer-links { flex-wrap: wrap; justify-content: center; }
 nav { padding: 20px 24px; }
 .article-featured-headline { gap: 12px; }
-.toggle-indicator { width: 28px; height: 28px; margin-top: 8px; }
+.read-arrow { width: 28px; height: 28px; margin-top: 8px; }
 }
 </style>
 </head>
@@ -478,44 +482,20 @@ nav { padding: 20px 24px; }
 <main class="articles-feed">
 {%- for post in collections.news -%}
 <article class="article-card{% if not loop.first %} secondary{% endif %}" data-cat="{{ post.data.category | lower }}">
-<button class="article-toggle" aria-expanded="false">
-<div class="article-toggle-inner">
+<a class="article-link" href="{{ post.url }}">
+<div class="article-link-inner">
 <div class="article-featured-kicker">
 <span class="kicker-tag">{{ post.data.category }}</span>
 <span class="kicker-date">{{ post.data.date | monthYear }}</span>
 </div>
 <h2 class="article-featured-headline">
 <span class="headline-text">{{ post.data.title }}{% if post.data.title_accent %} <em>{{ post.data.title_accent }}</em>{% endif %}</span>
-<span class="toggle-indicator"></span>
+<span class="read-arrow" aria-hidden="true"></span>
 </h2>
-</div>
-</button>
-<div class="article-collapse">
 {% if post.data.standfirst %}<p class="article-featured-standfirst">{{ post.data.standfirst }}</p>{% endif %}
-<div class="film-strip">
-<div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div><div class="film-strip-hole"></div>
-<div class="film-strip-line"></div>
-</div>
-<div class="article-body">
-{{ post.templateContent | safe }}
-{% if post.data.trailer_url %}
-{%- set ytid = post.data.trailer_url | replace("https://youtu.be/", "") | replace("http://youtu.be/", "") | replace("https://www.youtube.com/watch?v=", "") | replace("https://youtube.com/watch?v=", "") | replace("https://m.youtube.com/watch?v=", "") -%}
-<a class="video-embed" href="{{ post.data.trailer_url }}" target="_blank" rel="noopener">
-<span class="video-embed-tag">Trailer</span>
-<img src="https://img.youtube.com/vi/{{ ytid }}/hqdefault.jpg" alt="Trailer thumbnail" loading="lazy">
-<div class="video-embed-overlay">
-<div class="video-play-icon"></div>
-<span class="video-embed-label">Watch trailer on YouTube</span>
+<span class="read-cue">Read piece →</span>
 </div>
 </a>
-{% endif %}
-</div>
-{% if post.data.tags %}
-<div class="article-tags">
-{% for tag in post.data.tags %}<span class="article-tag">{{ tag }}</span>{% endfor %}
-</div>
-{% endif %}
-</div>
 </article>
 {%- else -%}
 <p class="empty-feed">No pieces published yet. New writing appears here as it's added.</p>
@@ -543,7 +523,7 @@ window.addEventListener('mousemove', function (e) {
 cursor.style.left = e.clientX + 'px';
 cursor.style.top = e.clientY + 'px';
 });
-document.querySelectorAll('a, button, .article-toggle').forEach(function (el) {
+document.querySelectorAll('a, button').forEach(function (el) {
 el.addEventListener('mouseenter', function () { cursor.classList.add('big'); });
 el.addEventListener('mouseleave', function () { cursor.classList.remove('big'); });
 });
@@ -552,19 +532,6 @@ cursor.style.display = 'none';
 document.body.style.cursor = 'auto';
 }
 })();
-
-// Accordion open/close
-document.querySelectorAll('.article-toggle').forEach(function (btn) {
-btn.addEventListener('click', function () {
-var card = btn.closest('.article-card');
-var collapse = card.querySelector('.article-collapse');
-var isOpen = card.classList.toggle('open');
-btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-if (isOpen) {
-collapse.style.setProperty('--collapse-height', collapse.scrollHeight + 'px');
-}
-});
-});
 
 // Sidebar counts (computed from the rendered articles)
 (function () {
