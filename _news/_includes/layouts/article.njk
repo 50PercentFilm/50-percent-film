@@ -38,6 +38,8 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 .article-kicker { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
 .kicker-tag { font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--white); background: var(--red); padding: 5px 12px; }
 .kicker-date { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: #444; }
+.kicker-byline { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream); opacity: 0.75; }
+.kicker-byline::before { content: '·'; color: #444; margin-right: 16px; }
 .article-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 7vw, 88px); line-height: 0.92; color: var(--white); margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s 0.35s forwards; }
 .article-headline em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--cream); opacity: 0.65; }
 .article-standfirst { font-size: 13px; line-height: 2; color: var(--mid); max-width: 620px; margin-bottom: 48px; opacity: 0; animation: fadeUp 0.8s 0.5s forwards; }
@@ -106,6 +108,7 @@ footer { flex-direction: column; gap: 24px; text-align: center; }
 <div class="article-kicker">
 <span class="kicker-tag">{{ category }}</span>
 <span class="kicker-date">{{ date | monthYear }}</span>
+{% if author %}<span class="kicker-byline">Words — {{ author }}</span>{% endif %}
 </div>
 
 <h1 class="article-headline">{{ title }}{% if title_accent %} <em>{{ title_accent }}</em>{% endif %}</h1>
