@@ -46,6 +46,12 @@ collections:
         widget: "select"
         options: ["News", "Review", "Interview", "Feature", "Festival", "Industry", "Essay"]
 
+      - label: "Author"
+        name: "author"
+        widget: "string"
+        required: false
+        hint: "The writer's name, shown as a byline on the piece. e.g. 'Cerys Morgan'"
+
       - label: "Publish date"
         name: "date"
         widget: "datetime"
