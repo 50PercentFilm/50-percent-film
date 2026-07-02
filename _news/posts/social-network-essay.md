@@ -1,10 +1,11 @@
 ---
-title: "The Social Network is the Most Important Movie of"
-title_accent: "the 21st Century — Here's Why"
-category: "Feature"
+title: The Social Network is the Most Important Movie of
+title_accent: the 21st Century — Here's Why
+category: Feature
+author: Hayyan Khawaja
 date: 2026-06-15
-standfirst: "\u201CThe internet isn't written in pencil, Mark. It's written in ink.\u201D"
-trailer_url: "https://youtu.be/gM4LkaXwGuY"
+standfirst: “The internet isn't written in pencil, Mark. It's written in ink.”
+trailer_url: https://youtu.be/gM4LkaXwGuY
 tags:
   - The Social Network
   - David Fincher
