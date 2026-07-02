@@ -1,1 +1,4 @@
-
+{
+  "layout": "layouts/writer.njk",
+  "permalink": "/writers/{{ page.fileSlug }}/index.html"
+}
