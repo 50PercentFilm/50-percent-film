@@ -15,7 +15,7 @@ We think the whole idea is wrong. Not tactically wrong. Wrong at the root.
 
 ## Cinema was born short
 
-> > > ![](/uploads/fig1-lumiere-factory-1895.jpg "Workers Leaving the Lumière Factory (Dir. Louis Lumière, 1895)")
+![](/uploads/fig1-lumiere-factory-1895.jpg "Workers Leaving the Lumière Factory (Dir. Louis Lumière, 1895)")
 
 Go back to the start. The first films were short because film itself was short. A minute. A single shot. One steady camera. The Lumières pointed theirs at workers leaving a factory. Méliès pointed his at the sky and put a rocket in the eye of the moon.
 
