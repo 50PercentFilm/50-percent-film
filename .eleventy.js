@@ -25,6 +25,32 @@ module.exports = function (eleventyConfig) {
     api.getFilteredByGlob("_news/posts/*.md").sort((a, b) => b.date - a.date)
   );
 
+  // All writer profiles
+  eleventyConfig.addCollection("writers", (api) =>
+    api.getFilteredByGlob("_news/writers/*.md").sort((a, b) =>
+      (a.data.name || "").localeCompare(b.data.name || "")
+    )
+  );
+
+  // Given an author name, return that writer's profile URL (or "" if no profile exists)
+  eleventyConfig.addFilter("writerUrl", (writers, name) => {
+    if (!name || !writers) return "";
+    const target = String(name).trim().toLowerCase();
+    const match = writers.find(
+      (w) => (w.data.name || "").trim().toLowerCase() === target
+    );
+    return match ? match.url : "";
+  });
+
+  // All pieces written by a given author name, newest first
+  eleventyConfig.addFilter("byAuthor", (posts, name) => {
+    if (!name || !posts) return [];
+    const target = String(name).trim().toLowerCase();
+    return posts.filter(
+      (p) => (p.data.author || "").trim().toLowerCase() === target
+    );
+  });
+
   return {
     dir: {
       input: ".",
