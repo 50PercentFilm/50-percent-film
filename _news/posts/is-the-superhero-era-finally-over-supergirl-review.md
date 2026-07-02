@@ -2,8 +2,9 @@
 title: "Is the Superhero Era Finally Over?: "
 title_accent: Supergirl Review
 category: Review
+author: Hayyan Khawaja
 date: 2026-06-30
-standfirst: "- By Hayyan Khawaja"
+standfirst: ""
 hero: /uploads/hicjbwhglfbpwbuoubd5bhbwfgf.jpg
 trailer_url: https://youtu.be/s1-pfiVMKAs?si=sCdl-fG6aPug91u2
 tags:
