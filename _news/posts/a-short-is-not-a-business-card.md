@@ -7,6 +7,7 @@ date: 2026-07-02
 standfirst: Someone will tell you a short film is a business card. You make one,
   a producer reads it, and if it is good enough they hand you a feature. The
   short is the ask. The feature is the yes.
+hero: ""
 ---
 You hear it everywhere. Film schools teach the short as a warm-up lap before the real race. Trade pages call it a calling card and mean it kindly. Even the people who spend their lives championing shorts admit that almost none of them ever make the jump, and that the ones that do are rare enough to fit on a single page.
 
@@ -14,13 +15,13 @@ We think the whole idea is wrong. Not tactically wrong. Wrong at the root.
 
 ## Cinema was born short
 
->>> INSERT IMAGE HERE: fig1-lumiere-factory-1895.jpg — use the image button, then delete this line <<<
-
-*Workers Leaving the Lumière Factory, Louis Lumière, 1895. About forty-five seconds long. Public domain.*
+> > > ![](/uploads/fig1-lumiere-factory-1895.jpg "Workers Leaving the Lumière Factory (Dir. Louis Lumière, 1895)")
 
 Go back to the start. The first films were short because film itself was short. A minute. A single shot. One steady camera. The Lumières pointed theirs at workers leaving a factory. Méliès pointed his at the sky and put a rocket in the eye of the moon.
 
 *A Trip to the Moon* runs about fourteen minutes. Nobody made it as a demo for a bigger version. It was the whole ambition. Méliès directed more than five hundred films like it. The form did not exist to become something else. It was the thing that existed.
+
+![](/uploads/fig2-melies-trip-to-the-moon-1902.jpg "Melies Trip To The Moon 1902")
 
 Features came later, when the reels got longer and the money followed the running time. The short did not grow up into the feature. The industry grew past it and kept the label pinned on for a hundred years.
 
@@ -59,26 +60,3 @@ So here it is, plainly. A short is not a business card. It is not a promise of a
 Make yours like it is the only one you will ever get to make. It might be. And that is enough.
 
 **Watch the short. It is not the trailer.**
-
----
-
-### References
-
-1. Celtx, "What Is a Short Film? Structure, Purpose and the Filmmaking Calling Card," 2026.
-2. Film Independent, "The Short Film as Calling Card," 2018.
-3. Backstage, "Calling-Card Shorts."
-4. Short of the Week, "Is a Short the Stepping Stone to a Feature?"
-5. "History of Film," Wikipedia.
-6. "Georges Méliès Filmography," Wikipedia.
-7. CinemaWaves, "Defining Short Films."
-8. "La Jetée," Wikipedia.
-9. The Reveal, on the BFI Sight & Sound greatest-films poll.
-10. "Meshes of the Afternoon," Library of Congress National Film Registry, 1990.
-
-### Image references
-
-Hero — *A Trip to the Moon / Le Voyage dans la Lune* (1902), dir. Georges Méliès. Hand-coloured frame, public domain. Wikimedia Commons.
-
-In text — *Workers Leaving the Lumière Factory / La Sortie de l'Usine Lumière à Lyon* (1895), dir. Louis Lumière. Public domain. Wikimedia Commons.
-
-*La Jetée* (1962, Chris Marker) and *Meshes of the Afternoon* (1943, Maya Deren) are cited but not reproduced. Both are rights-controlled.
