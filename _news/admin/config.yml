@@ -48,9 +48,13 @@ collections:
 
       - label: "Author"
         name: "author"
-        widget: "string"
+        widget: "relation"
+        collection: "writers"
+        search_fields: ["name"]
+        value_field: "name"
+        display_fields: ["name"]
         required: false
-        hint: "The writer's name, shown as a byline on the piece. e.g. 'Cerys Morgan'"
+        hint: "Pick the writer. Add them in the Writers section first — their byline links to their profile page."
 
       - label: "Publish date"
         name: "date"
@@ -88,3 +92,64 @@ collections:
         name: "body"
         widget: "markdown"
         hint: "The piece itself. Use the toolbar for bold, italics, headings, quotes, and images."
+
+  # -----------------------------------------------------------
+  #  WRITERS — profile pages, linked from each piece's byline
+  # -----------------------------------------------------------
+  - name: "writers"
+    label: "Writers"
+    label_singular: "Writer"
+    description: "Writer profiles. Each gets its own page, linked from their byline on every piece they write."
+    folder: "_news/writers"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: "name"
+    preview_path: "writers/{{slug}}"
+    summary: "{{name}}"
+    sortable_fields: [name]
+    fields:
+      - label: "Name"
+        name: "name"
+        widget: "string"
+        hint: "Full name as shown on the byline, e.g. 'Hayyan Khawaja'. Must match the name picked as Author on their pieces."
+
+      - label: "Role / title"
+        name: "role"
+        widget: "string"
+        required: false
+        hint: "Optional, e.g. 'Co-founder & Writer' or 'Contributing Writer'."
+
+      - label: "Photo"
+        name: "photo"
+        widget: "image"
+        required: false
+        hint: "Optional headshot. Shown top-left of the profile."
+
+      - label: "Short bio"
+        name: "bio"
+        widget: "text"
+        required: false
+        hint: "A sentence or two shown at the top of the profile."
+
+      - label: "Links"
+        name: "links"
+        widget: "list"
+        required: false
+        label_singular: "Link"
+        summary: "{{fields.label}}"
+        hint: "Add any links — High on Films, LinkedIn, Instagram, Letterboxd, a personal site, email. Each shows as a button, in order."
+        fields:
+          - label: "Label"
+            name: "label"
+            widget: "string"
+            hint: "The button text, e.g. 'High on Films', 'LinkedIn', 'Instagram'."
+          - label: "URL"
+            name: "url"
+            widget: "string"
+            hint: "The full link, e.g. https://... (for email use mailto:name@example.com)"
+
+      - label: "Longer bio (optional)"
+        name: "body"
+        widget: "markdown"
+        required: false
+        hint: "Optional longer profile text shown under the header."
